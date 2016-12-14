@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/13 13:16:40 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/14 17:46:32 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/14 17:53:05 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ void		init_menu(t_env *e)
 		MENU[i].pos_y = 4 + i * BTN_SIZE + 4 * i;
 		MENU[i].width = BTN_SIZE;
 		MENU[i].height = BTN_SIZE;
-		MENU[i].img.img = mlx_xpm_file_to_image(MLX, btn[i],
-				&(MENU[i].img.width), &(MENU[i].img.height));
+		if (!(MENU[i].img.img = mlx_xpm_file_to_image(MLX, btn[i],
+				&(MENU[i].img.width), &(MENU[i].img.height))))
+			error_perso(e, "Menu image not found");
 		MENU[i].img.addr = mlx_get_data_addr(MENU[i].img.img,
 				&(MENU[i].img.bpp), &(MENU[i].img.sizeline), &ENDIAN);
 	}
