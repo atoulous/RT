@@ -6,12 +6,12 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/14 17:44:22 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/14 17:57:26 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RTV1_H
-# define RTV1_H
+#ifndef RT_H
+# define RT_H
 
 # include <stdlib.h>
 # include <math.h>
@@ -48,8 +48,8 @@
 
 # define MLX e->mlx
 # define WIN e->win
-# define WIN_WIDTH 1040
-# define WIN_HEIGHT 800
+# define WIN_WIDTH e->win_width
+# define WIN_HEIGHT e->win_height
 # define IMG_WIDTH (WIN_WIDTH - 40)
 # define IMG_HEIGHT WIN_HEIGHT
 # define IMG e->img.img
@@ -131,11 +131,21 @@ typedef struct	s_object
 {
 	int			type;
 	char		*name;
+	t_v3d		origin;
+	t_v3d		p1;
+	t_v3d		p2;
+	double		r1;
+	double		r2;
+	t_v3d		dir;
+	int			color;
+	t_mat		mat;
+
+	/*
+	 *  old parameters
+	 */
 	t_v3d		pos;
 	double		*param;
 	int			nb_param;
-	int			color;
-	t_mat		mat;
 }				t_object;
 
 typedef struct	s_ray
@@ -183,6 +193,8 @@ typedef struct	s_env
 	char		opt;
 	void		*mlx;
 	void		*win;
+	int			win_width;
+	int			win_height;
 	t_img		img;
 	int			endian;
 	t_button	menu[NB_BTN];
