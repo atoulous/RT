@@ -1,22 +1,43 @@
-#
-#
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: atoulous <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2016/06/22 18:52:31 by atoulous          #+#    #+#              #
+#    Updated: 2016/12/14 18:15:27 by atoulous         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-NOM=libmlx.a
-SRC= mlx_shaders.c mlx_new_window.m mlx_init_loop.m mlx_new_image.m mlx_xpm.c mlx_int_str_to_wordtab.c
-OBJ1=$(SRC:.c=.o)
-OBJ=$(OBJ1:.m=.o)
-CFLAGS+=-O2
+NAME = libmlx.a
 
-all: $(NOM)
+SRC = mlx_shaders.c mlx_new_window.m mlx_init_loop.m mlx_new_image.m mlx_xpm.c \
+		mlx_int_str_to_wordtab.c
 
-$(NOM):	$(OBJ)
-	@ar -r $(NOM) $(OBJ)
-	@ranlib $(NOM)
-	@echo "\033[32m[OK]\033[0m libmlx.a created"
+OBJ1 = $(SRC:.c=.o)
+
+OBJ = $(OBJ1:.m=.o)
+
+$(NAME): $(OBJ)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "\033[32m[OK]\033[0m minilib compiled"
+
+all: $(NAME)
+
+%.o: %.c
+	@cc -O2 -o $@ -c $?
+
+%.o: %.m
+	@cc -O2 -o $@ -c $?
 
 clean:
-	@rm -f $(NOM) $(OBJ) *~
+	@rm -f $(OBJ) *~
 	@rm -f mlx_app
-	@echo "\033[32m[OK]\033[0m libmlx: libmlx.a deleted"
+
+fclean:
+	@rm -f $(NAME) $(OBJ) *~
+	@rm -f mlx_app
 
 re: clean all
