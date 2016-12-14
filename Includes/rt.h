@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/14 17:57:26 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/14 18:21:51 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define PI 3.141592
 # define NB_TH 50
-# define DIST_MAX 100000.0
+# define DIST_MAX 1000.0
 # define SPEED 0.1
 
 # define OPT_REF "dl"
@@ -51,7 +51,7 @@
 # define WIN_WIDTH e->win_width
 # define WIN_HEIGHT e->win_height
 # define IMG_WIDTH (WIN_WIDTH - 40)
-# define IMG_HEIGHT WIN_HEIGHT
+# define IMG_HEIGHT (WIN_HEIGHT)
 # define IMG e->img.img
 # define IMG_ADDR e->img.addr
 # define ENDIAN e->endian
