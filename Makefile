@@ -6,13 +6,13 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2016/12/14 17:50:54 by jubarbie         ###   ########.fr        #
+#    Updated: 2016/12/14 18:10:12 by atoulous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC=gcc
-CFLAGS= -ILibs/libft -ILibs/libmlx -ILibs/libv3d -IIncludes -Wall -Wextra -Werror
-SRC=	rtv1.c			\
+CC = gcc
+CFLAGS = -ILibs/libft -ILibs/libmlx -ILibs/libv3d -IIncludes -Wall -Wextra -Werror
+SRC =	rtv1.c			\
 		menu.c			\
 		color.c			\
 		hsv_rgb.c		\
@@ -34,10 +34,11 @@ SRC=	rtv1.c			\
 		cone.c			\
 		caps.c			\
 		moves.c
-OBJDIR=Objects
-VPATH=Sources
-OBJS=$(patsubst %,$(OBJDIR)/%,$(SRC:.c=.o))
-NAME=rt
+
+OBJDIR = Objects
+VPATH = Sources
+OBJS = $(patsubst %,$(OBJDIR)/%,$(SRC:.c=.o))
+NAME = rt
 
 $(NAME): $(OBJS)
 	@make -C Libs/libft
@@ -47,7 +48,7 @@ $(NAME): $(OBJS)
 	@echo "\033[32m[OK]\033[0m rt created"
 
 all: $(NAME)
-	
+
 $(OBJDIR)/%.o: %.c
 	@mkdir -p $(OBJDIR)
 	@$(CC) -c -o $@ $< $(CFLAGS)
@@ -57,6 +58,8 @@ clean:
 	@make clean -C Libs/libv3d
 	@rm -rf $(OBJDIR)
 	@echo "\033[32m[OK]\033[0m object files deleted"
+
+.PHONY: fclean
 
 fclean: clean
 	@make fclean -C Libs/libft
