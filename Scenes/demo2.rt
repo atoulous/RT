@@ -1,0 +1,29 @@
+#
+# Scene 2
+#
+
+scene {
+	name { demo_2 }
+	camera {
+		origin { 0 0 -100 }
+	}
+	render { 1080 800 }
+	object {
+		name { cylinder1 }
+		type { cylinder }
+		size { 10.0 }
+		origin1 { 0 0 0 }
+		origin2 { 0 10 0 }
+		color {
+			rgb { 0x00FF00 }
+		}
+	}
+	spot {
+		name { spot1 }
+		size { 10.0 }
+		origin { 200 0 -200 }
+		color {
+			rgb { 0xFFFFFF }
+		}
+	}
+}
