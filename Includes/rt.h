@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/14 19:04:23 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/15 11:57:56 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,14 @@
 # define VW_RAY param->vw_ray
 # define PHO_RAY param->light_ray
 # define COLOR param->color
+
+# define O_POS obj->origin
+# define O_DIR obj->dir
+# define O_P1 obj->p1
+# define O_P2 obj->p2
+# define O_R1 obj->r1
+# define O_R2 obj->r2
+# define O_ANG obj->angle
 
 # define VW_WIDTH e->scene->view_plane_width
 # define VW_HEIGHT e->scene->view_plane_height
@@ -136,6 +144,7 @@ typedef struct	s_object
 	t_v3d		p2;
 	double		r1;
 	double		r2;
+	double		angle;
 	t_v3d		dir;
 	int			color;
 	t_mat		mat;
