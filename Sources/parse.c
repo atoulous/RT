@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 16:21:36 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/14 17:47:12 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/15 16:31:40 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		check_acc(t_env *e, char *str)
 		error_perso(e, "missing one \"}\" in file");
 }
 
-int			size_to_end_acc(t_env *e, char *str)
+int			size_to_end_acc(char *str)
 {
 	int	i;
 	int j;
@@ -61,11 +61,11 @@ int			size_to_end_acc(t_env *e, char *str)
 		i++;
 	}
 	if (str[i] == '\0')
-		error_perso(e, "missing one \"}\" in file");
+		return (-1)
 	return (-1);
 }
 
-t_v3d		get_v3d(t_env *e, char *str, int n, char *name)
+t_v3d		get_v3d(char *name, char *str)
 {
 	char	*tmp;
 	char	*tmpy;
@@ -90,19 +90,54 @@ t_v3d		get_v3d(t_env *e, char *str, int n, char *name)
 	}
 }
 
-char		*get_in_acc(t_env *e, char *str, char *acc, int n)
+char		*get_in_acc(char param, char *str)
 {
 	char	*tmp;
 	char	*tmp1;
 	char	*tmp2;
 	int		len;
 
-	if (!(tmp = ft_strnstr(str, acc, n)))
-		error_perso(e, "malloc failed in get_in_acc function");
-	len = ft_strlen(acc);
-	tmp = go_to_next_acc(e, tmp + len, n);
+	if (!(tmp = find_param(param, str)))
+		return (NULL);
+	if ((len = size_to_end_acc(tmp)) == -1)
+		return (NULL)
 	tmp1 = strndup(tmp, size_to_end_acc(e, tmp));
 	tmp2 = ft_strtrim(tmp1);
 	free(tmp1);
 	return (tmp2);
+}
+
+char		*find_param(char *small, char *big)
+{
+	int	i;
+	int	j;
+	int	d;
+
+	i = -1;
+	d = 0;
+	while (big[++i])
+	{
+		if (big[i] == '{')
+			d++;
+		if (big[i] == '}')
+			d--;
+		if (d == 0)
+		{
+			j = -1;
+			while (big[i] && big[i] == small[++j])
+				i++;
+			if (small[j] == '\0')
+			{
+				while (big[i] == ' ' || big[i] == '\n' || big[i] == '\t')
+				{	
+					i++;
+					j++;
+				}
+				if (big[i] != '{')
+					return (NULL);
+				return (&big[++i]);
+			}
+		}
+	}
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/15 14:30:18 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/15 16:04:14 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,6 @@ typedef struct	s_object
 	/*
 	 *  old parameters
 	 */
-	t_v3d		pos;
 	double		*param;
 	int			nb_param;
 }				t_object;
@@ -230,6 +229,7 @@ t_v3d			get_v3d(t_env *e, char *str, int n, char *name);
 int				size_to_end_acc(t_env *e, char *str);
 void			check_acc(t_env *e, char *str);
 char			*go_to_next_acc(t_env *e, char *str, int n);
+char			*find_param(char *small, char *big);
 
 int				create_img(t_env *e);
 void			img_put_pixel(t_img *img, int x, int y, unsigned int color);

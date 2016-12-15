@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 16:21:36 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/14 17:47:35 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/15 16:31:38 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,19 @@ static void	build_scene(t_env *e, char *str)
 	e->scene->obj = NULL;
 	e->scene->light = NULL;
 	check_acc(e, str);
-	if (!(str = ft_strstr(str, "scene")))
-		error_perso(e, "no scene found in file");
-	str = go_to_next_acc(e, str + 5, ft_strlen(str));
-	e->scene->name = get_in_acc(e, str, "name", size_to_end_acc(e, str));
-	if (!(tmp = ft_strnstr(str, "camera", size_to_end_acc(e, str))))
+	if (!(str = find_param("scene", str)))
+		error_perso(e, "No scene found in file");
+	if (!(e->scene->name = get_in_acc("name", str)));
+		error_perso(e, "No name specified in scene");
+	if (!(tmp = get_in_acc("camera", str)))
 		error_perso(e, "No camera specified in scene");
 	else
 	{
-		tmp = go_to_next_acc(e, tmp + 6, size_to_end_acc(e, str));
-		e->scene->cam_pos = get_v3d(e, tmp, size_to_end_acc(e, tmp), "origin");
-		e->scene->cam_dir = get_v3d(e, tmp, size_to_end_acc(e, tmp), "dir");
+		e->scene->cam_pos = get_v3d(tmp, "origin");
+		e->scene->cam_dir = get_v3d(tmp, "dir");
 	}
-	tmp = str;
-	while ((tmp = ft_strnstr(tmp, "object", size_to_end_acc(e, str))))
-	{
-		tmp = go_to_next_acc(e, tmp + 6, size_to_end_acc(e, str));
+	while ((tmp = find_param("object", tmp)))
 		build_object(e, tmp, size_to_end_acc(e, tmp));
-	}
 }
 
 static int	avoid_spaces(char *line)
