@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 16:58:17 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/14 17:45:29 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/15 12:39:55 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,20 @@ void			cylinder(t_object *obj, t_ray *ray)
 	p1 = sub_v3d(dp, smul_v3d(n, dot_v3d(dp, n)));
 	p2.z = dot_v3d(p1, p1) - pow(r, 2.0);
 	find_solutions(obj, ray, p2);
+}
+
+void			cylinder(t_object *obj, t_ray *ray)
+{
+	t_v3d	abc;
+	t_v3d	dp;
+	t_v3d	tmp;
+
+	dp = sub_v3d(ray->pos, O_POS);
+	tmp = sub_v3d(ray->dir, smul_v3d(O_DIR, dot_v3d(ray->dir, O_DIR)));
+	abc.x = dot_v3d(tmp, tmp);
+	abc.y = 2 * dot_v3d((sub_v3d(ray->dir, smul_v3d(O_DIR,
+dot_v3d(ray->dir, O_DIR)))), sub_v3d(dp, smul_v3d(O_DIR, dot_v3d(dp, O_DIR))));
+	tmp = sub_v3d(dp, smul_v3d(O_DIR, dot_v3d(dp, O_DIR)));
+	abc.z = dot_v3d(tmp, tmp) - pow(r, 2.0);
+	find_solutions(obj, ray, abc);
 }
