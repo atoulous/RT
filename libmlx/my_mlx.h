@@ -13,7 +13,7 @@
 #ifndef MY_MLX_H
 # define MY_MLX_H
 
-# include "mlx.h"
+# include "../Libs/libmlx/mlx.h"
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
