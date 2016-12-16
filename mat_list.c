@@ -100,11 +100,34 @@ void				print_materia_list(t_list **list)
 	}
 }
 
+char		*ret_name(t_materia *m)
+{
+	return (m->name);
+}
+
+t_materia	*pars_materias(char *name, t_list **list)
+{
+	t_list	*l;
+
+	l = *list;
+	while (l)
+	{
+		if (!ft_strcmp(ret_name(l->content), name))
+			return (l->content);
+		l = l->next;
+	}
+	return (NULL);
+}
+
 int				main(void)
 {
 	t_list *l;
 
 	l = materia_list();
 	print_materia_list(&l);
+	t_materia *ret;
+	ret = pars_materias("jade", &l);
+	printf("MATIERE\n");
+	print_matiere(ret);
 	return (0);
 }
