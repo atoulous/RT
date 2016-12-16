@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 18:49:11 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/14 17:45:37 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/16 17:29:47 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	print_obj(t_env *e)
 {
 	t_list		*elem;
 	t_object	*obj;
-	int			i;
 
 	elem = e->scene->obj;
 	printf("	Objects:\n");
@@ -32,12 +31,21 @@ static void	print_obj(t_env *e)
 		obj = (t_object *)(elem->content);
 		printf("		name: \"%s\"\n", obj->name);
 		printf("		type: \"%d\"\n", obj->type);
-		printf("		param: \n");
-		i = -1;
-		while (++i < obj->nb_param)
-			printf("			%lf\n", obj->param[i]);
-		printf("		origin(%lf, %lf, %lf)\n", obj->pos.x,
-												obj->pos.y, obj->pos.z);
+		printf("		");
+		print_v3d(obj->pos, "origin");
+		printf("\n");
+		printf("		");
+		print_v3d(obj->dir, "dir");
+		printf("\n");
+		printf("		");
+		print_v3d(obj->p1, "p1");
+		printf("\n");
+		printf("		");
+		print_v3d(obj->p2, "p2");
+		printf("\n");
+		printf("		r1: %lf\n", obj->r1);
+		printf("		r2: %lf\n", obj->r2);
+		printf("		angle: %lf\n", obj->angle);
 		printf("		color: 0x%08.8X\n", obj->color);
 		print_mat(obj);
 		printf("		----------\n");

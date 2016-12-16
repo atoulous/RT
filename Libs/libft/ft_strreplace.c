@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_v3d.c                                        :+:      :+:    :+:   */
+/*   ft_strreplace.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 12:07:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/16 17:21:25 by jubarbie         ###   ########.fr       */
+/*   Created: 2016/12/16 16:12:34 by jubarbie          #+#    #+#             */
+/*   Updated: 2016/12/16 16:15:57 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libv3d.h"
+#include "libft.h"
 
-void	print_v3d(t_v3d v, char *name)
+char	*ft_strreplace(char old, char new, char *str)
 {
-	if (name)
-		printf("%s(%f, %f, %f)", name, v.x, v.y, v.z);
-	else
-		printf("(%f, %f, %f)", v.x, v.y, v.z);
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		if (str[i] == old)
+			str[i] = new;
+	return (str);
 }

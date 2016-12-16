@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 16:21:36 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/15 16:31:38 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/16 17:38:24 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,22 @@ static void	build_scene(t_env *e, char *str)
 	check_acc(e, str);
 	if (!(str = find_param("scene", str)))
 		error_perso(e, "No scene found in file");
-	if (!(e->scene->name = get_in_acc("name", str)));
+	if (!(e->scene->name = get_in_acc("name", str)))
 		error_perso(e, "No name specified in scene");
 	if (!(tmp = get_in_acc("camera", str)))
 		error_perso(e, "No camera specified in scene");
 	else
 	{
-		e->scene->cam_pos = get_v3d(tmp, "origin");
-		e->scene->cam_dir = get_v3d(tmp, "dir");
+		e->scene->cam_pos = get_v3d("origin", tmp);
+		e->scene->cam_dir = get_v3d("dir", tmp);
+		free(tmp);
 	}
-	while ((tmp = find_param("object", tmp)))
-		build_object(e, tmp, size_to_end_acc(e, tmp));
+	while ((tmp = get_in_acc("object", str)))
+	{
+		build_object(e, tmp);
+		str += ft_strlen(tmp);
+		free(tmp);
+	}
 }
 
 static int	avoid_spaces(char *line)

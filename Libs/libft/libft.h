@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 09:31:33 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/12 19:03:53 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/16 16:14:32 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ int				ft_max(int n1, int n2);
 int				get_next_line(int fd, char **line);
 double			ft_atof(const char *str);
 double			ft_solve_quadratic(double a, double b, double c, double *t);
+char			*ft_strreplace(char old, char new, char *str);
 
 #endif

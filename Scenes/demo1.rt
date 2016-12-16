@@ -1,0 +1,26 @@
+#
+# Scene 1
+#
+
+scene {
+	name { demo_1 }
+	camera {
+		origin { 0 0 -100 }
+	}
+	render { 1080 800 }
+	object {
+		name { sphere1 }
+		type { sphere }
+		size { 10.0 }
+		origin { 42 2.3 20 }
+		color { 0xFF0000 }
+	}
+	spot {
+		name { spot1 }
+		size { 10.0 }
+		origin { 200 0 -200 }
+		color {
+			0xFFFFFF
+		}
+	}
+}

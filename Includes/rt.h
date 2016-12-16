@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/15 16:04:14 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/16 17:27:44 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,12 +140,12 @@ typedef struct	s_object
 	int			type;
 	char		*name;
 	t_v3d		pos;
+	t_v3d		dir;
 	t_v3d		p1;
 	t_v3d		p2;
 	double		r1;
 	double		r2;
 	double		angle;
-	t_v3d		dir;
 	int			color;
 	t_mat		mat;
 
@@ -222,13 +222,13 @@ void			create_wait_image(t_env *e);
 void			init_menu(t_env *e);
 
 void			parse_rt(t_env *e, char *file_name);
-void			build_object(t_env *e, char *str, int n);
-void			add_mat(t_env *e, t_object *obj, char *str, int n);
-char			*get_in_acc(t_env *e, char *str, char *acc, int n);
-t_v3d			get_v3d(t_env *e, char *str, int n, char *name);
-int				size_to_end_acc(t_env *e, char *str);
+void			build_object(t_env *e, char *str);
+char			*get_in_acc(char *str, char *acc);
+t_v3d			get_v3d(char *str, char *name);
+double			get_double(char *str, char *name);
+int				size_to_end_acc(char *str);
 void			check_acc(t_env *e, char *str);
-char			*go_to_next_acc(t_env *e, char *str, int n);
+char			*go_to_next_acc(char *str, int n);
 char			*find_param(char *small, char *big);
 
 int				create_img(t_env *e);
