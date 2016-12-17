@@ -6,13 +6,13 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/16 17:38:21 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/17 21:06:44 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void			add_mat(t_object *obj, char *str)
+static void		add_mat(t_object *obj, char *str)
 {
 	char	*tmp;
 
@@ -77,6 +77,8 @@ void			build_object(t_env *e, char *str)
 	obj.r1 = get_double("r1", str);
 	obj.r2 = get_double("r2", str);
 	obj.angle = get_double("angle", str);
+	if (e->calc_obj_param[obj.type])
+		e->calc_obj_param[obj.type](&obj);
 	if ((obj.color = get_obj_color(str)) == -1)
 		error_perso(e, "No color found in object");
 	add_mat(&obj, str);

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/16 17:27:44 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/17 21:57:36 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@
 
 # define MLX e->mlx
 # define WIN e->win
-# define WIN_WIDTH e->win_width
-# define WIN_HEIGHT e->win_height
-# define IMG_WIDTH (WIN_WIDTH - 40)
-# define IMG_HEIGHT (WIN_HEIGHT)
+# define IMG_WIDTH e->img_width
+# define IMG_HEIGHT e->img_height
+# define WIN_WIDTH (IMG_WIDTH + 40)
+# define WIN_HEIGHT (IMG_HEIGHT)
 # define IMG e->img.img
 # define IMG_ADDR e->img.addr
 # define ENDIAN e->endian
@@ -148,12 +148,6 @@ typedef struct	s_object
 	double		angle;
 	int			color;
 	t_mat		mat;
-
-	/*
-	 *  old parameters
-	 */
-	double		*param;
-	int			nb_param;
 }				t_object;
 
 typedef struct	s_ray
@@ -201,8 +195,8 @@ typedef struct	s_env
 	char		opt;
 	void		*mlx;
 	void		*win;
-	int			win_width;
-	int			win_height;
+	int			img_width;
+	int			img_height;
 	t_img		img;
 	int			endian;
 	t_button	menu[NB_BTN];
@@ -210,6 +204,7 @@ typedef struct	s_env
 	t_scene		*scene;
 	char		**obj_allowed;
 	void		(*obj_fct_obj[NB_OBJ_FCT])(t_object *, t_ray *);
+	void		(*calc_obj_param[NB_OBJ_FCT])(t_object *);
 	t_param		*param[NB_TH];
 }				t_env;
 
@@ -240,7 +235,9 @@ void			apply_light(t_env *e, t_param *param);
 void			sphere(t_object *obj, t_ray *ray);
 void			plane(t_object *obj, t_ray *ray);
 void			cylinder(t_object *obj, t_ray *ray);
+void			calc_cylinder_param(t_object *obj);
 void			cone(t_object *obj, t_ray *ray);
+void			calc_cone_param(t_object *obj);
 double			caps_up(t_object *obj, t_ray *ray);
 double			caps_bottom(t_object *obj, t_ray *ray);
 double			caps(t_ray *ray, double r, t_v3d n, t_v3d p);

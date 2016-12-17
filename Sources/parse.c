@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 16:21:36 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/16 17:37:31 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/17 21:56:44 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,59 +65,6 @@ int			size_to_end_acc(char *str)
 	return (-1);
 }
 
-double		get_double(char *name, char *str)
-{
-	char	*tmp;
-	double	nb;
-
-	if (!(tmp = get_in_acc(name, str)))
-		return (0);
-	else
-	{
-		nb = ft_atof(tmp);
-		free(tmp);
-		return (nb);
-	}
-	return (0);
-
-}
-
-t_v3d		get_v3d(char *name, char *str)
-{
-	char	*tmp;
-	char	**v;
-	//char	*tmpy;
-	//char	*tmpz;
-	int		i;
-
-	if (!(tmp = get_in_acc(name, str)))
-		return (v3d(0, 0, 0));
-	else
-	{
-		printf("str: %s\n", tmp);
-		v = ft_strsplit(tmp, ' ');
-		i = 0;
-		while (tmp[i])
-			i++;
-		printf("i: %d\n", i);
-		//if (i != 4)
-		//	return (v3d(0, 0, 0));
-		/*
-		while ((*tmp == '\n' || *tmp == '\t' || *tmp == ' ') && n-- > 0)
-			tmp++;
-		tmpy = tmp;
-		while (*tmpy != '\n' && *tmpy != '\t' && *tmpy != ' ' && n-- > 0)
-			tmpy++;
-		while ((*tmpy == '\n' || *tmpy == '\t' || *tmpy == ' ') && n-- > 0)
-			tmpy++;
-		tmpz = tmpy;
-		while (*tmpz != '\n' && *tmpz != '\t' && *tmpz != ' ' && n-- > 0)
-			tmpz++;*/
-		return (v3d(ft_atof(v[0]), ft_atof(v[1]), ft_atof(v[2])));
-		free(tmp);
-	}
-}
-
 char		*get_in_acc(char *param, char *str)
 {
 	char	*tmp;
@@ -133,36 +80,4 @@ char		*get_in_acc(char *param, char *str)
 	tmp2 = ft_strtrim(tmp1);
 	free(tmp1);
 	return (tmp2);
-}
-
-char		*find_param(char *small, char *big)
-{
-	int	i;
-	int	j;
-	int	d;
-
-	i = -1;
-	d = 0;
-	while (big[++i])
-	{
-		if (big[i] == '{')
-			d++;
-		if (big[i] == '}')
-			d--;
-		if (d == 0)
-		{
-			j = -1;
-			while (big[i] && big[i] == small[++j])
-				i++;
-			if (small[j] == '\0')
-			{
-				while (big[i] == ' ' || big[i] == '\n' || big[i] == '\t')
-					i++;
-				if (big[i] != '{')
-					return (NULL);
-				return (&big[++i]);
-			}
-		}
-	}
-	return (NULL);
 }

@@ -6,13 +6,14 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 09:31:33 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/16 16:14:32 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/17 21:19:29 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <stdlib.h>
 # include <string.h>
 # include <math.h>
 
@@ -99,5 +100,7 @@ int				get_next_line(int fd, char **line);
 double			ft_atof(const char *str);
 double			ft_solve_quadratic(double a, double b, double c, double *t);
 char			*ft_strreplace(char old, char new, char *str);
+void			ft_free_tab(char **tab);
+char			*ft_strjoin_free(char const *s1, char const *s2);
 
 #endif

@@ -6,17 +6,17 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 18:49:11 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/16 17:29:47 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/17 20:53:12 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void	print_mat(t_object *obj)
+static void	print_vector(t_v3d v, char *name)
 {
-	printf("		Material:\n");
-	printf("			Color diffuse: %lf\n", obj->mat.diffuse);
-	printf("			Shiness: %lf\n", obj->mat.shine);
+	printf("		");
+	print_v3d(v, name);
+	printf("\n");
 }
 
 static void	print_obj(t_env *e)
@@ -31,23 +31,16 @@ static void	print_obj(t_env *e)
 		obj = (t_object *)(elem->content);
 		printf("		name: \"%s\"\n", obj->name);
 		printf("		type: \"%d\"\n", obj->type);
-		printf("		");
-		print_v3d(obj->pos, "origin");
-		printf("\n");
-		printf("		");
-		print_v3d(obj->dir, "dir");
-		printf("\n");
-		printf("		");
-		print_v3d(obj->p1, "p1");
-		printf("\n");
-		printf("		");
-		print_v3d(obj->p2, "p2");
-		printf("\n");
-		printf("		r1: %lf\n", obj->r1);
-		printf("		r2: %lf\n", obj->r2);
-		printf("		angle: %lf\n", obj->angle);
+		print_vector(obj->pos, "origin");
+		print_vector(obj->dir, "dir");
+		print_vector(obj->p1, "p1");
+		print_vector(obj->p2, "p2");
+		printf("		r1: %lf\n		r2: %lf\n", O_R1, O_R2);
+		printf("		angle: %lf\n", O_ANG);
 		printf("		color: 0x%08.8X\n", obj->color);
-		print_mat(obj);
+		printf("		Material:\n");
+		printf("			Color diffuse: %lf\n", obj->mat.diffuse);
+		printf("			Shiness: %lf\n", obj->mat.shine);
 		printf("		----------\n");
 		elem = elem->next;
 	}
@@ -57,7 +50,6 @@ static void	print_light(t_env *e)
 {
 	t_list		*elem;
 	t_object	*obj;
-	int			i;
 
 	elem = e->scene->light;
 	printf("	Lights:\n");
@@ -68,12 +60,7 @@ static void	print_light(t_env *e)
 		obj = (t_object *)(elem->content);
 		printf("		name: \"%s\"\n", obj->name);
 		printf("		type: \"%d\"\n", obj->type);
-		printf("		param:\n");
-		i = -1;
-		while (++i < obj->nb_param)
-			printf("			%lf\n", obj->param[i]);
-		printf("		origin(%lf, %lf, %lf)\n", obj->pos.x,
-												obj->pos.y, obj->pos.z);
+		print_vector(O_POS, "origin");
 		printf("		color: 0x%08.8X\n", obj->color);
 		printf("		----------\n");
 		elem = elem->next;
@@ -82,11 +69,12 @@ static void	print_light(t_env *e)
 
 static void	print_scene(t_env *e)
 {
-	printf("\n\n----   DEBUG    ----\n");
+	printf("\n----   DEBUG    ----\n\n");
+	printf("	Image resolution: %d x %d px\n\n", IMG_WIDTH, IMG_HEIGHT);
 	printf("	Scene name: \"%s\"\n", e->scene->name);
 	printf("	Camera:\n");
-	printf("		origin(%lf, %lf, %lf)\n", e->scene->cam_pos.x,
-			e->scene->cam_pos.y, e->scene->cam_pos.z);
+	print_vector(CAM_POS, "origin");
+	print_vector(CAM_DIR, "dir");
 	print_obj(e);
 	print_light(e);
 }
