@@ -6,95 +6,85 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/14 17:47:28 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/17 21:06:44 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static double	*get_obj_param(t_env *e, int *nb, char *str)
+static void		add_mat(t_object *obj, char *str)
 {
-	char	**tab;
-	double	*param;
-	int		i;
+	char	*tmp;
 
-	tab = ft_strsplit(str, ' ');
-	i = 0;
-	while (tab[i])
-		i++;
-	if (!(param = malloc(sizeof(double) * i - 1)))
-		error_perso(e, "malloc (t_param *param) failed in get_obj_param()");
-	i = 0;
-	while (tab[i])
+	obj->mat.shine = 0;
+	obj->mat.diffuse = 0.5;
+	if ((tmp = get_in_acc("mat", str)))
 	{
-		param[i] = ft_atof(tab[i]);
-		free(tab[i]);
-		i++;
+		if (find_param("shine", tmp))
+			obj->mat.shine = get_double("shine", tmp);
+		if (find_param("diffuse", tmp))
+			obj->mat.diffuse = get_double("diffuse", tmp);
+		free(tmp);
 	}
-	free(tab);
-	*nb = i;
-	return (param);
 }
 
-static int		get_obj_type(t_env *e, char *str, int n)
+static int		get_obj_type(t_env *e, char *str)
 {
 	int		i;
+	char	*tmp;
 
 	i = 0;
-	while (e->obj_allowed[i] && !(ft_strnstr(str, e->obj_allowed[i], n)))
+	if (!(tmp = get_in_acc("type", str)))
+		return (-1);
+	while (e->obj_allowed[i] && ft_strcmp(tmp, e->obj_allowed[i]))
 		i++;
+	free(tmp);
 	if (!e->obj_allowed[i])
-		error_perso(e, "object type is not supported");
+		error_perso(e, "Object type is not supported");
 	else
 		return (i);
 	return (-1);
 }
 
-static int		get_obj_color(t_env *e, char *str, int n)
+static int		get_obj_color(char *str)
 {
-	char	*tmp;
-	char	*col_h;
-	char	*col_i;
+	char	*tmp1;
+	char	*tmp2;
 	int		color;
 
-	col_h = NULL;
-	if (!(tmp = ft_strnstr(str, "color", n)))
-		return (0);
-	tmp = go_to_next_acc(e, tmp + 5, n);
-	if ((tmp = ft_strnstr(tmp, "rgb", size_to_end_acc(e, tmp))))
-	{
-		col_h = get_in_acc(e, tmp, "rgb", n);
-		col_i = ft_convert_base(col_h + 2, "0123456789ABCDEF", "0123456789");
-		color = ft_atoi(col_i);
-		free(col_i);
-		free(col_h);
-		return (color);
-	}
-	return (0);
+	if (!(tmp1 = get_in_acc("color", str)))
+		return (-1);
+	tmp2 = ft_convert_base(tmp1, "0123456789ABCDEF", "0123456789");
+	color = ft_atoi(tmp2);
+	free(tmp1);
+	free(tmp2);
+	return (color);
 }
 
-void			build_object(t_env *e, char *str, int n)
+void			build_object(t_env *e, char *str)
 {
 	t_object	obj;
 	t_list		*elem;
-	char		*tmp;
 
-	if (!(tmp = ft_strnstr(str, "name", n)))
+	if (!(obj.name = get_in_acc("name", str)))
 		error_perso(e, "No name found in object");
-	obj.name = get_in_acc(e, str, "name", size_to_end_acc(e, str));
-	if (!(tmp = ft_strnstr(str, "inter", n)))
-		error_file(e);
-	tmp = go_to_next_acc(e, tmp + 5, n);
-	obj.type = get_obj_type(e, tmp, size_to_end_acc(e, tmp));
-	obj.pos = get_v3d(e, tmp, size_to_end_acc(e, tmp), "origin");
-	tmp = get_in_acc(e, tmp, e->obj_allowed[obj.type], size_to_end_acc(e, tmp));
-	obj.param = get_obj_param(e, &(obj.nb_param), tmp);
-	obj.color = get_obj_color(e, str, n);
-	add_mat(e, &obj, str, n);
+	if ((obj.type = get_obj_type(e, str)) == -1)
+		error_perso(e, "No type found in object");
+	obj.pos = get_v3d("origin", str);
+	obj.dir = get_v3d("dir", str);
+	obj.p1 = get_v3d("p1", str);
+	obj.p2 = get_v3d("p2", str);
+	obj.r1 = get_double("r1", str);
+	obj.r2 = get_double("r2", str);
+	obj.angle = get_double("angle", str);
+	if (e->calc_obj_param[obj.type])
+		e->calc_obj_param[obj.type](&obj);
+	if ((obj.color = get_obj_color(str)) == -1)
+		error_perso(e, "No color found in object");
+	add_mat(&obj, str);
 	elem = ft_lstnew(&obj, sizeof(obj));
 	if (obj.type == 0)
 		ft_lstadd(&(e->scene->light), elem);
 	else
 		ft_lstadd(&(e->scene->obj), elem);
-	free(tmp);
 }

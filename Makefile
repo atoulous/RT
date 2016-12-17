@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2016/12/14 18:10:12 by atoulous         ###   ########.fr        #
+#    Updated: 2016/12/17 21:05:22 by jubarbie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,8 @@ SRC=	rt.c			\
 		env.c			\
 		debug.c			\
 		parse.c			\
+		parse_param.c	\
 		parse_obj.c		\
-		parse_mat.c		\
 		parse_scene.c	\
 		raytracer.c		\
 		light.c			\

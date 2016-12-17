@@ -5,26 +5,60 @@
 scene {
 	name { demo_1 }
 	camera {
-		origin { 0 0 -100 }
+		origin { 0 2 -10 }
+		dir { 0 0 1 }
 	}
 	render { 1080 800 }
+	
 	object {
 		name { sphere1 }
 		type { sphere }
-		size { 10.0 }
-		inter {
-		origin { 0 0 0 }
-		}
-		color {
-			rgb { 0xFF0000 }
-		}
+		origin { 0 1.5 0 }
+		r1 { 1.6 }
+		color { 0xFF0000 }
 	}
-	spot {
+	
+	object {
+		name { cylindre }
+		type { cylinder }
+		p1 { 0 -1 0 }
+		p2 { 0 1 0 }
+		r1 { 2.0 }
+		color { 0xFF0000 }
+	}
+
+	object {
+		name { cone} 
+		type { cone }
+		p1 { 0 1 0 }
+		p2 { 0 1.5 0 }
+		r1 { 2.0 }
+		r2 { 1.6 }
+		color { 0xFF0000 }
+	}
+
+	object {
+		name { plan }
+		type { plane }
+		origin { 0 -1 0 }
+		dir { 0 1 0 }
+		color { 0xFF0000 }
+	}
+
+	object {
+		name { plan }
+		type { plane }
+		origin { 0 0 3 }
+		dir { 0 0 -1 }
+		color { 0xFF0000 }
+	}
+
+
+	
+	object {
 		name { spot1 }
-		size { 10.0 }
-		origin { 200 0 -200 }
-		color {
-			rgb { 0xFFFFFF }
-		}
+		type { light }
+		origin { 5 5 -5 }
+		color { 0xFFFFFF }
 	}
 }

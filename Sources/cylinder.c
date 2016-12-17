@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 16:58:17 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/15 12:39:55 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/17 20:40:31 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,12 @@
 static void		set_cylinder_norm(t_object *obj, t_ray *ray)
 {
 	double	l;
-	t_v3d	n;
 
-	n = unit_v3d(sub_v3d(v3d(obj->param[1], obj->param[2], obj->param[3]),
-																	obj->pos));
 	ray->inter = add_v3d(ray->pos, smul_v3d(ray->dir, ray->dist));
-	l = length_v3d(sub_v3d(ray->inter, obj->pos));
-	l = sqrt(pow(l, 2.0) - pow(obj->param[0], 2.0));
-	ray->norm = unit_v3d(sub_v3d(ray->inter, add_v3d(obj->pos,
-															smul_v3d(n, l))));
+	l = length_v3d(sub_v3d(ray->inter, O_P1));
+	l = sqrt(pow(l, 2.0) - pow(O_R1, 2.0));
+	ray->norm = unit_v3d(sub_v3d(ray->inter, add_v3d(O_P1,
+													smul_v3d(O_DIR, l))));
 }
 
 static void		find_dist(t_object *obj, t_ray *ray, double *sol)
@@ -31,11 +28,9 @@ static void		find_dist(t_object *obj, t_ray *ray, double *sol)
 	int		i;
 	double	max;
 	int		index;
-	t_v3d	p2;
 
 	i = -1;
 	max = ray->dist;
-	p2 = v3d(obj->param[1], obj->param[2], obj->param[3]);
 	while (++i < 4)
 		if (sol[i] > 0 && sol[i] < max)
 		{
@@ -49,22 +44,18 @@ static void		find_dist(t_object *obj, t_ray *ray, double *sol)
 		if (index == 0 || index == 1)
 			set_cylinder_norm(obj, ray);
 		else if (index == 2)
-			ray->norm = unit_v3d(sub_v3d(p2, obj->pos));
+			ray->norm = O_DIR;
 		else if (index == 3)
-			ray->norm = unit_v3d(sub_v3d(obj->pos, p2));
+			ray->norm = smul_v3d(O_DIR, -1);
 	}
 }
 
 static void		find_solutions(t_object *obj, t_ray *ray, t_v3d abc)
 {
-	t_v3d	p2;
 	t_v3d	tmp;
-	t_v3d	n;
 	double	det;
 	double	sol[4];
 
-	p2 = v3d(obj->param[1], obj->param[2], obj->param[3]);
-	n = unit_v3d(sub_v3d(p2, obj->pos));
 	if ((det = ft_solve_quadratic(abc.x, abc.y, abc.z, sol)) >= 0)
 	{
 		sol[2] = -1;
@@ -72,36 +63,14 @@ static void		find_solutions(t_object *obj, t_ray *ray, t_v3d abc)
 			if (sol[(int)sol[2]] >= 0)
 			{
 				tmp = add_v3d(ray->pos, smul_v3d(ray->dir, sol[(int)sol[2]]));
-				if (!(dot_v3d(n, sub_v3d(tmp, obj->pos)) > 0 &&
-											dot_v3d(n, sub_v3d(tmp, p2)) < 0))
+				if (!(dot_v3d(O_DIR, sub_v3d(tmp, O_P1)) > 0 &&
+										dot_v3d(O_DIR, sub_v3d(tmp, O_P2)) < 0))
 					sol[(int)sol[2]] = -1;
 			}
-		sol[2] = caps(ray, obj->param[0], n, p2);
-		sol[3] = caps(ray, obj->param[0], smul_v3d(n, -1), obj->pos);
+		sol[2] = caps(ray, O_R1, O_DIR, O_P2);
+		sol[3] = caps(ray, O_R1, smul_v3d(O_DIR, -1), O_P1);
 		find_dist(obj, ray, sol);
 	}
-}
-
-void			cylinder(t_object *obj, t_ray *ray)
-{
-	double	r;
-	t_v3d	n;
-	t_v3d	p1;
-	t_v3d	p2;
-	t_v3d	dp;
-
-	r = obj->param[0];
-	p1 = obj->pos;
-	p2 = v3d(obj->param[1], obj->param[2], obj->param[3]);
-	n = unit_v3d(sub_v3d(p2, p1));
-	dp = sub_v3d(ray->pos, obj->pos);
-	p1 = sub_v3d(ray->dir, smul_v3d(n, dot_v3d(ray->dir, n)));
-	p2.x = dot_v3d(p1, p1);
-	p2.y = 2 * dot_v3d((sub_v3d(ray->dir, smul_v3d(n, dot_v3d(ray->dir, n)))),
-			sub_v3d(dp, smul_v3d(n, dot_v3d(dp, n))));
-	p1 = sub_v3d(dp, smul_v3d(n, dot_v3d(dp, n)));
-	p2.z = dot_v3d(p1, p1) - pow(r, 2.0);
-	find_solutions(obj, ray, p2);
 }
 
 void			cylinder(t_object *obj, t_ray *ray)
@@ -110,12 +79,17 @@ void			cylinder(t_object *obj, t_ray *ray)
 	t_v3d	dp;
 	t_v3d	tmp;
 
-	dp = sub_v3d(ray->pos, O_POS);
+	dp = sub_v3d(ray->pos, O_P1);
 	tmp = sub_v3d(ray->dir, smul_v3d(O_DIR, dot_v3d(ray->dir, O_DIR)));
 	abc.x = dot_v3d(tmp, tmp);
 	abc.y = 2 * dot_v3d((sub_v3d(ray->dir, smul_v3d(O_DIR,
 dot_v3d(ray->dir, O_DIR)))), sub_v3d(dp, smul_v3d(O_DIR, dot_v3d(dp, O_DIR))));
 	tmp = sub_v3d(dp, smul_v3d(O_DIR, dot_v3d(dp, O_DIR)));
-	abc.z = dot_v3d(tmp, tmp) - pow(r, 2.0);
+	abc.z = dot_v3d(tmp, tmp) - pow(O_R1, 2.0);
 	find_solutions(obj, ray, abc);
+}
+
+void			calc_cylinder_param(t_object *obj)
+{
+	O_DIR = unit_v3d(sub_v3d(O_P2, O_P1));
 }

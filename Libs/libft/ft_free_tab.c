@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_free_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/19 13:07:48 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/17 21:56:47 by jubarbie         ###   ########.fr       */
+/*   Created: 2016/12/17 18:08:46 by jubarbie          #+#    #+#             */
+/*   Updated: 2016/12/17 18:12:05 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(const char *big, const char *little)
+void	ft_free_tab(char **tab)
 {
-	char		*pos;
-	const char	*pl;
+	int i;
 
-	if (!*little)
-		return ((char *)big);
-	while (*big)
+	i = -1;
+	if (tab)
 	{
-		if (*big == *little)
-		{
-			pos = (char *)big;
-			pl = little;
-			while (*big == *pl)
-			{
-				big++;
-				pl++;
-				if (*pl == '\0')
-					return (pos);
-				if (*big == '\0')
-					return (NULL);
-			}
-			big = (const char *)pos;
-		}
-		big++;
+		while (tab[++i])
+			free(tab[i]);
+		free(tab);
 	}
-	return (NULL);
+	tab = NULL;
 }

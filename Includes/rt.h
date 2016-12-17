@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/15 14:30:18 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/17 22:01:34 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@
 
 # define MLX e->mlx
 # define WIN e->win
-# define WIN_WIDTH e->win_width
-# define WIN_HEIGHT e->win_height
-# define IMG_WIDTH (WIN_WIDTH - 40)
-# define IMG_HEIGHT (WIN_HEIGHT)
+# define IMG_WIDTH e->img_width
+# define IMG_HEIGHT e->img_height
+# define WIN_WIDTH (IMG_WIDTH + 40)
+# define WIN_HEIGHT (IMG_HEIGHT)
 # define IMG e->img.img
 # define IMG_ADDR e->img.addr
 # define ENDIAN e->endian
@@ -140,21 +140,14 @@ typedef struct	s_object
 	int			type;
 	char		*name;
 	t_v3d		pos;
+	t_v3d		dir;
 	t_v3d		p1;
 	t_v3d		p2;
 	double		r1;
 	double		r2;
 	double		angle;
-	t_v3d		dir;
 	int			color;
 	t_mat		mat;
-
-	/*
-	 *  old parameters
-	 */
-	t_v3d		pos;
-	double		*param;
-	int			nb_param;
 }				t_object;
 
 typedef struct	s_ray
@@ -202,8 +195,8 @@ typedef struct	s_env
 	char		opt;
 	void		*mlx;
 	void		*win;
-	int			win_width;
-	int			win_height;
+	int			img_width;
+	int			img_height;
 	t_img		img;
 	int			endian;
 	t_button	menu[NB_BTN];
@@ -211,6 +204,7 @@ typedef struct	s_env
 	t_scene		*scene;
 	char		**obj_allowed;
 	void		(*obj_fct_obj[NB_OBJ_FCT])(t_object *, t_ray *);
+	void		(*calc_obj_param[NB_OBJ_FCT])(t_object *);
 	t_param		*param[NB_TH];
 }				t_env;
 
@@ -223,13 +217,14 @@ void			create_wait_image(t_env *e);
 void			init_menu(t_env *e);
 
 void			parse_rt(t_env *e, char *file_name);
-void			build_object(t_env *e, char *str, int n);
-void			add_mat(t_env *e, t_object *obj, char *str, int n);
-char			*get_in_acc(t_env *e, char *str, char *acc, int n);
-t_v3d			get_v3d(t_env *e, char *str, int n, char *name);
-int				size_to_end_acc(t_env *e, char *str);
+void			build_object(t_env *e, char *str);
+char			*get_in_acc(char *str, char *acc);
+t_v3d			get_v3d(char *str, char *name);
+double			get_double(char *str, char *name);
+int				size_to_end_acc(char *str);
 void			check_acc(t_env *e, char *str);
-char			*go_to_next_acc(t_env *e, char *str, int n);
+char			*go_to_next_acc(char *str, int n);
+char			*find_param(char *small, char *big);
 
 int				create_img(t_env *e);
 void			img_put_pixel(t_img *img, int x, int y, unsigned int color);
@@ -240,7 +235,9 @@ void			apply_light(t_env *e, t_param *param);
 void			sphere(t_object *obj, t_ray *ray);
 void			plane(t_object *obj, t_ray *ray);
 void			cylinder(t_object *obj, t_ray *ray);
+void			calc_cylinder_param(t_object *obj);
 void			cone(t_object *obj, t_ray *ray);
+void			calc_cone_param(t_object *obj);
 double			caps_up(t_object *obj, t_ray *ray);
 double			caps_bottom(t_object *obj, t_ray *ray);
 double			caps(t_ray *ray, double r, t_v3d n, t_v3d p);
