@@ -19,25 +19,21 @@ scene {
 	camera { 
 		origin { 2 1.75 -11 }
 		dir { 0 0 1 }		
-	}	
-	
+	}
+	render {600 500}
 	object {
 		name { light1 }
-		inter {
-			origin {5 3.4 -5}
-			light {  0.01}
-		}
-		color { rgb { 0x00FFFFFF } }
+		type { light }
+		origin {5 3.4 -5}
+		color { 0x00FFFFFF }
 	}
 
 
 	object {
 		name { light2 }
-		inter {
-			origin {1-2 3.4 -5}
-			light {  0.01}
-		}
-		color { rgb { 0x00FFFFFF } }
+		type { light }
+		origin {1-2 3.4 -5}
+		color {  0x00FFFFFF }
 	}
 
 #
@@ -46,11 +42,11 @@ scene {
 
 	object {
 		name { cylinder }
-		inter {
-			origin { 0 -2 0 }
-			cylinder { 0.7 2 10 0}
-		}
-		color { rgb { 0x00139A43 }}
+		type { cylinder }
+		p1 { 0 -2 0 }
+		p2 { 2 10 0}
+		r1 { 0.7 }
+		color { 0x00139A43 }
 		mat {	
 			diffuse { 0.25 }
 			shine { 0.3}
@@ -64,11 +60,12 @@ scene {
 
 	object {
 		name { cone }
-		inter {
-			origin { 5 -3 0 }
-			cone {2 -4  -3 16 0 }
-		}
-		color { rgb { 0x00F0C808 }}
+		type { cone }
+		p1 { 5 -3 0 }
+		p2 {-3 16 0 }
+		r1 {2}
+		r2 {-4}
+		color { 0x00F0C808 }
 		mat {	
 			diffuse { 0.28 }
 			shine { 0.2}
@@ -80,11 +77,10 @@ scene {
 
 	object {
 		name { sphere1 }
-		inter {
-			origin { 2 0.5 0 }
-			sphere {  1}
-		}
-		color { rgb { 0x00FF0000 }}
+		type { sphere }
+		origin { 2 0.5 0 }
+		r1 {  1}
+		color { 0x00FF0000 }
 		mat {	
 			diffuse { 0.28 }
 			shine { 0.3}
@@ -97,11 +93,10 @@ scene {
 
 	object {
 		name { plane }
-		inter {
-			origin { 0 0 0 }
-			plane { 0 1 0}
-		}
-		color { rgb { 0x00585B56 }}
+		type { plane }
+		origin { 0 0 0 }
+		dir { 0 1 0}
+		color {  0x00585B56 }
 		mat {	
 			diffuse { 0.18 }
 			shine { 0.0}
@@ -110,11 +105,10 @@ scene {
 
 	object {
 		name { plane }
-		inter {
-			origin { 0 0 3 }
-			plane { 0 0 -1}
-		}
-		color { rgb { 0x000000FF }}
+		type {plane}
+		origin { 0 0 3 }
+		dir { 0 0 -1}
+		color {  0x000000FF}
 		mat {	
 			diffuse { 0.18 }
 			shine { 0.0}

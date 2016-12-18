@@ -20,20 +20,20 @@ scene {
 		origin { 0 -15 0 }
 		dir	{ 0 1 0}
 	}
+	render {900 720}
 	object {
 		name { light 1 }
-		inter {
-			origin { 10 10 10 }
-			light {  0.0}
-		}
-		color { rgb { 0x003F0000  }}
+		type { light }
+		origin { 10 10 10 }
+		color { 0x003F0000  }
 	}
 	object {
 		name { cone }
-		inter {
-			origin { -1 0 0 }
-			cone {0 1.5 0 -3 -2}
-		}
-		color { rgb { 0x000000FF  }}
+		type {cone }
+		p1 { -1 0 0 }
+		p2 {0 -3 -2}
+		r1 {0}
+		r2 {1.5}
+		color { 0x000000FF }
 	}
 }
