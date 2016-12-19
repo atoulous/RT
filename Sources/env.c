@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:39 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/17 21:15:21 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/19 18:42:06 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ t_env			*init_env(char *file_name, char opt)
 	IMG = mlx_new_image(MLX, IMG_WIDTH, IMG_HEIGHT);
 	IMG_ADDR = mlx_get_data_addr(IMG, &e->img.bpp, &e->img.sizeline, &ENDIAN);
 	debug(e);
+	e->scene->obj_focus = NULL;
 	return (e);
 }

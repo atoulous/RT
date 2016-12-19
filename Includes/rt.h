@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/17 22:16:01 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/19 18:46:41 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,7 @@ typedef struct	s_scene
 	t_v3d	cam_right;
 	t_list	*obj;
 	t_list	*light;
+	t_list	*obj_focus;
 	double	view_plane_width;
 	double	view_plane_height;
 	double	view_plane_dist;
