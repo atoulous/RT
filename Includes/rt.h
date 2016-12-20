@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/19 18:46:41 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/20 11:05:52 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,7 @@ int				get_options(int ac, char **av, char *opt);
 
 t_env			*init_env(char *file_name, char opt);
 void			free_env(t_env *e);
+void			free_obj(void *content, size_t size);
 
 void			create_wait_image(t_env *e);
 void			init_menu(t_env *e);
@@ -230,6 +231,7 @@ char			*find_param(char *small, char *big);
 int				create_img(t_env *e);
 void			img_put_pixel(t_img *img, int x, int y, unsigned int color);
 int				moves(t_env *e);
+void			del_sel_object(t_env *e);
 
 void			*raytracer(void *arg);
 void			apply_light(t_env *e, t_param *param);

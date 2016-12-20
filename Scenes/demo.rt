@@ -5,7 +5,7 @@
 scene {
 	name { demo_1 }
 	camera {
-		origin { 0 2 -50 }
+		origin { 0 2 -10 }
 		dir { 0 0  1 }
 	}
 	render { 1080 800 }

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:39 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/19 18:42:06 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/20 10:44:06 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static t_param	*init_param(t_env *e, int index)
 	return (param);
 }
 
-static void		free_obj(void *content, size_t size)
+void			free_obj(void *content, size_t size)
 {
 	t_object	*obj;
 

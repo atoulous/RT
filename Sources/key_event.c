@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/19 18:59:35 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/20 10:33:24 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int			ft_key_press(int keycode, t_env *e)
 		quit_rt(e);
 	if (keycode == 48)
 		select_next_obj(e);
+	if (keycode == 51)
+		del_sel_object(e);
 	else if (keycode == 37)
 	{
 		(L) ? (OPT ^= (1 << 1)) : (OPT |= (1 << 1));

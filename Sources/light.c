@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 08:30:59 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/20 09:50:07 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/20 11:05:02 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ static void	get_color(t_param *param, t_object *light, t_hsv *hsv)
 	{
 		hsv->v -= angle_light * VW_RAY.obj->mat.diffuse;
 		hsv->v = fmax(VW_RAY.obj->mat.diffuse, hsv->v);
-		if (PHO_RAY.obj)
-			hsv->v = fmax(VW_RAY.obj->mat.diffuse, hsv->v - 0.1);
 		do_shininess(param, light, hsv, ref);
 	}
-		if (param->e->scene->obj_focus)
+	if (PHO_RAY.obj)
+		hsv->v = fmax(VW_RAY.obj->mat.diffuse, hsv->v - 0.1);
+	if (param->e->scene->obj_focus)
 	{
 		obj_sel = (t_object *)param->e->scene->obj_focus->content;
 		if (VW_RAY.obj == obj_sel)
