@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/20 10:33:24 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/20 15:07:13 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,7 @@ int			ft_key_press(int keycode, t_env *e)
 	if (keycode == 51)
 		del_sel_object(e);
 	else if (keycode == 37)
-	{
-		(L) ? (OPT ^= (1 << 1)) : (OPT |= (1 << 1));
-		create_img(e);
-	}
+		change_light_status(e);
 	else
 		move(keycode, e);
 	return (0);

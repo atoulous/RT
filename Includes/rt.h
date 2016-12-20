@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/20 11:05:52 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/20 15:19:28 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 # define IMG e->img.img
 # define IMG_ADDR e->img.addr
 # define ENDIAN e->endian
-# define NB_BTN 1
+# define NB_BTN 2
 # define MENU e->menu
 # define BTN_SIZE 30
 
@@ -117,6 +117,7 @@ typedef struct	s_button
 	int		width;
 	int		height;
 	t_img	img;
+	void	(*btn_fct)(void *);
 }				t_button;
 
 typedef struct	s_texture
@@ -231,7 +232,9 @@ char			*find_param(char *small, char *big);
 int				create_img(t_env *e);
 void			img_put_pixel(t_img *img, int x, int y, unsigned int color);
 int				moves(t_env *e);
+void			change_light_status(void *arg);
 void			del_sel_object(t_env *e);
+void			add_sphere(void *arg);
 
 void			*raytracer(void *arg);
 void			apply_light(t_env *e, t_param *param);

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/13 13:16:40 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/14 17:53:05 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/20 15:19:33 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,14 @@ static void	back_menu(t_env *e)
 	{
 		i = -1;
 		while (++i < 40)
-			mlx_pixel_put(MLX, WIN, i, j, 0x00525252);
+			mlx_pixel_put(MLX, WIN, i, j, 0x00333333);
 	}
+}
+
+static void	put_btn_fct(t_env *e)
+{
+	MENU[0].btn_fct = &change_light_status;
+	MENU[1].btn_fct = &add_sphere;
 }
 
 void		init_menu(t_env *e)
@@ -32,6 +38,7 @@ void		init_menu(t_env *e)
 	int		i;
 
 	btn[0] = ft_strdup("Images/light.xpm");
+	btn[1] = ft_strdup("Images/sphere.xpm");
 	back_menu(e);
 	i = -1;
 	while (++i < NB_BTN)
@@ -50,5 +57,6 @@ void		init_menu(t_env *e)
 	while (++i < NB_BTN)
 		mlx_put_image_to_window(MLX, WIN, MENU[i].img.img,
 												MENU[i].pos_x, MENU[i].pos_y);
+	put_btn_fct(e);
 	free(btn[0]);
 }

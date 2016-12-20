@@ -6,11 +6,30 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 17:50:44 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/20 10:49:22 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/20 15:19:31 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+void	add_sphere(void *arg)
+{
+	t_env		*e;
+	t_object	obj;
+	t_list		*elem;
+
+	e = (t_env *)arg;
+	obj.name = ft_strdup("sphere");
+	obj.type = 1;
+	obj.pos = v3d(0, 0, 0);
+	obj.r1 = 1.0;
+	obj.color = 0x00FF0000;
+	obj.mat.shine = 0.2;
+	obj.mat.diffuse = 0.2;
+	elem = ft_lstnew(&obj, sizeof(obj));
+	ft_lstadd(&(e->scene->obj), elem);
+	create_img(e);
+}
 
 void	del_sel_object(t_env *e)
 {

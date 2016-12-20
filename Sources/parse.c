@@ -6,24 +6,11 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 16:21:36 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/19 16:54:37 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/20 11:13:14 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
-char		*go_to_next_acc(char *str, int n)
-{
-	char	*tmp;
-
-	tmp = str;
-	while ((*tmp == '\n' || *tmp == '\t' || *tmp == ' ') && tmp != '\0'
-																	&& n-- > 0)
-		tmp++;
-	if (*tmp != '{')
-		return (NULL);
-	return (++tmp);
-}
 
 void		check_acc(t_env *e, char *str)
 {

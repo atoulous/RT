@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 16:58:17 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/17 20:40:31 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/20 11:16:51 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static void		set_cylinder_norm(t_object *obj, t_ray *ray)
 	double	l;
 
 	ray->inter = add_v3d(ray->pos, smul_v3d(ray->dir, ray->dist));
-	l = length_v3d(sub_v3d(ray->inter, O_P1));
+	l = length_v3d(sub_v3d(ray->inter, O_POS));
 	l = sqrt(pow(l, 2.0) - pow(O_R1, 2.0));
-	ray->norm = unit_v3d(sub_v3d(ray->inter, add_v3d(O_P1,
+	ray->norm = unit_v3d(sub_v3d(ray->inter, add_v3d(O_POS,
 													smul_v3d(O_DIR, l))));
 }
 
@@ -63,12 +63,12 @@ static void		find_solutions(t_object *obj, t_ray *ray, t_v3d abc)
 			if (sol[(int)sol[2]] >= 0)
 			{
 				tmp = add_v3d(ray->pos, smul_v3d(ray->dir, sol[(int)sol[2]]));
-				if (!(dot_v3d(O_DIR, sub_v3d(tmp, O_P1)) > 0 &&
+				if (!(dot_v3d(O_DIR, sub_v3d(tmp, O_POS)) > 0 &&
 										dot_v3d(O_DIR, sub_v3d(tmp, O_P2)) < 0))
 					sol[(int)sol[2]] = -1;
 			}
 		sol[2] = caps(ray, O_R1, O_DIR, O_P2);
-		sol[3] = caps(ray, O_R1, smul_v3d(O_DIR, -1), O_P1);
+		sol[3] = caps(ray, O_R1, smul_v3d(O_DIR, -1), O_POS);
 		find_dist(obj, ray, sol);
 	}
 }
@@ -79,7 +79,7 @@ void			cylinder(t_object *obj, t_ray *ray)
 	t_v3d	dp;
 	t_v3d	tmp;
 
-	dp = sub_v3d(ray->pos, O_P1);
+	dp = sub_v3d(ray->pos, O_POS);
 	tmp = sub_v3d(ray->dir, smul_v3d(O_DIR, dot_v3d(ray->dir, O_DIR)));
 	abc.x = dot_v3d(tmp, tmp);
 	abc.y = 2 * dot_v3d((sub_v3d(ray->dir, smul_v3d(O_DIR,
@@ -91,5 +91,6 @@ dot_v3d(ray->dir, O_DIR)))), sub_v3d(dp, smul_v3d(O_DIR, dot_v3d(dp, O_DIR))));
 
 void			calc_cylinder_param(t_object *obj)
 {
-	O_DIR = unit_v3d(sub_v3d(O_P2, O_P1));
+	O_POS = O_P1;
+	O_DIR = unit_v3d(sub_v3d(O_P2, O_POS));
 }

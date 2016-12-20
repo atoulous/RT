@@ -6,13 +6,13 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 10:30:51 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/14 17:45:11 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/20 14:42:59 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int				add_color(int c1, int c2, double i)
+int		add_color(int c1, int c2, double i)
 {
 	int	r;
 	int	g;

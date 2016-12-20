@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 15:41:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/20 10:58:06 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/20 11:14:13 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	perform_raytracing(t_env *e, t_param *param)
 	VW_RAY.inter = add_v3d(VW_RAY.pos, smul_v3d(VW_RAY.dir, VW_RAY.dist));
 	COLOR = VW_RAY.obj ? VW_RAY.obj->color : 0;
 	(VW_RAY.obj && L) ? apply_light(ENV, param) : 0;
-	img_put_pixel(&e->img, X - 1, Y, COLOR);
+	img_put_pixel(&e->img, X, Y, COLOR);
 }
 
 void		*raytracer(void *arg)
