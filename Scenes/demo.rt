@@ -5,19 +5,19 @@
 scene {
 	name { demo_1 }
 	camera {
-		origin { 0 0 -20 }
-		dir { 0 0 1 }
+		origin { 0 2 -50 }
+		dir { 0 0  1 }
 	}
 	render { 1080 800 }
 	object {
-		name { sphere1 }
+		name { sphere3 }
 		type { sphere }
-		origin { 0 0 0 }
-		r1 { 2.0 }
-		color { 0xFF0000 }
+		origin { -2 -2 -2 }
+		r1 { 2 }
+		color { 0x0000FF }
 		mat {
-			diffuse { 0.5 }
-			shine { 1 }
+			diffuse { 0.2 }
+			shine { 0.2 }
 		}
 	}
 	object {
@@ -27,30 +27,30 @@ scene {
 		r1 { 2 }
 		color { 0x00FF00 }
 		mat {
-			diffuse { 0.5 }
-			shine { 1 }
+			diffuse { 0.2 }
+			shine { 0.2 }
 		}
 	}
 	object {
-		name { sphere3 }
+		name { sphere1 }
 		type { sphere }
-		origin { -2 -2 -2 }
-		r1 { 2 }
-		color { 0x0000FF }
+		origin { 0 0 0 }
+		r1 { 2.0 }
+		color { 0xFF0000 }
 		mat {
-			diffuse { 0.5 }
-			shine { 1 }
+			diffuse { 0.1 }
+			shine { 0.2 }
 		}
 	}
 	object {
 		name { plane de fond }
 		type { plane }
 		origin { 0 0 10 }
-		dir { 0 0 1 }
+		dir { 0 0 -1 }
 		color { 0xFFFF00 }
 		mat {
-			diffuse { 0.5 }
-			shine { 1 }
+			diffuse { 0.3 }
+			shine { 0 }
 		}
 	}
 	object {
@@ -60,8 +60,8 @@ scene {
 		dir { 0 -1 0 }
 		color { 0xFFFF00 }
 		mat {
-			diffuse { 0.5 }
-			shine { 1 }
+			diffuse { 0.3 }
+			shine { 0 }
 		}
 	}
 	object {
@@ -71,8 +71,8 @@ scene {
 		dir { 0 1 0 }
 		color { 0xFFFF00 }
 		mat {
-			diffuse { 0.5 }
-			shine { 1 }
+			diffuse { 0.3 }
+			shine { 0 }
 		}
 	}
 	object {
@@ -82,8 +82,8 @@ scene {
 		dir { 1 0 0 }
 		color { 0xFFFF00 }
 		mat {
-			diffuse { 0.5 }
-			shine { 1 }
+			diffuse { 0.3 }
+			shine { 0 }
 		}
 	}
 	object {
@@ -93,8 +93,8 @@ scene {
 		dir { -1 0 0 }
 		color { 0xFFFF00 }
 		mat {
-			diffuse { 0.5 }
-			shine { 1 }
+			diffuse { 0.3 }
+			shine { 0.5 }
 		}
 	}
 	object {
@@ -105,8 +105,8 @@ scene {
 		p2 { 6 -5 0 }
 		color { 0x00FFFF }
 		mat {
-			diffuse { 0.5 }
-			shine { 1 }
+			diffuse { 0.2 }
+			shine { 0.4 }
 		}
 	}
 	object {
@@ -117,8 +117,8 @@ scene {
 		p2 { -6 5 0 }
 		color { 0x00FFFF }
 		mat {
-			diffuse { 0.5 }
-			shine { 1 }
+			diffuse { 0.2 }
+			shine { 0.4 }
 		}
 	}
 	object {
@@ -129,17 +129,12 @@ scene {
 		p2 { 0 0 0 }
 		color { 0x00FFFF }
 		mat {
-			diffuse { 0.5 }
-			shine { 1 }
+			diffuse { 0.2 }
+			shine { 0.4 }
 		}
 	}
-	object {
-		name { spot1 }
-		type { light }
-		origin { 5 0 -10 }
-		color { 0xFFFFFF }
-	}
-	object {
+	
+		object {
 		name { spot2 }
 		type { light }
 		origin { -5 0 -10 }
