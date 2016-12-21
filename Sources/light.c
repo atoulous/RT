@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 08:30:59 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/20 11:05:02 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/21 15:35:36 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static void	get_color(t_param *param, t_object *light, t_hsv *hsv)
 	t_v3d		ref;
 	t_object	*obj_sel;
 
-	PHO_RAY.inter = add_v3d(PHO_RAY.pos, smul_v3d(PHO_RAY.dir, PHO_RAY.dist));
 	angle_light = cos_v3d(VW_RAY.norm, PHO_RAY.dir);
 	ref = sub_v3d(PHO_RAY.dir, smul_v3d(VW_RAY.norm, 2.0 *
 				dot_v3d(PHO_RAY.dir, VW_RAY.norm)));
@@ -57,6 +56,7 @@ static void	get_color(t_param *param, t_object *light, t_hsv *hsv)
 		hsv->v = fmax(VW_RAY.obj->mat.diffuse, hsv->v);
 		do_shininess(param, light, hsv, ref);
 	}
+	light = light + 1 - 1;
 	if (PHO_RAY.obj)
 		hsv->v = fmax(VW_RAY.obj->mat.diffuse, hsv->v - 0.1);
 	if (param->e->scene->obj_focus)

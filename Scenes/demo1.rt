@@ -17,13 +17,21 @@ scene {
 		r1 { 3 }
 		color { 0xFF0000 }
 	}
-
-	
+		
 	object {
 		name { cylindre }
 		type { cylinder }
 		p1 { 0 -1 0 }
 		p2 { 0 1 0 }
+		r1 { 2.0 }
+		color { 0xFF0000 }
+	}
+	
+	object {
+		name { cylindre }
+		type { cylinder }
+		p1 { 0 1 -1 }
+		p2 { 0 1 1 }
 		r1 { 2.0 }
 		color { 0xFF0000 }
 	}
@@ -53,7 +61,6 @@ scene {
 		dir { 0 0 -1 }
 		color { 0xFF0000 }
 	}
-
 		
 	object {
 		name { spot1 }

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/20 15:19:28 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/21 11:58:39 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 # define IMG e->img.img
 # define IMG_ADDR e->img.addr
 # define ENDIAN e->endian
-# define NB_BTN 2
+# define NB_BTN 5
 # define MENU e->menu
 # define BTN_SIZE 30
 
@@ -65,6 +65,7 @@
 # define Y param->y
 # define VW_RAY param->vw_ray
 # define PHO_RAY param->light_ray
+# define MOUS_RAY param->mouse_ray
 # define COLOR param->color
 
 # define O_POS obj->pos
@@ -188,6 +189,7 @@ typedef struct	s_param
 	int				y;
 	t_ray			vw_ray;
 	t_ray			light_ray;
+	t_ray			mouse_ray;
 	int				color;
 	t_v3d			norm;
 }				t_param;
@@ -235,6 +237,9 @@ int				moves(t_env *e);
 void			change_light_status(void *arg);
 void			del_sel_object(t_env *e);
 void			add_sphere(void *arg);
+void			add_cylinder(void *arg);
+void			add_cone(void *arg);
+void			add_plane(void *arg);
 
 void			*raytracer(void *arg);
 void			apply_light(t_env *e, t_param *param);

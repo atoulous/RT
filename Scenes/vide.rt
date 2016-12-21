@@ -1,0 +1,19 @@
+#
+# Scene 1
+#
+
+scene {
+	name { demo_1 }
+	camera {
+		origin { 10 2 -10 }
+		dir { -10 -2 10 }
+	}
+	render { 1080 800 }
+
+	object {
+		name { spot1 }
+		type { light }
+		origin { 5 5 -5 }
+		color { 0xFFFFFF }
+	}
+}
