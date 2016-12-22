@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/22 11:04:53 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/22 15:06:37 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@
 # define NB_BTN 5
 # define MENU e->menu
 # define BTN_SIZE 30
+# define COMMAND e->command
 
 # define ENV param->e
 # define TH param->index
@@ -187,6 +188,7 @@ typedef struct	s_scene
 	t_v3d	cam_up;
 	t_v3d	cam_right;
 	t_list	*obj;
+	t_list	*obj_trash;
 	t_list	*light;
 	t_list	*obj_focus;
 	double	view_plane_width;
@@ -222,6 +224,7 @@ typedef struct	s_env
 	int			endian;
 	t_button	menu[NB_BTN];
 	char		moves;
+	char		command;
 	t_scene		*scene;
 	char		**obj_allowed;
 	void		(*obj_fct_obj[NB_OBJ_FCT])(t_object *, t_ray *, t_sol *sol);
@@ -252,7 +255,8 @@ int				create_img(t_env *e);
 void			img_put_pixel(t_img *img, int x, int y, unsigned int color);
 int				moves(t_env *e);
 void			change_light_status(void *arg);
-void			del_sel_object(t_env *e);
+void			del_focus_object(t_env *e);
+void			undo_del_object(t_env *e);
 void			add_sphere(void *arg);
 void			add_cylinder(void *arg);
 void			add_cone(void *arg);
@@ -283,6 +287,7 @@ int				add_color(int c1, int c2, double i);
 
 int				ft_key_press(int keycode, t_env *e);
 int				ft_key_release(int keycode, t_env *e);
+int				ft_key_command(int keycode, t_env *e);
 int				ft_mouse_click(int button, int x, int y, t_env *e);
 
 void			init_cl(t_env *e);

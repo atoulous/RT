@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:39 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/20 10:44:06 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/22 14:55:05 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,7 @@ static t_param	*init_param(t_env *e, int index)
 
 void			free_obj(void *content, size_t size)
 {
-	t_object	*obj;
-
-	obj = (t_object *)content;
-	free(obj->name);
-	free(obj);
+	free(content);
 	content = NULL;
 	size = 0;
 }
@@ -97,5 +93,7 @@ t_env			*init_env(char *file_name, char opt)
 	IMG_ADDR = mlx_get_data_addr(IMG, &e->img.bpp, &e->img.sizeline, &ENDIAN);
 	debug(e);
 	e->scene->obj_focus = NULL;
+	e->scene->obj_trash = NULL;
+	COMMAND = 0;
 	return (e);
 }

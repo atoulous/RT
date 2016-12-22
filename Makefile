@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2016/12/21 15:50:30 by jubarbie         ###   ########.fr        #
+#    Updated: 2016/12/22 14:58:12 by jubarbie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC=	rt.c			\
 		cone.c			\
 		caps.c			\
 		objects.c		\
+		add_objects.c	\
 		moves.c
 
 OBJDIR = Objects

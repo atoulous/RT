@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/22 11:06:24 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/22 13:04:31 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int			ft_key_release(int keycode, t_env *e)
 		MOVES ^= M_FORWARD;
 	else if (keycode == 1)
 		MOVES ^= M_BACKWARD;
+	COMMAND = 0;
 	return (0);
 }
 
@@ -71,9 +72,13 @@ int			ft_key_press(int keycode, t_env *e)
 	if (keycode == 48)
 		select_next_obj(e);
 	if (keycode == 51)
-		del_sel_object(e);
+		del_focus_object(e);
 	else if (keycode == 37)
 		change_light_status(e);
+	else if (keycode == 259)
+		COMMAND = 1;
+	else if (keycode == 6 && COMMAND == 1)
+		undo_del_object(e);
 	else
 		move(keycode, e);
 	return (0);
