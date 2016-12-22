@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/13 15:46:55 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/21 15:46:10 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/22 10:59:44 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	raytrace_mouse(t_env *e, int x, int y)
 	while (lst_obj)
 	{
 		obj = (t_object *)lst_obj->content;
-		(*(e->obj_fct_obj[obj->type]))(obj, &MOUS_RAY);
+		(*(e->obj_fct_obj[obj->type]))(obj, &MOUS_RAY, &SOL);
 		if (MOUS_RAY.obj == obj)
 			e->scene->obj_focus = lst_obj;
 		lst_obj = lst_obj->next;

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/21 11:58:39 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/22 10:56:19 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,14 @@
 # define VW_RAY param->vw_ray
 # define PHO_RAY param->light_ray
 # define MOUS_RAY param->mouse_ray
+# define SOL param->sol
 # define COLOR param->color
+
+# define T sol->t
+# define A sol->a
+# define B sol->b
+# define C sol->c
+# define DET sol->det
 
 # define O_POS obj->pos
 # define O_DIR obj->dir
@@ -100,6 +107,15 @@ typedef	struct	s_pix
 	int				y;
 	unsigned int	color;
 }				t_pix;
+
+typedef struct	s_sol
+{
+	double	t[4];
+	double	a;
+	double	b;
+	double	c;
+	double	det;
+}				t_sol;
 
 typedef struct	s_img
 {
@@ -190,6 +206,7 @@ typedef struct	s_param
 	t_ray			vw_ray;
 	t_ray			light_ray;
 	t_ray			mouse_ray;
+	t_sol			sol;
 	int				color;
 	t_v3d			norm;
 }				t_param;
@@ -207,7 +224,7 @@ typedef struct	s_env
 	char		moves;
 	t_scene		*scene;
 	char		**obj_allowed;
-	void		(*obj_fct_obj[NB_OBJ_FCT])(t_object *, t_ray *);
+	void		(*obj_fct_obj[NB_OBJ_FCT])(t_object *, t_ray *, t_sol *sol);
 	void		(*calc_obj_param[NB_OBJ_FCT])(t_object *);
 	t_param		*param[NB_TH];
 }				t_env;
@@ -243,11 +260,11 @@ void			add_plane(void *arg);
 
 void			*raytracer(void *arg);
 void			apply_light(t_env *e, t_param *param);
-void			sphere(t_object *obj, t_ray *ray);
-void			plane(t_object *obj, t_ray *ray);
-void			cylinder(t_object *obj, t_ray *ray);
+void			sphere(t_object *obj, t_ray *ray, t_sol *sol);
+void			plane(t_object *obj, t_ray *ray, t_sol *sol);
+void			cylinder(t_object *obj, t_ray *ray, t_sol *sol);
 void			calc_cylinder_param(t_object *obj);
-void			cone(t_object *obj, t_ray *ray);
+void			cone(t_object *obj, t_ray *ray, t_sol *sol);
 void			calc_cone_param(t_object *obj);
 double			caps_up(t_object *obj, t_ray *ray);
 double			caps_bottom(t_object *obj, t_ray *ray);
