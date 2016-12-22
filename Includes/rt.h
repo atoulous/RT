@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/22 10:56:19 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/22 11:04:53 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@
 
 # define OPT_REF "dl"
 # define OPT e->opt
-# define D (OPT & (1 << 0))
-# define L (OPT & (1 << 1))
-# define S (OPT & (1 << 2))
+# define OPT_D (OPT & (1 << 0))
+# define OPT_L (OPT & (1 << 1))
+# define OPT_S (OPT & (1 << 2))
 
 # define MOVES e->moves
 # define M_FORWARD (1 << 0)

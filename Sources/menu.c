@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/13 13:16:40 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/21 15:41:02 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/22 11:50:18 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static void	create_btn(t_env *e, char *btn[NB_BTN])
 {
 	btn[0] = ft_strdup("Images/light.xpm");
 	btn[1] = ft_strdup("Images/sphere.xpm");
-	btn[2] = ft_strdup("Images/sphere.xpm");
-	btn[3] = ft_strdup("Images/sphere.xpm");
-	btn[4] = ft_strdup("Images/sphere.xpm");
+	btn[2] = ft_strdup("Images/plane.xpm");
+	btn[3] = ft_strdup("Images/cone.xpm");
+	btn[4] = ft_strdup("Images/cylinder.xpm");
 	MENU[0].btn_fct = &change_light_status;
 	MENU[1].btn_fct = &add_sphere;
 	MENU[2].btn_fct = &add_plane;

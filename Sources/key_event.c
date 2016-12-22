@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/21 13:55:09 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/22 11:06:24 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int			ft_key_release(int keycode, t_env *e)
 
 int			ft_key_press(int keycode, t_env *e)
 {
-	if (D)
+	if (OPT_D)
 		printf("%d\n", keycode);
 	if (keycode == 53)
 	{
