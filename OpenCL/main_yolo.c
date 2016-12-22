@@ -6,7 +6,7 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/21 17:46:34 by atoulous          #+#    #+#             */
-/*   Updated: 2016/12/22 12:26:26 by atoulous         ###   ########.fr       */
+/*   Updated: 2016/12/22 13:37:58 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ int main()
 	/* Copy results from the memory buffer */
 	ret = clEnqueueReadBuffer(command_queue, memobj, CL_TRUE, 0,
 			MEM_SIZE * sizeof(char),string, 0, NULL, NULL);
+
+	// clEnqueueWriteBuffer() copy the data from the host-side memory to the device-side memory
 
 	/* Display Result */
 	puts(string);
