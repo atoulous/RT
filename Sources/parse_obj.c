@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/20 13:26:09 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/22 14:55:03 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,5 @@ void			build_object(t_env *e, char *str)
 		ft_lstadd(&(e->scene->light), elem);
 	else
 		ft_lstadd(&(e->scene->obj), elem);
+	free(obj.name);
 }

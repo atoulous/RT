@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/13 13:16:40 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/22 11:50:18 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/22 14:54:01 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ void		init_menu(t_env *e)
 	}
 	i = -1;
 	while (++i < NB_BTN)
+	{
 		mlx_put_image_to_window(MLX, WIN, MENU[i].img.img,
 												MENU[i].pos_x, MENU[i].pos_y);
-	free(btn[0]);
+		free(btn[i]);
+	}
 }
