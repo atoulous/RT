@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/22 15:06:37 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/23 18:28:30 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 # define OPT_D (OPT & (1 << 0))
 # define OPT_L (OPT & (1 << 1))
 # define OPT_S (OPT & (1 << 2))
+# define OPT_O (OPT & (1 << 3))
+# define LUMI e->luminosite
 
 # define MOVES e->moves
 # define M_FORWARD (1 << 0)
@@ -218,6 +220,7 @@ typedef struct	s_env
 	char		opt;
 	void		*mlx;
 	void		*win;
+	double		luminosite;
 	int			img_width;
 	int			img_height;
 	t_img		img;
@@ -255,6 +258,8 @@ int				create_img(t_env *e);
 void			img_put_pixel(t_img *img, int x, int y, unsigned int color);
 int				moves(t_env *e);
 void			change_light_status(void *arg);
+void			change_shadow_status(void *arg);
+void			change_luminosite(t_env *e, int keycode);
 void			del_focus_object(t_env *e);
 void			undo_del_object(t_env *e);
 void			add_sphere(void *arg);

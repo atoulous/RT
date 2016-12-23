@@ -6,7 +6,7 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/21 17:46:34 by atoulous          #+#    #+#             */
-/*   Updated: 2016/12/22 13:37:58 by atoulous         ###   ########.fr       */
+/*   Updated: 2016/12/23 14:05:14 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int main()
 	char string[MEM_SIZE];
 
 	FILE *fp;
-	char fileName[] = "./hello.cl";
+	char fileName[] = "./yolo.cl";
 	char *source_str;
 	size_t source_size;
 

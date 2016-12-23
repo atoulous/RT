@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:39 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/22 14:55:05 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/23 17:51:10 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,13 @@ t_env			*init_env(char *file_name, char opt)
 		error_perso(e, "Bad file extension (.rt)");
 	OPT = opt;
 	OPT |= (1 << 1);
+	LUMI = 0.3;
 	init_scene(e, file_name);
 	i = -1;
 	while (++i < NB_TH)
 		e->param[i] = init_param(e, i);
 	MLX = mlx_init();
-	WIN = mlx_new_window(MLX, WIN_WIDTH, WIN_HEIGHT, "RT");
+	WIN = mlx_new_window(MLX, WIN_WIDTH, WIN_HEIGHT, file_name);
 	init_menu(e);
 	IMG = mlx_new_image(MLX, IMG_WIDTH, IMG_HEIGHT);
 	IMG_ADDR = mlx_get_data_addr(IMG, &e->img.bpp, &e->img.sizeline, &ENDIAN);

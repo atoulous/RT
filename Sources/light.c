@@ -6,11 +6,18 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 08:30:59 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/22 12:36:42 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/23 19:21:42 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+void		change_luminosite(t_env *e, int keycode)
+{
+	keycode == 67 && LUMI + 0.1 <= 1 ? LUMI += 0.1 : 0;
+	keycode == 75 && LUMI - 0.1 >= 0 ? LUMI -= 0.1 : 0;
+	create_img(e);
+}
 
 static void	init_light_ray(t_param *param, t_object *light)
 {
@@ -93,5 +100,5 @@ void		apply_light(t_env *e, t_param *param)
 		get_color(param, (t_object *)lst_light->content, &hsv);
 		lst_light = lst_light->next;
 	}
-	COLOR = hsv_to_rgb(hsv.h, hsv.s, 0.02 + (hsv.v * vm));
+	COLOR = hsv_to_rgb(hsv.h, hsv.s, LUMI + (hsv.v * vm));
 }

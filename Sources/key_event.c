@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/22 13:04:31 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/23 18:28:35 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,22 @@ int			ft_key_press(int keycode, t_env *e)
 		printf("%d\n", keycode);
 	if (keycode == 53)
 	{
-		if (e->scene->obj_focus)
-		{
-			e->scene->obj_focus = NULL;
-			create_img(e);
-		}
-		else
+		if (!e->scene->obj_focus)
 			quit_rt(e);
+		else
+			e->scene->obj_focus = NULL;
+		create_img(e);
 	}
 	if (keycode == 48)
 		select_next_obj(e);
-	if (keycode == 51)
+	else if (keycode == 51)
 		del_focus_object(e);
+	else if (keycode == 31)
+		change_shadow_status(e);
 	else if (keycode == 37)
 		change_light_status(e);
+	else if (keycode == 67 || keycode == 75)
+		change_luminosite(e, keycode);
 	else if (keycode == 259)
 		COMMAND = 1;
 	else if (keycode == 6 && COMMAND == 1)
