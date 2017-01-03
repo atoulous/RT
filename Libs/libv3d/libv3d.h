@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 11:51:03 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/06 11:01:11 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/17 15:59:57 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct	s_v3d
 }				t_v3d;
 
 t_v3d			v3d(double x, double y, double z);
-void			print_v3d(t_v3d v);
+void			print_v3d(t_v3d v, char *name);
 t_v3d			add_v3d(t_v3d v1, t_v3d v2);
 t_v3d			sub_v3d(t_v3d v1, t_v3d v2);
 t_v3d			smul_v3d(t_v3d v, double nb);

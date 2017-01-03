@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 17:50:44 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/14 17:46:51 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/22 11:07:09 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,24 @@
 
 int		moves(t_env *e)
 {
+	t_v3d	*pos;
+
+	if (!e->scene->obj_focus)
+		pos = &CAM_POS;
+	else
+		pos = &(((t_object *)(e->scene->obj_focus->content))->pos);
 	if (MOVES & M_UP)
-		CAM_POS = add_v3d(CAM_POS, smul_v3d(CAM_UP, SPEED));
+		*pos = add_v3d(*pos, smul_v3d(CAM_UP, SPEED));
 	if (MOVES & M_DOWN)
-		CAM_POS = sub_v3d(CAM_POS, smul_v3d(CAM_UP, SPEED));
+		*pos = sub_v3d(*pos, smul_v3d(CAM_UP, SPEED));
 	if (MOVES & M_RIGHT)
-		CAM_POS = add_v3d(CAM_POS, smul_v3d(CAM_RIGHT, SPEED));
+		*pos = add_v3d(*pos, smul_v3d(CAM_RIGHT, SPEED));
 	if (MOVES & M_LEFT)
-		CAM_POS = sub_v3d(CAM_POS, smul_v3d(CAM_RIGHT, SPEED));
+		*pos = sub_v3d(*pos, smul_v3d(CAM_RIGHT, SPEED));
 	if (MOVES & M_FORWARD)
-		CAM_POS = add_v3d(CAM_POS, smul_v3d(CAM_DIR, SPEED));
+		*pos = add_v3d(*pos, smul_v3d(CAM_DIR, SPEED));
 	if (MOVES & M_BACKWARD)
-		CAM_POS = sub_v3d(CAM_POS, smul_v3d(CAM_DIR, SPEED));
+		*pos = sub_v3d(*pos, smul_v3d(CAM_DIR, SPEED));
 	if (MOVES > 0)
 		create_img(e);
 	return (0);

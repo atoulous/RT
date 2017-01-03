@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:39 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/14 18:22:10 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/22 14:55:05 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,9 @@ static t_param	*init_param(t_env *e, int index)
 	return (param);
 }
 
-static void		free_obj(void *content, size_t size)
+void			free_obj(void *content, size_t size)
 {
-	t_object	*obj;
-
-	obj = (t_object *)content;
-	free(obj->name);
-	free(obj->param);
-	free(obj);
+	free(content);
 	content = NULL;
 	size = 0;
 }
@@ -87,8 +82,6 @@ t_env			*init_env(char *file_name, char opt)
 		error_perso(e, "Bad file extension (.rt)");
 	OPT = opt;
 	OPT |= (1 << 1);
-	WIN_WIDTH = 1040;
-	WIN_HEIGHT = 800;
 	init_scene(e, file_name);
 	i = -1;
 	while (++i < NB_TH)
@@ -99,5 +92,8 @@ t_env			*init_env(char *file_name, char opt)
 	IMG = mlx_new_image(MLX, IMG_WIDTH, IMG_HEIGHT);
 	IMG_ADDR = mlx_get_data_addr(IMG, &e->img.bpp, &e->img.sizeline, &ENDIAN);
 	debug(e);
+	e->scene->obj_focus = NULL;
+	e->scene->obj_trash = NULL;
+	COMMAND = 0;
 	return (e);
 }

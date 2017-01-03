@@ -1,42 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/19 13:07:48 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/17 21:56:47 by jubarbie         ###   ########.fr       */
+/*   Created: 2016/12/17 21:15:35 by jubarbie          #+#    #+#             */
+/*   Updated: 2016/12/17 21:39:35 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(const char *big, const char *little)
+char	*ft_strjoin_free(char const *s1, char const *s2)
 {
-	char		*pos;
-	const char	*pl;
+	char	*tmp;
 
-	if (!*little)
-		return ((char *)big);
-	while (*big)
-	{
-		if (*big == *little)
-		{
-			pos = (char *)big;
-			pl = little;
-			while (*big == *pl)
-			{
-				big++;
-				pl++;
-				if (*pl == '\0')
-					return (pos);
-				if (*big == '\0')
-					return (NULL);
-			}
-			big = (const char *)pos;
-		}
-		big++;
-	}
-	return (NULL);
+	tmp = (char *)s1;
+	s1 = ft_strjoin(tmp, s2);
+	free(tmp);
+	return ((char *)s1);
 }

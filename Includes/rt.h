@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rtv1.h                                             :+:      :+:    :+:   */
+/*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/15 14:30:18 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/22 15:06:37 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@
 
 # define OPT_REF "dl"
 # define OPT e->opt
-# define D (OPT & (1 << 0))
-# define L (OPT & (1 << 1))
-# define S (OPT & (1 << 2))
+# define OPT_D (OPT & (1 << 0))
+# define OPT_L (OPT & (1 << 1))
+# define OPT_S (OPT & (1 << 2))
 
 # define MOVES e->moves
 # define M_FORWARD (1 << 0)
@@ -48,16 +48,17 @@
 
 # define MLX e->mlx
 # define WIN e->win
-# define WIN_WIDTH e->win_width
-# define WIN_HEIGHT e->win_height
-# define IMG_WIDTH (WIN_WIDTH - 40)
-# define IMG_HEIGHT (WIN_HEIGHT)
+# define IMG_WIDTH e->img_width
+# define IMG_HEIGHT e->img_height
+# define WIN_WIDTH (IMG_WIDTH + 40)
+# define WIN_HEIGHT (IMG_HEIGHT)
 # define IMG e->img.img
 # define IMG_ADDR e->img.addr
 # define ENDIAN e->endian
-# define NB_BTN 1
+# define NB_BTN 5
 # define MENU e->menu
 # define BTN_SIZE 30
+# define COMMAND e->command
 
 # define ENV param->e
 # define TH param->index
@@ -65,7 +66,15 @@
 # define Y param->y
 # define VW_RAY param->vw_ray
 # define PHO_RAY param->light_ray
+# define MOUS_RAY param->mouse_ray
+# define SOL param->sol
 # define COLOR param->color
+
+# define T sol->t
+# define A sol->a
+# define B sol->b
+# define C sol->c
+# define DET sol->det
 
 # define O_POS obj->pos
 # define O_DIR obj->dir
@@ -100,6 +109,15 @@ typedef	struct	s_pix
 	unsigned int	color;
 }				t_pix;
 
+typedef struct	s_sol
+{
+	double	t[4];
+	double	a;
+	double	b;
+	double	c;
+	double	det;
+}				t_sol;
+
 typedef struct	s_img
 {
 	void	*img;
@@ -117,6 +135,7 @@ typedef struct	s_button
 	int		width;
 	int		height;
 	t_img	img;
+	void	(*btn_fct)(void *);
 }				t_button;
 
 typedef struct	s_texture
@@ -140,21 +159,14 @@ typedef struct	s_object
 	int			type;
 	char		*name;
 	t_v3d		pos;
+	t_v3d		dir;
 	t_v3d		p1;
 	t_v3d		p2;
 	double		r1;
 	double		r2;
 	double		angle;
-	t_v3d		dir;
 	int			color;
 	t_mat		mat;
-
-	/*
-	 *  old parameters
-	 */
-	t_v3d		pos;
-	double		*param;
-	int			nb_param;
 }				t_object;
 
 typedef struct	s_ray
@@ -176,7 +188,9 @@ typedef struct	s_scene
 	t_v3d	cam_up;
 	t_v3d	cam_right;
 	t_list	*obj;
+	t_list	*obj_trash;
 	t_list	*light;
+	t_list	*obj_focus;
 	double	view_plane_width;
 	double	view_plane_height;
 	double	view_plane_dist;
@@ -193,6 +207,8 @@ typedef struct	s_param
 	int				y;
 	t_ray			vw_ray;
 	t_ray			light_ray;
+	t_ray			mouse_ray;
+	t_sol			sol;
 	int				color;
 	t_v3d			norm;
 }				t_param;
@@ -202,15 +218,17 @@ typedef struct	s_env
 	char		opt;
 	void		*mlx;
 	void		*win;
-	int			win_width;
-	int			win_height;
+	int			img_width;
+	int			img_height;
 	t_img		img;
 	int			endian;
 	t_button	menu[NB_BTN];
 	char		moves;
+	char		command;
 	t_scene		*scene;
 	char		**obj_allowed;
-	void		(*obj_fct_obj[NB_OBJ_FCT])(t_object *, t_ray *);
+	void		(*obj_fct_obj[NB_OBJ_FCT])(t_object *, t_ray *, t_sol *sol);
+	void		(*calc_obj_param[NB_OBJ_FCT])(t_object *);
 	t_param		*param[NB_TH];
 }				t_env;
 
@@ -218,29 +236,40 @@ int				get_options(int ac, char **av, char *opt);
 
 t_env			*init_env(char *file_name, char opt);
 void			free_env(t_env *e);
+void			free_obj(void *content, size_t size);
 
 void			create_wait_image(t_env *e);
 void			init_menu(t_env *e);
 
 void			parse_rt(t_env *e, char *file_name);
-void			build_object(t_env *e, char *str, int n);
-void			add_mat(t_env *e, t_object *obj, char *str, int n);
-char			*get_in_acc(t_env *e, char *str, char *acc, int n);
-t_v3d			get_v3d(t_env *e, char *str, int n, char *name);
-int				size_to_end_acc(t_env *e, char *str);
+void			build_object(t_env *e, char *str);
+char			*get_in_acc(char *str, char *acc);
+t_v3d			get_v3d(char *str, char *name);
+double			get_double(char *str, char *name);
+int				size_to_end_acc(char *str);
 void			check_acc(t_env *e, char *str);
-char			*go_to_next_acc(t_env *e, char *str, int n);
+char			*go_to_next_acc(char *str, int n);
+char			*find_param(char *small, char *big);
 
 int				create_img(t_env *e);
 void			img_put_pixel(t_img *img, int x, int y, unsigned int color);
 int				moves(t_env *e);
+void			change_light_status(void *arg);
+void			del_focus_object(t_env *e);
+void			undo_del_object(t_env *e);
+void			add_sphere(void *arg);
+void			add_cylinder(void *arg);
+void			add_cone(void *arg);
+void			add_plane(void *arg);
 
 void			*raytracer(void *arg);
 void			apply_light(t_env *e, t_param *param);
-void			sphere(t_object *obj, t_ray *ray);
-void			plane(t_object *obj, t_ray *ray);
-void			cylinder(t_object *obj, t_ray *ray);
-void			cone(t_object *obj, t_ray *ray);
+void			sphere(t_object *obj, t_ray *ray, t_sol *sol);
+void			plane(t_object *obj, t_ray *ray, t_sol *sol);
+void			cylinder(t_object *obj, t_ray *ray, t_sol *sol);
+void			calc_cylinder_param(t_object *obj);
+void			cone(t_object *obj, t_ray *ray, t_sol *sol);
+void			calc_cone_param(t_object *obj);
 double			caps_up(t_object *obj, t_ray *ray);
 double			caps_bottom(t_object *obj, t_ray *ray);
 double			caps(t_ray *ray, double r, t_v3d n, t_v3d p);
@@ -258,6 +287,7 @@ int				add_color(int c1, int c2, double i);
 
 int				ft_key_press(int keycode, t_env *e);
 int				ft_key_release(int keycode, t_env *e);
+int				ft_key_command(int keycode, t_env *e);
 int				ft_mouse_click(int button, int x, int y, t_env *e);
 
 void			init_cl(t_env *e);

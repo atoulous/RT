@@ -6,13 +6,16 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 12:07:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/03 16:59:47 by jubarbie         ###   ########.fr       */
+/*   Updated: 2016/12/16 17:21:25 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libv3d.h"
 
-void	print_v3d(t_v3d v)
+void	print_v3d(t_v3d v, char *name)
 {
-	printf("(%f, %f, %f)", v.x, v.y, v.z);
+	if (name)
+		printf("%s(%f, %f, %f)", name, v.x, v.y, v.z);
+	else
+		printf("(%f, %f, %f)", v.x, v.y, v.z);
 }
