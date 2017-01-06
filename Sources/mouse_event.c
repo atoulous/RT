@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/13 15:46:55 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/23 18:28:34 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/04 18:52:18 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,21 @@ void		change_light_status(void *arg)
 	create_img(e);
 }
 
+void		change_brillance_status(void *arg)
+{
+	t_env *e;
+
+	e = (t_env *)arg;
+	(OPT & (1 << 3)) ? (OPT ^= (1 << 3)) : (OPT |= (1 << 3));
+	create_img(e);
+}
+
 void		change_shadow_status(void *arg)
 {
 	t_env *e;
 
 	e = (t_env *)arg;
-	(OPT_O) ? (OPT ^= (1 << 3)) : (OPT |= (1 << 3));
+	(OPT & (1 << 4)) ? (OPT ^= (1 << 4)) : (OPT |= (1 << 4));
 	create_img(e);
 }
 

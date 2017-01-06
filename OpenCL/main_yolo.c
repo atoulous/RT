@@ -6,7 +6,7 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/21 17:46:34 by atoulous          #+#    #+#             */
-/*   Updated: 2016/12/23 14:05:14 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/04 15:44:25 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int main()
 	ret = clBuildProgram(program, 1, &device_id, NULL, NULL, NULL);
 
 	/* Create OpenCL Kernel */
-	kernel = clCreateKernel(program, "hello", &ret);
+	kernel = clCreateKernel(program, "yolo", &ret);
 
 	/* Set OpenCL Kernel Parameters */
 	ret = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void *)&memobj);

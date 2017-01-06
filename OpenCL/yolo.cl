@@ -1,4 +1,4 @@
-__kernel void hello(__global char* string)
+__kernel void yolo(__global char* string)
 {
 
 string[0] = 'H';

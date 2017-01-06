@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:39 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/23 17:51:10 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/06 13:16:50 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,14 @@ void			free_env(t_env *e)
 	}
 }
 
+void			init_opt(t_env *e, char opt)
+{
+	OPT = opt;
+	OPT |= (1 << 1);
+	OPT |= (1 << 3);
+	OPT |= (1 << 4);
+}
+
 t_env			*init_env(char *file_name, char opt)
 {
 	t_env	*e;
@@ -80,9 +88,8 @@ t_env			*init_env(char *file_name, char opt)
 		error_perso(e, "malloc (t_env *)e failed");
 	if (ft_strcmp(file_name + ft_strlen(file_name) - 3, ".rt"))
 		error_perso(e, "Bad file extension (.rt)");
-	OPT = opt;
-	OPT |= (1 << 1);
 	LUMI = 0.3;
+	init_opt(e, opt);
 	init_scene(e, file_name);
 	i = -1;
 	while (++i < NB_TH)
