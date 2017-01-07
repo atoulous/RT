@@ -12,6 +12,10 @@
 
 #include "rt.h"
 
+/*
+** Parse the matiere of the object
+** If no matiere specified in file, set it to defined values
+*/
 static void		add_mat(t_object *obj, char *str)
 {
 	char	*tmp;
@@ -28,6 +32,15 @@ static void		add_mat(t_object *obj, char *str)
 	}
 }
 
+/*
+** Parse the object type
+** 0 -> light
+** 1 -> sphere
+** 2 -> plane
+** 3 -> cube
+** 4 -> cone
+** 5 -> cylinder
+*/
 static int		get_obj_type(t_env *e, char *str)
 {
 	int		i;
@@ -46,6 +59,10 @@ static int		get_obj_type(t_env *e, char *str)
 	return (-1);
 }
 
+/*
+** Parse the object color and return it as an int
+** Return -1 if no color found
+*/
 static int		get_obj_color(char *str)
 {
 	char	*tmp1;
@@ -61,6 +78,10 @@ static int		get_obj_color(char *str)
 	return (color);
 }
 
+/*
+** Parse and build the object
+** Quit program with adequate message if error encountered
+*/
 void			build_object(t_env *e, char *str)
 {
 	t_object	obj;

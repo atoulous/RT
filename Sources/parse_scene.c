@@ -12,6 +12,9 @@
 
 #include "rt.h"
 
+/*
+** Free the objects allowed array
+*/
 static void	free_fct_tab(t_env *e)
 {
 	int	i;
@@ -22,6 +25,15 @@ static void	free_fct_tab(t_env *e)
 	free(e->obj_allowed);
 }
 
+/*
+** Create the objects allowed array specified in the header file
+** Create the functions array for every object
+** There is 3 different arrays:
+** 	- obj_fct_obj: functions to perform the raytracing
+**	- calc_obj_param: functions to compute the object parameters
+**	- update_obj_pos: function to update objects position, when objects are
+**	moving for exemple
+*/
 static void	make_fct_tab(t_env *e)
 {
 	e->obj_allowed = ft_strsplit(OBJ_ALLOWED, ' ');
@@ -45,6 +57,10 @@ static void	make_fct_tab(t_env *e)
 	e->update_obj_pos[5] = &update_cylinder_pos;;
 }
 
+/*
+** Parse the image resolution
+** If image resolution is negative or 0, set it to 800 x 700 px
+*/
 static void	get_resolution(t_env *e, char *str)
 {
 	char	*tmp;
@@ -62,6 +78,9 @@ static void	get_resolution(t_env *e, char *str)
 	IMG_HEIGHT = (IMG_HEIGHT <= 0) ? 700 : IMG_HEIGHT;
 }
 
+/*
+** Parse the string given to build the scene
+*/
 static void	build_scene(t_env *e, char *str)
 {
 	char	*tmp;
@@ -91,6 +110,11 @@ static void	build_scene(t_env *e, char *str)
 	}
 }
 
+
+/*
+** Open the file, read it and save every lines that doesn't start with '#' in a
+** string that will be used for the parcing
+*/
 void		parse_rt(t_env *e, char *file_name)
 {
 	int		fd;
