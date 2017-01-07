@@ -112,8 +112,8 @@ void            update_cone_pos(t_object *obj)
 {
 	double	l;
 
-	l = O_R2 / tan(O_ANG);
+	l = fabs(O_R2) / tan(O_ANG);
 	O_P2 = add_v3d(O_POS, smul_v3d(O_DIR, l));
-	l = O_R1 / tan(O_ANG);
+	l = fabs(O_R1) / tan(O_ANG);
 	O_P1 = add_v3d(O_POS, smul_v3d(O_DIR, -l));
 }
