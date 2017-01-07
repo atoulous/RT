@@ -8,7 +8,7 @@ scene {
 		origin { 13 4 -15 }
 		dir { -0.5 -0.2 0.5 }
 	}
-	render { 1080 800 }
+	render { 900 700 }
 	object {
 		name { sphere3 }
 		type { sphere }

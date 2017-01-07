@@ -20,26 +20,23 @@ scene {
 		origin { 0 0 -10 }			
 		dir { 0 0 10 }			
 	}
-	
+	render { 900 720 }	
 	object {
 		name { light 1 }
-		inter {
-			origin {-2 5 -10}
-			light {  0.01}
-		}
-		color { rgb { 0x00FFFFFF } }
+		type { light }
+		origin {-2 5 -10}
+		color { 0x00FFFFFF  }
 	}
 
 	object {
 		name { sphere 1 }
-		inter {
-			origin { 0 1 0 }
-			sphere {  1}
-			mat {
-				diffuse { 0.3 }
-				shine { 0.3}
-				}
+		type { sphere }
+		origin { 0 1 0 }
+		r1 {  1}
+		mat {
+			diffuse { 0.3 }
+			shine { 0.3}
 		}
-		color { rgb { 0x00E4C3AD }}
+		color { 0x00E4C3AD}
 	}
 }

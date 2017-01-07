@@ -25,6 +25,7 @@ static void	raytrace_mouse(t_env *e, int x, int y)
 	t_list		*lst_obj;
 	t_object	*obj;
 	t_param		*param;
+	t_list		*foc_obj;
 
 	param = e->param[0];
 	X = x;
@@ -32,14 +33,18 @@ static void	raytrace_mouse(t_env *e, int x, int y)
 	MOUS_RAY.pos = CAM_POS;
 	lst_obj = e->scene->obj;
 	init_mouse_ray(e, param);
+	foc_obj = NULL;
 	while (lst_obj)
 	{
 		obj = (t_object *)lst_obj->content;
 		(*(e->obj_fct_obj[obj->type]))(obj, &MOUS_RAY, &SOL);
 		if (MOUS_RAY.obj == obj)
-			e->scene->obj_focus = lst_obj;
+			foc_obj = lst_obj;
 		lst_obj = lst_obj->next;
 	}
+	if (foc_obj == e->scene->obj_focus)
+		foc_obj = NULL;
+	e->scene->obj_focus = foc_obj;
 }
 
 void		change_light_status(void *arg)
