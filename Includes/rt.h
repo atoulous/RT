@@ -229,6 +229,7 @@ typedef struct	s_env
 	char		**obj_allowed;
 	void		(*obj_fct_obj[NB_OBJ_FCT])(t_object *, t_ray *, t_sol *sol);
 	void		(*calc_obj_param[NB_OBJ_FCT])(t_object *);
+	void		(*update_obj_pos[NB_OBJ_FCT])(t_object *);
 	t_param		*param[NB_TH];
 }				t_env;
 
@@ -268,8 +269,10 @@ void			sphere(t_object *obj, t_ray *ray, t_sol *sol);
 void			plane(t_object *obj, t_ray *ray, t_sol *sol);
 void			cylinder(t_object *obj, t_ray *ray, t_sol *sol);
 void			calc_cylinder_param(t_object *obj);
+void			update_cylinder_pos(t_object *obj);
 void			cone(t_object *obj, t_ray *ray, t_sol *sol);
 void			calc_cone_param(t_object *obj);
+void			update_cone_pos(t_object *obj);
 double			caps_up(t_object *obj, t_ray *ray);
 double			caps_bottom(t_object *obj, t_ray *ray);
 double			caps(t_ray *ray, double r, t_v3d n, t_v3d p);

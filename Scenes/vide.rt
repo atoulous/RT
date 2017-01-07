@@ -8,7 +8,7 @@ scene {
 		origin { 10 2 -10 }
 		dir { -10 -2 10 }
 	}
-	render { 1080 800 }
+	render { 800 700 }
 
 	object {
 		name { spot1 }

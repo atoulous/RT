@@ -107,3 +107,13 @@ void		calc_cone_param(t_object *obj)
 	O_DIR = unit_v3d(sub_v3d(O_P2, O_P1));
 	O_ANG = atan((O_R1 - O_R2) / length_v3d(sub_v3d(O_P2, O_P1)));
 }
+
+void            update_cone_pos(t_object *obj)
+{
+	double	l;
+
+	l = O_R2 / tan(O_ANG);
+	O_P2 = add_v3d(O_POS, smul_v3d(O_DIR, l));
+	l = O_R1 / tan(O_ANG);
+	O_P1 = add_v3d(O_POS, smul_v3d(O_DIR, -l));
+}
