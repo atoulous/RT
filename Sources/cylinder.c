@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 16:58:17 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/22 10:55:56 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/01/09 13:55:33 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,20 +84,4 @@ dot_v3d(ray->dir, O_DIR)))), sub_v3d(dp, smul_v3d(O_DIR, dot_v3d(dp, O_DIR))));
 	tmp = sub_v3d(dp, smul_v3d(O_DIR, dot_v3d(dp, O_DIR)));
 	C = dot_v3d(tmp, tmp) - pow(O_R1, 2.0);
 	find_solutions(obj, ray, sol);
-}
-
-void			calc_cylinder_param(t_object *obj)
-{
-	O_POS = O_P1;
-	O_DIR = unit_v3d(sub_v3d(O_P2, O_POS));
-}
-
-void			update_cylinder_pos(t_object *obj)
-{
-	double	l;
-
-	l = length_v3d(sub_v3d(O_P1, O_P2));
-	O_P1 = O_POS;
-	O_P2 = add_v3d(O_P1, smul_v3d(O_DIR, l));
-	calc_cylinder_param(obj);
 }

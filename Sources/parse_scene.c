@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 16:21:36 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/23 16:02:11 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/09 13:47:35 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 ** Free the objects allowed array
 */
+
 static void	free_fct_tab(t_env *e)
 {
 	int	i;
@@ -34,6 +35,7 @@ static void	free_fct_tab(t_env *e)
 **	- update_obj_pos: function to update objects position, when objects are
 **	moving for exemple
 */
+
 static void	make_fct_tab(t_env *e)
 {
 	e->obj_allowed = ft_strsplit(OBJ_ALLOWED, ' ');
@@ -54,13 +56,14 @@ static void	make_fct_tab(t_env *e)
 	e->update_obj_pos[4] = &update_cone_pos;
 	e->obj_fct_obj[5] = &cylinder;
 	e->calc_obj_param[5] = &calc_cylinder_param;
-	e->update_obj_pos[5] = &update_cylinder_pos;;
+	e->update_obj_pos[5] = &update_cylinder_pos;
 }
 
 /*
 ** Parse the image resolution
 ** If image resolution is negative or 0, set it to 800 x 700 px
 */
+
 static void	get_resolution(t_env *e, char *str)
 {
 	char	*tmp;
@@ -81,6 +84,7 @@ static void	get_resolution(t_env *e, char *str)
 /*
 ** Parse the string given to build the scene
 */
+
 static void	build_scene(t_env *e, char *str)
 {
 	char	*tmp;
@@ -110,11 +114,11 @@ static void	build_scene(t_env *e, char *str)
 	}
 }
 
-
 /*
 ** Open the file, read it and save every lines that doesn't start with '#' in a
 ** string that will be used for the parcing
 */
+
 void		parse_rt(t_env *e, char *file_name)
 {
 	int		fd;

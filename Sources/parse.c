@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 16:21:36 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/21 10:43:15 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/01/09 13:42:44 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 ** Check in the given string if all opening brace there is a closing one
 */
+
 void		check_acc(t_env *e, char *str)
 {
 	int		i;
@@ -36,6 +37,7 @@ void		check_acc(t_env *e, char *str)
 /*
 ** Return the number of characters to the next closing brace at same depth
 */
+
 int			size_to_end_acc(char *str)
 {
 	int	i;
@@ -61,14 +63,15 @@ int			size_to_end_acc(char *str)
 /*
 ** Return the content inside the braces of the param given in the str given
 ** The return string is trimed
-** 
+** --
 ** Ex:
 ** param = "my_param"
 ** str = "some text my_param { inside braces text } some more text"
 ** function will return "inside param"
-** 
+** --
 ** The returned string is freshly allocated, needs to be freed!
 */
+
 char		*get_in_acc(char *param, char *str)
 {
 	char	*tmp;
