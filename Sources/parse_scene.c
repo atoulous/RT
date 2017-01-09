@@ -27,16 +27,22 @@ static void	make_fct_tab(t_env *e)
 	e->obj_allowed = ft_strsplit(OBJ_ALLOWED, ' ');
 	e->obj_fct_obj[0] = &sphere;
 	e->calc_obj_param[0] = NULL;
+	e->update_obj_pos[0] = NULL;
 	e->obj_fct_obj[1] = &sphere;
 	e->calc_obj_param[1] = NULL;
+	e->update_obj_pos[1] = NULL;
 	e->obj_fct_obj[2] = &plane;
 	e->calc_obj_param[2] = NULL;
+	e->update_obj_pos[2] = NULL;
 	e->obj_fct_obj[3] = &sphere;
 	e->calc_obj_param[3] = NULL;
+	e->update_obj_pos[3] = NULL;
 	e->obj_fct_obj[4] = &cone;
 	e->calc_obj_param[4] = &calc_cone_param;
+	e->update_obj_pos[4] = &update_cone_pos;
 	e->obj_fct_obj[5] = &cylinder;
 	e->calc_obj_param[5] = &calc_cylinder_param;
+	e->update_obj_pos[5] = &update_cylinder_pos;;
 }
 
 static void	get_resolution(t_env *e, char *str)
