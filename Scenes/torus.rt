@@ -6,7 +6,7 @@
 #    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/09 14:37:17 by mmoullec          #+#    #+#              #
-#    Updated: 2017/01/09 14:39:00 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/01/09 20:21:25 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@
 scene {
 	name { test1 }
 	camera { 
-		origin { 0 -15 0 }
-		dir	{ 0 1 0}
+		origin { 0 0 -10 }
+		dir	{ 0 0 1}
 	}
 	render {900 720}
 	object {
@@ -29,11 +29,18 @@ scene {
 	}
 	object {
 		name { torus }
-		type {torus}
-		p1 { 0 0 0 }
-		p2 {1 0 0}
+		type { torus }
+		p1 { 0 0 2 }
+		p2 {0 0 1}
 		r1 {0.5}
 		r2 {2}
 		color { 0x0000AAFF }
+	}
+	object {
+		name { sphere1 }
+		type { sphere }
+		origin { 0 0 0 }
+		r1 { 2.0 }
+		color { 0xFF0000 }
 	}
 }

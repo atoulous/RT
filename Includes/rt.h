@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 14:28:44 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/09 19:43:22 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include "mlx.h"
 # include "libft.h"
 # include "libv3d.h"
+
+# include "my_math.h"
 
 # define PI 3.141592
 # define NB_TH 50
@@ -46,8 +48,8 @@
 # define M_UP (1 << 4)
 # define M_DOWN (1 << 5)
 
-# define OBJ_ALLOWED "light sphere plane cube cone cylinder"
-# define NB_OBJ_FCT 6
+# define OBJ_ALLOWED "light sphere plane cube cone cylinder torus"
+# define NB_OBJ_FCT 7
 
 # define MLX e->mlx
 # define WIN e->win
@@ -303,5 +305,11 @@ int				ft_mouse_click(int button, int x, int y, t_env *e);
 void			init_cl(t_env *e);
 
 void			init_opt(t_env *e, char opt);
+
+/*
+**ajoutees pour torus
+*/
+void			torus_error(t_object *obj);
+void			torus(t_object *obj, t_ray *ray, t_sol *sol);
 
 #endif

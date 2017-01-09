@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cylinder2.c                                        :+:      :+:    :+:   */
+/*   torus_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 13:50:53 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/09 15:10:08 by mmoullec         ###   ########.fr       */
+/*   Created: 2017/01/09 18:50:33 by mmoullec          #+#    #+#             */
+/*   Updated: 2017/01/09 19:09:47 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void			calc_cylinder_param(t_object *obj)
+void	torus_error(t_object *obj)
 {
-	O_POS = O_P1;
-	O_DIR = unit_v3d(sub_v3d(O_P2, O_POS));
-}
-
-void			update_cylinder_pos(t_object *obj)
-{
-	double	l;
-
-	l = length_v3d(sub_v3d(O_P1, O_P2));
-	O_P1 = O_POS;
-	O_P2 = add_v3d(O_P1, smul_v3d(O_DIR, l));
-	calc_cylinder_param(obj);
+	if (obj->r1 > obj->r2)
+	{
+		ft_putstr("\033[31mError: Torus : r1 doit etre inferieur a r2\n");
+		exit (0);
+	}
 }

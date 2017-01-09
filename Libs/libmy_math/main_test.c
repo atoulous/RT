@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cylinder2.c                                        :+:      :+:    :+:   */
+/*   main_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 13:50:53 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/09 15:10:08 by mmoullec         ###   ########.fr       */
+/*   Created: 2017/01/09 16:39:39 by mmoullec          #+#    #+#             */
+/*   Updated: 2017/01/09 16:42:03 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include "stdlib.h"
+#include "my_math.h"
 
-void			calc_cylinder_param(t_object *obj)
+int		main(void)
 {
-	O_POS = O_P1;
-	O_DIR = unit_v3d(sub_v3d(O_P2, O_POS));
-}
+	t_5pow		d;
+	double		*ret;
+	int			i;
+	int			y;
 
-void			update_cylinder_pos(t_object *obj)
-{
-	double	l;
-
-	l = length_v3d(sub_v3d(O_P1, O_P2));
-	O_P1 = O_POS;
-	O_P2 = add_v3d(O_P1, smul_v3d(O_DIR, l));
-	calc_cylinder_param(obj);
+	ret = (double *)malloc(sizeof(double) * 4);
+	i = -1;
+	while (++i < 4)
+		ret[i] = -1.0;
+	d.q4 = 2;
+	d.q3 = -10;
+	d.q2 = -12;
+	d.q1 = 123;
+	d.q0 = 123;
+	y = quartic_solver(ret, d);
+	printf("%d\n", y);
+	i = -1;
+	while (++i < 4)
+		printf("%f\n", ret[i]);
+	free(ret);
+	return (0);
 }

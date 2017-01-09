@@ -6,12 +6,12 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/01/09 14:29:23 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/01/09 19:23:34 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=gcc
-CFLAGS= -ILibs/libft -ILibs/libmlx -ILibs/libv3d -IIncludes -Wall -Wextra -Werror
+CFLAGS= -ILibs/libft -ILibs/libmlx -ILibs/libv3d -ILibs/libmy_math -IIncludes #-Wall -Wextra -Werror
 SRC=	rt.c			\
 		menu.c			\
 		color.c			\
@@ -39,6 +39,8 @@ SRC=	rt.c			\
 		objects.c		\
 		add_objects.c	\
 		init_opt.c		\
+		torus_error.c	\
+		torus.c			\
 		moves.c
 
 OBJDIR = Objects
@@ -50,7 +52,8 @@ $(NAME): $(OBJS)
 	@make -C Libs/libft
 	@make -C Libs/libv3d
 	@make -C Libs/libmlx
-	@$(CC) -LLibs/libft/ -lft -LLibs/libmlx/ -lmlx -LLibs/libv3d/ -lv3d -framework OpenGL -framework AppKit -framework Opencl -o $@ $^
+	@make -C Libs/libmy_math
+	@$(CC) -LLibs/libft/ -lft -LLibs/libmlx/ -lmlx -LLibs/libv3d/ -lv3d -LLibs/libmy_math -lmy_math -framework OpenGL -framework AppKit -framework Opencl -o $@ $^
 	@echo "\033[32m[OK]\033[0m rt created"
 
 all: $(NAME)

@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cylinder2.c                                        :+:      :+:    :+:   */
+/*   my_math1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 13:50:53 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/09 15:10:08 by mmoullec         ###   ########.fr       */
+/*   Created: 2017/01/04 16:32:13 by mmoullec          #+#    #+#             */
+/*   Updated: 2017/01/04 16:34:02 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include "my_math.h"
 
-void			calc_cylinder_param(t_object *obj)
+double		carre(double a)
 {
-	O_POS = O_P1;
-	O_DIR = unit_v3d(sub_v3d(O_P2, O_POS));
+	return (a * a);
 }
 
-void			update_cylinder_pos(t_object *obj)
+double		cube(double a)
 {
-	double	l;
-
-	l = length_v3d(sub_v3d(O_P1, O_P2));
-	O_P1 = O_POS;
-	O_P2 = add_v3d(O_P1, smul_v3d(O_DIR, l));
-	calc_cylinder_param(obj);
+	return (a * a * a);
 }
