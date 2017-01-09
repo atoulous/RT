@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/06 13:29:07 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/09 17:26:32 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,34 +32,30 @@ static void	ft_esc_key(t_env *e)
 
 static void	move(int keycode, t_env *e)
 {
-	if (keycode == 126)
-		MOVES |= M_UP;
-	else if (keycode == 125)
-		MOVES |= M_DOWN;
-	else if (keycode == 123)
-		MOVES |= M_LEFT;
-	else if (keycode == 124)
-		MOVES |= M_RIGHT;
-	else if (keycode == 13 || keycode == 69)
-		MOVES |= M_FORWARD;
-	else if (keycode == 1 || keycode == 78)
-		MOVES |= M_BACKWARD;
+	keycode == 126 ? MOVES |= M_UP : 0;
+	keycode == 125 ? MOVES |= M_DOWN : 0;
+	keycode == 123 ? MOVES |= M_LEFT : 0;
+	keycode == 124 ? MOVES |= M_RIGHT : 0;
+	keycode == 13 || keycode == 69 ? MOVES |= M_FORWARD : 0;
+	keycode == 1 || keycode == 78 ? MOVES |= M_BACKWARD : 0;
+	keycode == 86 ? ROT |= (1 << 0) : 0;
+	keycode == 88 ? ROT |= (1 << 1) : 0;
+	keycode == 84 ? ROT |= (1 << 2) : 0;
+	keycode == 91 ? ROT |= (1 << 3) : 0;
 }
 
 int			ft_key_release(int keycode, t_env *e)
 {
-	if (keycode == 126)
-		MOVES ^= M_UP;
-	else if (keycode == 125)
-		MOVES ^= M_DOWN;
-	else if (keycode == 123)
-		MOVES ^= M_LEFT;
-	else if (keycode == 124)
-		MOVES ^= M_RIGHT;
-	else if (keycode == 13 || keycode == 69)
-		MOVES ^= M_FORWARD;
-	else if (keycode == 1 || keycode == 78)
-		MOVES ^= M_BACKWARD;
+	keycode == 126 ? MOVES ^= M_UP : 0;
+	keycode == 125 ? MOVES ^= M_DOWN : 0;
+	keycode == 123 ? MOVES ^= M_LEFT : 0;
+	keycode == 124 ? MOVES ^= M_RIGHT : 0;
+	keycode == 13 || keycode == 69 ? MOVES ^= M_FORWARD : 0;
+	keycode == 1 || keycode == 78 ? MOVES ^= M_BACKWARD : 0;
+	keycode == 86 ? ROT ^= (1 << 0) : 0;
+	keycode == 88 ? ROT ^= (1 << 1) : 0;
+	keycode == 84 ? ROT ^= (1 << 2) : 0;
+	keycode == 91 ? ROT ^= (1 << 3) : 0;
 	COMMAND = 0;
 	return (0);
 }

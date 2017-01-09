@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 14:28:44 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/09 17:27:06 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define LUMI e->luminosite
 
 # define MOVES e->moves
+# define ROT e->rotations
 # define M_FORWARD (1 << 0)
 # define M_BACKWARD (1 << 1)
 # define M_LEFT (1 << 2)
@@ -228,6 +229,7 @@ typedef struct	s_env
 	int			endian;
 	t_button	menu[NB_BTN];
 	char		moves;
+	char		rotations;
 	char		command;
 	t_scene		*scene;
 	char		**obj_allowed;

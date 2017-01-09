@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 17:50:44 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 13:40:13 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/09 17:27:45 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ void	moves2(t_v3d **pos, t_list *list, t_object **obj)
 	(*obj) = (t_object *)(list->content);
 	(*pos) = &(*obj)->pos;
 }
+
+//void	rotations(t_env *e)
+//{
+//}
 
 int		moves(t_env *e)
 {
@@ -42,6 +46,7 @@ int		moves(t_env *e)
 		*pos = sub_v3d(*pos, smul_v3d(CAM_DIR, SPEED));
 	(list && e->update_obj_pos[obj->type]) ? e->update_obj_pos[obj->type](obj)\
 		: 0;
+	//rotations(e);
 	if (MOVES > 0)
 		create_img(e);
 	return (0);

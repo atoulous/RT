@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   change_shadow_status.c                             :+:      :+:    :+:   */
+/*   camera_rot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 14:28:36 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/09 14:45:09 by atoulous         ###   ########.fr       */
+/*   Created: 2017/01/09 15:59:00 by atoulous          #+#    #+#             */
+/*   Updated: 2017/01/09 16:01:14 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void		change_shadow_status(void *arg)
+void	rotation(int keycode, t_env *e)
 {
-	t_env *e;
 
-	e = (t_env *)arg;
-	(OPT & (1 << 4)) ? (OPT ^= (1 << 4)) : (OPT |= (1 << 4));
-	create_img(e);
 }
