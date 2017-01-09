@@ -12,6 +12,10 @@
 
 #include "rt.h"
 
+/*
+** Calling the raytracer function for each thread
+** Display the image on the window
+*/
 int			create_img(t_env *e)
 {
 	int			i;
@@ -28,6 +32,9 @@ int			create_img(t_env *e)
 	return (0);
 }
 
+/*
+** Save the color in the pixel (x, y) of the image given
+*/
 void		img_put_pixel(t_img *img, int x, int y, unsigned int color)
 {
 	unsigned char r;

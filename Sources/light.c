@@ -12,6 +12,10 @@
 
 #include "rt.h"
 
+/*
+** Initialize light ray parameters
+** This function is called for every pixel of the calculated image
+*/
 static void	init_light_ray(t_param *param, t_object *light)
 {
 	t_v3d	tmp;
@@ -23,6 +27,9 @@ static void	init_light_ray(t_param *param, t_object *light)
 	PHO_RAY.obj = NULL;
 }
 
+/*
+** Perform the shininess
+*/
 static void	do_shininess(t_param *param, t_object *light, t_hsv *hsv, t_v3d ref)
 {
 	int		color;
@@ -41,6 +48,10 @@ static void	do_shininess(t_param *param, t_object *light, t_hsv *hsv, t_v3d ref)
 	}
 }
 
+/*
+** Perform the diffuse light
+** Set color to white if object has focus on
+*/
 static void	get_color(t_param *param, t_object *light, t_hsv *hsv)
 {
 	double		angle_light;
@@ -67,6 +78,9 @@ static void	get_color(t_param *param, t_object *light, t_hsv *hsv)
 	}
 }
 
+/*
+** Perform lights
+*/
 void		apply_light(t_env *e, t_param *param)
 {
 	t_list		*lst_light;

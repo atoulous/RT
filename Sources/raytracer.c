@@ -12,6 +12,10 @@
 
 #include "rt.h"
 
+/*
+** Compute VW_UP_LEFT
+** This function is called only once before performing the raytracing
+*/
 static void	init_param(t_param *param, t_env *e)
 {
 	VW_RAY.pos = CAM_POS;
@@ -20,6 +24,10 @@ static void	init_param(t_param *param, t_env *e)
 			smul_v3d(CAM_RIGHT, VW_WIDTH / 2.0));
 }
 
+/*
+** Initialize view ray parameters
+** This function is called for every pixel of the calculated image
+*/
 static void	init_vw_ray(t_env *e, t_param *param)
 {
 	VW_RAY.obj = NULL;
@@ -28,6 +36,13 @@ static void	init_vw_ray(t_env *e, t_param *param)
 			CAM_RIGHT, GAP_X * X), smul_v3d(CAM_UP, GAP_Y * Y))), CAM_POS));
 }
 
+/*
+** Process every item of the objects list and determine if it crosses the ray
+** Keep the closest object found and compute the position of the intersection
+** Save the color (black if no objects and white if object has focus on)
+** Call the apply_light function to determinate the color regarding the light
+** Save the pixel color on the image
+*/
 static void	perform_raytracing(t_env *e, t_param *param)
 {
 	t_list		*lst_obj;
@@ -48,12 +63,15 @@ static void	perform_raytracing(t_env *e, t_param *param)
 	{
 		obj_sel = (t_object *)param->e->scene->obj_focus->content;
 		if (VW_RAY.obj == obj_sel)
-			COLOR = (255 << 16) + (255 << 8) + 255;
+			COLOR = 0x00FFFFFF;
 	}
 	(VW_RAY.obj && OPT_L) ? apply_light(ENV, param) : 0;
 	img_put_pixel(&e->img, X, Y, COLOR);
 }
 
+/*
+** Process the raytracing for each image pixel in the thread
+*/
 void		*raytracer(void *arg)
 {
 	t_param		*param;
