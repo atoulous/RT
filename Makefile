@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2016/12/22 14:58:12 by jubarbie         ###   ########.fr        #
+#    Updated: 2017/01/09 14:29:23 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC=	rt.c			\
 		error.c			\
 		key_event.c		\
 		mouse_event.c	\
+		change_shadow_status.c	\
 		env.c			\
 		debug.c			\
 		parse.c			\
@@ -31,10 +32,13 @@ SRC=	rt.c			\
 		sphere.c		\
 		plane.c			\
 		cylinder.c		\
+		cylinder2.c		\
 		cone.c			\
+		cone2.c			\
 		caps.c			\
 		objects.c		\
 		add_objects.c	\
+		init_opt.c		\
 		moves.c
 
 OBJDIR = Objects

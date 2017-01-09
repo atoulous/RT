@@ -6,11 +6,15 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:39 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/22 14:55:05 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/01/09 14:24:37 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+/*
+** Building the scene by calling the parser and computing all cam parameters
+*/
 
 static void		init_scene(t_env *e, char *file_name)
 {
@@ -32,6 +36,11 @@ static void		init_scene(t_env *e, char *file_name)
 	CAM_UP = cross_v3d(CAM_DIR, CAM_RIGHT);
 }
 
+/*
+** Initialize a param structure
+** Called for each thread
+*/
+
 static t_param	*init_param(t_env *e, int index)
 {
 	t_param	*param;
@@ -43,12 +52,21 @@ static t_param	*init_param(t_env *e, int index)
 	return (param);
 }
 
+/*
+** Free the content of the list object
+** Function called to remove a node of the objects list
+*/
+
 void			free_obj(void *content, size_t size)
 {
 	free(content);
 	content = NULL;
 	size = 0;
 }
+
+/*
+** Free the environment. Should be called once at program end
+*/
 
 void			free_env(t_env *e)
 {
@@ -71,6 +89,10 @@ void			free_env(t_env *e)
 	}
 }
 
+/*
+** Initialize the environment. Should only be called once at program launch
+*/
+
 t_env			*init_env(char *file_name, char opt)
 {
 	t_env	*e;
@@ -80,14 +102,14 @@ t_env			*init_env(char *file_name, char opt)
 		error_perso(e, "malloc (t_env *)e failed");
 	if (ft_strcmp(file_name + ft_strlen(file_name) - 3, ".rt"))
 		error_perso(e, "Bad file extension (.rt)");
-	OPT = opt;
-	OPT |= (1 << 1);
+	LUMI = 0.3;
+	init_opt(e, opt);
 	init_scene(e, file_name);
 	i = -1;
 	while (++i < NB_TH)
 		e->param[i] = init_param(e, i);
 	MLX = mlx_init();
-	WIN = mlx_new_window(MLX, WIN_WIDTH, WIN_HEIGHT, "RT");
+	WIN = mlx_new_window(MLX, WIN_WIDTH, WIN_HEIGHT, file_name);
 	init_menu(e);
 	IMG = mlx_new_image(MLX, IMG_WIDTH, IMG_HEIGHT);
 	IMG_ADDR = mlx_get_data_addr(IMG, &e->img.bpp, &e->img.sizeline, &ENDIAN);

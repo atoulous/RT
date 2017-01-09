@@ -6,11 +6,15 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 16:21:36 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/21 12:05:16 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/01/09 13:47:35 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+/*
+** Free the objects allowed array
+*/
 
 static void	free_fct_tab(t_env *e)
 {
@@ -22,22 +26,43 @@ static void	free_fct_tab(t_env *e)
 	free(e->obj_allowed);
 }
 
+/*
+** Create the objects allowed array specified in the header file
+** Create the functions array for every object
+** There is 3 different arrays:
+** 	- obj_fct_obj: functions to perform the raytracing
+**	- calc_obj_param: functions to compute the object parameters
+**	- update_obj_pos: function to update objects position, when objects are
+**	moving for exemple
+*/
+
 static void	make_fct_tab(t_env *e)
 {
 	e->obj_allowed = ft_strsplit(OBJ_ALLOWED, ' ');
 	e->obj_fct_obj[0] = &sphere;
 	e->calc_obj_param[0] = NULL;
+	e->update_obj_pos[0] = NULL;
 	e->obj_fct_obj[1] = &sphere;
 	e->calc_obj_param[1] = NULL;
+	e->update_obj_pos[1] = NULL;
 	e->obj_fct_obj[2] = &plane;
 	e->calc_obj_param[2] = NULL;
+	e->update_obj_pos[2] = NULL;
 	e->obj_fct_obj[3] = &sphere;
 	e->calc_obj_param[3] = NULL;
+	e->update_obj_pos[3] = NULL;
 	e->obj_fct_obj[4] = &cone;
 	e->calc_obj_param[4] = &calc_cone_param;
+	e->update_obj_pos[4] = &update_cone_pos;
 	e->obj_fct_obj[5] = &cylinder;
 	e->calc_obj_param[5] = &calc_cylinder_param;
+	e->update_obj_pos[5] = &update_cylinder_pos;
 }
+
+/*
+** Parse the image resolution
+** If image resolution is negative or 0, set it to 800 x 700 px
+*/
 
 static void	get_resolution(t_env *e, char *str)
 {
@@ -55,6 +80,10 @@ static void	get_resolution(t_env *e, char *str)
 	IMG_WIDTH = (IMG_WIDTH <= 0) ? 800 : IMG_WIDTH;
 	IMG_HEIGHT = (IMG_HEIGHT <= 0) ? 700 : IMG_HEIGHT;
 }
+
+/*
+** Parse the string given to build the scene
+*/
 
 static void	build_scene(t_env *e, char *str)
 {
@@ -84,6 +113,11 @@ static void	build_scene(t_env *e, char *str)
 		free(tmp);
 	}
 }
+
+/*
+** Open the file, read it and save every lines that doesn't start with '#' in a
+** string that will be used for the parcing
+*/
 
 void		parse_rt(t_env *e, char *file_name)
 {

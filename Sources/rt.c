@@ -6,11 +6,16 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:01:24 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/22 13:06:11 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/01/09 13:45:46 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+/*
+** Calling the raytracer function for each thread
+** Display the image on the window
+*/
 
 int			create_img(t_env *e)
 {
@@ -27,6 +32,10 @@ int			create_img(t_env *e)
 	mlx_put_image_to_window(MLX, WIN, IMG, 40, 0);
 	return (0);
 }
+
+/*
+** Save the color in the pixel (x, y) of the image given
+*/
 
 void		img_put_pixel(t_img *img, int x, int y, unsigned int color)
 {

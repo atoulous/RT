@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/22 15:06:37 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/01/09 14:28:44 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@
 # define OPT_D (OPT & (1 << 0))
 # define OPT_L (OPT & (1 << 1))
 # define OPT_S (OPT & (1 << 2))
+# define OPT_B (param->e->opt & (1 << 3))
+# define OPT_O (param->e->opt & (1 << 4))
+# define LUMI e->luminosite
 
 # define MOVES e->moves
 # define M_FORWARD (1 << 0)
@@ -218,6 +221,7 @@ typedef struct	s_env
 	char		opt;
 	void		*mlx;
 	void		*win;
+	double		luminosite;
 	int			img_width;
 	int			img_height;
 	t_img		img;
@@ -229,6 +233,7 @@ typedef struct	s_env
 	char		**obj_allowed;
 	void		(*obj_fct_obj[NB_OBJ_FCT])(t_object *, t_ray *, t_sol *sol);
 	void		(*calc_obj_param[NB_OBJ_FCT])(t_object *);
+	void		(*update_obj_pos[NB_OBJ_FCT])(t_object *);
 	t_param		*param[NB_TH];
 }				t_env;
 
@@ -255,6 +260,9 @@ int				create_img(t_env *e);
 void			img_put_pixel(t_img *img, int x, int y, unsigned int color);
 int				moves(t_env *e);
 void			change_light_status(void *arg);
+void			change_brillance_status(void *arg);
+void			change_shadow_status(void *arg);
+void			change_luminosite(t_env *e, int keycode);
 void			del_focus_object(t_env *e);
 void			undo_del_object(t_env *e);
 void			add_sphere(void *arg);
@@ -268,8 +276,10 @@ void			sphere(t_object *obj, t_ray *ray, t_sol *sol);
 void			plane(t_object *obj, t_ray *ray, t_sol *sol);
 void			cylinder(t_object *obj, t_ray *ray, t_sol *sol);
 void			calc_cylinder_param(t_object *obj);
+void			update_cylinder_pos(t_object *obj);
 void			cone(t_object *obj, t_ray *ray, t_sol *sol);
 void			calc_cone_param(t_object *obj);
+void			update_cone_pos(t_object *obj);
 double			caps_up(t_object *obj, t_ray *ray);
 double			caps_bottom(t_object *obj, t_ray *ray);
 double			caps(t_ray *ray, double r, t_v3d n, t_v3d p);
@@ -291,5 +301,7 @@ int				ft_key_command(int keycode, t_env *e);
 int				ft_mouse_click(int button, int x, int y, t_env *e);
 
 void			init_cl(t_env *e);
+
+void			init_opt(t_env *e, char opt);
 
 #endif

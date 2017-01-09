@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 16:58:17 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/22 10:58:44 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/01/09 14:25:54 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	set_cone_norm(t_object *obj, t_ray *ray)
 	if (dot_v3d(O_DIR, sub_v3d(ray->inter, O_POS)) < 0)
 		l *= -1;
 	ray->norm = unit_v3d(sub_v3d(ray->inter,
-										add_v3d(O_POS, smul_v3d(O_DIR, l))));
+				add_v3d(O_POS, smul_v3d(O_DIR, l))));
 }
 
 static int	find_dist(t_object *obj, t_ray *ray, t_sol *sol)
@@ -90,20 +90,12 @@ void		cone(t_object *obj, t_ray *ray, t_sol *sol)
 	A = cosa2 * dot_v3d(v_tmp, v_tmp) - sina2 * dot_v3d(O_DIR, ray->dir) *
 		dot_v3d(O_DIR, ray->dir);
 	B = (2 * cosa2 * dot_v3d(sub_v3d(ray->dir,
-			smul_v3d(O_DIR, dot_v3d(O_DIR, ray->dir))), sub_v3d(dp,
-			smul_v3d(O_DIR, dot_v3d(dp, O_DIR))))) - 2 * sina2 *
+					smul_v3d(O_DIR, dot_v3d(O_DIR, ray->dir))), sub_v3d(dp,
+					smul_v3d(O_DIR, dot_v3d(dp, O_DIR))))) - 2 * sina2 *
 		dot_v3d(O_DIR, ray->dir) * dot_v3d(dp, O_DIR);
 	v_tmp = sub_v3d(dp, smul_v3d(O_DIR, dot_v3d(dp, O_DIR)));
 	C = cosa2 * dot_v3d(v_tmp, v_tmp) - sina2 *
-			dot_v3d(dp, O_DIR) * dot_v3d(dp, O_DIR);
+		dot_v3d(dp, O_DIR) * dot_v3d(dp, O_DIR);
 	if (find_solutions(obj, ray, sol))
 		ray->obj = obj;
-}
-
-void		calc_cone_param(t_object *obj)
-{
-	O_POS = add_v3d(O_P1, smul_v3d(smul_v3d(sub_v3d(O_P2, O_P1), O_R1),
-														1 / (O_R1 - O_R2)));
-	O_DIR = unit_v3d(sub_v3d(O_P2, O_P1));
-	O_ANG = atan((O_R1 - O_R2) / length_v3d(sub_v3d(O_P2, O_P1)));
 }
