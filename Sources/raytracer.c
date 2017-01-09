@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 15:41:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/22 15:00:47 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/01/09 13:45:16 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 ** Compute VW_UP_LEFT
 ** This function is called only once before performing the raytracing
 */
+
 static void	init_param(t_param *param, t_env *e)
 {
 	VW_RAY.pos = CAM_POS;
@@ -28,6 +29,7 @@ static void	init_param(t_param *param, t_env *e)
 ** Initialize view ray parameters
 ** This function is called for every pixel of the calculated image
 */
+
 static void	init_vw_ray(t_env *e, t_param *param)
 {
 	VW_RAY.obj = NULL;
@@ -43,6 +45,7 @@ static void	init_vw_ray(t_env *e, t_param *param)
 ** Call the apply_light function to determinate the color regarding the light
 ** Save the pixel color on the image
 */
+
 static void	perform_raytracing(t_env *e, t_param *param)
 {
 	t_list		*lst_obj;
@@ -72,6 +75,7 @@ static void	perform_raytracing(t_env *e, t_param *param)
 /*
 ** Process the raytracing for each image pixel in the thread
 */
+
 void		*raytracer(void *arg)
 {
 	t_param		*param;

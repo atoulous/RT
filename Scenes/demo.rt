@@ -5,8 +5,8 @@
 scene {
 	name { demo_1 }
 	camera {
-		origin { 0 2 -20 }
-		dir { 0 0  1 }
+		origin { 13 4 -15 }
+		dir { -0.5 -0.2 0.5 }
 	}
 	render { 900 700 }
 	object {
@@ -17,7 +17,7 @@ scene {
 		color { 0x0000FF }
 		mat {
 			diffuse { 0.2 }
-			shine { 0.2 }
+			shine { 0.5 }
 		}
 	}
 	object {
@@ -28,7 +28,7 @@ scene {
 		color { 0x00FF00 }
 		mat {
 			diffuse { 0.2 }
-			shine { 0.2 }
+			shine { 0.5 }
 		}
 	}
 	object {
@@ -39,18 +39,18 @@ scene {
 		color { 0xFF0000 }
 		mat {
 			diffuse { 0.1 }
-			shine { 0.2 }
+			shine { 0.5 }
 		}
 	}
 	object {
 		name { plane de fond }
 		type { plane }
-		origin { 0 0 10 }
+		origin { 0 0 15 }
 		dir { 0 0 -1 }
-		color { 0xFFFF00 }
+		color { 0x0FFF00 }
 		mat {
 			diffuse { 0.3 }
-			shine { 0 }
+			shine { 0.5 }
 		}
 	}
 	object {
@@ -58,10 +58,10 @@ scene {
 		type { plane }
 		origin { 0 5 0 }
 		dir { 0 -1 0 }
-		color { 0xFFFF00 }
+		color { 0xFF0F00 }
 		mat {
 			diffuse { 0.3 }
-			shine { 0 }
+			shine { 0.5 }
 		}
 	}
 	object {
@@ -69,10 +69,10 @@ scene {
 		type { plane }
 		origin { 0 -5 0 }
 		dir { 0 1 0 }
-		color { 0xFFFF00 }
+		color { 0xFF0F00 }
 		mat {
 			diffuse { 0.3 }
-			shine { 0 }
+			shine { 0.5 }
 		}
 	}
 	object {
@@ -80,10 +80,10 @@ scene {
 		type { plane }
 		origin { -10 0 0 }
 		dir { 1 0 0 }
-		color { 0xFFFF00 }
+		color { 0xFFF000 }
 		mat {
 			diffuse { 0.3 }
-			shine { 0 }
+			shine { 0.5 }
 		}
 	}
 	object {
@@ -91,7 +91,7 @@ scene {
 		type { plane }
 		origin { 10 0 0 }
 		dir { -1 0 0 }
-		color { 0xFFFF00 }
+		color { 0xFFF000 }
 		mat {
 			diffuse { 0.3 }
 			shine { 0.5 }
@@ -106,7 +106,7 @@ scene {
 		color { 0x00FFFF }
 		mat {
 			diffuse { 0.2 }
-			shine { 0.4 }
+			shine { 0.5 }
 		}
 	}
 	object {
@@ -118,11 +118,11 @@ scene {
 		color { 0x00FFFF }
 		mat {
 			diffuse { 0.2 }
-			shine { 0.4 }
+			shine { 0.5 }
 		}
 	}
 	object {
-		name { cone centre }
+		name { cone centre haut }
 		type { cone }
 		r1 { 1 }
 		p1 { 0 5 0 }
@@ -130,11 +130,28 @@ scene {
 		color { 0x00FFFF }
 		mat {
 			diffuse { 0.2 }
-			shine { 0.4 }
+			shine { 0.5 }
 		}
 	}
-	
-		object {
+	object {
+		name { cone centre bas }
+		type { cone }
+		r1 { 1 }
+		p1 { 0 -5 0 }
+		p2 { 0 0 0 }
+		color { 0x00FFFF }
+		mat {
+			diffuse { 0.2 }
+			shine { 0.5 }
+		}
+	}
+	object {
+		name { spot1 }
+		type { light }
+		origin { 5 0 -10 }
+		color { 0xFFFFFF }
+	}
+	object {
 		name { spot2 }
 		type { light }
 		origin { -5 0 -10 }

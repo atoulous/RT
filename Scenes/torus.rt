@@ -1,17 +1,17 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    cone.rt                                            :+:      :+:    :+:    #
+#    torus.rt                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/10/19 17:51:33 by jubarbie          #+#    #+#              #
-#    Updated: 2017/01/09 14:39:07 by mmoullec         ###   ########.fr        #
+#    Created: 2017/01/09 14:37:17 by mmoullec          #+#    #+#              #
+#    Updated: 2017/01/09 14:39:00 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #
-# Scene de test 1
+# Scene avec Torus
 #
 
 scene {
@@ -28,12 +28,12 @@ scene {
 		color { 0x003F0000  }
 	}
 	object {
-		name { cone }
-		type {cone }
-		p1 { -1 0 0 }
-		p2 {0 -3 -2}
-		r1 {0}
-		r2 {1.5}
-		color { 0x000000FF }
+		name { torus }
+		type {torus}
+		p1 { 0 0 0 }
+		p2 {1 0 0}
+		r1 {0.5}
+		r2 {2}
+		color { 0x0000AAFF }
 	}
 }
