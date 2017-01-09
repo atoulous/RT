@@ -12,21 +12,21 @@
 
 CC=gcc
 CFLAGS= -ILibs/libft -ILibs/libmlx -ILibs/libv3d -IIncludes -Wall -Wextra -Werror
-SRC=	rt.c			\
+SRC=	rt.c				\
 		menu.c			\
 		color.c			\
 		hsv_rgb.c		\
 		options.c		\
 		error.c			\
 		key_event.c		\
-		mouse_event.c	\
+		mouse_event.c		\
 		change_shadow_status.c	\
 		env.c			\
 		debug.c			\
 		parse.c			\
-		parse_param.c	\
+		parse_param.c		\
 		parse_obj.c		\
-		parse_scene.c	\
+		parse_scene.c		\
 		raytracer.c		\
 		light.c			\
 		sphere.c		\
@@ -37,8 +37,9 @@ SRC=	rt.c			\
 		cone2.c			\
 		caps.c			\
 		objects.c		\
-		add_objects.c	\
+		add_objects.c		\
 		init_opt.c		\
+		save.c			\
 		moves.c
 
 OBJDIR = Objects

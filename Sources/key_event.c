@@ -50,6 +50,8 @@ int			ft_key_release(int keycode, t_env *e)
 {
 	if (keycode == 126)
 		MOVES ^= M_UP;
+	else if (keycode == 24)
+		save_scene(e);
 	else if (keycode == 125)
 		MOVES ^= M_DOWN;
 	else if (keycode == 123)

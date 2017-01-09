@@ -300,6 +300,8 @@ int				ft_key_release(int keycode, t_env *e);
 int				ft_key_command(int keycode, t_env *e);
 int				ft_mouse_click(int button, int x, int y, t_env *e);
 
+void			save_scene(t_env *e);
+
 void			init_cl(t_env *e);
 
 void			init_opt(t_env *e, char opt);

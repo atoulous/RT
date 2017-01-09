@@ -14,8 +14,8 @@
 
 void		change_luminosite(t_env *e, int keycode)
 {
-	keycode == 67 && LUMI + 0.1 <= 1 ? LUMI += 0.1 : 0;
-	keycode == 75 && LUMI - 0.1 >= 0 ? LUMI -= 0.1 : 0;
+	keycode == 67 && LUMI + 0.05 <= 1 ? LUMI += 0.05 : 0;
+	keycode == 75 && LUMI - 0.05 >= -0.5 ? LUMI -= 0.05 : 0;
 	create_img(e);
 }
 
