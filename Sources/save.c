@@ -41,14 +41,23 @@ static void	put_objects_to_file(t_list *first, FILE *fd)
 void	save_scene(t_env *e)
 {
 	FILE	*fd;
+    char    *file_name;
+    char    *path;
 
 	mkdir("Scenes", '+');
-	fd = fopen("Scenes/test.rt", "w+");
+    ft_putstr("Nom de votre fichier: ");
+    get_next_line(0, &file_name);
+    path = ft_strjoin("Scenes/", file_name);
+	fd = fopen(path, "w+");
 	fprintf(fd, "scene {\n\tname{%s}", e->scene->name);
-	fprintf(fd, "\n\tcamera{\n\t\torigin{ %f %f %f }\n\t\tdir{ %f %f %f }\n\t}", CAM_POS.x, CAM_POS.y, CAM_POS.z, CAM_DIR.x, CAM_DIR.y, CAM_DIR.z );
+	fprintf(fd, "\n\tcamera{\n\t\torigin{ %f %f %f }\n\t\tdir{ %f %f %f }\n\t}",
+            CAM_POS.x, CAM_POS.y, CAM_POS.z, CAM_DIR.x, CAM_DIR.y, CAM_DIR.z );
 	fprintf(fd, "\n\trender{ %d %d }\n", IMG_WIDTH, IMG_HEIGHT);
 	put_objects_to_file(e->scene->light, fd);
 	put_objects_to_file(e->scene->obj, fd);
-	fprintf(fd, "}");	
+	fprintf(fd, "}");
+    ft_putstr("\033[32mScene saved into Scenes/test.rt\033[0m\n");
+    free(file_name);
+    free(path);
 	fclose(fd);
 }
