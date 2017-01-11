@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 17:27:06 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/10 17:59:37 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # define PI 3.141592
 # define NB_TH 50
 # define DIST_MAX 1000.0
-# define SPEED 0.1
 
 # define OPT_REF "dl"
 # define OPT e->opt
@@ -37,6 +36,7 @@
 # define OPT_B (param->e->opt & (1 << 3))
 # define OPT_O (param->e->opt & (1 << 4))
 # define LUMI e->luminosite
+# define SPEED e->speed
 
 # define MOVES e->moves
 # define ROT e->rotations
@@ -223,6 +223,7 @@ typedef struct	s_env
 	void		*mlx;
 	void		*win;
 	double		luminosite;
+	double		speed;
 	int			img_width;
 	int			img_height;
 	t_img		img;

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 17:50:44 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 17:27:45 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/10 18:15:15 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,17 @@ void	moves2(t_v3d **pos, t_list *list, t_object **obj)
 	(*pos) = &(*obj)->pos;
 }
 
-//void	rotations(t_env *e)
-//{
-//}
+void	rotations(t_env *e)
+{
+	if (ROT & (1 << 0))
+		CAM_DIR = sub_v3d(CAM_DIR, smul_v3d(CAM_RIGHT, SPEED));
+	if (ROT & (1 << 1))
+		CAM_DIR = add_v3d(CAM_DIR, smul_v3d(CAM_RIGHT, SPEED));
+	if (ROT & (1 << 2))
+		CAM_DIR = sub_v3d(CAM_DIR, smul_v3d(CAM_UP, SPEED));
+	if (ROT & (1 << 3))
+		CAM_DIR = add_v3d(CAM_DIR, smul_v3d(CAM_UP, SPEED));
+}
 
 int		moves(t_env *e)
 {
@@ -46,8 +54,7 @@ int		moves(t_env *e)
 		*pos = sub_v3d(*pos, smul_v3d(CAM_DIR, SPEED));
 	(list && e->update_obj_pos[obj->type]) ? e->update_obj_pos[obj->type](obj)\
 		: 0;
-	//rotations(e);
-	if (MOVES > 0)
-		create_img(e);
+	rotations(e);
+	MOVES || ROT ? create_img(e) : 0;
 	return (0);
 }
