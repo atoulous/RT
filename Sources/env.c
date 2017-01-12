@@ -95,8 +95,8 @@ void			free_env(t_env *e)
 
 t_env			*init_env(char *file_name, char opt)
 {
-	t_env	*e;
-	int		i;
+	t_env		*e;
+	int			i;
 
 	if (!(e = (t_env *)malloc(sizeof(t_env))))
 		error_perso(e, "malloc (t_env *)e failed");

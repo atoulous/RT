@@ -112,5 +112,4 @@ void			build_object(t_env *e, char *str)
 		ft_lstadd(&(e->scene->light), elem);
 	else
 		ft_lstadd(&(e->scene->obj), elem);
-	free(obj.name);
 }

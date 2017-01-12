@@ -1,43 +1,57 @@
 #include "rt.h"
 
+
+static void put_mat_to_file(t_object *obj, FILE *fd)
+{
+    fprintf(fd, "\t\tmat{\n\t\t\tdiffuse{%f}", obj->mat.diffuse);
+    fprintf(fd, "\n\t\t\tshine{%f}\n\t\t}\n", obj->mat.shine);
+}
+
+static void	put_obj_param_to_file(t_object *obj, char **obj_a, FILE *fd)
+{
+	int	t;
+
+	t = obj->type;
+	fprintf(fd, "\t\tname{%s}\n\t\ttype{%s}\n", obj->name, obj_a[t]);
+	if (t == 0 || t == 1 || t == 2)
+		fprintf(fd, "\t\torigin{%f %f %f}\n", O_POS.x, O_POS.y, O_POS.z);
+	if (t == 2)
+		fprintf(fd, "\t\tdir{%f %f %f}\n", O_DIR.x, O_DIR.y, O_DIR.z);
+	if (t == 4 || t == 5 )
+	{	
+		fprintf(fd, "\t\tp1{%f %f %f}\n", O_P1.x, O_P1.y, O_P1.z);
+		fprintf(fd, "\t\tp2{%f %f %f}\n", O_P2.x, O_P2.y, O_P2.z);
+	}
+	(t == 1 || t == 4 || t == 5) ? fprintf(fd, "\t\tr1{%f}\n", O_R1) : 0;
+	(t == 4) ? fprintf(fd, "\t\tr2{%f}\n", O_R2) : 0;
+	fprintf(fd, "\t\tcolor{0x%08X}\n", obj->color);
+	put_mat_to_file(obj, fd);
+}
+
 static void	put_objects_to_file(t_list *first, FILE *fd)
 {
 	t_list 		*list;
 	t_object	*obj;
-	char		**obj_alwd;
-	int			t;
+	char		**obj_a;
 
 	list = first;
-	obj_alwd = ft_strsplit(OBJ_ALLOWED, ' ');
+	obj_a = ft_strsplit(OBJ_ALLOWED, ' ');
 	while (list)
 	{
 		obj = (t_object *)list->content;
-		t = obj->type;
-		fprintf(fd, "\tobject{\n\t\tname{oui}\n\t\ttype{%s}\n", obj_alwd[t]);
-		if (t == 0 || t == 1 || t == 2)
-			fprintf(fd, "\t\torigin{%f %f %f}\n", O_POS.x, O_POS.y, O_POS.z);
-		if (t == 2)
-			fprintf(fd, "\t\tdir{%f %f %f}\n", O_DIR.x, O_DIR.y, O_DIR.z);
-		if (t == 4 || t == 5)
-		{
-			fprintf(fd, "\t\tp1{%f %f %f}\n", O_P1.x, O_P1.y, O_P1.z);
-			fprintf(fd, "\t\tp2{%f %f %f}\n", O_P2.x, O_P2.y, O_P2.z);
-		}
-		if (t == 1 || t == 4 || t == 5)
-			fprintf(fd, "\t\tr1{%f}\n", O_R1);
-		if (t == 4)
-			fprintf(fd, "\t\tr2{%f}\n", O_R2);
-		fprintf(fd, "\t\tcolor{0x%08X}\n", obj->color);
+		fprintf(fd, "\tobject{\n");
+		put_obj_param_to_file(obj, obj_a, fd);
 		fprintf(fd, "\t}\n");
 		list = list->next;
 	}
-	ft_free_tab(obj_alwd);
+	ft_free_tab(obj_a);
 }
 
 /*
 ** Take a scene struct and save it in a file
 ** It's pretty much like invert parsing of the scene
 */
+
 void	save_scene(t_env *e)
 {
 	FILE	*fd;
@@ -56,7 +70,9 @@ void	save_scene(t_env *e)
 	put_objects_to_file(e->scene->light, fd);
 	put_objects_to_file(e->scene->obj, fd);
 	fprintf(fd, "}");
-    ft_putstr("\033[32mScene saved into Scenes/test.rt\033[0m\n");
+    ft_putstr("\033[32mScene saved into ");
+    ft_putstr(path);
+    ft_putstr("\033[0m\n");
     free(file_name);
     free(path);
 	fclose(fd);
