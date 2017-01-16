@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/01/16 17:13:13 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/01/16 17:28:13 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,7 @@ $(OBJDIR)/%.o: %.c
 clean:
 	@make clean -C Libs/libft
 	@make clean -C Libs/libv3d
+	@make clean -C Libs/libmy_math
 	@rm -rf $(OBJDIR)
 	@echo "\033[32m[OK]\033[0m object files deleted"
 
@@ -76,6 +77,7 @@ fclean: clean
 	@make fclean -C Libs/libft
 	@make fclean -C Libs/libv3d
 	@make clean -C Libs/libmlx
+	@make fclean -C Libs/libmy_math
 	@rm -rf $(NAME)
 	@echo "\033[32m[OK]\033[0m rt deleted"
 

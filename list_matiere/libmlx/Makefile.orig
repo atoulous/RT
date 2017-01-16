@@ -5,36 +5,42 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/01/16 12:39:53 by mmoullec          #+#    #+#              #
-#    Updated: 2017/01/16 17:30:19 by mmoullec         ###   ########.fr        #
+#    Created: 2016/11/22 18:40:33 by mmoullec          #+#    #+#              #
+#    Updated: 2016/12/15 18:12:28 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libmy_math.a
+NAME = libmy_mlx.a
 CC = clang -Wall -Werror -Wextra
-SRC = cubic_eq.c\
-quartic_solver.c\
-my_math1.c
+LMLX = -I../minilibx_macos
+SRC = hsv_to_grb.c\
+	put_color_to_pixel.c\
+	glob_init_mlx.c\
+	rgb_to_hsv.c\
+	rgb_mult.c\
+	rgb_add.c\
+	rgb_create.c\
+	rgb_print.c\
+	rgb_0.c
 
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME)
 
 $(NAME): $(OBJ)
-	@ar rc $@ $^
-	@ranlib $@
-	@echo "\033[32m[OK]\033[0m libmy_math.a created"
+	@ar rc $(NAME) $? $(OBJ)
+	@ranlib $(NAME)
+	@echo "Created" $(NAME)
 
 %.o: %.c
-	@$(CC) -o $@ -c $< -I.
+	@$(CC) $(LMLX) -o $@ -c $< -I.
+	@echo $@ "Created"
 
 clean:
-	@/bin/rm -f $(OBJ)
-	@echo "\033[32m[OK]\033[0m libmy_math.a: object files deleted"
+	/bin/rm -f $(OBJ)
 
 fclean: clean
-	@/bin/rm -f $(NAME)
-	@echo "\033[32m[OK]\033[0m libmy_math.a: library deleted"
+	/bin/rm -f $(NAME)
 
 re: fclean all
 
