@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 16:21:36 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/16 15:11:44 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/16 15:24:52 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	make_fct_tab(t_env *e)
 	e->calc_obj_param[5] = &calc_cylinder_param;
 	e->update_obj_pos[5] = &update_cylinder_pos;
 	e->obj_fct_obj[6] = &torus;
-	e->calc_obj_param[6] = &update_torus_pos;
+	e->calc_obj_param[6] = NULL;
 //	e->update_obj_pos[5] = NULL;
 }
 
