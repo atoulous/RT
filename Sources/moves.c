@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 17:50:44 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/10 18:15:15 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/16 14:55:35 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	moves2(t_v3d **pos, t_list *list, t_object **obj)
 
 void	rotations(t_env *e)
 {
-	if (ROT & (1 << 0))
-		CAM_DIR = sub_v3d(CAM_DIR, smul_v3d(CAM_RIGHT, SPEED));
-	if (ROT & (1 << 1))
-		CAM_DIR = add_v3d(CAM_DIR, smul_v3d(CAM_RIGHT, SPEED));
-	if (ROT & (1 << 2))
-		CAM_DIR = sub_v3d(CAM_DIR, smul_v3d(CAM_UP, SPEED));
-	if (ROT & (1 << 3))
-		CAM_DIR = add_v3d(CAM_DIR, smul_v3d(CAM_UP, SPEED));
+	if (ROT & M_LEFT)
+		CAM_DIR = sub_v3d(CAM_DIR, smul_v3d(CAM_RIGHT, SPEED / 2));
+	if (ROT & M_RIGHT)
+		CAM_DIR = add_v3d(CAM_DIR, smul_v3d(CAM_RIGHT, SPEED / 2));
+	if (ROT & M_DOWN)
+		CAM_DIR = sub_v3d(CAM_DIR, smul_v3d(CAM_UP, SPEED / 2));
+	if (ROT & M_UP)
+		CAM_DIR = add_v3d(CAM_DIR, smul_v3d(CAM_UP, SPEED / 2));
 }
 
 int		moves(t_env *e)

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/10 17:56:49 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/11 16:45:31 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ static void	move(int keycode, t_env *e)
 	keycode == 124 ? MOVES |= M_RIGHT : 0;
 	keycode == 13 || keycode == 69 ? MOVES |= M_FORWARD : 0;
 	keycode == 1 || keycode == 78 ? MOVES |= M_BACKWARD : 0;
-	keycode == 86 ? ROT |= (1 << 0) : 0;
-	keycode == 88 ? ROT |= (1 << 1) : 0;
-	keycode == 84 ? ROT |= (1 << 2) : 0;
-	keycode == 91 ? ROT |= (1 << 3) : 0;
+	keycode == 86 ? ROT |= M_LEFT : 0;
+	keycode == 88 ? ROT |= M_RIGHT : 0;
+	keycode == 84 ? ROT |= M_DOWN : 0;
+	keycode == 91 ? ROT |= M_UP : 0;
 }
 
 int			ft_key_release(int keycode, t_env *e)
@@ -52,10 +52,10 @@ int			ft_key_release(int keycode, t_env *e)
 	keycode == 124 ? MOVES ^= M_RIGHT : 0;
 	keycode == 13 || keycode == 69 ? MOVES ^= M_FORWARD : 0;
 	keycode == 1 || keycode == 78 ? MOVES ^= M_BACKWARD : 0;
-	keycode == 86 ? ROT ^= (1 << 0) : 0;
-	keycode == 88 ? ROT ^= (1 << 1) : 0;
-	keycode == 84 ? ROT ^= (1 << 2) : 0;
-	keycode == 91 ? ROT ^= (1 << 3) : 0;
+	keycode == 86 ? ROT ^= M_LEFT : 0;
+	keycode == 88 ? ROT ^= M_RIGHT : 0;
+	keycode == 84 ? ROT ^= M_DOWN : 0;
+	keycode == 91 ? ROT ^= M_UP : 0;
 	COMMAND = 0;
 	return (0);
 }
