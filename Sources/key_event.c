@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/06 13:29:07 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/11 16:45:31 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,34 +32,30 @@ static void	ft_esc_key(t_env *e)
 
 static void	move(int keycode, t_env *e)
 {
-	if (keycode == 126)
-		MOVES |= M_UP;
-	else if (keycode == 125)
-		MOVES |= M_DOWN;
-	else if (keycode == 123)
-		MOVES |= M_LEFT;
-	else if (keycode == 124)
-		MOVES |= M_RIGHT;
-	else if (keycode == 13 || keycode == 69)
-		MOVES |= M_FORWARD;
-	else if (keycode == 1 || keycode == 78)
-		MOVES |= M_BACKWARD;
+	keycode == 126 ? MOVES |= M_UP : 0;
+	keycode == 125 ? MOVES |= M_DOWN : 0;
+	keycode == 123 ? MOVES |= M_LEFT : 0;
+	keycode == 124 ? MOVES |= M_RIGHT : 0;
+	keycode == 13 || keycode == 69 ? MOVES |= M_FORWARD : 0;
+	keycode == 1 || keycode == 78 ? MOVES |= M_BACKWARD : 0;
+	keycode == 86 ? ROT |= M_LEFT : 0;
+	keycode == 88 ? ROT |= M_RIGHT : 0;
+	keycode == 84 ? ROT |= M_DOWN : 0;
+	keycode == 91 ? ROT |= M_UP : 0;
 }
 
 int			ft_key_release(int keycode, t_env *e)
 {
-	if (keycode == 126)
-		MOVES ^= M_UP;
-	else if (keycode == 125)
-		MOVES ^= M_DOWN;
-	else if (keycode == 123)
-		MOVES ^= M_LEFT;
-	else if (keycode == 124)
-		MOVES ^= M_RIGHT;
-	else if (keycode == 13 || keycode == 69)
-		MOVES ^= M_FORWARD;
-	else if (keycode == 1 || keycode == 78)
-		MOVES ^= M_BACKWARD;
+	keycode == 126 ? MOVES ^= M_UP : 0;
+	keycode == 125 ? MOVES ^= M_DOWN : 0;
+	keycode == 123 ? MOVES ^= M_LEFT : 0;
+	keycode == 124 ? MOVES ^= M_RIGHT : 0;
+	keycode == 13 || keycode == 69 ? MOVES ^= M_FORWARD : 0;
+	keycode == 1 || keycode == 78 ? MOVES ^= M_BACKWARD : 0;
+	keycode == 86 ? ROT ^= M_LEFT : 0;
+	keycode == 88 ? ROT ^= M_RIGHT : 0;
+	keycode == 84 ? ROT ^= M_DOWN : 0;
+	keycode == 91 ? ROT ^= M_UP : 0;
 	COMMAND = 0;
 	return (0);
 }
@@ -76,6 +72,8 @@ int			ft_key_press(int keycode, t_env *e)
 	keycode == 67 || keycode == 75 ? change_luminosite(e, keycode) : 0;
 	keycode == 259 ? COMMAND = 1 : 0;
 	keycode == 6 && COMMAND == 1 ? undo_del_object(e) : 0;
+	keycode == 47 ? SPEED += 0.1 : 0;
+	keycode == 43 ? SPEED -= 0.1 : 0;
 	move(keycode, e);
 	return (0);
 }
