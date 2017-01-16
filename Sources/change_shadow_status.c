@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_shadow_status.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 14:28:36 by mmoullec          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2017/01/09 17:33:48 by atoulous         ###   ########.fr       */
-=======
-/*   Updated: 2017/01/11 16:28:46 by atoulous         ###   ########.fr       */
->>>>>>> atoulous
+/*   Created: 2017/01/16 15:11:31 by atoulous          #+#    #+#             */
+/*   Updated: 2017/01/16 15:11:33 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +20,6 @@ void		change_shadow_status(void *arg)
 	(OPT & (1 << 4)) ? (OPT ^= (1 << 4)) : (OPT |= (1 << 4));
 	create_img(e);
 }
-<<<<<<< HEAD
-=======
 
 void		change_brillance_status(void *arg)
 {
@@ -35,4 +29,3 @@ void		change_brillance_status(void *arg)
 	(OPT & (1 << 3)) ? (OPT ^= (1 << 3)) : (OPT |= (1 << 3));
 	create_img(e);
 }
->>>>>>> atoulous
