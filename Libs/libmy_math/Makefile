@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/01/16 12:39:53 by mmoullec          #+#    #+#              #
+#    Updated: 2017/01/16 12:44:31 by mmoullec         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libmy_math.a
 CC = clang -Wall -Werror -Wextra
 SRC = cubic_eq.c\
@@ -9,25 +21,21 @@ OBJ = $(SRC:.c=.o)
 all : $(NAME)
 
 $(NAME): $(OBJ)
-	@ar rc $(NAME) $? $(OBJ)
-	@ranlib $(NAME)
-	@echo "Created" $(NAME)
+	@ar rc $@ $^
+	@ranlib $@
+	@echo "\033[32m[OK]\033[0m $(NAME) created"
 
 %.o: %.c
-	@$(CC) $(LMLX) -o $@ -c $< -I.
-	@echo $@ "Created"
+	@$(CC) -o $@ -c $< -I.
 
 clean:
 	@/bin/rm -f $(OBJ)
+	@echo "\033[32m[OK]\033[0m $(NAME): object files deleted"
 
 fclean: clean
 	@/bin/rm -f $(NAME)
-	@/bin/rm -f test
+	@echo "\033[32m[OK]\033[0m $(NAME): libft deleted"
 
 re: fclean all
-
-test: all
-	@$(CC) -o test main_test.c $(NAME)
-
 
 .PHONY: all clean fclean re

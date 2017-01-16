@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 16:34:14 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/09 16:38:16 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/16 12:38:44 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@
 # include <math.h>
 # include <stdio.h>
 
-# define R sol.ret3
+# define R sol.ret1
 # define R2 sol.ret2
-# define D2 sol.ret4
-# define D sol.ret6
-# define E sol.ret7
-# define E2 sol.ret5
+# define R3 sol.ret3
+# define R4 sol->ret4
+# define R5 sol.ret5
+# define R6 sol->ret6
+# define R7 sol.ret7
+# define A sol->a
+# define AL sol->alpha
 
 typedef struct	s_5pow
 {

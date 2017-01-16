@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/01/09 19:23:34 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/01/16 15:15:54 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC=	rt.c			\
 		add_objects.c	\
 		init_opt.c		\
 		torus_error.c	\
+		torus_normal.c	\
 		torus.c			\
 		moves.c
 

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 14:54:56 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/16 14:32:14 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ void			build_object(t_env *e, char *str)
 	obj.r1 = get_double("r1", str);
 	obj.r2 = get_double("r2", str);
 	obj.angle = get_double("angle", str);
+	if (obj.type == 6)
+		torus_error(&obj, e);
 	if (e->calc_obj_param[obj.type])
 		e->calc_obj_param[obj.type](&obj);
 	if ((obj.color = get_obj_color(str)) == -1)

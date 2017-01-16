@@ -6,7 +6,7 @@
 #    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/09 14:37:17 by mmoullec          #+#    #+#              #
-#    Updated: 2017/01/09 20:21:25 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/01/16 14:48:50 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,16 +24,16 @@ scene {
 	object {
 		name { light 1 }
 		type { light }
-		origin { 10 10 10 }
-		color { 0x003F0000  }
+		origin { 10 10 0 }
+		color { 0x003FFFFF  }
 	}
 	object {
 		name { torus }
 		type { torus }
-		p1 { 0 0 2 }
-		p2 {0 0 1}
+		p1 { 0 0 0 }
+		p2 {1 -2 3}
 		r1 {0.5}
-		r2 {2}
+		r2 {3}
 		color { 0x0000AAFF }
 	}
 	object {

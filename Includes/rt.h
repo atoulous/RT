@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 19:43:22 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/16 15:12:58 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,13 @@ typedef struct	s_sol
 	double	c;
 	double	det;
 }				t_sol;
+
+typedef struct	s_sol_3
+{
+	t_sol		alpha;
+	t_sol		beta;
+	t_sol		delta;
+}				t_sol_3;
 
 typedef struct	s_img
 {
@@ -309,7 +316,9 @@ void			init_opt(t_env *e, char opt);
 /*
 **ajoutees pour torus
 */
-void			torus_error(t_object *obj);
+void			torus_error(t_object *obj, t_env *e);
 void			torus(t_object *obj, t_ray *ray, t_sol *sol);
+t_v3d			get_torus_normal(t_object *o, t_v3d cam, t_v3d ray, double ret);
+void			update_torus_pos(t_object *obj);
 
 #endif
