@@ -6,13 +6,13 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/01/09 14:29:23 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/01/11 16:30:21 by atoulous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC=gcc
-CFLAGS= -ILibs/libft -ILibs/libmlx -ILibs/libv3d -IIncludes -Wall -Wextra -Werror
-SRC=	rt.c			\
+CC = gcc
+CFLAGS = -ILibs/libft -ILibs/libmlx -ILibs/libv3d -IIncludes -Wall -Wextra -Werror
+SRC =	rt.c			\
 		menu.c			\
 		color.c			\
 		hsv_rgb.c		\
