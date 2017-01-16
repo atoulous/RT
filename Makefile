@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/01/16 15:15:54 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/01/16 16:49:28 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC=	rt.c			\
 		torus_error.c	\
 		torus_normal.c	\
 		torus.c			\
+		torus2.c			\
 		moves.c
 
 OBJDIR = Objects

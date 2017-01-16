@@ -35,10 +35,14 @@ scene {
 		name { torus }
 		type { torus }
 		p1 { 0 0 0 }
-		p2 {0 1 0}
-		r1 {0.5}
-		r2 {10}
+		p2 {1 0 1}
+		r1 {3}
+		r2 {7}
 		color { 0x0000AAFF }
+		mat {
+			diffuse { 0.3 }
+			shine { 0.5 }
+		}
 	}
 	object {
 		name { sphere1 }

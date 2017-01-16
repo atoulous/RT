@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 19:23:03 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/16 14:57:58 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/16 17:05:37 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ double			check_ret(double *ret)
 
 static void		torus_sol(t_ray *ray, t_object *obj, t_sol *sol, double ret)
 {
+	obj->pos = obj->p1;
 	T[0] = ret;
 	if (T[0] < ray->dist)
 	{
