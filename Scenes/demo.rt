@@ -32,6 +32,19 @@ scene {
 		}
 	}
 	object {
+		name { torus }
+		type { torus }
+		p1 { 0 0 0 }
+		p2 {1 0 1}
+		r1 {3}
+		r2 {7}
+		color { 0x0000AAFF }
+		mat {
+			diffuse { 0.3 }
+			shine { 0.5 }
+		}
+	}
+	object {
 		name { sphere1 }
 		type { sphere }
 		origin { 0 0 0 }

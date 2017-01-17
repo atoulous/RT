@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/13 17:42:37 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/16 17:14:45 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include "mlx.h"
 # include "libft.h"
 # include "libv3d.h"
+
+# include "my_math.h"
 
 # define PI 3.141592
 # define NB_TH 50
@@ -47,8 +49,8 @@
 # define M_UP (1 << 4)
 # define M_DOWN (1 << 5)
 
-# define OBJ_ALLOWED "light sphere plane cube cone cylinder"
-# define NB_OBJ_FCT 6
+# define OBJ_ALLOWED "light sphere plane cube cone cylinder torus"
+# define NB_OBJ_FCT 7
 
 # define MLX e->mlx
 # define WIN e->win
@@ -121,6 +123,13 @@ typedef struct	s_sol
 	double	c;
 	double	det;
 }				t_sol;
+
+typedef struct	s_sol_3
+{
+	t_sol		alpha;
+	t_sol		beta;
+	t_sol		delta;
+}				t_sol_3;
 
 typedef struct	s_img
 {
@@ -306,5 +315,13 @@ int				ft_mouse_click(int button, int x, int y, t_env *e);
 void			init_cl(t_env *e);
 
 void			init_opt(t_env *e, char opt);
+
+/*
+**ajoutees pour torus
+*/
+void			torus_error(t_object *obj, t_env *e);
+void			torus(t_object *obj, t_ray *ray, t_sol *sol);
+t_v3d			get_torus_normal(t_object *o, t_v3d cam, t_v3d ray, double ret);
+void			update_torus_pos(t_object *obj);
 
 #endif

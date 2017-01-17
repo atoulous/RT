@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    test1.rt                                           :+:      :+:    :+:    #
+#    cylinder.rt                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/10/19 17:51:33 by jubarbie          #+#    #+#              #
-#    Updated: 2016/12/12 20:07:59 by jubarbie         ###   ########.fr        #
+#    Created: 2017/01/09 15:07:36 by mmoullec          #+#    #+#              #
+#    Updated: 2017/01/09 15:07:51 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,19 +23,17 @@ scene {
 	
 	object {
 		name { light1 }
-		inter {
-			origin { 3 3 -10 }
-			light {  0.0}
-		}
-		color { rgb { 0x003F0000  }}
+		type { light }
+		origin { 3 3 -10 }
+		color { 0x00FFFFFF }
 	}
-
 	object {
-		name { cylindre }
-		inter {
-			origin { 2 -1 -4 }
-			cylinder {1.3 0 5 2}
-		}
-		color { rgb { 0x000000FF  }}
+		name { cone }
+		type {cone }
+		p1 { -1 0 0 }
+		p2 {0 -3 -2}
+		r1 {4}
+		r2 {1.5}
+		color { 0x000000FF }
 	}
 }
