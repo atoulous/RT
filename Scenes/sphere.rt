@@ -6,7 +6,7 @@
 #    By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/19 17:51:33 by jubarbie          #+#    #+#              #
-#    Updated: 2016/12/12 20:03:47 by jubarbie         ###   ########.fr        #
+#    Updated: 2017/01/17 21:43:37 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,26 +17,74 @@
 scene {
 	name { test1 }
 	camera { 
-		origin { 0 0 -10 }			
-		dir { 0 0 10 }			
+		origin { 0 0 -10 }
+		dir { 0 0 10 }
 	}
-	render { 900 720 }	
+	render { 900 720 }
 	object {
 		name { light 1 }
 		type { light }
-		origin {-2 5 -10}
+		origin {0 0 -2}
 		color { 0x00FFFFFF  }
 	}
-
+#	object {
+#		name { light 2 }
+#		type { light }
+#		origin {0 12 -2}
+#		color { 0x00FFFFFF  }
+#	}
 	object {
 		name { sphere 1 }
 		type { sphere }
 		origin { 0 1 0 }
 		r1 {  1}
 		mat {
-			diffuse { 0.3 }
-			shine { 0.3}
+			ambient { 0.5 }
+			diffuse { 0.6 }
+			specular { 0.9 }  
+			shine { 10 }
 		}
 		color { 0x00E4C3AD}
+}
+	object {
+		name { sphere 1 }
+		type { sphere }
+		origin { 1 1 0 }
+		r1 {  1}
+		mat {
+			ambient { 0.05 }
+			diffuse { 0.5 }
+			specular { 0.9 }
+			shine { 100 }
+		}
+		color { 0x00E4C345}
+	}
+	object {
+		name { cylinder droit }
+		type { cylinder }
+		r1 { 1 }
+		p1 { 0 -1 0 }
+		p2 { 0 1 0 }
+		color { 0x00FFFF }
+		mat {
+			ambient { 0.1 }
+			diffuse { 0.2 }
+			specular { 0.9 }
+			shine { 4 }
+		}
+	}
+	object {
+		name { cone centre haut }
+		type { cone }
+		r1 { 1 }
+		p1 { -1 -2 0 }
+		p2 { -1 3 0 }
+		color { 0x00FDFFAA }
+		mat {
+			ambient { 0.1 }
+			diffuse { 0.2 }
+			specular { 0.9 }
+			shine { 1000 }
+		}
 	}
 }

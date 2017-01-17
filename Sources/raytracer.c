@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 15:41:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/16 17:13:53 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/17 20:32:37 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static void	perform_raytracing(t_env *e, t_param *param)
 		if (VW_RAY.obj == obj_sel)
 			COLOR = 0x00FFFFFF;
 	}
+//	apply_light(ENV, param);
 	(VW_RAY.obj && OPT_L) ? apply_light(ENV, param) : 0;
 	img_put_pixel(&e->img, X, Y, COLOR);
 }

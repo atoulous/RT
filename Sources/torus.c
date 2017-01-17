@@ -6,23 +6,26 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 19:23:03 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/16 17:05:37 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/17 20:32:34 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-#define CENT_CAM_DOT q.alpha.t[0]
-#define CENT_CAM_DOT_SQUARED q.alpha.t[1]
-#define CARRE_I_RAD q.alpha.t[2]
-#define CARRE_O_RAD q.alpha.t[3]
-#define CENT_CAM_AXIS_DOT q.alpha.a
-#define RAY_AXIS_DOT q.alpha.b
-#define RET q.beta.t
-#define BA q.beta.a
-#define BB q.beta.b
-#define BC q.beta.c
-#define BD q.beta.det
+#ifndef TORUS_C
+# define TORUS_C
+# define CENT_CAM_DOT q.alpha.t[0]
+# define CENT_CAM_DOT_SQUARED q.alpha.t[1]
+# define CARRE_I_RAD q.alpha.t[2]
+# define CARRE_O_RAD q.alpha.t[3]
+# define CENT_CAM_AXIS_DOT q.alpha.a
+# define RAY_AXIS_DOT q.alpha.b
+# define RET q.beta.t
+# define BA q.beta.a
+# define BB q.beta.b
+# define BC q.beta.c
+# define BD q.beta.det
+#endif
 
 double			check_ret(double *ret)
 {

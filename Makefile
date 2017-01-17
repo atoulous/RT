@@ -6,12 +6,12 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/01/17 17:31:00 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/01/17 19:37:21 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=gcc
-CFLAGS= -ILibs/libft -ILibs/libmlx -ILibs/libv3d -ILibs/libmy_math -IIncludes -Wall -Wextra -Werror
+CFLAGS= -ILibs/libft -ILibs/libmlx -ILibs/libv3d -ILibs/libmy_math -ILibs/libmy_mlx -IIncludes #-Wall -Wextra -Werror
 SRC=	rt.c			\
 		menu.c			\
 		color.c			\
@@ -55,7 +55,8 @@ $(NAME): $(OBJS)
 	@make -C Libs/libv3d
 	@make -C Libs/libmlx
 	@make -C Libs/libmy_math
-	@$(CC) -LLibs/libft/ -lft -LLibs/libmlx/ -lmlx -LLibs/libv3d/ -lv3d -LLibs/libmy_math -lmy_math -framework OpenGL -framework AppKit -framework Opencl -o $@ $^
+	@make -C Libs/libmy_mlx
+	@$(CC) -LLibs/libft/ -lft -LLibs/libmlx/ -lmlx -LLibs/libv3d/ -lv3d -LLibs/libmy_math -lmy_math -LLibs/libmy_mlx -lmy_mlx -framework OpenGL -framework AppKit -framework Opencl -o $@ $^
 	@echo "\033[32m[OK]\033[0m rt created"
 
 all: $(NAME)
@@ -68,6 +69,7 @@ clean:
 	@make clean -C Libs/libft
 	@make clean -C Libs/libv3d
 	@make clean -C Libs/libmy_math
+	@make clean -C Libs/libmy_mlx
 	@rm -rf $(OBJDIR)
 	@echo "\033[32m[OK]\033[0m object files deleted"
 
@@ -78,10 +80,16 @@ fclean: clean
 	@make fclean -C Libs/libv3d
 	@make clean -C Libs/libmlx
 	@make fclean -C Libs/libmy_math
+	@make fclean -C Libs/libmy_mlx
 	@rm -rf $(NAME)
 	@echo "\033[32m[OK]\033[0m rt deleted"
 
 run: all
 	./rt Scenes/sphere.rt 
+
+run2: all
+	./rt Scenes/demo.rt 
+
+
 
 re: fclean all

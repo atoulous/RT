@@ -6,7 +6,7 @@
 #    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/09 14:37:17 by mmoullec          #+#    #+#              #
-#    Updated: 2017/01/16 16:52:34 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/01/17 19:53:56 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,13 +34,12 @@ scene {
 		p2 {1 -2 3}
 		r1 {0.5}
 		r2 {3}
+		mat {
+			ambient { 0.3 }
+			diffuse { 0.4 }
+			specular { 0.9 }  
+			shine { 1000 }
+		}
 		color { 0x0000AAFF }
-	}
-	object {
-		name { sphere1 }
-		type { sphere }
-		origin { 0 0 0 }
-		r1 { 2.0 }
-		color { 0xFF0000 }
 	}
 }

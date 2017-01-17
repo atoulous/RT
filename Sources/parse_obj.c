@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/16 14:32:14 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/17 19:39:34 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,14 @@ static void		add_mat(t_object *obj, char *str)
 	obj->mat.diffuse = 0.5;
 	if ((tmp = get_in_acc("mat", str)))
 	{
-		if (find_param("shine", tmp))
-			obj->mat.shine = get_double("shine", tmp);
+		if (find_param("ambient", tmp))
+			obj->mat.ambient = get_double("ambient", tmp);
+		if (find_param("specular", tmp))
+			obj->mat.specular = get_double("specular", tmp);
 		if (find_param("diffuse", tmp))
 			obj->mat.diffuse = get_double("diffuse", tmp);
+		if (find_param("shine", tmp))
+			obj->mat.shine = get_double("shine", tmp);
 		free(tmp);
 	}
 }

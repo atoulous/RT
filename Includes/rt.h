@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/16 17:14:45 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/17 21:43:36 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "libv3d.h"
 
 # include "my_math.h"
+# include "my_mlx.h"
 
 # define PI 3.141592
 # define NB_TH 50
@@ -101,13 +102,6 @@
 # define GAP_X e->scene->gap_x
 # define GAP_Y e->scene->gap_y
 
-typedef	struct	s_hsv
-{
-	int		h;
-	double	s;
-	double	v;
-}				t_hsv;
-
 typedef	struct	s_pix
 {
 	int				x;
@@ -163,7 +157,9 @@ typedef struct	s_texture
 typedef struct	s_mat
 {
 	char		*name;
+	double		ambient;
 	double		diffuse;
+	double		specular;
 	double		shine;
 }				t_mat;
 
