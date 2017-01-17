@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 08:30:59 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/16 17:26:59 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/17 22:46:25 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	init_light_ray(t_param *param, t_object *light)
 ** Perform the shininess
 */
 
-static void	do_shininess(t_param *param, t_object *light, t_hsv *hsv, t_v3d ref)
+void	do_shininess(t_param *param, t_object *light, t_hsv *hsv, t_v3d ref)
 {
 	int		color;
 	double	angle_ref;
@@ -54,37 +54,6 @@ static void	do_shininess(t_param *param, t_object *light, t_hsv *hsv, t_v3d ref)
 													* VW_RAY.obj->mat.shine);
 			rgb_to_hsv(color, &hsv->h, &hsv->s, &hsv->v);
 		}
-	}
-}
-
-/*
-** Perform the diffuse light
-** Set color to white if object has focus on
-*/
-
-static void	get_color(t_param *param, t_object *light, t_hsv *hsv)
-{
-	double		angle_light;
-	t_v3d		ref;
-	t_object	*obj_sel;
-
-	angle_light = cos_v3d(VW_RAY.norm, PHO_RAY.dir);
-	ref = sub_v3d(PHO_RAY.dir, smul_v3d(VW_RAY.norm, 2.0 *
-				dot_v3d(PHO_RAY.dir, VW_RAY.norm)));
-	if (angle_light < 0)
-	{
-		hsv->v -= angle_light * VW_RAY.obj->mat.diffuse;
-		hsv->v = fmax(VW_RAY.obj->mat.diffuse, hsv->v);
-		OPT_B ? do_shininess(param, light, hsv, ref) : 0;
-	}
-	light = light + 1 - 1;
-	if (OPT_O && PHO_RAY.obj)
-		hsv->v = fmax(VW_RAY.obj->mat.diffuse, hsv->v - 0.1);
-	if (param->e->scene->obj_focus)
-	{
-		obj_sel = (t_object *)param->e->scene->obj_focus->content;
-		if (VW_RAY.obj == obj_sel)
-			hsv->s = 0;
 	}
 }
 
@@ -115,7 +84,7 @@ void		apply_light(t_env *e, t_param *param)
 				(*(e->obj_fct_obj[obj->type]))(obj, &PHO_RAY, &SOL);
 			lst_obj = lst_obj->next;
 		}
-		get_color(param, (t_object *)lst_light->content, &hsv);
+		get_color(e, param, (t_object *)lst_light->content, &hsv);
 		lst_light = lst_light->next;
 	}
 	COLOR = hsv_to_rgb(hsv.h, hsv.s, LUMI + (hsv.v * vm));

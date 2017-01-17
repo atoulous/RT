@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/17 21:43:36 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/17 22:46:28 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define OPT_D (OPT & (1 << 0))
 # define OPT_L (OPT & (1 << 1))
 # define OPT_S (OPT & (1 << 2))
+# define OPT_C (OPT & (1 << 5))
 # define OPT_B (param->e->opt & (1 << 3))
 # define OPT_O (param->e->opt & (1 << 4))
 # define LUMI e->luminosite
@@ -319,5 +320,15 @@ void			torus_error(t_object *obj, t_env *e);
 void			torus(t_object *obj, t_ray *ray, t_sol *sol);
 t_v3d			get_torus_normal(t_object *o, t_v3d cam, t_v3d ray, double ret);
 void			update_torus_pos(t_object *obj);
+
+/*
+** light
+*/
+
+void			get_color(t_env *e, t_param *param, t_object *light, \
+					t_hsv *hsv);
+void			do_shininess(t_param *param, t_object *light, t_hsv *hsv, \
+		t_v3d ref);
+void			change_phong_status(void *arg);
 
 #endif
