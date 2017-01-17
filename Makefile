@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/01/16 17:28:13 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/01/17 17:31:00 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,5 +80,8 @@ fclean: clean
 	@make fclean -C Libs/libmy_math
 	@rm -rf $(NAME)
 	@echo "\033[32m[OK]\033[0m rt deleted"
+
+run: all
+	./rt Scenes/sphere.rt 
 
 re: fclean all
