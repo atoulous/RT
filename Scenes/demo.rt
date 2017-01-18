@@ -68,7 +68,7 @@ scene {
 		type { plane }
 		origin { 0 0 15 }
 		dir { 0 0 -1 }
-		color { 0x0FFF00 }
+		color { 0x0fff00 }
 		mat {
 			ambient { 0.1 }
 			diffuse { 0.2 }

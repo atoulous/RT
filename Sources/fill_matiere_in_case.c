@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_test.c                                        :+:      :+:    :+:   */
+/*   fill_matiere_in_case.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 16:39:39 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/18 15:43:41 by mmoullec         ###   ########.fr       */
+/*   Created: 2017/01/18 15:01:19 by mmoullec          #+#    #+#             */
+/*   Updated: 2017/01/18 15:43:40 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stdlib.h"
-#include "my_math.h"
-#include "stdio.h"
+#include "rt.h"
 
-int		main(void)
+#ifndef FILL_MAT
+# define FILL_MAT
+# define AMB mat->ambient
+# define DIFFU mat->diffuse
+# define SPEC mat->specular
+# define SHI mat->shine
+#endif
+
+
+void	fill_matiere_in_case(t_mat *mat)
 {
-	int i;
-
-	i = -1;
-	while (++i < 10)
-		printf("%f\n", ft_rand_double(0.1, 1.0));
-	i = -1;
-	while (++i < 10)
-		printf("%d\n", ft_rand_int(0, 10000));
-	return (0);
+	AMB = ft_rand_double(0.0, 1.0);
+	DIFFU = ft_rand_double(0.0, 1.0);
+	SPEC = ft_rand_double(0.0, 1.0);
+	SHI = ft_rand_double(100, 2);
 }

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/18 13:05:33 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/18 15:43:56 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -334,5 +334,7 @@ void			do_shininess(t_param *param, t_object *light, t_hsv *hsv, \
 void			change_phong_status(void *arg);
 void			change_intensite1(void *arg);
 void			change_intensite2(void *arg);
+
+void			fill_matiere_in_case(t_mat *mat);
 
 #endif

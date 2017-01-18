@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_test.c                                        :+:      :+:    :+:   */
+/*   ft_rand.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 16:39:39 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/18 15:43:41 by mmoullec         ###   ########.fr       */
+/*   Created: 2017/01/18 15:08:02 by mmoullec          #+#    #+#             */
+/*   Updated: 2017/01/18 15:30:18 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stdlib.h"
 #include "my_math.h"
-#include "stdio.h"
 
-int		main(void)
+int		ft_rand_int(int a, int b)
 {
-	int i;
+	srand(time(NULL));
+	if (a < b)
+		return (rand() % (b - a) + a);
+	else
+		return (rand() % (a - b) + b);
+}
 
-	i = -1;
-	while (++i < 10)
-		printf("%f\n", ft_rand_double(0.1, 1.0));
-	i = -1;
-	while (++i < 10)
-		printf("%d\n", ft_rand_int(0, 10000));
-	return (0);
+double	ft_rand_double(double a, double b)
+{
+	srand(time(NULL));
+	if (a < b)
+		return (rand() / (double)RAND_MAX * (a - b) + b);
+	else
+		return (rand() / (double)RAND_MAX * (b - a) + a);
 }

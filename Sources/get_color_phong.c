@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 21:42:32 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/18 13:22:37 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/18 14:37:38 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@
 void			do_phong_calcls(t_param *param, t_object *light, \
 		t_hsv *hsv, t_col_res *res)
 {
-	rgb_to_hsv(VW_RAY.obj->color, &TMP.h, &TMP.s, &TMP.v);
-	res->rgb = my_hsv_to_rgb(TMP);
 	TEST = smul_v3d(VW_RAY.norm, 2 * ANGLE_LIGHT);
 	R = sub_v3d(TEST, PHO_RAY.dir);
 	OMEGA = cos_v3d(VW_RAY.dir, R);
@@ -49,16 +47,19 @@ void			get_color_phong(t_param *param, t_object *light, \
 {
 	t_object	*obj_sel;
 
+	rgb_to_hsv(VW_RAY.obj->color, &TMP.h, &TMP.s, &TMP.v);
+	res->rgb = my_hsv_to_rgb(TMP);
 	INTENSITE += VW_RAY.obj->mat.ambient;
 	if (OPT_2)
 	{
 		if (ANGLE_LIGHT < 0)
 			INTENSITE += (ANGLE_LIGHT * -1 * VW_RAY.obj->mat.diffuse);
 	}
+	do_phong_calcls(param, light, hsv, res);
 	if (OPT_3)
 	{
 		if (OPT_O && PHO_RAY.obj)
-			INTENSITE += ((VW_RAY.obj->mat.specular - 0.2) * pow(OMEGA, \
+			INTENSITE += ((VW_RAY.obj->mat.specular - 0.4) * pow(OMEGA, \
 						VW_RAY.obj->mat.shine));
 		else
 			INTENSITE += (VW_RAY.obj->mat.specular * pow(OMEGA, \

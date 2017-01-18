@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 16:34:14 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/16 12:38:44 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/18 15:17:17 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define MY_MATH_H
 
 # include <math.h>
-# include <stdio.h>
+# include <stdlib.h>
+# include <time.h>
 
 # define R sol.ret1
 # define R2 sol.ret2
@@ -83,5 +84,8 @@ void			cubic_equation(t_4pow c, t_4pow *x, int *nr);
 int				quartic_solver(double *ret, t_5pow d);
 double			carre(double a);
 double			cube(double a);
+
+int				ft_rand_int(int a, int b);
+double			ft_rand_double(double a, double b);
 
 #endif

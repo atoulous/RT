@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/18 11:50:42 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/18 15:37:15 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
  ** If no matiere specified in file, set it to defined values
  */
 
+
 static void		add_mat(t_object *obj, char *str)
 {
 	char	*tmp;
 
+	fill_matiere_in_case(&obj->mat);
 	obj->mat.shine = 0;
 	obj->mat.diffuse = 0.5;
 	if ((tmp = get_in_acc("mat", str)))
