@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/18 15:37:15 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/18 16:17:08 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ static void		add_mat(t_object *obj, char *str)
 	char	*tmp;
 
 	fill_matiere_in_case(&obj->mat);
-	obj->mat.shine = 0;
-	obj->mat.diffuse = 0.5;
 	if ((tmp = get_in_acc("mat", str)))
 	{
 		if (find_param("ambient", tmp))
@@ -35,6 +33,8 @@ static void		add_mat(t_object *obj, char *str)
 			obj->mat.diffuse = get_double("diffuse", tmp);
 		if (find_param("shine", tmp))
 			obj->mat.shine = get_double("shine", tmp);
+		if (find_param("density", tmp))
+			obj->mat.density = get_double("density", tmp);
 		free(tmp);
 	}
 }

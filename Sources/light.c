@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 08:30:59 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/18 12:49:34 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/18 18:51:49 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void		change_luminosite(t_env *e, int keycode)
 }
 
 /*
-** Initialize light ray parameters
-** This function is called for every pixel of the calculated image
-*/
+ ** Initialize light ray parameters
+ ** This function is called for every pixel of the calculated image
+ */
 
 static void	init_light_ray(t_param *param, t_object *light)
 {
@@ -36,8 +36,8 @@ static void	init_light_ray(t_param *param, t_object *light)
 }
 
 /*
-** Perform the shininess
-*/
+ ** Perform the shininess
+ */
 
 void	do_shininess(t_param *param, t_object *light, t_hsv *hsv, t_v3d ref)
 {
@@ -51,15 +51,15 @@ void	do_shininess(t_param *param, t_object *light, t_hsv *hsv, t_v3d ref)
 		{
 			color = hsv_to_rgb(hsv->h, hsv->s, hsv->v);
 			color = add_color(color, light->color, ((-0.95 - angle_ref) / 0.05)
-													* VW_RAY.obj->mat.shine);
+					* VW_RAY.obj->mat.shine);
 			rgb_to_hsv(color, &hsv->h, &hsv->s, &hsv->v);
 		}
 	}
 }
 
 /*
-** Perform lights
-*/
+ ** Perform lights
+ */
 
 void		apply_light(t_env *e, t_param *param)
 {
@@ -68,10 +68,13 @@ void		apply_light(t_env *e, t_param *param)
 	t_object	*obj;
 	t_hsv		hsv;
 	double		vm;
+	double		intensite;
+	intensite = 0;
 
 	rgb_to_hsv(VW_RAY.obj->color, &hsv.h, &hsv.s, &hsv.v);
 	vm = hsv.v;
-	hsv.v = VW_RAY.obj->mat.diffuse;
+	if (OPT_1)
+		hsv.v = VW_RAY.obj->mat.diffuse;
 	lst_light = e->scene->light;
 	while (lst_light)
 	{
@@ -84,8 +87,18 @@ void		apply_light(t_env *e, t_param *param)
 				(*(e->obj_fct_obj[obj->type]))(obj, &PHO_RAY, &SOL);
 			lst_obj = lst_obj->next;
 		}
-		get_color(e, param, (t_object *)lst_light->content, &hsv);
+		get_color(e, param, (t_object *)lst_light->content, &hsv, &intensite);
 		lst_light = lst_light->next;
 	}
-	COLOR = hsv_to_rgb(hsv.h, hsv.s, LUMI + (hsv.v * vm));
+	t_rgb rgb;
+	if (OPT_1)
+		COLOR = hsv_to_rgb(hsv.h, hsv.s, LUMI + (hsv.v * vm));
+	else
+	{
+		rgb = my_hsv_to_rgb(hsv);
+		rgb_s_mult(&rgb, intensite);
+		rgb_reg(&rgb);
+		hsv = my_rgb_to_hsv(rgb);
+		COLOR = hsv_to_rgb(hsv.h, hsv.s, LUMI + (hsv.v * vm));
+	}
 }

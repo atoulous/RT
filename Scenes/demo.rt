@@ -17,8 +17,8 @@ scene {
 		color { 0x0000FF }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.9 }
-			specular { 0.1 }
+			diffuse { 0.3 }
+			specular { 0.2 }
 			shine { 1 }
 		}
 	}
@@ -30,8 +30,8 @@ scene {
 		color { 0x00FF00 }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.2 }
-			specular { 0.8 }
+			diffuse { 0.3 }
+			specular { 0.2 }
 			shine { 100 }
 		}
 	}
@@ -45,8 +45,8 @@ scene {
 		color { 0x0000AAFF }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.9 }
-			specular { 0.1 }
+			diffuse { 0.3 }
+			specular { 0.2 }
 			shine { 2 }
 		}
 	}
@@ -58,9 +58,9 @@ scene {
 		color { 0xFF0000 }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
+			diffuse { 0.3 }
+			specular { 0.2 }
+			shine { 100 }
 		}
 	}
 	object {
@@ -68,12 +68,12 @@ scene {
 		type { plane }
 		origin { 0 0 15 }
 		dir { 0 0 -1 }
-		color { 0x0fff00 }
+		color { 0x0FFF00 }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
+			diffuse { 0.3 }
+			specular { 0.2 }
+			shine { 100 }
 		}
 	}
 	object {
@@ -84,9 +84,9 @@ scene {
 		color { 0xFF0F00 }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
+			diffuse { 0.3 }
+			specular { 0.2 }
+			shine { 100 }
 		}
 	}
 	object {
@@ -97,9 +97,9 @@ scene {
 		color { 0xFF0F00 }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
+			diffuse { 0.3 }
+			specular { 0.2 }
+			shine { 100 }
 		}
 	}
 	object {
@@ -110,9 +110,9 @@ scene {
 		color { 0xFFF000 }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
+			diffuse { 0.3 }
+			specular { 0.2 }
+			shine { 100 }
 		}
 	}
 	object {
@@ -123,9 +123,9 @@ scene {
 		color { 0xFFF000 }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
+			diffuse { 0.3 }
+			specular { 0.2 }
+			shine { 100 }
 		}
 	}
 	object {
@@ -137,9 +137,9 @@ scene {
 		color { 0x00FFFF }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
+			diffuse { 0.3 }
+			specular { 0.2 }
+			shine { 100 }
 		}
 	}
 	object {
@@ -151,9 +151,9 @@ scene {
 		color { 0x00FFFF }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
+			diffuse { 0.3 }
+			specular { 0.2 }
+			shine { 100 }
 		}
 	}
 	object {
@@ -165,9 +165,9 @@ scene {
 		color { 0x00FFFF }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
+			diffuse { 0.3 }
+			specular { 0.2 }
+			shine { 100 }
 		}
 	}
 	object {
@@ -179,9 +179,9 @@ scene {
 		color { 0x00FFFF }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
+			diffuse { 0.3 }
+			specular { 0.2 }
+			shine { 100 }
 		}
 	}
 	object {
@@ -197,5 +197,4 @@ scene {
 		color { 0xFFFFFF }
 	}
 }
-
 # end

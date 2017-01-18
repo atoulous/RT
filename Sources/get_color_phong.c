@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 21:42:32 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/18 14:37:38 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/18 18:51:48 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,10 @@ void			do_phong_calcls(t_param *param, t_object *light, \
 }
 
 void			get_color_phong(t_param *param, t_object *light, \
-		t_hsv *hsv, t_col_res *res)
+		t_hsv *hsv, t_col_res *res, double *intensite)
 {
 	t_object	*obj_sel;
 
-	rgb_to_hsv(VW_RAY.obj->color, &TMP.h, &TMP.s, &TMP.v);
-	res->rgb = my_hsv_to_rgb(TMP);
 	INTENSITE += VW_RAY.obj->mat.ambient;
 	if (OPT_2)
 	{
@@ -59,17 +57,15 @@ void			get_color_phong(t_param *param, t_object *light, \
 	if (OPT_3)
 	{
 		if (OPT_O && PHO_RAY.obj)
-			INTENSITE += ((VW_RAY.obj->mat.specular - 0.4) * pow(OMEGA, \
+			INTENSITE += 0;//((VW_RAY.obj->mat.specular - 0.4) * pow(OMEGA, \
 						VW_RAY.obj->mat.shine));
 		else
 			INTENSITE += (VW_RAY.obj->mat.specular * pow(OMEGA, \
 						VW_RAY.obj->mat.shine));
 	}
-	rgb_s_mult(&res->rgb, INTENSITE);
-	rgb_reg(&res->rgb);
-	*hsv = my_rgb_to_hsv(res->rgb);
 	if (OPT_O && PHO_RAY.obj)
 		hsv->v = hsv->v - 0.2;
+	*intensite += INTENSITE;
 }
 
 #  undef OPT
@@ -98,7 +94,7 @@ void			get_color_jubarbie(t_param *param, t_object *light, \
 	}
 }
 
-void			get_color(t_env *e, t_param *param, t_object *light, t_hsv *hsv)
+void			get_color(t_env *e, t_param *param, t_object *light, t_hsv *hsv, double *intensite)
 {
 	t_col_res res;
 
@@ -109,7 +105,7 @@ void			get_color(t_env *e, t_param *param, t_object *light, t_hsv *hsv)
 	if (OPT_1)
 		get_color_jubarbie(param, light, &res, hsv);
 	else
-		get_color_phong(param, light, hsv, &res);
+		get_color_phong(param, light, hsv, &res, intensite);
 }
 # undef R
 # define R sol.res1

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/18 15:43:56 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/18 18:51:49 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ typedef struct	s_mat
 	double		diffuse;
 	double		specular;
 	double		shine;
+	double		density;
 }				t_mat;
 
 typedef struct	s_object
@@ -326,9 +327,8 @@ void			update_torus_pos(t_object *obj);
 /*
 ** light
 */
-
-void			get_color(t_env *e, t_param *param, t_object *light, \
-					t_hsv *hsv);
+#include "answers.h"
+void			get_color(t_env *e, t_param *param, t_object *light, t_hsv *h, double *intensite);
 void			do_shininess(t_param *param, t_object *light, t_hsv *hsv, \
 		t_v3d ref);
 void			change_phong_status(void *arg);

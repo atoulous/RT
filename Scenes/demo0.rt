@@ -44,7 +44,7 @@ scene {
 #			diffuse { 0.2 }
 #			specular { 0.8 }
 #			shine { 100 }
-#			density { 0.5 }
+			density { 0.5 }
 		}
 	}
 	object {
@@ -54,10 +54,10 @@ scene {
 		dir { 0 0 -1 }
 		color { 0x0FFFFFF }
 		mat {
-			ambient { 0.3 }
+			ambient { 0.1 }
 			diffuse { 0.2 }
 			specular { 0.9 }
-			shine { 10 }
+			shine { 1000 }
 		}
 	}
 	object {
@@ -70,13 +70,19 @@ scene {
 			ambient { 0.1 }
 			diffuse { 0.2 }
 			specular { 0.9 }
-			shine { 10 }
+			shine { 1000 }
 		}
 	}
 	object {
 		name { spot1 }
 		type { light }
 		origin { 5 10 -10 }
+		color { 0xFFFFFF }
+	}
+	object {
+		name { spot1 }
+		type { light }
+		origin { -5 10 -10 }
 		color { 0xFFFFFF }
 	}
 }
