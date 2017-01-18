@@ -6,51 +6,80 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 21:42:32 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/17 22:46:24 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/18 13:22:37 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-#ifndef ANSWERS
-# define ANSWERS
-# define ANGLE_LIGHT res->angle_light
-# define INTENSITE res->intensite
-typedef struct		s_col_res
+#include "answers.h"
+
+#ifdef MY_MATH_H
+# undef R
+
+# ifndef ANSWERS_H
+#  define ANSWERS_H
+# endif
+
+# ifndef ANSWERS
+#  define ANSWERS
+#  define ANGLE_LIGHT res->angle_light
+#  define INTENSITE res->intensite
+#  define TEST res->test
+#  define OMEGA res->omega
+#  define R res->r
+#  define TMP res->tmp
+# endif
+
+# ifdef OPT
+#  undef OPT
+#  define OPT param->e->opt
+
+void			do_phong_calcls(t_param *param, t_object *light, \
+		t_hsv *hsv, t_col_res *res)
 {
-	t_rgb			rgb;
-	double			angle_light;
-	double			intensite;
-	t_v3d			ref;
-}					t_col_res;
-#endif
+	rgb_to_hsv(VW_RAY.obj->color, &TMP.h, &TMP.s, &TMP.v);
+	res->rgb = my_hsv_to_rgb(TMP);
+	TEST = smul_v3d(VW_RAY.norm, 2 * ANGLE_LIGHT);
+	R = sub_v3d(TEST, PHO_RAY.dir);
+	OMEGA = cos_v3d(VW_RAY.dir, R);
+}
 
-
-void	get_color_phong(t_param *param, t_object *light, t_hsv *hsv, \
-		t_col_res *res)
+void			get_color_phong(t_param *param, t_object *light, \
+		t_hsv *hsv, t_col_res *res)
 {
 	t_object	*obj_sel;
-	t_hsv		h;
-	double		omega;
 
-
-	rgb_to_hsv(VW_RAY.obj->color, &h.h, &h.s, &h.v);
-	res->rgb = my_hsv_to_rgb(h);
 	INTENSITE += VW_RAY.obj->mat.ambient;
-	INTENSITE += (ANGLE_LIGHT * VW_RAY.obj->mat.diffuse);
-	t_v3d test= smul_v3d(VW_RAY.norm, 2 * ANGLE_LIGHT);
-	t_v3d r = sub_v3d(test, PHO_RAY.dir);
-	omega = cos_v3d(VW_RAY.dir, r);
-	INTENSITE += (VW_RAY.obj->mat.specular * pow(omega, \
-				VW_RAY.obj->mat.shine));
+	if (OPT_2)
+	{
+		if (ANGLE_LIGHT < 0)
+			INTENSITE += (ANGLE_LIGHT * -1 * VW_RAY.obj->mat.diffuse);
+	}
+	if (OPT_3)
+	{
+		if (OPT_O && PHO_RAY.obj)
+			INTENSITE += ((VW_RAY.obj->mat.specular - 0.2) * pow(OMEGA, \
+						VW_RAY.obj->mat.shine));
+		else
+			INTENSITE += (VW_RAY.obj->mat.specular * pow(OMEGA, \
+						VW_RAY.obj->mat.shine));
+	}
 	rgb_s_mult(&res->rgb, INTENSITE);
 	rgb_reg(&res->rgb);
 	*hsv = my_rgb_to_hsv(res->rgb);
+	if (OPT_O && PHO_RAY.obj)
+		hsv->v = hsv->v - 0.2;
 }
 
-void	get_color_jubarbie(t_param *param, t_object *light, t_col_res *res, \
-		t_hsv *hsv)
+#  undef OPT
+#  define OPT e->opt
+# endif
+
+void			get_color_jubarbie(t_param *param, t_object *light, \
+		t_col_res *res, t_hsv *hsv)
 {
 	t_object	*obj_sel;
+
 	if (ANGLE_LIGHT < 0)
 	{
 		hsv->v -= ANGLE_LIGHT * VW_RAY.obj->mat.diffuse;
@@ -68,19 +97,19 @@ void	get_color_jubarbie(t_param *param, t_object *light, t_col_res *res, \
 	}
 }
 
-
-void	get_color(t_env *e, t_param *param, t_object *light, t_hsv *hsv)
+void			get_color(t_env *e, t_param *param, t_object *light, t_hsv *hsv)
 {
 	t_col_res res;
 
 	res.intensite = 0;
-	res.angle_light = cos_v3d(smul_v3d(VW_RAY.norm, -1), PHO_RAY.dir);
+	res.angle_light = cos_v3d(VW_RAY.norm, PHO_RAY.dir);
 	res.ref = sub_v3d(PHO_RAY.dir, smul_v3d(VW_RAY.norm, 2.0 *
 				dot_v3d(PHO_RAY.dir, VW_RAY.norm)));
-	if (OPT_C)
+	if (OPT_1)
 		get_color_jubarbie(param, light, &res, hsv);
 	else
 		get_color_phong(param, light, hsv, &res);
-
-
 }
+# undef R
+# define R sol.res1
+#endif

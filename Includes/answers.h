@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_opt.c                                         :+:      :+:    :+:   */
+/*   answers.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 13:48:09 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/18 12:07:46 by mmoullec         ###   ########.fr       */
+/*   Created: 2017/01/18 12:51:48 by mmoullec          #+#    #+#             */
+/*   Updated: 2017/01/18 13:19:56 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#ifndef ANSWERS_H
+# define ANSWERS_H
 
-void			init_opt(t_env *e, char opt)
+# include "rt.h"
+
+typedef struct		s_col_res
 {
-	OPT = opt;
-	OPT |= (1 << 1);
-	OPT |= (1 << 3);
-	OPT |= (1 << 4);
-	OPT |= (1 << 5);
-	OPT |= (1 << 6);
-	OPT |= (1 << 7);
-}
+	t_rgb			rgb;
+	t_hsv			tmp;
+	double			angle_light;
+	double			omega;
+	double			intensite;
+	t_v3d			ref;
+	t_v3d			test;
+	t_v3d			r;
+}					t_col_res;
+
+#endif

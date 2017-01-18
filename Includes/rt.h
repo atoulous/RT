@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/17 22:46:28 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/18 13:05:33 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@
 # define OPT_D (OPT & (1 << 0))
 # define OPT_L (OPT & (1 << 1))
 # define OPT_S (OPT & (1 << 2))
-# define OPT_C (OPT & (1 << 5))
+# define OPT_1 (OPT & (1 << 5))
+# define OPT_2 (OPT & (1 << 6))
+# define OPT_3 (OPT & (1 << 7))
 # define OPT_B (param->e->opt & (1 << 3))
 # define OPT_O (param->e->opt & (1 << 4))
 # define LUMI e->luminosite
@@ -330,5 +332,7 @@ void			get_color(t_env *e, t_param *param, t_object *light, \
 void			do_shininess(t_param *param, t_object *light, t_hsv *hsv, \
 		t_v3d ref);
 void			change_phong_status(void *arg);
+void			change_intensite1(void *arg);
+void			change_intensite2(void *arg);
 
 #endif

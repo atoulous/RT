@@ -6,7 +6,7 @@
 #    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/22 18:40:33 by mmoullec          #+#    #+#              #
-#    Updated: 2017/01/17 17:36:43 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/01/18 11:54:14 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,17 +32,18 @@ all : $(NAME)
 $(NAME): $(OBJ)
 	@ar rc $(NAME) $? $(OBJ)
 	@ranlib $(NAME)
-	@echo "Created" $(NAME)
+	@echo "\033[32m[OK]\033[0m libmy_mlx.a created"
 
 %.o: %.c
 	@$(CC) $(LMLX) -o $@ -c $< -I.
-	@echo $@ "Created"
 
 clean:
-	/bin/rm -f $(OBJ)
+	@/bin/rm -f $(OBJ)
+	@echo "\033[32m[OK]\033[0m libmy_mlx.a: object files deleted"
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
+	@echo "\033[32m[OK]\033[0m libmy_mlx.a: library deleted"
 
 re: fclean all
 

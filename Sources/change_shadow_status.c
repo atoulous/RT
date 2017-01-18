@@ -6,7 +6,7 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 15:11:31 by atoulous          #+#    #+#             */
-/*   Updated: 2017/01/17 22:46:26 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/18 13:19:52 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,23 @@ void		change_phong_status(void *arg)
 
 	e = (t_env *)arg;
 	(OPT & (1 << 5)) ? (OPT ^= (1 << 5)) : (OPT |= (1 << 5));
+	create_img(e);
+}
+
+void		change_intensite1(void *arg)
+{
+	t_env *e;
+
+	e = (t_env *)arg;
+	(OPT & (1 << 6)) ? (OPT ^= (1 << 6)) : (OPT |= (1 << 6));
+	create_img(e);
+}
+
+void		change_intensite2(void *arg)
+{
+	t_env *e;
+
+	e = (t_env *)arg;
+	(OPT & (1 << 7)) ? (OPT ^= (1 << 7)) : (OPT |= (1 << 7));
 	create_img(e);
 }
