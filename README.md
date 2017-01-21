@@ -13,13 +13,13 @@ OBLIGATOIRE:
 
 LES OPTIONS :
 
-[X] Fichier de scene
+    [X] Fichier de scene
 
-[X] Fichier ++
+    [X] Fichier ++
 
-[X] Lumiere d'ambiance
+    [X] Lumiere d'ambiance
 
-[ ] Lumiere d'ambiance reglable dans le fichier de scene
+    [ ] Lumiere d'ambiance reglable dans le fichier de scene
 
    Objets limites :
     
