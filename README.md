@@ -11,7 +11,7 @@ OBLIGATOIRE:
     [X] Lumieres
 
 
-LES OPTIONS
+LES OPTIONS :
 
 [X] Fichier de scene
 
@@ -21,11 +21,12 @@ LES OPTIONS
 
 [ ] Lumiere d'ambiance reglable dans le fichier de scene
 
-    Objets limites :
+   Objets limites :
     
     [ ] - on peut decouper basiquement les objets selon les axes x,y,z
     
-    [ ] - on peut choisir de decouper au choix en position simple ou en position reelle (un cylindre penché est soit decoupé selon son axe de revolution proprem soit selon un vrai axe)
+    [ ] - on peut choisir de decouper au choix en position simple ou en position reelle<br>
+        (un cylindre penché est soit decoupé selon son axe de revolution proprem soit selon un vrai axe)
           
     [ ] - rotations et translations fonctionnent correctement apres la decoupe
     
@@ -34,7 +35,7 @@ LES OPTIONS
     [ ] - Pour le plan on peut decouper autrement que sur les axes (si vous faites une limite sur x et ym ca vous fait deja
           un carré) : un triangle, et\ou un disque par ex.
           
-    Perturbations :
+   Perturbations :
     
     [ ] - de la normale : genre avec un sinus, ca donne l'impression d'avoir des vaguelettes
     
@@ -48,7 +49,7 @@ LES OPTIONS
 
 [ ] Lumiere parallele : éclaire la scene, selon une direction precise
 
-    Reflexion et transparence :
+   Reflexion et transparence :
     
     [ ] - la reflexion marche, on a bien un effet mirroir
     
@@ -62,6 +63,16 @@ LES OPTIONS
     
 [ ] - Ombre et transparence : selon la transparence d'un object, est ce que son ombre s'eclaircit/s'assombrit?
 
-    Textures :
+   Textures :
     
-    [ ] - 
+    [ ] - on peut appliquer une texture sur au moins un des 4 objets
+    
+    [ ] - on peut appliquer une texture sur les 4 objets
+    
+    [ ] - on peut attirer (ou le contraire) une texture sur un objet
+    
+    [ ] - on peut decaler une texture sur un objet
+   
+    [ ] - utilisaiton d'une lib autre que la minilibx et ses xpm pour charger les textures (jpeg, png, ..)
+    
+    
