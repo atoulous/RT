@@ -1,6 +1,6 @@
 # RT
 
-OBLIGATOIRE:
+-- OBLIGATOIRE --
 
     [X] Expose
 
@@ -11,7 +11,7 @@ OBLIGATOIRE:
     [X] Lumieres
 
 
-LES OPTIONS :
+-- LES OPTIONS --
 
    [X] Fichier de scene
 
