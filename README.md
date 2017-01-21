@@ -79,3 +79,67 @@
 
 [X] - Objets natifs simples
 
+ Effets visuels classiques :
+    
+    [ ] - antialiasing
+    
+    [ ] - effet cartoon
+    
+    [ ] - motion blur
+    
+    [ ] - sepia ou autre filtre de couleur
+   
+    [ ] - stereoscopie simple (genre lunettes rouges/vertes)
+    
+ Effets techniques :
+    
+    [ ] - calcul clister sur plusieurs machines
+    
+    [ ] - calcul multi thread
+    
+    [ ] - c'est particulierement rapide comme rendu
+    
+    [ ] - sauvegarde de l'image integree au RT
+   
+ Environnement :
+    
+    [ ] - interface sommaire : message d'attente graphique, barre de progression..
+    
+    [ ] - interface chiadee (gtk, QT, elements configurables, changer de fichier, controle du rendu
+    
+    [ ] - on peut effectuer des modifications de la scene en live (pos, obj, couleurs ou textures
+    
+    [ ] - parametrer plusieurs rendus automatiquement avec des changements d'un rendu a l'autre
+   
+    [ ] - generer automatiquement des objs pour une scene: torre realisé avec des spheres, helice avec sphere et cylindres
+    
+ Objets Exotiques :
+    
+    [ ] - cube troué
+  
+    [ ] - nappe
+    
+    [ ] - torre
+    
+    [ ] - resolution d equation fournie dans le fichier de conf
+   
+    [ ] - autres (objects fractals, etc..)
+    
+ En vrac :
+    
+    [ ] - sequence video realisee avec votre RT
+    
+    [ ] - fichiers modelers
+    
+    [ ] - en relief sur une TV 3D ou sur OculusRift LOL
+    
+    [ ] - spot non ponctuel: tel un filament d'ampoule, la source lumineuse n'est pas ponctuelle, ombres pas nettes.
+   
+    [ ] - d'autres trucs delirants
+    
+[ ] - Ruban de Moebius
+
+[ ] - Caustics et/ou Global illumination
+
+[ ] - C'est beau??????????????? MAGUEULE
+    
