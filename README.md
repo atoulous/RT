@@ -2,13 +2,13 @@
 
 -- OBLIGATOIRE --
 
-    [X] Expose
+   [X] Expose
+   
+   [X] Les 4 objets
 
-    [X] Les 4 objets
+   [X] REM
 
-    [X] REM
-
-    [X] Lumieres
+   [X] Lumieres
 
 
 -- LES OPTIONS --
