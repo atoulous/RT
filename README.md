@@ -75,4 +75,7 @@
    
     [ ] - utilisaiton d'une lib autre que la minilibx et ses xpm pour charger les textures (jpeg, png, ..)
     
-    
+[/] - Objets composés : on peut definir un objet composé (un cube = 6 plans limités, un verre = cone,cylindre,sphere)
+
+[X] - Objets natifs simples
+
