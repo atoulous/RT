@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 17:50:44 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/16 17:13:39 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/23 14:21:37 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,30 @@ void	moves2(t_v3d **pos, t_list *list, t_object **obj)
 	(*pos) = &(*obj)->pos;
 }
 
+void	matrice(t_env *e)
+{
+	t_v4d	pos;
+	t_v4d	trans;
+
+	pos = v4d(CAM_DIR.x, CAM_DIR.y, CAM_DIR.z, 0);
+	trans = v4d(1, 0, 0, 1);
+	pos = translation_pos(pos, trans);
+	CAM_DIR = v3d(pos.x, pos.y, pos.z);
+}
+
 void	rotations(t_env *e)
 {
+	double	alpha;
+
+	alpha = 10 * (M_PI / 180);
 	if (ROT & M_LEFT)
-		CAM_DIR = sub_v3d(CAM_DIR, smul_v3d(CAM_RIGHT, SPEED / 2));
+		CAM_DIR = rodrigues_rotation(CAM_DIR, CAM_UP, -alpha);
 	if (ROT & M_RIGHT)
-		CAM_DIR = add_v3d(CAM_DIR, smul_v3d(CAM_RIGHT, SPEED / 2));
-	if (ROT & M_DOWN)
-		CAM_DIR = sub_v3d(CAM_DIR, smul_v3d(CAM_UP, SPEED / 2));
+		CAM_DIR = rodrigues_rotation(CAM_DIR, CAM_UP, alpha);
 	if (ROT & M_UP)
-		CAM_DIR = add_v3d(CAM_DIR, smul_v3d(CAM_UP, SPEED / 2));
+		CAM_DIR = rodrigues_rotation(CAM_DIR, CAM_RIGHT, -alpha);
+	if (ROT & M_DOWN)
+		CAM_DIR = rodrigues_rotation(CAM_DIR, CAM_RIGHT, alpha);
 }
 
 int		moves(t_env *e)

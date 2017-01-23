@@ -91,9 +91,9 @@ scene {
 	object {
 		name { plane gauche }
 		type { plane }
-		origin { -10 0 0 }
+		origin { -20 0 0 }
 		dir { 1 0 0 }
-		color { 0xFFF000 }
+		color { 0xF0F00 }
 		mat {
 			diffuse { 0.3 }
 			shine { 0.5 }
@@ -102,9 +102,9 @@ scene {
 	object {
 		name { plane droit }
 		type { plane }
-		origin { 10 0 0 }
+		origin { 20 0 0 }
 		dir { -1 0 0 }
-		color { 0xFFF000 }
+		color { 0x0FF000 }
 		mat {
 			diffuse { 0.3 }
 			shine { 0.5 }
