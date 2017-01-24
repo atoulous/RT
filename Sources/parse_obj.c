@@ -6,16 +6,16 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/16 14:32:14 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/24 19:33:08 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
 /*
- ** Parse the matiere of the object
- ** If no matiere specified in file, set it to defined values
- */
+** Parse the matiere of the object
+** If no matiere specified in file, set it to defined values
+*/
 
 static void		add_mat(t_object *obj, char *str)
 {
@@ -34,15 +34,15 @@ static void		add_mat(t_object *obj, char *str)
 }
 
 /*
- ** Parse the object type
- ** 0 -> light
- ** 1 -> sphere
- ** 2 -> plane
- ** 3 -> cube
- ** 4 -> cone
- ** 5 -> cylinder
- ** 6 -> torus
- */
+** Parse the object type
+** 0 -> light
+** 1 -> sphere
+** 2 -> plane
+** 3 -> cube
+** 4 -> cone
+** 5 -> cylinder
+** 6 -> torus
+*/
 
 static int		get_obj_type(t_env *e, char *str)
 {
@@ -63,9 +63,9 @@ static int		get_obj_type(t_env *e, char *str)
 }
 
 /*
- ** Parse the object color and return it as an int
- ** Return -1 if no color found
- */
+** Parse the object color and return it as an int
+** Return -1 if no color found
+*/
 
 static int		get_obj_color(char *str)
 {
@@ -83,9 +83,20 @@ static int		get_obj_color(char *str)
 }
 
 /*
- ** Parse and build the object
- ** Quit program with adequate message if error encountered
- */
+** Parse and build the object
+** Quit program with adequate message if error encountered
+*/
+
+void			get_obj_param(t_object obj, char *str)
+{
+	obj.pos = get_v3d("origin", str);
+	obj.dir = get_v3d("dir", str);
+	obj.p1 = get_v3d("p1", str);
+	obj.p2 = get_v3d("p2", str);
+	obj.r1 = get_double("r1", str);
+	obj.r2 = get_double("r2", str);
+	obj.angle = get_double("angle", str);
+}
 
 void			build_object(t_env *e, char *str)
 {
@@ -96,19 +107,13 @@ void			build_object(t_env *e, char *str)
 		error_perso(e, "No name found in object");
 	if ((obj.type = get_obj_type(e, str)) == -1)
 		error_perso(e, "No type found in object");
-	obj.pos = get_v3d("origin", str);
-	obj.dir = get_v3d("dir", str);
-	obj.p1 = get_v3d("p1", str);
-	obj.p2 = get_v3d("p2", str);
-	obj.r1 = get_double("r1", str);
-	obj.r2 = get_double("r2", str);
-	obj.angle = get_double("angle", str);
 	if (obj.type == 6)
 		torus_error(&obj, e);
 	if (e->calc_obj_param[obj.type])
 		e->calc_obj_param[obj.type](&obj);
 	if ((obj.color = get_obj_color(str)) == -1)
 		error_perso(e, "No color found in object");
+	get_obj_param(obj, str);
 	add_mat(&obj, str);
 	elem = ft_lstnew(&obj, sizeof(obj));
 	if (obj.type == 0)

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 16:21:36 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 17:49:45 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/24 19:20:04 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ int			size_to_end_acc(char *str)
 
 char		*get_in_acc(char *param, char *str)
 {
-	if (!ft_strcmp("name", param))
-		printf("param = %s, str = %s\n=========\n", param, str);
 	char	*tmp;
 	char	*tmp1;
 	char	*tmp2;
@@ -87,8 +85,6 @@ char		*get_in_acc(char *param, char *str)
 		return (NULL);
 	tmp1 = strndup(tmp, size_to_end_acc(tmp));
 	tmp2 = ft_strtrim(tmp1);
-		if (!ft_strcmp("name", param))
-	printf("tmp2 ==> %s\n---------------------------------------\n\n", tmp2);
 	free(tmp1);
 	return (tmp2);
 }

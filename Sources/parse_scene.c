@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 16:21:36 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/16 17:05:40 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/24 19:18:51 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ static void	get_resolution(t_env *e, char *str)
 	}
 	IMG_WIDTH = (IMG_WIDTH <= 0) ? 800 : IMG_WIDTH;
 	IMG_HEIGHT = (IMG_HEIGHT <= 0) ? 700 : IMG_HEIGHT;
+	if (!(AMBIANCE = get_double("ambiance", str)))
+		AMBIANCE = 0.1;
 }
 
 /*

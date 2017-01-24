@@ -9,6 +9,7 @@ scene {
 		dir { 0 0 1 }
 	}
 	render { 900 700 }
+	ambiance { 0.1 }
 	object {
 		name { sphere3 }
 		type { sphere }

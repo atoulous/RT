@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:39 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/23 19:34:55 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/24 19:17:37 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ t_env			*init_env(char *file_name, char opt)
 	if (ft_strcmp(file_name + ft_strlen(file_name) - 3, ".rt"))
 		error_perso(e, "Bad file extension (.rt)");
 	LUMI = 0.3;
-	AMBIANCE = 0.1;
 	SPEED = 0.2;
 	init_opt(e, opt);
 	init_scene(e, file_name);
