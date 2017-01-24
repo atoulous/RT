@@ -6,18 +6,11 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 08:30:59 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/16 17:26:59 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/23 18:28:29 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
-void		change_luminosite(t_env *e, int keycode)
-{
-	keycode == 67 && LUMI + 0.1 <= 1 ? LUMI += 0.1 : 0;
-	keycode == 75 && LUMI - 0.1 >= 0 ? LUMI -= 0.1 : 0;
-	create_img(e);
-}
 
 /*
 ** Initialize light ray parameters
@@ -79,7 +72,7 @@ static void	get_color(t_param *param, t_object *light, t_hsv *hsv)
 	}
 	light = light + 1 - 1;
 	if (OPT_O && PHO_RAY.obj)
-		hsv->v = fmax(VW_RAY.obj->mat.diffuse, hsv->v - 0.1);
+		hsv->v = fmax(VW_RAY.obj->mat.diffuse, hsv->v - param->AMBIANCE);
 	if (param->e->scene->obj_focus)
 	{
 		obj_sel = (t_object *)param->e->scene->obj_focus->content;

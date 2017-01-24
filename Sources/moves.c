@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 17:50:44 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/23 14:21:37 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/24 18:02:38 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ void	moves2(t_v3d **pos, t_list *list, t_object **obj)
 	(*obj) = (t_object *)(list->content);
 	(*pos) = &(*obj)->pos;
 }
+
+/*
+** useless now
+*/
 
 void	matrice(t_env *e)
 {
@@ -33,7 +37,7 @@ void	rotations(t_env *e)
 {
 	double	alpha;
 
-	alpha = 10 * (M_PI / 180);
+	alpha = 10;
 	if (ROT & M_LEFT)
 		CAM_DIR = rodrigues_rotation(CAM_DIR, CAM_UP, -alpha);
 	if (ROT & M_RIGHT)
@@ -54,20 +58,14 @@ int		moves(t_env *e)
 		pos = &CAM_POS;
 	else
 		moves2(&pos, list, &obj);
-	if (MOVES & M_UP)
-		*pos = add_v3d(*pos, smul_v3d(CAM_UP, SPEED));
-	if (MOVES & M_DOWN)
-		*pos = sub_v3d(*pos, smul_v3d(CAM_UP, SPEED));
-	if (MOVES & M_RIGHT)
-		*pos = add_v3d(*pos, smul_v3d(CAM_RIGHT, SPEED));
-	if (MOVES & M_LEFT)
-		*pos = sub_v3d(*pos, smul_v3d(CAM_RIGHT, SPEED));
-	if (MOVES & M_FORWARD)
-		*pos = add_v3d(*pos, smul_v3d(CAM_DIR, SPEED));
-	if (MOVES & M_BACKWARD)
-		*pos = sub_v3d(*pos, smul_v3d(CAM_DIR, SPEED));
-	(list && e->update_obj_pos[obj->type]) ? e->update_obj_pos[obj->type](obj)\
-		: 0;
+	MOVES & M_UP ? *pos = add_v3d(*pos, smul_v3d(CAM_UP, SPEED)) : *pos;
+	MOVES & M_DOWN ? *pos = sub_v3d(*pos, smul_v3d(CAM_UP, SPEED)) : *pos;
+	MOVES & M_RIGHT ? *pos = add_v3d(*pos, smul_v3d(CAM_RIGHT, SPEED)) : *pos;
+	MOVES & M_LEFT ? *pos = sub_v3d(*pos, smul_v3d(CAM_RIGHT, SPEED)) : *pos;
+	MOVES & M_FORWARD ? *pos = add_v3d(*pos, smul_v3d(CAM_DIR, SPEED)) : *pos;
+	MOVES & M_BACKWARD ? *pos = sub_v3d(*pos, smul_v3d(CAM_DIR, SPEED)) : *pos;
+	list && e->update_obj_pos[obj->type] ?
+		e->update_obj_pos[obj->type](obj) : 0;
 	rotations(e);
 	MOVES || ROT ? create_img(e) : 0;
 	return (0);
