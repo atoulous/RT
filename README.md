@@ -19,7 +19,7 @@
 
    [X] Lumiere d'ambiance
    
-   [ ] Lumiere d'ambiance reglable dans le fichier de scene
+   [X] Lumiere d'ambiance reglable dans le fichier de scene
 
    Objets limites :
     
@@ -30,7 +30,7 @@
           
     [ ] - rotations et translations fonctionnent correctement apres la decoupe
     
-    [ ] - le processus de decoupe est uniaue pour tous les objets, et pas dupliqué pour chaque type d'objet
+    [ ] - le processus de decoupe est unique pour tous les objets, et pas dupliqué pour chaque type d'objet
     
     [ ] - Pour le plan on peut decouper autrement que sur les axes (si vous faites une limite sur x et ym ca vous fait deja
           un carré) : un triangle, et\ou un disque par ex.
