@@ -36,9 +36,9 @@ scene {
 		name { torus }
 		type { torus }
 		p1 { 0 0 0 }
-		p2 {1 0 1}
-		r1 {3}
-		r2 {7}
+		p2 {0 0 1}
+		r1 {1}
+		r2 {2}
 		color { 0x0000AAFF }
 		mat {
 			diffuse { 0.3 }

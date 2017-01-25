@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/24 19:33:08 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/25 17:55:19 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,15 @@ static int		get_obj_color(char *str)
 ** Quit program with adequate message if error encountered
 */
 
-void			get_obj_param(t_object obj, char *str)
+void			get_obj_param(t_object *obj, char *str)
 {
-	obj.pos = get_v3d("origin", str);
-	obj.dir = get_v3d("dir", str);
-	obj.p1 = get_v3d("p1", str);
-	obj.p2 = get_v3d("p2", str);
-	obj.r1 = get_double("r1", str);
-	obj.r2 = get_double("r2", str);
-	obj.angle = get_double("angle", str);
+	obj->pos = get_v3d("origin", str);
+	obj->dir = get_v3d("dir", str);
+	obj->p1 = get_v3d("p1", str);
+	obj->p2 = get_v3d("p2", str);
+	obj->r1 = get_double("r1", str);
+	obj->r2 = get_double("r2", str);
+	obj->angle = get_double("angle", str);
 }
 
 void			build_object(t_env *e, char *str)
@@ -107,13 +107,13 @@ void			build_object(t_env *e, char *str)
 		error_perso(e, "No name found in object");
 	if ((obj.type = get_obj_type(e, str)) == -1)
 		error_perso(e, "No type found in object");
+	get_obj_param(&obj, str);
 	if (obj.type == 6)
 		torus_error(&obj, e);
 	if (e->calc_obj_param[obj.type])
 		e->calc_obj_param[obj.type](&obj);
 	if ((obj.color = get_obj_color(str)) == -1)
 		error_perso(e, "No color found in object");
-	get_obj_param(obj, str);
 	add_mat(&obj, str);
 	elem = ft_lstnew(&obj, sizeof(obj));
 	if (obj.type == 0)

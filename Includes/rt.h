@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/23 18:12:43 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/25 17:45:05 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include "my_math.h"
 
 # define PI 3.141592
-# define NB_TH 50
+# define NB_TH 10
 # define DIST_MAX 1000.0
 
 # define OPT_REF "dl"
