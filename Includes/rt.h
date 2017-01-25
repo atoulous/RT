@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/18 18:51:49 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/25 18:48:04 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -327,7 +327,9 @@ void			update_torus_pos(t_object *obj);
 /*
 ** light
 */
+
 #include "answers.h"
+
 void			get_color(t_env *e, t_param *param, t_object *light, t_hsv *h, double *intensite);
 void			do_shininess(t_param *param, t_object *light, t_hsv *hsv, \
 		t_v3d ref);
@@ -336,5 +338,8 @@ void			change_intensite1(void *arg);
 void			change_intensite2(void *arg);
 
 void			fill_matiere_in_case(t_mat *mat);
+void			modif_normale(double d, t_v3d *norm, t_v3d inter);
+
+
 
 #endif

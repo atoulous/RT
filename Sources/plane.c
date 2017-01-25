@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 19:55:56 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/22 10:59:31 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/01/25 23:31:53 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	plane(t_object *obj, t_ray *ray, t_sol *sol)
 			ray->det = DET;
 			ray->obj = obj;
 			ray->dist = T[0];
-			ray->norm = O_DIR;
+			ray->norm = smul_v3d(O_DIR, -1);
+			//modif_normale(0.1, &ray->norm, smul_v3d(ray->dir, T[0]));
 		}
 	}
 }

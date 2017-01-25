@@ -17,9 +17,9 @@ scene {
 		color { 0x0000FF }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.3 }
-			specular { 0.2 }
-			shine { 1 }
+			diffuse { 0.1 }
+			specular { 1 }
+			shine { 100 }
 		}
 	}
 	object {
@@ -30,8 +30,8 @@ scene {
 		color { 0x00FF00 }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.3 }
-			specular { 0.2 }
+			diffuse { 0.1 }
+			specular { 1 }
 			shine { 100 }
 		}
 	}
@@ -58,8 +58,8 @@ scene {
 		color { 0xFF0000 }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.3 }
-			specular { 0.2 }
+			diffuse { 0.1 }
+			specular { 1 }
 			shine { 100 }
 		}
 	}
@@ -180,8 +180,8 @@ scene {
 		mat {
 			ambient { 0.1 }
 			diffuse { 0.3 }
-			specular { 0.2 }
-			shine { 100 }
+			specular { 0.9 }
+			shine { 10 }
 		}
 	}
 	object {

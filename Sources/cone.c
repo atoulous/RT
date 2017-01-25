@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 16:58:17 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 14:25:54 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/25 23:20:06 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	set_cone_norm(t_object *obj, t_ray *ray)
 		l *= -1;
 	ray->norm = unit_v3d(sub_v3d(ray->inter,
 				add_v3d(O_POS, smul_v3d(O_DIR, l))));
+	ray->norm = smul_v3d(ray->norm, -1);
 }
 
 static int	find_dist(t_object *obj, t_ray *ray, t_sol *sol)
