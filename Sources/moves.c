@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 17:50:44 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/25 22:54:29 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/25 23:31:46 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,12 @@ void	matrice(t_env *e)
 
 void	rotations(t_env *e, t_v3d *dir)
 {
+	double	alpha;
+
 	if (e->scene->obj_focus)
-		ALPHA_ROT = -ALPHA_ROT;
+		alpha = -ALPHA_ROT;
+	else
+		alpha = ALPHA_ROT;
 	ROT & M_LEFT ? *dir = rodrigues_rotation(*dir, CAM_UP, -ALPHA_ROT) : *dir;
 	ROT & M_RIGHT ? *dir = rodrigues_rotation(*dir, CAM_UP, ALPHA_ROT) : *dir;
 	ROT & M_UP ? *dir = rodrigues_rotation(*dir, CAM_RIGHT, -ALPHA_ROT) : *dir;
