@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:39 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/25 17:25:41 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/25 22:50:28 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,13 @@ static void		init_scene(t_env *e, char *file_name)
 	GAP_X = VW_WIDTH / (double)IMG_WIDTH;
 	GAP_Y = VW_HEIGHT / (double)IMG_HEIGHT;
 	CAM_DIR = unit_v3d(CAM_DIR);
-	CAM_UP = v3d(0, 1.0, 0);
+	CAM_UP = v3d(0, 1, 0);
 	if (CAM_DIR.y == fmax(fmax(CAM_DIR.x, CAM_DIR.y), CAM_DIR.z))
 		CAM_UP = v3d(0, 0, 1);
 	if (CAM_DIR.y == fmin(fmin(CAM_DIR.x, CAM_DIR.y), CAM_DIR.z) &&
 																CAM_DIR.y < 0)
 		CAM_UP = v3d(0, 0, -1);
 	CAM_RIGHT = cross_v3d(CAM_UP, CAM_DIR);
-	VW_DIST = 1.0;
 	CAM_UP = cross_v3d(CAM_DIR, CAM_RIGHT);
 }
 
@@ -104,6 +103,7 @@ t_env			*init_env(char *file_name, char opt)
 		error_perso(e, "Bad file extension (.rt)");
 	LUMI = 0.3;
 	SPEED = 0.2;
+	ALPHA_ROT = 20;
 	init_opt(e, opt);
 	init_scene(e, file_name);
 	i = -1;

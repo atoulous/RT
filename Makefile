@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/01/18 15:37:01 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/01/25 23:06:26 by atoulous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ SRC=	rt.c			\
 		error.c			\
 		key_event.c		\
 		mouse_event.c	\
-		change_shadow_status.c	\
 		env.c			\
 		debug.c			\
 		parse.c			\
@@ -29,6 +28,7 @@ SRC=	rt.c			\
 		parse_scene.c	\
 		raytracer.c		\
 		light.c			\
+		moves.c			\
 		sphere.c		\
 		plane.c			\
 		cylinder.c		\
@@ -45,7 +45,8 @@ SRC=	rt.c			\
 		torus2.c			\
 		get_color_phong.c	\
 		fill_matiere_in_case.c	\
-		moves.c
+		change_shadow_status.c	\
+		others_events.c	\
 
 OBJDIR = Objects
 VPATH = Sources

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 08:30:59 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/25 18:47:05 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/25 23:26:02 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	init_light_ray(t_param *param, t_object *light)
 ** Perform the shininess
 */
 
-void	do_shininess(t_param *param, t_object *light, t_hsv *hsv, t_v3d ref)
+void		do_shininess(t_param *param, t_object *light, t_hsv *hsv, t_v3d ref)
 {
 	int		color;
 	double	angle_ref;

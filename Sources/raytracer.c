@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 15:41:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/25 18:45:58 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/25 22:31:30 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 static void	init_param(t_param *param, t_env *e)
 {
 	VW_RAY.pos = CAM_POS;
+	CAM_UP = v3d(0, 1, 0);
+	CAM_RIGHT = cross_v3d(CAM_UP, CAM_DIR);
+	CAM_UP = cross_v3d(CAM_DIR, CAM_RIGHT);
 	VW_UP_LEFT = sub_v3d(add_v3d(add_v3d(CAM_POS,
 			smul_v3d(CAM_DIR, VW_DIST)), smul_v3d(CAM_UP, VW_HEIGHT / 2.0)),
 			smul_v3d(CAM_RIGHT, VW_WIDTH / 2.0));

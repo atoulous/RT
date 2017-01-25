@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/25 18:11:37 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/25 23:00:34 by atoulous         ###   ########.fr       */
 /*   Updated: 2017/01/25 17:45:05 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -45,6 +45,7 @@
 # define LUMI e->luminosite
 # define AMBIANCE e->ambiance
 # define SPEED e->speed
+# define ALPHA_ROT e->alpha_rot
 
 # define MOVES e->moves
 # define ROT e->rotations
@@ -235,6 +236,7 @@ typedef struct	s_env
 	double		luminosite;
 	double		ambiance;
 	double		speed;
+	double		alpha_rot;
 	int			img_width;
 	int			img_height;
 	t_img		img;
@@ -278,6 +280,7 @@ void			change_brillance_status(void *arg);
 void			change_shadow_status(void *arg);
 void			change_luminosite(t_env *e, int keycode);
 void			change_ambiance(t_env *e, int keycode);
+void			change_speed_rotation(t_env *e, int keycode);
 void			del_focus_object(t_env *e);
 void			undo_del_object(t_env *e);
 void			add_sphere(void *arg);
