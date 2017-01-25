@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/18 13:19:50 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/25 18:12:03 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int			ft_key_press(int keycode, t_env *e)
 	keycode == 19 ? change_intensite1(e) : 0;
 	keycode == 20 ? change_intensite2(e) : 0;
 	keycode == 67 || keycode == 75 ? change_luminosite(e, keycode) : 0;
+	keycode == 71 || keycode == 81 ? change_ambiance(e, keycode) : 0;
 	keycode == 259 ? COMMAND = 1 : 0;
 	keycode == 6 && COMMAND == 1 ? undo_del_object(e) : 0;
 	keycode == 47 ? SPEED += 0.1 : 0;

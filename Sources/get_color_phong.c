@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 21:42:32 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/18 14:37:38 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/25 18:47:03 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void			get_color_phong(t_param *param, t_object *light, \
 	if (OPT_3)
 	{
 		if (OPT_O && PHO_RAY.obj)
-			INTENSITE += ((VW_RAY.obj->mat.specular - 0.4) * pow(OMEGA, \
-						VW_RAY.obj->mat.shine));
+			INTENSITE += ((VW_RAY.obj->mat.specular - param->AMBIANCE) \
+					* pow(OMEGA, VW_RAY.obj->mat.shine));
 		else
 			INTENSITE += (VW_RAY.obj->mat.specular * pow(OMEGA, \
 						VW_RAY.obj->mat.shine));
@@ -69,7 +69,7 @@ void			get_color_phong(t_param *param, t_object *light, \
 	rgb_reg(&res->rgb);
 	*hsv = my_rgb_to_hsv(res->rgb);
 	if (OPT_O && PHO_RAY.obj)
-		hsv->v = hsv->v - 0.2;
+		hsv->v = hsv->v - param->AMBIANCE;
 }
 
 #  undef OPT
@@ -89,7 +89,7 @@ void			get_color_jubarbie(t_param *param, t_object *light, \
 	}
 	light = light + 1 - 1;
 	if (OPT_O && PHO_RAY.obj)
-		hsv->v = fmax(VW_RAY.obj->mat.diffuse, hsv->v - 0.1);
+		hsv->v = fmax(VW_RAY.obj->mat.diffuse, hsv->v - param->AMBIANCE);
 	if (param->e->scene->obj_focus)
 	{
 		obj_sel = (t_object *)param->e->scene->obj_focus->content;
@@ -107,9 +107,9 @@ void			get_color(t_env *e, t_param *param, t_object *light, t_hsv *hsv)
 	res.ref = sub_v3d(PHO_RAY.dir, smul_v3d(VW_RAY.norm, 2.0 *
 				dot_v3d(PHO_RAY.dir, VW_RAY.norm)));
 	if (OPT_1)
-		get_color_jubarbie(param, light, &res, hsv);
-	else
 		get_color_phong(param, light, hsv, &res);
+	else
+		get_color_jubarbie(param, light, &res, hsv);
 }
 # undef R
 # define R sol.res1

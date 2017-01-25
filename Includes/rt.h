@@ -6,7 +6,8 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/18 15:43:56 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/25 18:11:37 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/25 17:45:05 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +29,7 @@
 # include "my_mlx.h"
 
 # define PI 3.141592
-# define NB_TH 50
+# define NB_TH 10
 # define DIST_MAX 1000.0
 
 # define OPT_REF "dl"
@@ -42,6 +43,7 @@
 # define OPT_B (param->e->opt & (1 << 3))
 # define OPT_O (param->e->opt & (1 << 4))
 # define LUMI e->luminosite
+# define AMBIANCE e->ambiance
 # define SPEED e->speed
 
 # define MOVES e->moves
@@ -231,6 +233,7 @@ typedef struct	s_env
 	void		*mlx;
 	void		*win;
 	double		luminosite;
+	double		ambiance;
 	double		speed;
 	int			img_width;
 	int			img_height;
@@ -274,6 +277,7 @@ void			change_light_status(void *arg);
 void			change_brillance_status(void *arg);
 void			change_shadow_status(void *arg);
 void			change_luminosite(t_env *e, int keycode);
+void			change_ambiance(t_env *e, int keycode);
 void			del_focus_object(t_env *e);
 void			undo_del_object(t_env *e);
 void			add_sphere(void *arg);

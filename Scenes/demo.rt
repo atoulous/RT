@@ -3,12 +3,13 @@
 #
 
 scene {
-	name { demo_1 }
+	name { demo.rt }
 	camera {
 		origin { 0 0 -20 }
 		dir { 0 0 1 }
 	}
 	render { 900 700 }
+	ambiance { 0.1 }
 	object {
 		name { sphere3 }
 		type { sphere }
@@ -39,9 +40,9 @@ scene {
 		name { torus }
 		type { torus }
 		p1 { 0 0 0 }
-		p2 {1 0 1}
-		r1 {3}
-		r2 {7}
+		p2 { 0 0 1 }
+		r1 { 1 }
+		r2 { 2 }
 		color { 0x0000AAFF }
 		mat {
 			ambient { 0.1 }
@@ -51,24 +52,11 @@ scene {
 		}
 	}
 	object {
-		name { sphere1 }
-		type { sphere }
-		origin { 0 0 0 }
-		r1 { 2.0 }
-		color { 0xFF0000 }
-		mat {
-			ambient { 0.1 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
-		}
-	}
-	object {
 		name { plane de fond }
 		type { plane }
 		origin { 0 0 15 }
 		dir { 0 0 -1 }
-		color { 0x0fff00 }
+		color { 0x0FFF00 }
 		mat {
 			ambient { 0.1 }
 			diffuse { 0.2 }
@@ -105,9 +93,9 @@ scene {
 	object {
 		name { plane gauche }
 		type { plane }
-		origin { -10 0 0 }
+		origin { -20 0 0 }
 		dir { 1 0 0 }
-		color { 0xFFF000 }
+		color { 0xF0F00 }
 		mat {
 			ambient { 0.1 }
 			diffuse { 0.2 }
@@ -118,9 +106,9 @@ scene {
 	object {
 		name { plane droit }
 		type { plane }
-		origin { 10 0 0 }
+		origin { 20 0 0 }
 		dir { -1 0 0 }
-		color { 0xFFF000 }
+		color { 0x0FF000 }
 		mat {
 			ambient { 0.1 }
 			diffuse { 0.2 }

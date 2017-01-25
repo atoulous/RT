@@ -6,18 +6,11 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 08:30:59 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/18 12:49:34 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/25 18:47:05 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
-void		change_luminosite(t_env *e, int keycode)
-{
-	keycode == 67 && LUMI + 0.1 <= 1 ? LUMI += 0.1 : 0;
-	keycode == 75 && LUMI - 0.1 >= 0 ? LUMI -= 0.1 : 0;
-	create_img(e);
-}
 
 /*
 ** Initialize light ray parameters

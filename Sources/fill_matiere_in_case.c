@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 15:01:19 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/18 15:43:40 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/25 18:47:04 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # define SPEC mat->specular
 # define SHI mat->shine
 #endif
-
 
 void	fill_matiere_in_case(t_mat *mat)
 {

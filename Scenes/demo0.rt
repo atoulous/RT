@@ -40,11 +40,11 @@ scene {
 		r1 { 1 }
 		color { 0xEFFE12 }
 		mat {
-#			ambient { 0.1 }
-#			diffuse { 0.2 }
-#			specular { 0.8 }
-#			shine { 100 }
-#			density { 0.5 }
+			ambient { 0.1 }
+			diffuse { 0.2 }
+			specular { 0.8 }
+			shine { 100 }
+			density { 0.5 }
 		}
 	}
 	object {
@@ -77,6 +77,12 @@ scene {
 		name { spot1 }
 		type { light }
 		origin { 5 10 -10 }
+		color { 0xFFFFFF }
+	}
+	object {
+		name { spot2 }
+		type { light }
+		origin { -5 10 -10 }
 		color { 0xFFFFFF }
 	}
 }
