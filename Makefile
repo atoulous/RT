@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/01/25 23:06:26 by atoulous         ###   ########.fr        #
+#    Updated: 2017/01/26 13:59:47 by atoulous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ SRC=	rt.c			\
 		torus2.c			\
 		get_color_phong.c	\
 		fill_matiere_in_case.c	\
-		change_shadow_status.c	\
+		light_events.c	\
 		others_events.c	\
 
 OBJDIR = Objects

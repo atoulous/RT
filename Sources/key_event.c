@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/25 23:03:57 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/26 13:36:36 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int			ft_key_press(int keycode, t_env *e)
 	keycode == 6 && COMMAND == 1 ? undo_del_object(e) : 0;
 	keycode == 47 ? SPEED += 0.1 : 0;
 	keycode == 43 ? SPEED -= 0.1 : 0;
+	keycode == 49 ? reset_cam(e) : 0;
 	move(keycode, e);
 	return (0);
 }

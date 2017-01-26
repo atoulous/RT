@@ -6,7 +6,7 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 22:58:34 by atoulous          #+#    #+#             */
-/*   Updated: 2017/01/25 23:25:08 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/26 13:39:21 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,13 @@ void		change_luminosite(t_env *e, int keycode)
 	ft_putstr("Luminosite indice changed to ");
 	ft_putnbr(LUMI);
 	printf("%f\n", LUMI);
+	create_img(e);
+}
+
+void		reset_cam(t_env *e)
+{
+	CAM_POS = e->parse_cam_pos;
+	CAM_DIR = e->parse_cam_dir;
+	ft_putendl("Camera reinitialized");
 	create_img(e);
 }

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/25 23:00:34 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/26 13:35:28 by atoulous         ###   ########.fr       */
 /*   Updated: 2017/01/25 17:45:05 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -246,6 +246,8 @@ typedef struct	s_env
 	char		rotations;
 	char		command;
 	t_scene		*scene;
+	t_v3d		parse_cam_pos;
+	t_v3d		parse_cam_dir;
 	char		**obj_allowed;
 	void		(*obj_fct_obj[NB_OBJ_FCT])(t_object *, t_ray *, t_sol *sol);
 	void		(*calc_obj_param[NB_OBJ_FCT])(t_object *);
@@ -287,6 +289,7 @@ void			add_sphere(void *arg);
 void			add_cylinder(void *arg);
 void			add_cone(void *arg);
 void			add_plane(void *arg);
+void			reset_cam(t_env *e);
 
 void			*raytracer(void *arg);
 void			apply_light(t_env *e, t_param *param);

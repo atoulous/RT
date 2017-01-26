@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 17:50:44 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/25 23:31:46 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/26 16:06:21 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ void	moves2(t_v3d **pos, t_v3d **dir, t_list *list, t_object **obj)
 {
 	(*obj) = (t_object *)(list->content);
 	(*pos) = &(*obj)->pos;
-	(*dir) = &(*obj)->dir;
 	if ((*obj)->type == 6)
 		(*dir) = &(*obj)->p2;
+	else
+		(*dir) = &(*obj)->dir;
 }
 
 /*
@@ -44,10 +45,14 @@ void	rotations(t_env *e, t_v3d *dir)
 		alpha = -ALPHA_ROT;
 	else
 		alpha = ALPHA_ROT;
-	ROT & M_LEFT ? *dir = rodrigues_rotation(*dir, CAM_UP, -ALPHA_ROT) : *dir;
-	ROT & M_RIGHT ? *dir = rodrigues_rotation(*dir, CAM_UP, ALPHA_ROT) : *dir;
-	ROT & M_UP ? *dir = rodrigues_rotation(*dir, CAM_RIGHT, -ALPHA_ROT) : *dir;
-	ROT & M_DOWN ? *dir = rodrigues_rotation(*dir, CAM_RIGHT, ALPHA_ROT) : *dir;
+	ROT & M_LEFT ? *dir = rodrigues_rotation(*dir, v3d(0, 1, 0), -ALPHA_ROT)
+		: *dir;
+	ROT & M_RIGHT ? *dir = rodrigues_rotation(*dir, v3d(0, 1, 0), ALPHA_ROT)
+		: *dir;
+	ROT & M_UP ? *dir = rodrigues_rotation(*dir, v3d(1, 0, 0), -ALPHA_ROT)
+		: *dir;
+	ROT & M_DOWN ? *dir = rodrigues_rotation(*dir, v3d(1, 0, 0), ALPHA_ROT)
+		: *dir;
 }
 
 int		moves(t_env *e)
