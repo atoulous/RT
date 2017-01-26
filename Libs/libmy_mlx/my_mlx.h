@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 18:29:41 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/26 22:18:46 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/26 22:58:53 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ typedef struct		s_crgb
 void				put_color_to_pixel(t_mlx *mlx, t_l l, t_rgb rgb);
 t_rgb				my_hsv_to_rgb(t_hsv hsv);
 t_hsv				my_rgb_to_hsv(t_rgb rgb);
-t_rgb				unsigned_to_rgb(unsigned int color);
 t_mlx				*glob_init_mlx(char *n, int w, int h);
 
 t_rgb				rgb_mult(t_rgb a, t_rgb b);
