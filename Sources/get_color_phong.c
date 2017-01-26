@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 21:42:32 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/26 00:03:48 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/26 17:35:45 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 void			do_phong_calcls(t_param *param, t_object *light, \
 		t_hsv *hsv, t_col_res *res)
 {
-	TEST = smul_v3d(VW_RAY.norm, 2 * ANGLE_LIGHT);
+	TEST = smul_v3d(VW_RAY.norm, 2  * ANGLE_LIGHT);
 	R = sub_v3d(TEST, PHO_RAY.dir);
 	OMEGA = cos_v3d(VW_RAY.dir, R);
 }
@@ -50,23 +50,26 @@ void			get_color_phong(t_param *param, t_object *light, \
 	INTENSITE += VW_RAY.obj->mat.ambient;
 	if (OPT_2)
 	{
-		if (ANGLE_LIGHT >= 0)
-			INTENSITE += (ANGLE_LIGHT * VW_RAY.obj->mat.diffuse);
-	}
-	do_phong_calcls(param, light, hsv, res);
-	if (OPT_3)
-	{
-		if (OPT_O && PHO_RAY.obj)
-			INTENSITE += 0;//((VW_RAY.obj->mat.specular - 0.4) * pow(OMEGA, \
-		VW_RAY.obj->mat.shine));
-		else
+		if (ANGLE_LIGHT < 0)
+			INTENSITE += (ANGLE_LIGHT * -1 * VW_RAY.obj->mat.diffuse);
+		do_phong_calcls(param, light, hsv, res);
+		if (OPT_3)
 		{
+			if (OPT_O && PHO_RAY.obj)
+				INTENSITE += 0;//((VW_RAY.obj->mat.specular - 0.4) * pow(OMEGA, \
+			VW_RAY.obj->mat.shine));
+			else
+			{
+				if (OMEGA > 0)
+				{
 				double test = (VW_RAY.obj->mat.specular * pow(OMEGA, \
 							VW_RAY.obj->mat.shine));
-				if (test < 0)
-					INTENSITE += 0;
-				else 
+			//	if (test < 0)
+			//		INTENSITE += 0;
+			//	else 
 					INTENSITE += test;
+				}
+			}
 		}
 	}
 	if (OPT_O && PHO_RAY.obj)
@@ -85,7 +88,7 @@ void			get_color_jubarbie(t_param *param, t_object *light, \
 
 	if (ANGLE_LIGHT < 0)
 	{
-				hsv->v -= ANGLE_LIGHT * VW_RAY.obj->mat.diffuse;
+		hsv->v -= ANGLE_LIGHT * VW_RAY.obj->mat.diffuse;
 		hsv->v = fmax(VW_RAY.obj->mat.diffuse, hsv->v);
 		OPT_B ? do_shininess(param, light, hsv, res->ref) : 0;
 	}

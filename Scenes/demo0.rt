@@ -33,20 +33,20 @@ scene {
 			density { 1 }
 		}
 	}
-	object {
-		name { sphere1 }
-		type { sphere }
-		origin { 0 0 -10 }
-		r1 { 1 }
-		color { 0xEFFE12 }
-		mat {
+#	object {
+#		name { sphere1 }
+#		type { sphere }
+#		origin { 0 0 -10 }
+#		r1 { 1 }
+#		color { 0xEFFE12 }
+#		mat {
 #			ambient { 0.1 }
 #			diffuse { 0.2 }
 #			specular { 0.8 }
 #			shine { 100 }
-			density { 0.5 }
-		}
-	}
+#			density { 0.5 }
+#		}
+#	}
 #	object {
 #		name { plane de fond }
 #		type { plane }

@@ -6,13 +6,14 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/01/25 19:15:51 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/01/26 21:21:36 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=gcc
 CFLAGS= -ILibs/libft -ILibs/libmlx -ILibs/libv3d -ILibs/libmy_math -ILibs/libmy_mlx -IIncludes #-Wall -Wextra -Werror
 SRC=	rt.c			\
+		modif_color.c	\
 		menu.c			\
 		modif_normale.c	\
 		color.c			\

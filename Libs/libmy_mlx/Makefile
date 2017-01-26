@@ -6,7 +6,7 @@
 #    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/22 18:40:33 by mmoullec          #+#    #+#              #
-#    Updated: 2017/01/18 11:54:14 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/01/26 22:18:59 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = libmy_mlx.a
 CC = clang -Wall -Werror -Wextra
 LMLX = -I../libmlx
 SRC = hsv_to_grb.c			\
+	  unsigned_to_rgb.c		\
 	put_color_to_pixel.c	\
 	glob_init_mlx.c			\
 	rgb_to_hsv.c			\

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 08:30:59 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/26 00:03:48 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/26 22:49:38 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	do_shininess(t_param *param, t_object *light, t_hsv *hsv, t_v3d ref)
  ** Perform lights
  */
 
+t_rgb		modify_color(t_v3d inter, t_rgb rgb);
+
 void		apply_light(t_env *e, t_param *param)
 {
 	t_list		*lst_light;
@@ -70,8 +72,17 @@ void		apply_light(t_env *e, t_param *param)
 	double		vm;
 	double		intensite;
 	intensite = 0;
+	t_rgb rgb;
 
-	rgb_to_hsv(VW_RAY.obj->color, &hsv.h, &hsv.s, &hsv.v);
+	if (VW_RAY.obj->type == 1)
+	{
+		rgb_to_hsv(VW_RAY.obj->color, &hsv.h, &hsv.s, &hsv.v);
+		rgb = my_hsv_to_rgb(hsv);
+		rgb = modify_color(VW_RAY.inter, rgb);
+		hsv = my_rgb_to_hsv(rgb);
+	}
+	else
+		rgb_to_hsv(VW_RAY.obj->color, &hsv.h, &hsv.s, &hsv.v);
 	vm = hsv.v;
 	if (OPT_1)
 		hsv.v = VW_RAY.obj->mat.diffuse;
@@ -83,14 +94,13 @@ void		apply_light(t_env *e, t_param *param)
 		while (lst_obj)
 		{
 			obj = (t_object *)lst_obj->content;
-	//		if (obj != VW_RAY.obj)
-	//			(*(e->obj_fct_obj[obj->type]))(obj, &PHO_RAY, &SOL);
+			if (obj != VW_RAY.obj)
+				(*(e->obj_fct_obj[obj->type]))(obj, &PHO_RAY, &SOL);
 			lst_obj = lst_obj->next;
 		}
 		get_color(e, param, (t_object *)lst_light->content, &hsv, &intensite);
 		lst_light = lst_light->next;
 	}
-	t_rgb rgb;
 	if (OPT_1)
 		COLOR = hsv_to_rgb(hsv.h, hsv.s, LUMI + (hsv.v * vm));
 	else

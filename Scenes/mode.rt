@@ -10,19 +10,19 @@ scene {
 		type { sphere }
 		origin { 0 0 0 }
 		r1 { 2 }
-		color { 0x23FFD3 }
+		color { 0xFF3466 }
 		mat {
 			ambient { 0.1 }
 			diffuse { 0.3 }
-			specular { 0.8 }
-			shine { 100 }
+			specular { 0.9 }
+			shine { 10 }
 			density { 1 }
 		}
 	}
 	object {
 		name { spot1 }
 		type { light }
-		origin { 5 10 -10 }
+		origin { 5 5 -10 }
 		color { 0xFFFFFF }
 	}
 }

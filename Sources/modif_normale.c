@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 16:53:42 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/25 21:49:57 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/26 22:49:32 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,19 @@ void		modif_normale(double density, t_v3d *norm, t_v3d inter)
 {
 	t_v3d tmp;
 	t_v3d tmp2;
-	double noiseCoefx = noise(0.1 * inter.x, 0.1 * inter.y, 0.1 * inter.z);
-	double noiseCoefy = noise(0.1 * inter.y, 0.1 * inter.z, 0.1 * inter.x);
-	double noiseCoefz = noise(0.1 * inter.z, 0.1 * inter.x, 0.1 * inter.y);
+	double alpha;
+	alpha = -0.5;
+	double noiseCoefx = noise(alpha * inter.x, alpha * inter.y, alpha * inter.z);
+	double noiseCoefy = noise(alpha * inter.y, alpha * inter.z, alpha * inter.x);
+	double noiseCoefz = noise(alpha * inter.z, alpha * inter.x, alpha * inter.y);
 
 	tmp2.x = (1.0f - density) * norm->x + density * noiseCoefx;
 	tmp2.y = (1.0f - density) * norm->y + density * noiseCoefy;
 	tmp2.z = (1.0f - density) * norm->z + density * noiseCoefz;
+
+	*norm = unit_v3d(tmp2);
+
+	/*
 
 	double tt = length_v3d(tmp2);
 	double temp = carre(tt);
@@ -117,4 +123,5 @@ void		modif_normale(double density, t_v3d *norm, t_v3d inter)
 		norm->z = tmp2.z * tt;
 		unit_v3d(*norm);
 	}
+	*/
 }
