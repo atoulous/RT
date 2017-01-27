@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 21:42:32 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/26 17:35:45 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/27 19:18:53 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ void			do_phong_calcls(t_param *param, t_object *light, \
 	OMEGA = cos_v3d(VW_RAY.dir, R);
 }
 
-void			get_color_phong(t_param *param, t_object *light, \
+
+double		modify_color(t_v3d inter, double coef, double diffuse);
+
+
+void			get_color_phong(int obj_type, t_param *param, t_object *light, \
 		t_hsv *hsv, t_col_res *res, double *intensite)
 {
 	t_object	*obj_sel;
@@ -51,24 +55,27 @@ void			get_color_phong(t_param *param, t_object *light, \
 	if (OPT_2)
 	{
 		if (ANGLE_LIGHT < 0)
-			INTENSITE += (ANGLE_LIGHT * -1 * VW_RAY.obj->mat.diffuse);
-		do_phong_calcls(param, light, hsv, res);
-		if (OPT_3)
 		{
-			if (OPT_O && PHO_RAY.obj)
-				INTENSITE += 0;//((VW_RAY.obj->mat.specular - 0.4) * pow(OMEGA, \
-			VW_RAY.obj->mat.shine));
-			else
+		//	if (obj_type == 1)
+		//	{
+		//		INTENSITE += modify_color(VW_RAY.inter, 0.1, VW_RAY.obj->mat.diffuse) * (ANGLE_LIGHT * -1);
+		//	}
+		//	else
+				INTENSITE += (ANGLE_LIGHT * -1 * VW_RAY.obj->mat.diffuse);
+		}
+	}
+	do_phong_calcls(param, light, hsv, res);
+	if (OPT_3)
+	{
+		if (OPT_O && PHO_RAY.obj)
+			INTENSITE += 0;
+		else
+		{
+			if (OMEGA > 0)
 			{
-				if (OMEGA > 0)
-				{
 				double test = (VW_RAY.obj->mat.specular * pow(OMEGA, \
 							VW_RAY.obj->mat.shine));
-			//	if (test < 0)
-			//		INTENSITE += 0;
-			//	else 
-					INTENSITE += test;
-				}
+				INTENSITE += test;
 			}
 		}
 	}
@@ -103,7 +110,7 @@ void			get_color_jubarbie(t_param *param, t_object *light, \
 	}
 }
 
-void			get_color(t_env *e, t_param *param, t_object *light, t_hsv *hsv, double *intensite)
+void			get_color(int obj_type, t_env *e, t_param *param, t_object *light, t_hsv *hsv, double *intensite)
 {
 	t_col_res res;
 
@@ -114,7 +121,7 @@ void			get_color(t_env *e, t_param *param, t_object *light, t_hsv *hsv, double *
 	if (OPT_1)
 		get_color_jubarbie(param, light, &res, hsv);
 	else
-		get_color_phong(param, light, hsv, &res, intensite);
+		get_color_phong(obj_type, param, light, hsv, &res, intensite);
 }
 
 # undef R

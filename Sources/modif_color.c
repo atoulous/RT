@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 21:18:41 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/26 22:49:37 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/27 18:02:59 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,18 @@
 
 double	noise(double x, double y, double z);
 
-t_rgb		modify_color(t_v3d inter, t_rgb out)
+double		modify_color(t_v3d inter, double coef, double diffuse)
 {
-	t_rgb ret;
-	printf("r %f - g %f - b %f\n", out.r, out.g, out.b);
+	double mult = 100;
 	double output = 0;
 	double noiseCoef = 0;
 	for (int level = 1; level < 10; level ++)
 	{
-		noiseCoef += (1.0 / level) * fabs(noise(level * 0.05 * inter.x, \
-					level * 0.05 * inter.y, level * 0.05 * inter.z));
+		noiseCoef += (1.0 / level) * fabs(noise(level * 0.05 * inter.x * mult, \
+					level * 0.05 * inter.y * mult, level * 0.05 * inter.z * mult));
 	};
-	noiseCoef = 0.5 * sinf((inter.x + inter.y) * 0.5 + noiseCoef) + 0.5;
-	printf("%f\n", noiseCoef);
-	out.r = noiseCoef;
-	out.g += noiseCoef;
-	out.b += noiseCoef;
-	rgb_reg(&out);
-	ret.r = out.r;
-	ret.g = out.g;
-	ret.b = out.b;
-
-	printf("r %f - g %f - b %f\n", out.r, out.g, out.b);
-	return (ret);
+	noiseCoef = 0.5 * sinf((inter.x * mult + inter.y * mult) * 0.5 + noiseCoef) + 0.5;
+	//noiseCoef = 0.5 * carre(inter.x * mult + inter.z * mult) * 0.5 + noiseCoef;
+	output += coef * noiseCoef * diffuse + (1.0 - noiseCoef);
+	return (output);
 }

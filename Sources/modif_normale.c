@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 16:53:42 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/26 22:49:32 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/27 18:21:07 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,9 @@ void		modif_normale(double density, t_v3d *norm, t_v3d inter)
 	t_v3d tmp;
 	t_v3d tmp2;
 	double alpha;
-	alpha = -0.5;
+	alpha = 1;
+	double mult = 100;
+	smul_v3d(inter, mult);
 	double noiseCoefx = noise(alpha * inter.x, alpha * inter.y, alpha * inter.z);
 	double noiseCoefy = noise(alpha * inter.y, alpha * inter.z, alpha * inter.x);
 	double noiseCoefz = noise(alpha * inter.z, alpha * inter.x, alpha * inter.y);
