@@ -6,7 +6,7 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 16:25:37 by atoulous          #+#    #+#             */
-/*   Updated: 2017/01/25 19:14:04 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/26 16:20:46 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **rotation autour d'un axe, angle au choix
 */
 
-t_v3d	rodrigues_rotation(t_v3d vec_dir, t_v3d axis, double alpha)
+t_v3d	rodrigues_rot(t_v3d vec_dir, t_v3d axis, double alpha)
 {
 	alpha = alpha * (M_PI / 180);
 	return (add_v3d(add_v3d(smul_v3d(vec_dir, cos(alpha)),

@@ -6,8 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/26 13:35:28 by atoulous         ###   ########.fr       */
-/*   Updated: 2017/01/25 17:45:05 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/27 17:27:25 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +31,11 @@
 # define NB_TH 10
 # define DIST_MAX 1000.0
 
-# define OPT_REF "dl"
+# define OPT_REF "dlh"
 # define OPT e->opt
 # define OPT_D (OPT & (1 << 0))
 # define OPT_L (OPT & (1 << 1))
-# define OPT_S (OPT & (1 << 2))
+# define OPT_H (OPT & (1 << 2))
 # define OPT_1 (OPT & (1 << 5))
 # define OPT_2 (OPT & (1 << 6))
 # define OPT_3 (OPT & (1 << 7))
@@ -311,6 +310,7 @@ void			error_opt(char opt);
 void			error_perso(t_env *e, char *str);
 int				quit_rt(t_env *e);
 void			debug(t_env *e);
+void			print_help();
 
 unsigned int	hsv_to_rgb(unsigned int h, double s, double v);
 void			rgb_to_hsv(unsigned int rgb, int *h, double *s, double *v);
@@ -322,7 +322,6 @@ int				ft_key_command(int keycode, t_env *e);
 int				ft_mouse_click(int button, int x, int y, t_env *e);
 
 void			init_cl(t_env *e);
-
 void			init_opt(t_env *e, char opt);
 
 /*

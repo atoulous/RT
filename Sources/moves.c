@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 17:50:44 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/26 16:06:21 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/27 17:28:50 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,10 @@ void	rotations(t_env *e, t_v3d *dir)
 		alpha = -ALPHA_ROT;
 	else
 		alpha = ALPHA_ROT;
-	ROT & M_LEFT ? *dir = rodrigues_rotation(*dir, v3d(0, 1, 0), -ALPHA_ROT)
-		: *dir;
-	ROT & M_RIGHT ? *dir = rodrigues_rotation(*dir, v3d(0, 1, 0), ALPHA_ROT)
-		: *dir;
-	ROT & M_UP ? *dir = rodrigues_rotation(*dir, v3d(1, 0, 0), -ALPHA_ROT)
-		: *dir;
-	ROT & M_DOWN ? *dir = rodrigues_rotation(*dir, v3d(1, 0, 0), ALPHA_ROT)
-		: *dir;
+	ROT & M_LEFT ? *dir = rodrigues_rot(*dir, v3d(0, 1, 0), -ALPHA_ROT) : *dir;
+	ROT & M_RIGHT ? *dir = rodrigues_rot(*dir, v3d(0, 1, 0), ALPHA_ROT) : *dir;
+	ROT & M_UP ? *dir = rodrigues_rot(*dir, v3d(1, 0, 0), -ALPHA_ROT) : *dir;
+	ROT & M_DOWN ? *dir = rodrigues_rot(*dir, v3d(1, 0, 0), ALPHA_ROT) : *dir;
 }
 
 int		moves(t_env *e)
@@ -79,6 +75,5 @@ int		moves(t_env *e)
 	list && e->update_obj_pos[obj->type] ?
 		e->update_obj_pos[obj->type](obj) : 0;
 	MOVES || ROT ? create_img(e) : 0;
-	ROT ? print_v3d(CAM_DIR, "vec_dir == ") : 0;
 	return (0);
 }
