@@ -58,11 +58,12 @@ void	save_scene(t_env *e)
     char    *file_name;
     char    *path;
 
-	mkdir("Scenes", '+');
+	mkdir("Save", 0777);
     ft_putstr("Nom de votre fichier: ");
     get_next_line(0, &file_name);
-    path = ft_strjoin("Scenes/", file_name);
-	fd = fopen(path, "w+");
+    path = ft_strjoin("Save/", file_name);
+	if ((fd = fopen(path, "w+")) > 0)
+	{
 	fprintf(fd, "scene {\n\tname{%s}", e->scene->name);
 	fprintf(fd, "\n\tcamera{\n\t\torigin{ %f %f %f }\n\t\tdir{ %f %f %f }\n\t}",
             CAM_POS.x, CAM_POS.y, CAM_POS.z, CAM_DIR.x, CAM_DIR.y, CAM_DIR.z );
@@ -73,7 +74,10 @@ void	save_scene(t_env *e)
     ft_putstr("\033[32mScene saved into ");
     ft_putstr(path);
     ft_putstr("\033[0m\n");
+	fclose(fd);
+	}
+	else 
+		error_perso(e, "Impossible to open file");
     free(file_name);
     free(path);
-	fclose(fd);
 }

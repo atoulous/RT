@@ -14,30 +14,32 @@
 
 static void	back_menu(t_env *e)
 {
-	int	i;
-	int	j;
+	int				i;
+	int				j;
+	unsigned int	color;
 
 	j = -1;
 	while (++j < WIN_HEIGHT)
 	{
 		i = -1;
-		while (++i < 40)
-			mlx_pixel_put(MLX, WIN, i, j, 0x00333333);
+		while (++i < WIN_WIDTH)
+		{
+			color = (j > 48 && j < WIN_HEIGHT - 131) ? 0x002B333F : 0x003D4D65;
+			mlx_pixel_put(MLX, WIN, i, j, color);
+		}
 	}
 }
 
 static void	create_btn(t_env *e, char *btn[NB_BTN])
 {
-	btn[0] = ft_strdup("Images/light.xpm");
-	btn[1] = ft_strdup("Images/sphere.xpm");
-	btn[2] = ft_strdup("Images/plane.xpm");
-	btn[3] = ft_strdup("Images/cone.xpm");
-	btn[4] = ft_strdup("Images/cylinder.xpm");
-	MENU[0].btn_fct = &change_light_status;
-	MENU[1].btn_fct = &add_sphere;
-	MENU[2].btn_fct = &add_plane;
-	MENU[3].btn_fct = &add_cone;
-	MENU[4].btn_fct = &add_cylinder;
+	btn[0] = ft_strdup("Images/top-left.xpm");
+	btn[1] = ft_strdup("Images/top-middle.xpm");
+	btn[2] = ft_strdup("Images/top-right.xpm");
+	btn[3] = ft_strdup("Images/bottom-middle.xpm");
+	MENU[0].pos_x = 14;
+	MENU[1].pos_x = (WIN_WIDTH / 2) - 65;
+	MENU[2].pos_x = WIN_WIDTH - 50;
+	MENU[3].pos_x = (WIN_WIDTH / 2) - 268;
 }
 
 void		init_menu(t_env *e)
@@ -50,10 +52,7 @@ void		init_menu(t_env *e)
 	i = -1;
 	while (++i < NB_BTN)
 	{
-		MENU[i].pos_x = 4;
-		MENU[i].pos_y = 4 + i * BTN_SIZE + 4 * i;
-		MENU[i].width = BTN_SIZE;
-		MENU[i].height = BTN_SIZE;
+		MENU[i].pos_y = (i < 3) ? 6 : WIN_HEIGHT - 122;
 		if (!(MENU[i].img.img = mlx_xpm_file_to_image(MLX, btn[i],
 				&(MENU[i].img.width), &(MENU[i].img.height))))
 			error_perso(e, "Menu image not found");

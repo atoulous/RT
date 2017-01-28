@@ -53,12 +53,13 @@
 # define WIN e->win
 # define IMG_WIDTH e->img_width
 # define IMG_HEIGHT e->img_height
-# define WIN_WIDTH (IMG_WIDTH + 40)
-# define WIN_HEIGHT (IMG_HEIGHT)
+# define WIN_WIDTH e->win_width
+# define WIN_HEIGHT e->win_height
+# define IMG_GAP e->img_gap
 # define IMG e->img.img
 # define IMG_ADDR e->img.addr
 # define ENDIAN e->endian
-# define NB_BTN 5
+# define NB_BTN 4
 # define MENU e->menu
 # define BTN_SIZE 30
 # define COMMAND e->command
@@ -224,6 +225,9 @@ typedef struct	s_env
 	double		luminosite;
 	int			img_width;
 	int			img_height;
+	int			win_width;
+	int			win_height;
+	int			img_gap;
 	t_img		img;
 	int			endian;
 	t_button	menu[NB_BTN];

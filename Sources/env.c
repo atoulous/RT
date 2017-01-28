@@ -109,6 +109,9 @@ t_env			*init_env(char *file_name, char opt)
 	while (++i < NB_TH)
 		e->param[i] = init_param(e, i);
 	MLX = mlx_init();
+	WIN_WIDTH = (IMG_WIDTH < 600) ? 600 : IMG_WIDTH;
+	WIN_HEIGHT = IMG_HEIGHT + 180;
+	IMG_GAP = (WIN_WIDTH - IMG_WIDTH) / 2;
 	WIN = mlx_new_window(MLX, WIN_WIDTH, WIN_HEIGHT, file_name);
 	init_menu(e);
 	IMG = mlx_new_image(MLX, IMG_WIDTH, IMG_HEIGHT);

@@ -67,18 +67,35 @@ void		change_brillance_status(void *arg)
 
 int			ft_mouse_click(int button, int x, int y, t_env *e)
 {
-	int		i;
-
-	if (button == 1 && x >= 0 && x < 34)
+	if (button == 1 && x >= 14 && x < WIN_WIDTH - 14 && y >= 10 && y <= 50)
 	{
-		i = y / (BTN_SIZE + 4);
-		i < NB_BTN ? MENU[i].btn_fct(e) : 0;
+		if (x < 50)
+			del_focus_object(e);
+		else if (x < 86)
+			undo_del_object(e);
+		else if (x > WIN_WIDTH / 2 - 64 && x < WIN_WIDTH / 2 + 64)
+			change_light_status(e);
+		else if ( x > WIN_WIDTH - 50)
+			save_scene(e);
 	}
-	else if (button == 1 && x >= 40 && x <= WIN_WIDTH
-			&& y >= 0 && y <= WIN_HEIGHT)
+	else if (button == 1 && x >= IMG_GAP
+						&& x <= WIN_WIDTH - IMG_GAP
+						&& y > 48 && y < 48 + IMG_HEIGHT)
 	{
-		raytrace_mouse(e, x - 40, y);
+		raytrace_mouse(e, x - IMG_GAP, y - 49);
 		create_img(e);
+	}
+	else if (button == 1 && y > WIN_HEIGHT - 122 && y < WIN_HEIGHT - 10
+					&& x > WIN_WIDTH / 2 - 268 && x < WIN_WIDTH / 2 + 268)
+	{
+		if (x < WIN_WIDTH / 2 - 160)
+			add_sphere(e);
+		else if (x < WIN_WIDTH / 2 - 50)
+			add_plane(e);
+		else if (x < WIN_WIDTH / 2 + 50)
+			add_cylinder(e);
+		else if (x < WIN_WIDTH / 2 + 160)
+			add_cone(e);
 	}
 	return (0);
 }

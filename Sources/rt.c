@@ -29,7 +29,7 @@ int			create_img(t_env *e)
 	i = -1;
 	while (++i < NB_TH)
 		(void)pthread_join(th[i], NULL);
-	mlx_put_image_to_window(MLX, WIN, IMG, 40, 0);
+	mlx_put_image_to_window(MLX, WIN, IMG, IMG_GAP, 49);
 	return (0);
 }
 
