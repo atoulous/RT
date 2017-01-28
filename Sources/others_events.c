@@ -6,11 +6,27 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 22:58:34 by atoulous          #+#    #+#             */
-/*   Updated: 2017/01/26 13:39:21 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/28 17:10:20 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+void		screenshot(void *arg)
+{
+	char		*cmd;
+	time_t		now;
+	struct tm	tm_now;
+	char		s_now[sizeof("JJ-MM-AAAA_HH:MM:SS")];
+
+	now = time(NULL);
+	tm_now = *localtime(&now);
+	strftime(s_now, sizeof(s_now), "%d-%m-%Y_%H:%M:%S", &tm_now);
+	cmd = ft_strdup("screencapture -iW ./screen_");
+	cmd = ft_strjoin(cmd, s_now);
+	system(cmd);
+	ft_putendl("Did you screen me?");
+}
 
 void		change_speed_rotation(t_env *e, int keycode)
 {

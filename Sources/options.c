@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 14:54:56 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/27 16:01:24 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/28 17:07:15 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void			print_help(void)
 	ft_putendl("\033[33mPress 6 to rotate right\033[0m");
 	ft_putendl("\033[33mPress 2 to rotate down\033[0m");
 	ft_putendl("\033[33mPress 8 to rotate up\033[0m");
-	ft_putendl("\033[33mPress your zizi to pshh pshh\033[0m");
+	ft_putendl("\033[33mPress ` to take screenshot\033[0m");
 	ft_putendl("");
 }
 

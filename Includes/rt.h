@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/27 17:27:25 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/28 17:01:47 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -289,6 +289,7 @@ void			add_cylinder(void *arg);
 void			add_cone(void *arg);
 void			add_plane(void *arg);
 void			reset_cam(t_env *e);
+void			screenshot(void *arg);
 
 void			*raytracer(void *arg);
 void			apply_light(t_env *e, t_param *param);
