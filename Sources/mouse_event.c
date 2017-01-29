@@ -45,44 +45,29 @@ static void	raytrace_mouse(t_env *e, int x, int y)
 	if (foc_obj == e->scene->obj_focus)
 		foc_obj = NULL;
 	e->scene->obj_focus = foc_obj;
-}
-
-void		change_light_status(void *arg)
-{
-	t_env *e;
-
-	e = (t_env *)arg;
-	(OPT_L) ? (OPT ^= (1 << 1)) : (OPT |= (1 << 1));
-	create_img(e);
-}
-
-void		change_brillance_status(void *arg)
-{
-	t_env *e;
-
-	e = (t_env *)arg;
-	(OPT & (1 << 3)) ? (OPT ^= (1 << 3)) : (OPT |= (1 << 3));
-	create_img(e);
+	menu_object(e);
 }
 
 int			ft_mouse_click(int button, int x, int y, t_env *e)
 {
-	if (button == 1 && x >= 14 && x < WIN_WIDTH - 14 && y >= 10 && y <= 50)
+	if (button == 1 && x >= 50 && x < WIN_WIDTH - 14 && y >= 10 && y <= 50)
 	{
-		if (x < 50)
+		if (x < 66)
+			change_luminosite_mouse(e, y);
+		else if (x > 79 && x < 119)
 			del_focus_object(e);
-		else if (x < 86)
+		else if (x > 79 && x < 149)
 			undo_del_object(e);
 		else if (x > WIN_WIDTH / 2 - 64 && x < WIN_WIDTH / 2 + 64)
-			change_light_status(e);
+			change_global_quality(e);
 		else if ( x > WIN_WIDTH - 50)
 			save_scene(e);
 	}
-	else if (button == 1 && x >= IMG_GAP
-						&& x <= WIN_WIDTH - IMG_GAP
-						&& y > 48 && y < 48 + IMG_HEIGHT)
+	else if (button == 1 && x >= IMG_GAP_X
+						&& x <= WIN_WIDTH - 240 - IMG_GAP_X
+			&& y > 49 + IMG_GAP_Y && y < 49 + IMG_GAP_Y + IMG_HEIGHT)
 	{
-		raytrace_mouse(e, x - IMG_GAP, y - 49);
+		raytrace_mouse(e, x - IMG_GAP_X, y - 49 - IMG_GAP_Y);
 		create_img(e);
 	}
 	else if (button == 1 && y > WIN_HEIGHT - 122 && y < WIN_HEIGHT - 10
@@ -97,5 +82,8 @@ int			ft_mouse_click(int button, int x, int y, t_env *e)
 		else if (x < WIN_WIDTH / 2 + 160)
 			add_cone(e);
 	}
+	else if (button == 1 && x > WIN_WIDTH - 231 && x < WIN_WIDTH - 9 && y > 270
+					&& y < 442)
+		color_selector(e, x - WIN_WIDTH + 231, y - 270);
 	return (0);
 }

@@ -34,8 +34,9 @@
 # define OPT_D (OPT & (1 << 0))
 # define OPT_L (OPT & (1 << 1))
 # define OPT_S (OPT & (1 << 2))
-# define OPT_B (param->e->opt & (1 << 3))
-# define OPT_O (param->e->opt & (1 << 4))
+# define OPT_B (OPT & (1 << 3))
+# define OPT_O (OPT & (1 << 4))
+# define OPT_GQ (OPT & (1 << 4))
 # define LUMI e->luminosite
 
 # define MOVES e->moves
@@ -55,11 +56,12 @@
 # define IMG_HEIGHT e->img_height
 # define WIN_WIDTH e->win_width
 # define WIN_HEIGHT e->win_height
-# define IMG_GAP e->img_gap
+# define IMG_GAP_X e->img_gap_x
+# define IMG_GAP_Y e->img_gap_y
 # define IMG e->img.img
 # define IMG_ADDR e->img.addr
 # define ENDIAN e->endian
-# define NB_BTN 4
+# define NB_BTN 7
 # define MENU e->menu
 # define BTN_SIZE 30
 # define COMMAND e->command
@@ -227,7 +229,8 @@ typedef struct	s_env
 	int			img_height;
 	int			win_width;
 	int			win_height;
-	int			img_gap;
+	int			img_gap_x;
+	int			img_gap_y;
 	t_img		img;
 	int			endian;
 	t_button	menu[NB_BTN];
@@ -249,6 +252,8 @@ void			free_obj(void *content, size_t size);
 
 void			create_wait_image(t_env *e);
 void			init_menu(t_env *e);
+void			change_btn_light(t_env *e);
+void			menu_object(t_env *e);
 
 void			parse_rt(t_env *e, char *file_name);
 void			build_object(t_env *e, char *str);
@@ -266,9 +271,12 @@ int				moves(t_env *e);
 void			change_light_status(void *arg);
 void			change_brillance_status(void *arg);
 void			change_shadow_status(void *arg);
+void			change_global_quality(void *arg);
 void			change_luminosite(t_env *e, int keycode);
+void        	change_luminosite_mouse(t_env *e, int y);
 void			del_focus_object(t_env *e);
 void			undo_del_object(t_env *e);
+void			color_selector(t_env *e, int x, int y);
 void			add_sphere(void *arg);
 void			add_cylinder(void *arg);
 void			add_cone(void *arg);

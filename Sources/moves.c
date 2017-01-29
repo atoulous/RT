@@ -43,6 +43,9 @@ int		moves(t_env *e)
 	(list && e->update_obj_pos[obj->type]) ? e->update_obj_pos[obj->type](obj)\
 		: 0;
 	if (MOVES > 0)
+	{
 		create_img(e);
+		menu_object(e);
+	}
 	return (0);
 }

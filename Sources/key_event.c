@@ -18,6 +18,7 @@ static void	select_next_obj(t_env *e)
 		e->scene->obj_focus = e->scene->obj;
 	else
 		e->scene->obj_focus = e->scene->obj_focus->next;
+	menu_object(e);
 	create_img(e);
 }
 
@@ -27,6 +28,7 @@ static void	ft_esc_key(t_env *e)
 		quit_rt(e);
 	else
 		e->scene->obj_focus = NULL;
+	menu_object(e);
 	create_img(e);
 }
 

@@ -19,6 +19,15 @@ void		change_luminosite(t_env *e, int keycode)
 	create_img(e);
 }
 
+void		change_luminosite_mouse(t_env *e, int y)
+{
+	if (y < 25)
+		LUMI + 0.05 <= 1 ? LUMI += 0.05 : 0;
+	else
+		LUMI - 0.05 >= -0.5 ? LUMI -= 0.05 : 0;
+	create_img(e);
+}
+
 /*
 ** Initialize light ray parameters
 ** This function is called for every pixel of the calculated image
@@ -67,7 +76,9 @@ static void	get_color(t_param *param, t_object *light, t_hsv *hsv)
 	double		angle_light;
 	t_v3d		ref;
 	t_object	*obj_sel;
+	t_env 		*e;
 
+	e = param->e;
 	angle_light = cos_v3d(VW_RAY.norm, PHO_RAY.dir);
 	ref = sub_v3d(PHO_RAY.dir, smul_v3d(VW_RAY.norm, 2.0 *
 				dot_v3d(PHO_RAY.dir, VW_RAY.norm)));

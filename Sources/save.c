@@ -28,23 +28,20 @@ static void	put_obj_param_to_file(t_object *obj, char **obj_a, FILE *fd)
 	put_mat_to_file(obj, fd);
 }
 
-static void	put_objects_to_file(t_list *first, FILE *fd)
+static void	put_objects_to_file(t_env *e, t_list *first, FILE *fd)
 {
 	t_list 		*list;
 	t_object	*obj;
-	char		**obj_a;
 
 	list = first;
-	obj_a = ft_strsplit(OBJ_ALLOWED, ' ');
 	while (list)
 	{
 		obj = (t_object *)list->content;
 		fprintf(fd, "\tobject{\n");
-		put_obj_param_to_file(obj, obj_a, fd);
+		put_obj_param_to_file(obj, e->obj_allowed, fd);
 		fprintf(fd, "\t}\n");
 		list = list->next;
 	}
-	ft_free_tab(obj_a);
 }
 
 /*
@@ -68,8 +65,8 @@ void	save_scene(t_env *e)
 	fprintf(fd, "\n\tcamera{\n\t\torigin{ %f %f %f }\n\t\tdir{ %f %f %f }\n\t}",
             CAM_POS.x, CAM_POS.y, CAM_POS.z, CAM_DIR.x, CAM_DIR.y, CAM_DIR.z );
 	fprintf(fd, "\n\trender{ %d %d }\n", IMG_WIDTH, IMG_HEIGHT);
-	put_objects_to_file(e->scene->light, fd);
-	put_objects_to_file(e->scene->obj, fd);
+	put_objects_to_file(e, e->scene->light, fd);
+	put_objects_to_file(e, e->scene->obj, fd);
 	fprintf(fd, "}");
     ft_putstr("\033[32mScene saved into ");
     ft_putstr(path);
