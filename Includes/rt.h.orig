@@ -5,8 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/28 17:01:47 by atoulous         ###   ########.fr       */
-/*   Updated: 2017/01/30 17:49:02 by mmoullec         ###   ########.fr       */
+/*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2017/01/28 17:01:47 by atoulous         ###   ########.fr       */
+=======
+/*   Updated: 2017/01/30 17:20:48 by mmoullec         ###   ########.fr       */
+>>>>>>> mathieu_moullec
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +40,6 @@
 # define OPT_D (OPT & (1 << 0))
 # define OPT_L (OPT & (1 << 1))
 # define OPT_H (OPT & (1 << 2))
-//# define OPT_S (OPT & (1 << 2))
 # define OPT_1 (OPT & (1 << 5))
 # define OPT_2 (OPT & (1 << 6))
 # define OPT_3 (OPT & (1 << 7))
@@ -342,7 +345,6 @@ int				ft_key_command(int keycode, t_env *e);
 int				ft_mouse_click(int button, int x, int y, t_env *e);
 
 void			init_cl(t_env *e);
-
 void			init_opt(t_env *e, char opt);
 
 /*
@@ -357,8 +359,6 @@ void			update_torus_pos(t_object *obj);
 ** light
 */
 
-//void			get_color(t_env *e, t_param *param, t_object *light, \
-//					t_hsv *hsv);
 void			get_color(int obj_type, t_env *e, t_param *param, \
 		t_object *light, t_hsv *h, double *intensite);
 void			do_shininess(t_param *param, t_object *light, t_hsv *hsv, \

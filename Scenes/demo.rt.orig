@@ -31,31 +31,35 @@ scene {
 		color { 0x00FF00 }
 		mat {
 			ambient { 0.1 }
+<<<<<<< HEAD
+			diffuse { 0.9 }
+			specular { 0.1 }
+			shine { 1 }
+=======
 			diffuse { 0.1 }
 			specular { 1 }
 			shine { 100 }
-			diffuse { 0.9 }
+>>>>>>> mathieu_moullec
 		}
 	}
 	object {
 		name { torus }
 		type { torus }
 		p1 { 0 0 0 }
-		p2 {1 0 1}
-		r1 {3}
-		r2 {7}
 		p2 { 0 0 1 }
 		r1 { 1 }
 		r2 { 2 }
 		color { 0x0000AAFF }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.1 }
-			specular { 0.9 }
-			shine { 2 }
+<<<<<<< HEAD
 			diffuse { 0.9 }
 			specular { 0.1 }
 			shine { 1 }
+=======
+			diffuse { 0.1 }
+			specular { 0.9 }
+			shine { 2 }
 		}
 	}
 	object {
@@ -69,6 +73,7 @@ scene {
 			diffuse { 0.1 }
 			specular { 0.9 }
 			shine { 100 }
+>>>>>>> mathieu_moullec
 		}
 	}
 	object {
@@ -82,9 +87,6 @@ scene {
 			diffuse { 0.3 }
 			specular { 0.2 }
 			shine { 100 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
 		}
 	}
 	object {
@@ -98,9 +100,6 @@ scene {
 			diffuse { 0.3 }
 			specular { 0.2 }
 			shine { 100 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
 		}
 	}
 	object {
@@ -114,45 +113,32 @@ scene {
 			diffuse { 0.3 }
 			specular { 0.2 }
 			shine { 100 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
 		}
 	}
 	object {
 		name { plane gauche }
 		type { plane }
-		origin { -10 0 0 }
 		origin { -20 0 0 }
 		dir { 1 0 0 }
-		color { 0xFFF000 }
 		color { 0xF0F00 }
 		mat {
 			ambient { 0.4 }
 			diffuse { 0.3 }
-			ambient { 0.1 }
-			diffuse { 0.2 }
 			specular { 0.9 }
 			shine { 100 }
-			shine { 10 }
 		}
 	}
 	object {
 		name { plane droit }
 		type { plane }
-		origin { 10 0 0 }
 		origin { 20 0 0 }
 		dir { -1 0 0 }
-		color { 0xFFF000 }
 		color { 0x0FF000 }
 		mat {
 			ambient { 0.1 }
 			diffuse { 0.3 }
 			specular { 0.2 }
 			shine { 100 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
 		}
 	}
 	object {
@@ -167,9 +153,6 @@ scene {
 			diffuse { 0.3 }
 			specular { 0.2 }
 			shine { 100 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
 		}
 	}
 	object {
@@ -184,9 +167,6 @@ scene {
 			diffuse { 0.3 }
 			specular { 0.2 }
 			shine { 100 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
 		}
 	}
 	object {
@@ -201,9 +181,6 @@ scene {
 			diffuse { 0.3 }
 			specular { 0.2 }
 			shine { 100 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
 		}
 	}
 	object {
@@ -216,7 +193,6 @@ scene {
 		mat {
 			ambient { 0.1 }
 			diffuse { 0.3 }
-			diffuse { 0.2 }
 			specular { 0.9 }
 			shine { 10 }
 		}
@@ -234,5 +210,4 @@ scene {
 		color { 0xFFFFFF }
 	}
 }
-
 # end

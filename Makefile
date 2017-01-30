@@ -6,14 +6,21 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/01/26 13:59:47 by atoulous         ###   ########.fr        #
+#    Updated: 2017/01/30 17:46:43 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=gcc
 CFLAGS= -ILibs/libft -ILibs/libmlx -ILibs/libv3d -ILibs/libmy_math -ILibs/libmy_mlx -IIncludes #-Wall -Wextra -Werror
 SRC=	rt.c			\
+		modif_color.c	\
+		modify_color_for_tex.c	\
+		wood.c			\
+		marbre.c		\
+		noise.c			\
+		noise2.c		\
 		menu.c			\
+		modif_normale.c	\
 		color.c			\
 		hsv_rgb.c		\
 		options.c		\
@@ -93,6 +100,7 @@ run: all
 run2: all
 	./rt Scenes/demo.rt 
 
-
+test:
+	gcc test.c Sources/modif_normale.c $(CFLAGS) 
 
 re: fclean all

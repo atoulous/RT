@@ -6,16 +6,20 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 08:30:59 by jubarbie          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2017/01/25 23:26:02 by atoulous         ###   ########.fr       */
+=======
+/*   Updated: 2017/01/30 17:20:44 by mmoullec         ###   ########.fr       */
+>>>>>>> mathieu_moullec
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
 /*
-** Initialize light ray parameters
-** This function is called for every pixel of the calculated image
-*/
+ ** Initialize light ray parameters
+ ** This function is called for every pixel of the calculated image
+ */
 
 static void	init_light_ray(t_param *param, t_object *light)
 {
@@ -29,8 +33,8 @@ static void	init_light_ray(t_param *param, t_object *light)
 }
 
 /*
-** Perform the shininess
-*/
+ ** Perform the shininess
+ */
 
 void		do_shininess(t_param *param, t_object *light, t_hsv *hsv, t_v3d ref)
 {
@@ -51,8 +55,8 @@ void		do_shininess(t_param *param, t_object *light, t_hsv *hsv, t_v3d ref)
 }
 
 /*
-** Perform lights
-*/
+ ** Perform lights
+ */
 
 t_rgb		modify_color(t_v3d inter, double coef, double diffuse);
 t_rgb		color_damier(t_v3d inter);
@@ -76,7 +80,7 @@ void		apply_light(t_env *e, t_param *param)
 	else
 		rgb_to_hsv(VW_RAY.obj->color, &hsv.h, &hsv.s, &hsv.v);
 	vm = hsv.v;
-	if (!OPT_1)
+	if (OPT_1)
 		hsv.v = VW_RAY.obj->mat.diffuse;
 	lst_light = e->scene->light;
 	while (lst_light)
@@ -93,7 +97,7 @@ void		apply_light(t_env *e, t_param *param)
 		get_color(obj->type, e, param, (t_object *)lst_light->content, &hsv, &intensite);
 		lst_light = lst_light->next;
 	}
-	if (!OPT_1)
+	if (OPT_1)
 		COLOR = hsv_to_rgb(hsv.h, hsv.s, LUMI + (hsv.v * vm));
 	else
 	{

@@ -6,7 +6,11 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 21:42:32 by mmoullec          #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2017/01/25 18:47:03 by atoulous         ###   ########.fr       */
+=======
 /*   Updated: 2017/01/30 16:48:38 by mmoullec         ###   ########.fr       */
+>>>>>>> mathieu_moullec
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +61,12 @@ void			get_color_phong(int obj_type, t_param *param, t_object *light, \
 	if (OPT_3)
 	{
 		if (OPT_O && PHO_RAY.obj)
+<<<<<<< HEAD
+			INTENSITE += ((VW_RAY.obj->mat.specular - param->AMBIANCE) \
+					* pow(OMEGA, VW_RAY.obj->mat.shine));
+=======
 			INTENSITE += 0;
+>>>>>>> mathieu_moullec
 		else
 		{
 			if (OMEGA > 0)
@@ -68,8 +77,12 @@ void			get_color_phong(int obj_type, t_param *param, t_object *light, \
 		}
 	}
 	if (OPT_O && PHO_RAY.obj)
+<<<<<<< HEAD
+		hsv->v = hsv->v - param->AMBIANCE;
+=======
 		hsv->v = hsv->v - 0.2;
 	*intensite += INTENSITE;
+>>>>>>> mathieu_moullec
 }
 
 #  undef OPT
@@ -108,9 +121,15 @@ void			get_color(int obj_type, t_env *e, t_param *param, \
 	res.ref = sub_v3d(PHO_RAY.dir, smul_v3d(VW_RAY.norm, 2.0 *
 				dot_v3d(PHO_RAY.dir, VW_RAY.norm)));
 	if (OPT_1)
-		get_color_phong(obj_type, param, light, hsv, &res, intensite);
+<<<<<<< HEAD
+		get_color_phong(param, light, hsv, &res);
 	else
 		get_color_jubarbie(param, light, &res, hsv);
+=======
+		get_color_jubarbie(param, light, &res, hsv);
+	else
+		get_color_phong(obj_type, param, light, hsv, &res, intensite);
+>>>>>>> mathieu_moullec
 }
 
 # undef R

@@ -1,0 +1,29 @@
+scene {
+	name { demo_1 }
+	camera {
+		origin { 0 0 -20 }
+		dir { 0 0 1 }
+	}
+	render { 900 700 }
+	object {
+		name { sphere2 }
+		type { sphere }
+		origin { 0 0 0 }
+		r1 { 2 }
+		color { 0x5B3C11 }
+		mat {
+			ambient { 1 }
+			diffuse { 0.1 }
+			specular { 10 }
+			shine { 100 }
+			density { 1 }
+		}
+		tex { wood }
+	}
+	object {
+		name { spot1 }
+		type { light }
+		origin { 5 5 -10 }
+		color { 0xFFFFFF }
+	}
+}
