@@ -15,11 +15,11 @@ scene {
 		type { sphere }
 		origin { -2 -2 -2 }
 		r1 { 2 }
-		color { 0x0000FF }
+		color { 0x0000AF }
 		mat {
 			ambient { 0.1 }
 			diffuse { 0.1 }
-			specular { 1 }
+			specular { 100 }
 			shine { 100 }
 		}
 	}
@@ -41,29 +41,10 @@ scene {
 		name { torus }
 		type { torus }
 		p1 { 0 0 0 }
-		p2 {1 0 1}
-		r1 {3}
-		r2 {7}
 		p2 { 0 0 1 }
 		r1 { 1 }
 		r2 { 2 }
 		color { 0x0000AAFF }
-		mat {
-			ambient { 0.1 }
-			diffuse { 0.1 }
-			specular { 0.9 }
-			shine { 2 }
-			diffuse { 0.9 }
-			specular { 0.1 }
-			shine { 1 }
-		}
-	}
-	object {
-		name { sphere1 }
-		type { sphere }
-		origin { 0 0 0 }
-		r1 { 2.0 }
-		color { 0xFF0000 }
 		mat {
 			ambient { 0.1 }
 			diffuse { 0.1 }
@@ -143,16 +124,12 @@ scene {
 		origin { 10 0 0 }
 		origin { 20 0 0 }
 		dir { -1 0 0 }
-		color { 0xFFF000 }
-		color { 0x0FF000 }
+		color { 0xFFF001 }
 		mat {
-			ambient { 0.1 }
+			ambient { 0.9 }
 			diffuse { 0.3 }
 			specular { 0.2 }
 			shine { 100 }
-			diffuse { 0.2 }
-			specular { 0.9 }
-			shine { 10 }
 		}
 	}
 	object {
@@ -195,7 +172,7 @@ scene {
 		r1 { 1 }
 		p1 { 0 5 0 }
 		p2 { 0 0 0 }
-		color { 0x00FFFF }
+		color { 0x01FFFF }
 		mat {
 			ambient { 0.1 }
 			diffuse { 0.3 }
@@ -212,11 +189,10 @@ scene {
 		r1 { 1 }
 		p1 { 0 -5 0 }
 		p2 { 0 0 0 }
-		color { 0x00FFFF }
+		color { 0x01FFFF }
 		mat {
 			ambient { 0.1 }
 			diffuse { 0.3 }
-			diffuse { 0.2 }
 			specular { 0.9 }
 			shine { 10 }
 		}
