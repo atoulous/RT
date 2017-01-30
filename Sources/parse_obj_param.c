@@ -31,7 +31,6 @@ void	get_cone_param(char *str, t_object *obj, void *arg)
 	t_env *e;
 
 	e = (t_env *)arg;
-	obj->dir = get_v3d("dir", str, e);
 	obj->p1 = get_v3d("p1", str, e);
 	obj->p2 = get_v3d("p2", str, e);
 	obj->r1 = get_double("r1", str, e);
