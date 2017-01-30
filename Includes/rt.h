@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/30 16:44:56 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/30 17:20:48 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,10 @@
 # define W noise->w
 # define A1 noise->a
 # define B1 noise->b
-# define AA noise->aa
-# define AB noise->ab
-# define BA noise->ba
-# define BB noise->bb
+# define AA1 noise->aa
+# define AB1 noise->ab
+# define BA1 noise->ba
+# define BB1 noise->bb
 # define PER noise->per
 
 typedef	struct	s_pix
@@ -384,7 +384,7 @@ double			noise_to_ret(t_noise *a, double b, double c, double d);
 double			fade(double a);
 double			lerp(double x, double y, double z);
 double			grad(int a, double x, double y, double z);
-t_rgb			modify_color_for_tex(char *tex, t_v3d vec);
+int			modify_color_for_tex(char *tex, t_v3d vec, t_rgb *r);
 t_rgb			wood(t_v3d inter);
 t_rgb			marbre(t_v3d inter);
 

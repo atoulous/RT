@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 21:18:41 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/30 16:40:14 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/30 17:12:34 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ t_rgb		color_damier(t_v3d inter)
 	}
 }
 
-t_rgb		modify_color(t_v3d inter, double coef, double diffuse)
+t_rgb		modify_color(t_v3d inter, double coef)
 {
-	double mult = 100;
-	double output = 0;
+//	double mult = 100;
+//	double output = 0;
 	double noiseCoef = 0;
 	t_rgb r;
 	inter = smul_v3d(inter, coef);

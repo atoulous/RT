@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 08:30:59 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/30 16:40:47 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/30 17:20:44 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,14 @@ void		apply_light(t_env *e, t_param *param)
 	t_hsv		hsv;
 	double		vm;
 	double		intensite;
-	double			cc = 0;
+//	double			cc = 0;
 	intensite = 0;
 	t_rgb rgb;
 
-	if (VW_RAY.obj->pro)
-	{
-		hsv = my_rgb_to_hsv(modify_color_for_tex(VW_RAY.obj->pro, \
-					sub_v3d(VW_RAY.inter, VW_RAY.obj->pos)));
-		//	hsv = my_rgb_to_hsv(color_damier(sub_v3d(VW_RAY.inter, VW_RAY.obj->pos)));
-	}
+	if (VW_RAY.obj->pro && modify_color_for_tex(VW_RAY.obj->pro, \
+					sub_v3d(VW_RAY.inter, VW_RAY.obj->pos), &rgb))
+		hsv = my_rgb_to_hsv(rgb);
+				//	hsv = my_rgb_to_hsv(color_damier(sub_v3d(VW_RAY.inter, VW_RAY.obj->pos)));
 	else
 		rgb_to_hsv(VW_RAY.obj->color, &hsv.h, &hsv.s, &hsv.v);
 	vm = hsv.v;

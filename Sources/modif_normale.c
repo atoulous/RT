@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 16:53:42 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/30 15:07:23 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/30 17:06:07 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		modif_normale(double density, t_v3d *norm, t_v3d inter)
 {
-	t_v3d tmp;
+//	t_v3d tmp;
 	t_v3d tmp2;
 	double alpha;
 	alpha = 1;
