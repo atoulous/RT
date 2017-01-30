@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/26 22:27:13 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/30 16:44:56 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,20 @@
 # define GAP_X e->scene->gap_x
 # define GAP_Y e->scene->gap_y
 
+# define XX noise->x
+# define YY noise->y
+# define ZZ noise->z
+# define U noise->u
+# define V noise->v
+# define W noise->w
+# define A1 noise->a
+# define B1 noise->b
+# define AA noise->aa
+# define AB noise->ab
+# define BA noise->ba
+# define BB noise->bb
+# define PER noise->per
+
 typedef	struct	s_pix
 {
 	int				x;
@@ -180,7 +194,10 @@ typedef struct	s_object
 	double		angle;
 	int			color;
 	t_mat		mat;
+	char		*pro;
 }				t_object;
+
+# include "answers.h"
 
 typedef struct	s_ray
 {
@@ -328,9 +345,8 @@ void			update_torus_pos(t_object *obj);
 ** light
 */
 
-#include "answers.h"
-
-void			get_color(t_env *e, t_param *param, t_object *light, t_hsv *h, double *intensite);
+void			get_color(int obj_type, t_env *e, t_param *param, \
+		t_object *light, t_hsv *h, double *intensite);
 void			do_shininess(t_param *param, t_object *light, t_hsv *hsv, \
 		t_v3d ref);
 void			change_phong_status(void *arg);
@@ -340,6 +356,36 @@ void			change_intensite2(void *arg);
 void			fill_matiere_in_case(t_mat *mat);
 void			modif_normale(double d, t_v3d *norm, t_v3d inter);
 
+/*
+** Perlin
+*/
+typedef struct	s_noise
+{
+	int			per[512];
+	int			x;
+	int			y;
+	int			z;
+	double		u;
+	double		v;
+	double		w;
+	int			a;
+	int			b;
+	int			aa;
+	int			bb;
+	int			ab;
+	int			ba;
+}				t_noise;
 
+double			noise(double x, double y, double z);
+void			fill_xyz(t_noise *noise, double x, double y, double z);
+void			fill_uvw(t_noise *noise, double x, double y, double z);
+void			fill_baba(t_noise *a);
+double			noise_to_ret(t_noise *a, double b, double c, double d);
+double			fade(double a);
+double			lerp(double x, double y, double z);
+double			grad(int a, double x, double y, double z);
+t_rgb			modify_color_for_tex(char *tex, t_v3d vec);
+t_rgb			wood(t_v3d inter);
+t_rgb			marbre(t_v3d inter);
 
 #endif

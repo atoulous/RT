@@ -10,14 +10,15 @@ scene {
 		type { sphere }
 		origin { 0 0 0 }
 		r1 { 2 }
-		color { 0xFF3466 }
+		color { 0x5B3C11 }
 		mat {
-			ambient { 0.1 }
-			diffuse { 0.3 }
-			specular { 0.9 }
-			shine { 10 }
+			ambient { 1 }
+			diffuse { 0.1 }
+			specular { 10 }
+			shine { 100 }
 			density { 1 }
 		}
+		tex { wood }
 	}
 	object {
 		name { spot1 }

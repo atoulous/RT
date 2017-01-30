@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 18:49:11 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/18 16:30:29 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/30 16:09:42 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	print_obj(t_env *e)
 		printf("		Color specular: %lf\n", obj->mat.specular);
 		printf("		Shiness: %lf\n", obj->mat.shine);
 		printf("		Density: %lf\n", obj->mat.density);
+		printf("		tex: %s\n", obj->pro);
 		printf("		----------\n");
 		elem = elem->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 08:30:59 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/27 19:18:55 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/30 16:40:47 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ void	do_shininess(t_param *param, t_object *light, t_hsv *hsv, t_v3d ref)
  ** Perform lights
  */
 
+t_rgb		modify_color(t_v3d inter, double coef, double diffuse);
+t_rgb		color_damier(t_v3d inter);
+
 void		apply_light(t_env *e, t_param *param)
 {
 	t_list		*lst_light;
@@ -69,10 +72,18 @@ void		apply_light(t_env *e, t_param *param)
 	t_hsv		hsv;
 	double		vm;
 	double		intensite;
+	double			cc = 0;
 	intensite = 0;
 	t_rgb rgb;
 
-	rgb_to_hsv(VW_RAY.obj->color, &hsv.h, &hsv.s, &hsv.v);
+	if (VW_RAY.obj->pro)
+	{
+		hsv = my_rgb_to_hsv(modify_color_for_tex(VW_RAY.obj->pro, \
+					sub_v3d(VW_RAY.inter, VW_RAY.obj->pos)));
+		//	hsv = my_rgb_to_hsv(color_damier(sub_v3d(VW_RAY.inter, VW_RAY.obj->pos)));
+	}
+	else
+		rgb_to_hsv(VW_RAY.obj->color, &hsv.h, &hsv.s, &hsv.v);
 	vm = hsv.v;
 	if (OPT_1)
 		hsv.v = VW_RAY.obj->mat.diffuse;

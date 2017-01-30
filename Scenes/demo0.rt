@@ -19,20 +19,20 @@ scene {
 			density { 1 }
 		}
 	}
-	object {
-		name { sphere2 }
-		type { sphere }
-		origin { 1 0 0 }
-		r1 { 1 }
-		color { 0x00FF00 }
-		mat {
-			ambient { 0.1 }
-			diffuse { 0.2 }
-			specular { 0.8 }
-			shine { 100 }
-			density { 1 }
-		}
-	}
+#	object {
+#		name { sphere2 }
+#		type { sphere }
+#		origin { 1 0 0 }
+#		r1 { 1 }
+#		color { 0x00FF00 }
+#		mat {
+#			ambient { 0.1 }
+#			diffuse { 0.2 }
+#			specular { 0.8 }
+#			shine { 100 }
+#			density { 1 }
+#		}
+#	}
 #	object {
 #		name { sphere1 }
 #		type { sphere }

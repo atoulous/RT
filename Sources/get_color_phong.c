@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 21:42:32 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/27 19:18:53 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/30 16:48:38 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,10 @@
 void			do_phong_calcls(t_param *param, t_object *light, \
 		t_hsv *hsv, t_col_res *res)
 {
-	TEST = smul_v3d(VW_RAY.norm, 2  * ANGLE_LIGHT);
+	TEST = smul_v3d(VW_RAY.norm, 2 * ANGLE_LIGHT);
 	R = sub_v3d(TEST, PHO_RAY.dir);
 	OMEGA = cos_v3d(VW_RAY.dir, R);
 }
-
-
-double		modify_color(t_v3d inter, double coef, double diffuse);
-
 
 void			get_color_phong(int obj_type, t_param *param, t_object *light, \
 		t_hsv *hsv, t_col_res *res, double *intensite)
@@ -55,14 +51,7 @@ void			get_color_phong(int obj_type, t_param *param, t_object *light, \
 	if (OPT_2)
 	{
 		if (ANGLE_LIGHT < 0)
-		{
-		//	if (obj_type == 1)
-		//	{
-		//		INTENSITE += modify_color(VW_RAY.inter, 0.1, VW_RAY.obj->mat.diffuse) * (ANGLE_LIGHT * -1);
-		//	}
-		//	else
-				INTENSITE += (ANGLE_LIGHT * -1 * VW_RAY.obj->mat.diffuse);
-		}
+			INTENSITE += (ANGLE_LIGHT * -1 * VW_RAY.obj->mat.diffuse);
 	}
 	do_phong_calcls(param, light, hsv, res);
 	if (OPT_3)
@@ -73,9 +62,8 @@ void			get_color_phong(int obj_type, t_param *param, t_object *light, \
 		{
 			if (OMEGA > 0)
 			{
-				double test = (VW_RAY.obj->mat.specular * pow(OMEGA, \
+				INTENSITE += (VW_RAY.obj->mat.specular * pow(OMEGA, \
 							VW_RAY.obj->mat.shine));
-				INTENSITE += test;
 			}
 		}
 	}
@@ -110,7 +98,8 @@ void			get_color_jubarbie(t_param *param, t_object *light, \
 	}
 }
 
-void			get_color(int obj_type, t_env *e, t_param *param, t_object *light, t_hsv *hsv, double *intensite)
+void			get_color(int obj_type, t_env *e, t_param *param, \
+		t_object *light, t_hsv *hsv, double *intensite)
 {
 	t_col_res res;
 

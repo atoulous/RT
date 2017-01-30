@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb_reg.c                                          :+:      :+:    :+:   */
+/*   modify_color_for_tex.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/17 14:16:14 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/27 17:26:04 by mmoullec         ###   ########.fr       */
+/*   Created: 2017/01/30 16:12:58 by mmoullec          #+#    #+#             */
+/*   Updated: 2017/01/30 16:40:49 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "my_mlx.h"
+#include "rt.h"
 
-void		rgb_reg(t_rgb *r)
+t_rgb		modify_color_for_tex(char *tex, t_v3d vec)
 {
-	if (r->r > 255)
-		r->r = 255;
-	if (r->g > 255)
-		r->g = 255;
-	if (r->b > 255)
-		r->b = 255;
+	if (!ft_strcmp(tex, "wood"))
+		return (wood(vec));
+	if (!ft_strcmp(tex, "marbre"))
+		return (marbre(vec));
+	else 
+		return(rgb_create(55, 55, 55));
 }
