@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 08:30:59 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/30 19:47:19 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/30 20:47:46 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		apply_light(t_env *e, t_param *param)
 		{
 			obj = (t_object *)lst_obj->content;
 			if (obj != VW_RAY.obj)
-				(*(e->obj_fct_obj[obj->type]))(obj, &PHO_RAY, &SOL);
+				(*(e->obj_fct_obj[obj->type]))(e, obj, &PHO_RAY, &SOL);
 			lst_obj = lst_obj->next;
 		}
 		get_color(obj->type, e, param, (t_object *)lst_light->content, &hsv, &intensite);

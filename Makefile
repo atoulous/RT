@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/01/30 17:46:43 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/01/30 20:26:47 by atoulous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ SRC=	rt.c			\
 		fill_matiere_in_case.c	\
 		light_events.c	\
 		others_events.c	\
+		others_events2.c	\
 
 OBJDIR = Objects
 VPATH = Sources

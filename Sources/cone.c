@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 16:58:17 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/26 21:09:56 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/30 20:42:58 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,14 @@ static int	find_solutions(t_object *obj, t_ray *ray, t_sol *sol)
 	return (0);
 }
 
-void		cone(t_object *obj, t_ray *ray, t_sol *sol)
+void		cone(t_env *e, t_object *obj, t_ray *ray, t_sol *sol)
 {
 	t_v3d	dp;
 	t_v3d	v_tmp;
 	double	sina2;
 	double	cosa2;
 
+	e = NULL;
 	dp = sub_v3d(ray->pos, O_POS);
 	sina2 = pow(sin(O_ANG), 2.0);
 	cosa2 = pow(cos(O_ANG), 2.0);

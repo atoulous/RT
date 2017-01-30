@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 16:58:17 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/26 16:31:54 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/30 20:42:22 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void		find_solutions(t_object *obj, t_ray *ray, t_sol *sol)
 	}
 }
 
-void			cylinder(t_object *obj, t_ray *ray, t_sol *sol)
+void			cylinder(t_env *e, t_object *obj, t_ray *ray, t_sol *sol)
 {
 	t_v3d	dp;
 	t_v3d	tmp;
