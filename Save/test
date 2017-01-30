@@ -1,0 +1,166 @@
+scene {
+	name{demo_1}
+	camera{
+		origin{ 13.000000 4.000000 -15.000000 }
+		dir{ -0.680414 -0.272166 0.680414 				}
+	}
+	render{ 900 700 }
+	object{
+		name{spot2}
+		type{light}
+		origin{-5.000000 0.000000 -10.000000}
+		color{0x00FFFFFF}
+		mat{
+			diffuse{0.500000}
+			shine{0.000000}
+		}
+	}
+	object{
+		name{spot1}
+		type{light}
+		origin{5.000000 0.000000 -10.000000}
+		color{0x00FFFFFF}
+		mat{
+			diffuse{0.500000}
+			shine{0.000000}
+		}
+	}
+	object{
+		name{cone centre bas}
+		type{cone}
+		p1{0.000000 -5.000000 0.000000}
+		p2{0.000000 0.000000 0.000000}
+		r1{1.000000}
+		r2{0.000000}
+		color{0x0000FFFF}
+		mat{
+			diffuse{0.200000}
+			shine{0.500000}
+		}
+	}
+	object{
+		name{cone centre haut}
+		type{cone}
+		p1{0.000000 5.000000 0.000000}
+		p2{0.000000 0.000000 0.000000}
+		r1{1.000000}
+		r2{0.000000}
+		color{0x0000FFFF}
+		mat{
+			diffuse{0.200000}
+			shine{0.500000}
+		}
+	}
+	object{
+		name{cylinder gauche}
+		type{cylinder}
+		p1{-6.000000 -5.000000 0.000000}
+		p2{-6.000000 5.000000 0.000000}
+		r1{1.000000}
+		color{0x0000FFFF}
+		mat{
+			diffuse{0.200000}
+			shine{0.500000}
+		}
+	}
+	object{
+		name{cylinder droit}
+		type{cylinder}
+		p1{6.000000 5.000000 0.000000}
+		p2{6.000000 -5.000000 0.000000}
+		r1{1.000000}
+		color{0x0000FFFF}
+		mat{
+			diffuse{0.200000}
+			shine{0.500000}
+		}
+	}
+	object{
+		name{plane droit}
+		type{plane}
+		origin{10.000000 0.000000 0.000000}
+		dir{-1.000000 0.000000 0.000000}
+		color{0x00FFF000}
+		mat{
+			diffuse{0.300000}
+			shine{0.500000}
+		}
+	}
+	object{
+		name{plane gauche}
+		type{plane}
+		origin{-10.000000 0.000000 0.000000}
+		dir{1.000000 0.000000 0.000000}
+		color{0x00FFF000}
+		mat{
+			diffuse{0.300000}
+			shine{0.500000}
+		}
+	}
+	object{
+		name{plane plafond}
+		type{plane}
+		origin{0.000000 -5.000000 0.000000}
+		dir{0.000000 1.000000 0.000000}
+		color{0x00FF0F00}
+		mat{
+			diffuse{0.300000}
+			shine{0.500000}
+		}
+	}
+	object{
+		name{plane sol}
+		type{plane}
+		origin{0.000000 5.000000 0.000000}
+		dir{0.000000 -1.000000 0.000000}
+		color{0x00FF0F00}
+		mat{
+			diffuse{0.300000}
+			shine{0.500000}
+		}
+	}
+	object{
+		name{plane de fond}
+		type{plane}
+		origin{0.000000 0.000000 15.000000}
+		dir{0.000000 0.000000 -1.000000}
+		color{0x000FFF00}
+		mat{
+			diffuse{0.300000}
+			shine{0.500000}
+		}
+	}
+	object{
+		name{sphere1}
+		type{sphere}
+		origin{0.000000 0.000000 0.000000}
+		r1{2.000000}
+		color{0x00FF0000}
+		mat{
+			diffuse{0.100000}
+			shine{0.500000}
+		}
+	}
+	object{
+		name{sphere2}
+		type{sphere}
+		origin{2.000000 2.000000 2.000000}
+		r1{2.000000}
+		color{0x0000FF00}
+		mat{
+			diffuse{0.200000}
+			shine{0.500000}
+		}
+	}
+	object{
+		name{sphere3}
+		type{sphere}
+		origin{-2.000000 -2.000000 -2.000000}
+		r1{2.000000}
+		color{0x000000FF}
+		mat{
+			diffuse{0.200000}
+			shine{0.500000}
+		}
+	}
+}

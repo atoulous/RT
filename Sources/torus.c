@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 19:23:03 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/26 16:32:27 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/30 19:16:30 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,14 @@ static void		torus_2(t_5pow *zz, t_sol_3 q)
 	zz->q0 = BD * BD - 4 * CARRE_O_RAD * BC;
 }
 
+void		torus_for_the_norm(t_v3d *axis, t_v3d *cent_cam, t_ray *ray,\
+		t_object *obj)
+{
+	*axis = unit_v3d(obj->p2);
+	*cent_cam = sub_v3d(ray->pos, obj->p1);
+}
+
+
 void			torus(t_object *obj, t_ray *ray, t_sol *sol)
 {
 	t_sol_3		q;
@@ -76,9 +84,9 @@ void			torus(t_object *obj, t_ray *ray, t_sol *sol)
 	int			i;
 
 	i = -1;
-	axis = unit_v3d(obj->p2);
-	cent_cam = sub_v3d(ray->pos, obj->p1);
+	torus_for_the_norm(&axis, &cent_cam, ray, obj);
 	CENT_CAM_DOT = dot_v3d(ray->dir, cent_cam);
+	q.alpha.det = CENT_CAM_DOT > 0.5 ? 0 : 1;
 	CENT_CAM_DOT_SQUARED = dot_v3d(cent_cam, cent_cam);
 	CARRE_I_RAD = carre(obj->r1);
 	CARRE_O_RAD = carre(obj->r2);
@@ -92,6 +100,6 @@ void			torus(t_object *obj, t_ray *ray, t_sol *sol)
 	torus_2(&zz, q);
 	while (++i < 4)
 		RET[i] = -1.0;
-	if (quartic_solver(RET, zz))
+	if (q.alpha.det && quartic_solver(RET, zz))
 		return (torus_sol(ray, obj, sol, check_ret(RET)));
 }

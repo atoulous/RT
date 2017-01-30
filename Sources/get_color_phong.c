@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 21:42:32 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/30 16:48:38 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/30 19:27:48 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void			get_color_phong(int obj_type, t_param *param, t_object *light, \
 	if (OPT_3)
 	{
 		if (OPT_O && PHO_RAY.obj)
-			INTENSITE += 0;
+			INTENSITE += ((VW_RAY.obj->mat.specular - param->AMBIANCE) \
+					* pow(OMEGA, VW_RAY.obj->mat.shine));
 		else
 		{
 			if (OMEGA > 0)
@@ -68,7 +69,7 @@ void			get_color_phong(int obj_type, t_param *param, t_object *light, \
 		}
 	}
 	if (OPT_O && PHO_RAY.obj)
-		hsv->v = hsv->v - 0.2;
+		hsv->v = hsv->v - param->AMBIANCE;
 	*intensite += INTENSITE;
 }
 
