@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/01/09 14:29:23 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/01/30 09:55:08 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC=	rt.c				\
 		error.c			\
 		key_event.c		\
 		mouse_event.c		\
+		mouse_event2.c		\
 		render_options.c	\
 		env.c			\
 		debug.c			\

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 14:28:44 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/30 10:00:01 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -311,11 +311,14 @@ int				ft_key_press(int keycode, t_env *e);
 int				ft_key_release(int keycode, t_env *e);
 int				ft_key_command(int keycode, t_env *e);
 int				ft_mouse_click(int button, int x, int y, t_env *e);
+void				ft_mouse_click2(int x, int y, t_env *e);
+void				ft_mouse_click3(int x, t_env *e);
 
 void			save_scene(t_env *e);
 
 void			init_cl(t_env *e);
 
 void			init_opt(t_env *e, char opt);
+
 
 #endif
