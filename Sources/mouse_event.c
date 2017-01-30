@@ -81,6 +81,8 @@ int			ft_mouse_click(int button, int x, int y, t_env *e)
 			add_cylinder(e);
 		else if (x < WIN_WIDTH / 2 + 160)
 			add_cone(e);
+		else
+			add_torus(e);
 	}
 	else if (button == 1 && x > WIN_WIDTH - 231 && x < WIN_WIDTH - 9 && y > 270
 					&& y < 442)

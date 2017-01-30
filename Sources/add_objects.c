@@ -98,3 +98,25 @@ void	add_cone(void *arg)
 	e->scene->obj_focus = elem;
 	create_img(e);
 }
+
+void	add_torus(void *arg)
+{
+	t_env		*e;
+	t_object	obj;
+	t_list		*elem;
+
+	e = (t_env *)arg;
+	obj.name = ft_strdup("torus");
+	obj.type = 6;
+	obj.p1 = add_v3d(CAM_POS, smul_v3d(CAM_DIR, 10.0));
+	obj.p2 = add_v3d(obj.p1, smul_v3d(CAM_UP, 1.0));
+	obj.r1 = 0.5;
+	obj.r2 = 2;
+	obj.color = 0x0000FF00;
+	obj.mat.shine = 0.2;
+	obj.mat.diffuse = 0.2;
+	elem = ft_lstnew(&obj, sizeof(obj));
+	ft_lstadd(&(e->scene->obj), elem);
+	e->scene->obj_focus = elem;
+	create_img(e);
+}

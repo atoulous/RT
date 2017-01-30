@@ -67,13 +67,13 @@ char		*find_param(char *small, char *big)
 ** For exemple r1 { 2.403 }
 */
 
-double		get_double(char *name, char *str)
+double		get_double(char *name, char *str, t_env *e)
 {
 	char	*tmp;
 	double	nb;
 
 	if (!(tmp = get_in_acc(name, str)))
-		return (0);
+		error_perso(e, name);
 	else
 	{
 		nb = ft_atof(tmp);
@@ -88,7 +88,7 @@ double		get_double(char *name, char *str)
 ** For exemple cam_pos { 2.4 200 10.5 }
 */
 
-t_v3d		get_v3d(char *name, char *str)
+t_v3d		get_v3d(char *name, char *str, t_env *e)
 {
 	char	*tmp;
 	char	**v;
@@ -96,7 +96,7 @@ t_v3d		get_v3d(char *name, char *str)
 	t_v3d	ret;
 
 	if (!(tmp = get_in_acc(name, str)))
-		return (v3d(0, 0, 1));
+		error_perso(e, name);
 	else
 	{
 		v = ft_strsplit(tmp, ' ');
@@ -110,4 +110,5 @@ t_v3d		get_v3d(char *name, char *str)
 		ft_free_tab(v);
 		return (ret);
 	}
+	return (v3d(0, 0, 0));
 }

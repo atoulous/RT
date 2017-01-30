@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC=gcc
-CFLAGS= -ILibs/libft -ILibs/libmlx -ILibs/libv3d -IIncludes -Wall -Wextra -Werror
+CFLAGS= -ILibs/libft -ILibs/libmlx -ILibs/libv3d -ILibs/libmy_math -IIncludes -Wall -Wextra -Werror
 SRC=	rt.c				\
 		menu.c			\
 		color.c			\
@@ -26,6 +26,7 @@ SRC=	rt.c				\
 		parse.c			\
 		parse_param.c		\
 		parse_obj.c		\
+		parse_obj_param.c			\
 		parse_scene.c		\
 		raytracer.c		\
 		light.c			\
@@ -35,9 +36,13 @@ SRC=	rt.c				\
 		cylinder2.c		\
 		cone.c			\
 		cone2.c			\
+		torus.c			\
+		torus2.c			\
+		torus_normal.c			\
 		caps.c			\
 		objects.c		\
 		add_objects.c		\
+		fill_matiere_in_case.c		\
 		init_opt.c		\
 		save.c			\
 		moves.c
@@ -50,8 +55,9 @@ NAME = rt
 $(NAME): $(OBJS)
 	@make -C Libs/libft
 	@make -C Libs/libv3d
+	@make -C Libs/libmy_math
 	@make -C Libs/libmlx
-	@$(CC) -LLibs/libft/ -lft -LLibs/libmlx/ -lmlx -LLibs/libv3d/ -lv3d -framework OpenGL -framework AppKit -framework Opencl -o $@ $^
+	@$(CC) -LLibs/libft/ -lft -LLibs/libmlx/ -lmlx -LLibs/libv3d/ -lv3d -LLibs/libmy_math -lmy_math -framework OpenGL -framework AppKit -framework Opencl -o $@ $^
 	@echo "\033[32m[OK]\033[0m rt created"
 
 all: $(NAME)

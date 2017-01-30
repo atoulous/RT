@@ -23,6 +23,7 @@
 # include "mlx.h"
 # include "libft.h"
 # include "libv3d.h"
+# include "my_math.h"
 
 # define PI 3.141592
 # define NB_TH 50
@@ -47,8 +48,8 @@
 # define M_UP (1 << 4)
 # define M_DOWN (1 << 5)
 
-# define OBJ_ALLOWED "light sphere plane cube cone cylinder"
-# define NB_OBJ_FCT 6
+# define OBJ_ALLOWED "light sphere plane cube cone cylinder torus"
+# define NB_OBJ_FCT 7
 
 # define MLX e->mlx
 # define WIN e->win
@@ -124,6 +125,13 @@ typedef struct	s_sol
 	double	det;
 }				t_sol;
 
+typedef struct	s_sol_3
+{
+	t_sol		alpha;
+	t_sol		beta;
+	t_sol		delta;
+}				t_sol_3;
+
 typedef struct	s_img
 {
 	void	*img;
@@ -156,8 +164,11 @@ typedef struct	s_texture
 typedef struct	s_mat
 {
 	char		*name;
+	double		ambient;
 	double		diffuse;
+	double		specular;
 	double		shine;
+	double		density;
 }				t_mat;
 
 typedef struct	s_object
@@ -173,6 +184,7 @@ typedef struct	s_object
 	double		angle;
 	int			color;
 	t_mat		mat;
+	char		*pro;
 }				t_object;
 
 typedef struct	s_ray
@@ -238,9 +250,10 @@ typedef struct	s_env
 	char		command;
 	t_scene		*scene;
 	char		**obj_allowed;
-	void		(*obj_fct_obj[NB_OBJ_FCT])(t_object *, t_ray *, t_sol *sol);
+	void		(*obj_fct_obj[NB_OBJ_FCT])(t_object *, t_ray *, t_sol *);
 	void		(*calc_obj_param[NB_OBJ_FCT])(t_object *);
 	void		(*update_obj_pos[NB_OBJ_FCT])(t_object *);
+	void		(*get_obj_param[NB_OBJ_FCT])(char *, t_object *, void *);
 	t_param		*param[NB_TH];
 }				t_env;
 
@@ -258,12 +271,13 @@ void			menu_object(t_env *e);
 void			parse_rt(t_env *e, char *file_name);
 void			build_object(t_env *e, char *str);
 char			*get_in_acc(char *str, char *acc);
-t_v3d			get_v3d(char *str, char *name);
-double			get_double(char *str, char *name);
+t_v3d			get_v3d(char *str, char *name, t_env *e);
+double			get_double(char *str, char *name, t_env *e);
 int				size_to_end_acc(char *str);
 void			check_acc(t_env *e, char *str);
 char			*go_to_next_acc(char *str, int n);
 char			*find_param(char *small, char *big);
+void			init_obj_param(t_env *e);
 
 int				create_img(t_env *e);
 void			img_put_pixel(t_img *img, int x, int y, unsigned int color);
@@ -281,17 +295,25 @@ void			add_sphere(void *arg);
 void			add_cylinder(void *arg);
 void			add_cone(void *arg);
 void			add_plane(void *arg);
+void			add_torus(void *arg);
 
 void			*raytracer(void *arg);
 void			apply_light(t_env *e, t_param *param);
 void			sphere(t_object *obj, t_ray *ray, t_sol *sol);
 void			plane(t_object *obj, t_ray *ray, t_sol *sol);
 void			cylinder(t_object *obj, t_ray *ray, t_sol *sol);
+void			torus(t_object *obj, t_ray *ray, t_sol *sol);
 void			calc_cylinder_param(t_object *obj);
 void			update_cylinder_pos(t_object *obj);
 void			cone(t_object *obj, t_ray *ray, t_sol *sol);
 void			calc_cone_param(t_object *obj);
 void			update_cone_pos(t_object *obj);
+void    		get_light_param(char *str, t_object *obj, void *e);
+void    		get_plane_param(char *str, t_object *obj, void *e);
+void    		get_sphere_param(char *str, t_object *obj, void *e);
+void    		get_cylinder_param(char *str, t_object *obj, void *e);
+void    		get_cone_param(char *str, t_object *obj, void *e);
+void    		get_torus_param(char *str, t_object *obj, void *e);
 double			caps_up(t_object *obj, t_ray *ray);
 double			caps_bottom(t_object *obj, t_ray *ray);
 double			caps(t_ray *ray, double r, t_v3d n, t_v3d p);
@@ -317,5 +339,15 @@ void			save_scene(t_env *e);
 void			init_cl(t_env *e);
 
 void			init_opt(t_env *e, char opt);
+
+/*
+ * **ajoutees pour torus
+ * */
+void			torus_error(t_object *obj, t_env *e);
+void			torus(t_object *obj, t_ray *ray, t_sol *sol);
+t_v3d			get_torus_normal(t_object *o, t_v3d cam, t_v3d ray, double ret);
+void			update_torus_pos(t_object *obj);
+
+void			fill_matiere_in_case(t_mat *mat);
 
 #endif

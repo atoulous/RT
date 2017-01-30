@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,42 +7,48 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 14:40:07 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/30 16:52:09 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
 /*
-** Parse the matiere of the object
-** If no matiere specified in file, set it to defined values
-*/
+ * ** Parse the matiere of the object
+ * ** If no matiere specified in file, set it to defined values
+ * */
 
-static void		add_mat(t_object *obj, char *str)
+static void		add_mat(t_object *obj, char *str, t_env *e)
 {
 	char	*tmp;
 
-	obj->mat.shine = 0;
-	obj->mat.diffuse = 0.5;
+	fill_matiere_in_case(&obj->mat);
 	if ((tmp = get_in_acc("mat", str)))
 	{
-		if (find_param("shine", tmp))
-			obj->mat.shine = get_double("shine", tmp);
+		if (find_param("ambient", tmp))
+			obj->mat.ambient = get_double("ambient", tmp, e);
+		if (find_param("specular", tmp))
+			obj->mat.specular = get_double("specular", tmp, e);
 		if (find_param("diffuse", tmp))
-			obj->mat.diffuse = get_double("diffuse", tmp);
+			obj->mat.diffuse = get_double("diffuse", tmp, e);
+		if (find_param("shine", tmp))
+			obj->mat.shine = get_double("shine", tmp, e);
+		if (find_param("density", tmp))
+			obj->mat.density = get_double("density", tmp, e);
 		free(tmp);
 	}
 }
 
 /*
-** Parse the object type
-** 0 -> light
-** 1 -> sphere
-** 2 -> plane
-** 3 -> cube
-** 4 -> cone
-** 5 -> cylinder
-*/
+ * ** Parse the object type
+ * ** 0 -> light
+ * ** 1 -> sphere
+ * ** 2 -> plane
+ * ** 3 -> cube
+ * ** 4 -> cone
+ * ** 5 -> cylinder
+ * ** 6 -> torus
+ * */
 
 static int		get_obj_type(t_env *e, char *str)
 {
@@ -62,9 +69,9 @@ static int		get_obj_type(t_env *e, char *str)
 }
 
 /*
-** Parse the object color and return it as an int
-** Return -1 if no color found
-*/
+ * ** Parse the object color and return it as an int
+ * ** Return -1 if no color found
+ * */
 
 static int		get_obj_color(char *str)
 {
@@ -82,9 +89,23 @@ static int		get_obj_color(char *str)
 }
 
 /*
-** Parse and build the object
-** Quit program with adequate message if error encountered
-*/
+ * ** Parse and build the object
+ * ** Quit program with adequate message if error encountered
+ * */
+
+void			init_obj_param(t_env *e)
+{
+	int	i;
+
+	i = -1;
+	e->get_obj_param[0] = &get_light_param;
+	e->get_obj_param[1] = &get_sphere_param;
+	e->get_obj_param[2] = &get_plane_param;
+	e->get_obj_param[3] = NULL;
+	e->get_obj_param[4] = &get_cone_param;
+	e->get_obj_param[5] = &get_cylinder_param;
+	e->get_obj_param[6] = &get_torus_param;
+}
 
 void			build_object(t_env *e, char *str)
 {
@@ -95,21 +116,15 @@ void			build_object(t_env *e, char *str)
 		error_perso(e, "No name found in object");
 	if ((obj.type = get_obj_type(e, str)) == -1)
 		error_perso(e, "No type found in object");
-	obj.pos = get_v3d("origin", str);
-	obj.dir = get_v3d("dir", str);
-	obj.p1 = get_v3d("p1", str);
-	obj.p2 = get_v3d("p2", str);
-	obj.r1 = get_double("r1", str);
-	obj.r2 = get_double("r2", str);
-	obj.angle = get_double("angle", str);
-	if (e->calc_obj_param[obj.type])
-		e->calc_obj_param[obj.type](&obj);
+	e->get_obj_param[obj.type](str, &obj, (void *)e);
+	e->calc_obj_param[obj.type] ? e->calc_obj_param[obj.type](&obj) : 0;
 	if ((obj.color = get_obj_color(str)) == -1)
 		error_perso(e, "No color found in object");
-	add_mat(&obj, str);
+	add_mat(&obj, str, e);
 	elem = ft_lstnew(&obj, sizeof(obj));
 	if (obj.type == 0)
 		ft_lstadd(&(e->scene->light), elem);
 	else
 		ft_lstadd(&(e->scene->obj), elem);
+	free(obj.name);
 }

@@ -13,14 +13,14 @@
 #include "rt.h"
 
 /*
-** Create the objects allowed array specified in the header file
-** Create the functions array for every object
-** There is 3 different arrays:
-** 	- obj_fct_obj: functions to perform the raytracing
-**	- calc_obj_param: functions to compute the object parameters
-**	- update_obj_pos: function to update objects position, when objects are
-**	moving for exemple
-*/
+ ** Create the objects allowed array specified in the header file
+ ** Create the functions array for every object
+ ** There is 3 different arrays:
+ ** 	- obj_fct_obj: functions to perform the raytracing
+ **	- calc_obj_param: functions to compute the object parameters
+ **	- update_obj_pos: function to update objects position, when objects are
+ **	moving for exemple
+ */
 
 static void	make_fct_tab(t_env *e)
 {
@@ -43,12 +43,15 @@ static void	make_fct_tab(t_env *e)
 	e->obj_fct_obj[5] = &cylinder;
 	e->calc_obj_param[5] = &calc_cylinder_param;
 	e->update_obj_pos[5] = &update_cylinder_pos;
+	e->obj_fct_obj[6] = &torus;
+	e->calc_obj_param[6] = NULL;
+	e->update_obj_pos[6] = &update_torus_pos;
 }
 
 /*
-** Parse the image resolution
-** If image resolution is negative or 0, set it to 800 x 700 px
-*/
+ ** Parse the image resolution
+ ** If image resolution is negative or 0, set it to 800 x 700 px
+ */
 
 static void	get_resolution(t_env *e, char *str)
 {
@@ -68,8 +71,8 @@ static void	get_resolution(t_env *e, char *str)
 }
 
 /*
-** Parse the string given to build the scene
-*/
+ ** Parse the string given to build the scene
+ */
 
 static void	build_scene(t_env *e, char *str)
 {
@@ -88,8 +91,8 @@ static void	build_scene(t_env *e, char *str)
 		error_perso(e, "No camera specified in scene");
 	else
 	{
-		CAM_POS = get_v3d("origin", tmp);
-		CAM_DIR = get_v3d("dir", tmp);
+		CAM_POS = get_v3d("origin", tmp, e);
+		CAM_DIR = get_v3d("dir", tmp, e);
 		free(tmp);
 	}
 	while ((tmp = get_in_acc("object", str)))
@@ -101,9 +104,9 @@ static void	build_scene(t_env *e, char *str)
 }
 
 /*
-** Open the file, read it and save every lines that doesn't start with '#' in a
-** string that will be used for the parcing
-*/
+ ** Open the file, read it and save every lines that doesn't start with '#' in a
+ ** string that will be used for the parcing
+ */
 
 void		parse_rt(t_env *e, char *file_name)
 {
@@ -115,6 +118,7 @@ void		parse_rt(t_env *e, char *file_name)
 	if ((fd = open(file_name, O_RDONLY)) == -1)
 		error_perso(e, "Failed opening file");
 	file = ft_strnew(0);
+	init_obj_param(e);
 	while (get_next_line(fd, &l))
 	{
 		i = 0;

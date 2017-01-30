@@ -6,6 +6,7 @@ void	change_light_status(void *arg)
 
 	e = (t_env *)arg;
 	(OPT_L) ? (OPT ^= (1 << 1)) : (OPT |= (1 << 1));
+
 	create_img(e);
 }
 
