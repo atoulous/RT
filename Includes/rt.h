@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 17:01:47 by atoulous         ###   ########.fr       */
-/*   Updated: 2017/01/30 17:49:02 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/30 20:46:12 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 # define OPT_D (OPT & (1 << 0))
 # define OPT_L (OPT & (1 << 1))
 # define OPT_H (OPT & (1 << 2))
-//# define OPT_S (OPT & (1 << 2))
 # define OPT_1 (OPT & (1 << 5))
 # define OPT_2 (OPT & (1 << 6))
 # define OPT_3 (OPT & (1 << 7))
@@ -72,6 +71,7 @@
 # define MENU e->menu
 # define BTN_SIZE 30
 # define COMMAND e->command
+# define BACK_PLANE e->back_plane
 
 # define ENV param->e
 # define TH param->index
@@ -248,7 +248,6 @@ typedef struct	s_param
 
 typedef struct	s_env
 {
-	char		opt;
 	void		*mlx;
 	void		*win;
 	double		luminosite;
@@ -257,17 +256,19 @@ typedef struct	s_env
 	double		alpha_rot;
 	int			img_width;
 	int			img_height;
-	t_img		img;
 	int			endian;
-	t_button	menu[NB_BTN];
+	int			back_plane;
+	char		opt;
 	char		moves;
 	char		rotations;
 	char		command;
+	t_img		img;
+	t_button	menu[NB_BTN];
 	t_scene		*scene;
 	t_v3d		parse_cam_pos;
 	t_v3d		parse_cam_dir;
 	char		**obj_allowed;
-	void		(*obj_fct_obj[NB_OBJ_FCT])(t_object *, t_ray *, t_sol *sol);
+	void		(*obj_fct_obj[NB_OBJ_FCT])(struct s_env *, t_object *, t_ray *, t_sol *sol);
 	void		(*calc_obj_param[NB_OBJ_FCT])(t_object *);
 	void		(*update_obj_pos[NB_OBJ_FCT])(t_object *);
 	t_param		*param[NB_TH];
@@ -307,17 +308,18 @@ void			add_sphere(void *arg);
 void			add_cylinder(void *arg);
 void			add_cone(void *arg);
 void			add_plane(void *arg);
-void			reset_cam(t_env *e);
 void			screenshot(void *arg);
+void			reset_cam(void *arg);
+void			back_plane(void *arg);
 
 void			*raytracer(void *arg);
 void			apply_light(t_env *e, t_param *param);
-void			sphere(t_object *obj, t_ray *ray, t_sol *sol);
-void			plane(t_object *obj, t_ray *ray, t_sol *sol);
-void			cylinder(t_object *obj, t_ray *ray, t_sol *sol);
+void			sphere(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
+void			plane(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
+void			cylinder(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
 void			calc_cylinder_param(t_object *obj);
 void			update_cylinder_pos(t_object *obj);
-void			cone(t_object *obj, t_ray *ray, t_sol *sol);
+void			cone(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
 void			calc_cone_param(t_object *obj);
 void			update_cone_pos(t_object *obj);
 double			caps_up(t_object *obj, t_ray *ray);
@@ -349,7 +351,7 @@ void			init_opt(t_env *e, char opt);
 **ajoutees pour torus
 */
 void			torus_error(t_object *obj, t_env *e);
-void			torus(t_object *obj, t_ray *ray, t_sol *sol);
+void			torus(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
 t_v3d			get_torus_normal(t_object *o, t_v3d cam, t_v3d ray, double ret);
 void			update_torus_pos(t_object *obj);
 

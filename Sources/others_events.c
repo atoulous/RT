@@ -6,7 +6,7 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 22:58:34 by atoulous          #+#    #+#             */
-/*   Updated: 2017/01/28 17:10:20 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/30 20:21:39 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,11 @@ void		change_luminosite(t_env *e, int keycode)
 	create_img(e);
 }
 
-void		reset_cam(t_env *e)
+void		reset_cam(void	*arg)
 {
+	t_env	*e;
+
+	e = (t_env *)arg;
 	CAM_POS = e->parse_cam_pos;
 	CAM_DIR = e->parse_cam_dir;
 	ft_putendl("Camera reinitialized");

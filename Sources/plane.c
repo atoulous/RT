@@ -6,18 +6,18 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 19:55:56 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/30 15:02:38 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/30 20:50:33 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	plane(t_object *obj, t_ray *ray, t_sol *sol)
+void	plane(t_env *e, t_object *obj, t_ray *ray, t_sol *sol)
 {
 	t_v3d	tmp;
 
 	DET = dot_v3d(O_DIR, ray->dir);
-	if (DET < 0.0000001)
+	if ((DET < 0.0000001 && BACK_PLANE) || (DET && !BACK_PLANE))
 	{
 		tmp = sub_v3d(O_POS, ray->pos);
 		T[0] = dot_v3d(tmp, O_DIR) / DET;
