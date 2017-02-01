@@ -1,5 +1,5 @@
 scene {
-	name { demo_1 }
+	name { mode.rt }
 	camera {
 		origin { 0 0 -20 }
 		dir { 0 0 1 }
@@ -23,7 +23,9 @@ scene {
 	object {
 		name { spot1 }
 		type { light }
-		origin { 5 5 -10 }
+		origin { 0 0 -10 }
+		dir { 0 0 1 }
+		angle { 10 }
 		color { 0xFFFFFF }
 	}
 }
