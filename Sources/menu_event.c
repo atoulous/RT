@@ -2,7 +2,9 @@
 
 void	object_menu_event(t_env *e, int y, t_object *obj)
 {
-	
+	e = e + 0;
+	obj = obj + 0;
+	y = y + 1 - 1;
 }
 
 void	top_menu_event(t_env *e, int x, int y)
@@ -49,7 +51,7 @@ void	right_menu_event(t_env *e, int x, int y)
 	if (x > WIN_WIDTH - 231 && x < WIN_WIDTH - 9 && y > 136
 			&& y < 307)
 		color_selector(e, x - WIN_WIDTH + 231, y - 136);
-	if (x > WIN_WIDHT - 42 && x < WIN_WIDTH - 4 && y > 362
+	if (x > WIN_WIDTH - 42 && x < WIN_WIDTH - 4 && y > 362
 			&& e->scene->obj_focus)
 		object_menu_event(e, y, (t_object *)(e->scene->obj_focus->content));
 }
