@@ -42,12 +42,11 @@ static void		add_mat(t_object *obj, char *str, t_env *e)
 /*
  * ** Parse the object type
  * ** 0 -> light
- * ** 1 -> sphere
- * ** 2 -> plane
- * ** 3 -> cube
+ * ** 1 -> plane
+ * ** 2 -> sphere
+ * ** 3 -> cylinder
  * ** 4 -> cone
- * ** 5 -> cylinder
- * ** 6 -> torus
+ * ** 5 -> torus
  * */
 
 static int		get_obj_type(t_env *e, char *str)
@@ -99,12 +98,11 @@ void			init_obj_param(t_env *e)
 
 	i = -1;
 	e->get_obj_param[0] = &get_light_param;
-	e->get_obj_param[1] = &get_sphere_param;
-	e->get_obj_param[2] = &get_plane_param;
-	e->get_obj_param[3] = NULL;
+	e->get_obj_param[1] = &get_plane_param;
+	e->get_obj_param[2] = &get_sphere_param;
+	e->get_obj_param[3] = &get_cylinder_param;
 	e->get_obj_param[4] = &get_cone_param;
-	e->get_obj_param[5] = &get_cylinder_param;
-	e->get_obj_param[6] = &get_torus_param;
+	e->get_obj_param[5] = &get_torus_param;
 }
 
 void			build_object(t_env *e, char *str)

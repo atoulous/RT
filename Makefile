@@ -20,6 +20,7 @@ SRC=	rt.c				\
 		error.c			\
 		key_event.c		\
 		mouse_event.c		\
+		menu_event.c		\
 		render_options.c	\
 		env.c			\
 		debug.c			\

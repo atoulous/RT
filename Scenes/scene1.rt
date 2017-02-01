@@ -20,7 +20,7 @@ scene {
 		origin { 2 1.75 -11 }
 		dir { 0 0 1 }		
 	}
-	render {1080 500}
+	render {700 550}
 	object {
 		name { light1 }
 		type { light }

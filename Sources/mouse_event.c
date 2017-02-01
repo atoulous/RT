@@ -50,42 +50,17 @@ static void	raytrace_mouse(t_env *e, int x, int y)
 
 int			ft_mouse_click(int button, int x, int y, t_env *e)
 {
-	if (button == 1 && x >= 50 && x < WIN_WIDTH - 14 && y >= 10 && y <= 50)
+	if (button == 1)
 	{
-		if (x < 66)
-			change_luminosite_mouse(e, y);
-		else if (x > 79 && x < 119)
-			del_focus_object(e);
-		else if (x > 79 && x < 149)
-			undo_del_object(e);
-		else if (x > WIN_WIDTH / 2 - 64 && x < WIN_WIDTH / 2 + 64)
-			change_global_quality(e);
-		else if ( x > WIN_WIDTH - 50)
-			save_scene(e);
-	}
-	else if (button == 1 && x >= IMG_GAP_X
-						&& x <= WIN_WIDTH - 240 - IMG_GAP_X
+		top_menu_event(e, x, y);
+		bottom_menu_event(e, x, y);
+		right_menu_event(e, x, y);
+		if (x >= IMG_GAP_X && x <= WIN_WIDTH - 240 - IMG_GAP_X
 			&& y > 49 + IMG_GAP_Y && y < 49 + IMG_GAP_Y + IMG_HEIGHT)
-	{
-		raytrace_mouse(e, x - IMG_GAP_X, y - 49 - IMG_GAP_Y);
-		create_img(e);
+		{
+			raytrace_mouse(e, x - IMG_GAP_X, y - 49 - IMG_GAP_Y);
+			create_img(e);
+		}
 	}
-	else if (button == 1 && y > WIN_HEIGHT - 122 && y < WIN_HEIGHT - 10
-					&& x > WIN_WIDTH / 2 - 268 && x < WIN_WIDTH / 2 + 268)
-	{
-		if (x < WIN_WIDTH / 2 - 160)
-			add_sphere(e);
-		else if (x < WIN_WIDTH / 2 - 50)
-			add_plane(e);
-		else if (x < WIN_WIDTH / 2 + 50)
-			add_cylinder(e);
-		else if (x < WIN_WIDTH / 2 + 160)
-			add_cone(e);
-		else
-			add_torus(e);
-	}
-	else if (button == 1 && x > WIN_WIDTH - 231 && x < WIN_WIDTH - 9 && y > 270
-					&& y < 442)
-		color_selector(e, x - WIN_WIDTH + 231, y - 270);
 	return (0);
 }

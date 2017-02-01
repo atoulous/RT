@@ -29,6 +29,7 @@
 # define NB_TH 50
 # define DIST_MAX 1000.0
 # define SPEED 0.1
+# define F_CLR 0x374355
 
 # define OPT_REF "dl"
 # define OPT e->opt
@@ -48,8 +49,8 @@
 # define M_UP (1 << 4)
 # define M_DOWN (1 << 5)
 
-# define OBJ_ALLOWED "light sphere plane cube cone cylinder torus"
-# define NB_OBJ_FCT 7
+# define OBJ_ALLOWED "light plane sphere cylinder cone torus"
+# define NB_OBJ_FCT 6
 
 # define MLX e->mlx
 # define WIN e->win
@@ -62,9 +63,8 @@
 # define IMG e->img.img
 # define IMG_ADDR e->img.addr
 # define ENDIAN e->endian
-# define NB_BTN 7
-# define MENU e->menu
-# define BTN_SIZE 30
+# define NB_ME 13
+# define ME e->menu
 # define COMMAND e->command
 
 # define ENV param->e
@@ -142,16 +142,6 @@ typedef struct	s_img
 	int		bpp;
 }				t_img;
 
-typedef struct	s_button
-{
-	int		pos_x;
-	int		pos_y;
-	int		width;
-	int		height;
-	t_img	img;
-	void	(*btn_fct)(void *);
-}				t_button;
-
 typedef struct	s_texture
 {
 	void		*img;
@@ -160,6 +150,14 @@ typedef struct	s_texture
 	int			width;
 	int			sizeline;
 }				t_tex;
+
+typedef struct	s_menu
+{
+	char		*path;
+	t_img		img;
+	float		x;
+	float		y;
+}				t_menu;
 
 typedef struct	s_mat
 {
@@ -245,7 +243,7 @@ typedef struct	s_env
 	int			img_gap_y;
 	t_img		img;
 	int			endian;
-	t_button	menu[NB_BTN];
+	t_menu		menu[NB_ME];
 	char		moves;
 	char		command;
 	t_scene		*scene;
@@ -333,6 +331,9 @@ int				ft_key_press(int keycode, t_env *e);
 int				ft_key_release(int keycode, t_env *e);
 int				ft_key_command(int keycode, t_env *e);
 int				ft_mouse_click(int button, int x, int y, t_env *e);
+void			top_menu_event(t_env *e, int x, int y);
+void			bottom_menu_event(t_env *e, int x, int y);
+void			right_menu_event(t_env *e, int x, int y);
 
 void			save_scene(t_env *e);
 

@@ -28,24 +28,21 @@ static void	make_fct_tab(t_env *e)
 	e->obj_fct_obj[0] = &sphere;
 	e->calc_obj_param[0] = NULL;
 	e->update_obj_pos[0] = NULL;
-	e->obj_fct_obj[1] = &sphere;
+	e->obj_fct_obj[1] = &plane;
 	e->calc_obj_param[1] = NULL;
 	e->update_obj_pos[1] = NULL;
-	e->obj_fct_obj[2] = &plane;
+	e->obj_fct_obj[2] = &sphere;
 	e->calc_obj_param[2] = NULL;
 	e->update_obj_pos[2] = NULL;
-	e->obj_fct_obj[3] = &sphere;
-	e->calc_obj_param[3] = NULL;
-	e->update_obj_pos[3] = NULL;
+	e->obj_fct_obj[3] = &cylinder;
+	e->calc_obj_param[3] = &calc_cylinder_param;
+	e->update_obj_pos[3] = &update_cylinder_pos;
 	e->obj_fct_obj[4] = &cone;
 	e->calc_obj_param[4] = &calc_cone_param;
 	e->update_obj_pos[4] = &update_cone_pos;
-	e->obj_fct_obj[5] = &cylinder;
-	e->calc_obj_param[5] = &calc_cylinder_param;
-	e->update_obj_pos[5] = &update_cylinder_pos;
-	e->obj_fct_obj[6] = &torus;
-	e->calc_obj_param[6] = NULL;
-	e->update_obj_pos[6] = &update_torus_pos;
+	e->obj_fct_obj[5] = &torus;
+	e->calc_obj_param[5] = NULL;
+	e->update_obj_pos[5] = &update_torus_pos;
 }
 
 /*

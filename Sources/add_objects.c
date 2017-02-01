@@ -20,7 +20,7 @@ void	add_sphere(void *arg)
 
 	e = (t_env *)arg;
 	obj.name = ft_strdup("sphere");
-	obj.type = 1;
+	obj.type = 2;
 	obj.pos = add_v3d(CAM_POS, smul_v3d(CAM_DIR, 10.0));
 	obj.r1 = 1.0;
 	obj.color = 0x00FF0000;
@@ -30,6 +30,7 @@ void	add_sphere(void *arg)
 	ft_lstadd(&(e->scene->obj), elem);
 	e->scene->obj_focus = elem;
 	create_img(e);
+	menu_object(e);
 }
 
 void	add_cylinder(void *arg)
@@ -40,7 +41,7 @@ void	add_cylinder(void *arg)
 
 	e = (t_env *)arg;
 	obj.name = ft_strdup("cylinder");
-	obj.type = 5;
+	obj.type = 3;
 	obj.p1 = add_v3d(add_v3d(CAM_POS, smul_v3d(CAM_DIR, 10)), \
 			smul_v3d(CAM_UP, 1));
 	obj.p2 = add_v3d(add_v3d(CAM_POS, smul_v3d(CAM_DIR, 10)), \
@@ -49,11 +50,12 @@ void	add_cylinder(void *arg)
 	obj.color = 0x0000FF00;
 	obj.mat.shine = 0.2;
 	obj.mat.diffuse = 0.2;
-	e->calc_obj_param[5](&obj);
+	e->calc_obj_param[obj.type](&obj);
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
 	e->scene->obj_focus = elem;
 	create_img(e);
+	menu_object(e);
 }
 
 void	add_plane(void *arg)
@@ -64,7 +66,7 @@ void	add_plane(void *arg)
 
 	e = (t_env *)arg;
 	obj.name = ft_strdup("plane");
-	obj.type = 2;
+	obj.type = 1;
 	obj.pos = add_v3d(CAM_POS, smul_v3d(CAM_UP, -2.0));
 	obj.dir = CAM_UP;
 	obj.color = 0x0000FF00;
@@ -74,6 +76,7 @@ void	add_plane(void *arg)
 	ft_lstadd(&(e->scene->obj), elem);
 	e->scene->obj_focus = elem;
 	create_img(e);
+	menu_object(e);
 }
 
 void	add_cone(void *arg)
@@ -92,11 +95,12 @@ void	add_cone(void *arg)
 	obj.color = 0x0000FF00;
 	obj.mat.shine = 0.2;
 	obj.mat.diffuse = 0.2;
-	e->calc_obj_param[4](&obj);
+	e->calc_obj_param[obj.type](&obj);
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
 	e->scene->obj_focus = elem;
 	create_img(e);
+	menu_object(e);
 }
 
 void	add_torus(void *arg)
@@ -107,7 +111,7 @@ void	add_torus(void *arg)
 
 	e = (t_env *)arg;
 	obj.name = ft_strdup("torus");
-	obj.type = 6;
+	obj.type = 5;
 	obj.p1 = add_v3d(CAM_POS, smul_v3d(CAM_DIR, 10.0));
 	obj.p2 = add_v3d(obj.p1, smul_v3d(CAM_UP, 1.0));
 	obj.r1 = 0.5;
@@ -119,4 +123,5 @@ void	add_torus(void *arg)
 	ft_lstadd(&(e->scene->obj), elem);
 	e->scene->obj_focus = elem;
 	create_img(e);
+	menu_object(e);
 }

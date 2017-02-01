@@ -26,6 +26,16 @@ void	get_sphere_param(char *str, t_object *obj, void *arg)
 	obj->r1 = get_double("r1", str, e);
 }
 
+void	get_cylinder_param(char *str, t_object *obj, void *arg)
+{
+	t_env *e;
+
+	e = (t_env *)arg;
+	obj->p1 = get_v3d("p1", str, e);
+	obj->p2 = get_v3d("p2", str, e);
+	obj->r1 = get_double("r1", str, e);
+}
+
 void	get_cone_param(char *str, t_object *obj, void *arg)
 {
 	t_env *e;
@@ -35,16 +45,6 @@ void	get_cone_param(char *str, t_object *obj, void *arg)
 	obj->p2 = get_v3d("p2", str, e);
 	obj->r1 = get_double("r1", str, e);
 	obj->r2 = get_double("r2", str, e);
-}
-
-void	get_cylinder_param(char *str, t_object *obj, void *arg)
-{
-	t_env *e;
-
-	e = (t_env *)arg;
-	obj->p1 = get_v3d("p1", str, e);
-	obj->p2 = get_v3d("p2", str, e);
-	obj->r1 = get_double("r1", str, e);
 }
 
 void	get_torus_param(char *str, t_object *obj, void *arg)
