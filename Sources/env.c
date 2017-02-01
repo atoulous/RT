@@ -87,6 +87,7 @@ void			free_env(t_env *e)
 		MLX = NULL;
 		WIN = NULL;
 		IMG = NULL;
+		ft_free_tab(e->obj_allowed);
 		free(e);
 	}
 }
@@ -97,8 +98,8 @@ void			free_env(t_env *e)
 
 t_env			*init_env(char *file_name, char opt)
 {
-	t_env	*e;
-	int		i;
+	t_env		*e;
+	int			i;
 
 	if (!(e = (t_env *)malloc(sizeof(t_env))))
 		error_perso(e, "malloc (t_env *)e failed");
@@ -113,13 +114,18 @@ t_env			*init_env(char *file_name, char opt)
 	while (++i < NB_TH)
 		e->param[i] = init_param(e, i);
 	MLX = mlx_init();
+	WIN_WIDTH = (IMG_WIDTH < 600) ? 840 : IMG_WIDTH + 240;
+	WIN_HEIGHT = (IMG_HEIGHT < 510) ? 690 : IMG_HEIGHT + 180;
+	IMG_GAP_X = (WIN_WIDTH - 240 - IMG_WIDTH) / 2;
+	IMG_GAP_Y = (WIN_HEIGHT - 180 - IMG_HEIGHT) / 2;
 	WIN = mlx_new_window(MLX, WIN_WIDTH, WIN_HEIGHT, file_name);
+	e->scene->obj_focus = NULL;
+	e->scene->obj_trash = NULL;
 	init_menu(e);
 	IMG = mlx_new_image(MLX, IMG_WIDTH, IMG_HEIGHT);
 	IMG_ADDR = mlx_get_data_addr(IMG, &e->img.bpp, &e->img.sizeline, &ENDIAN);
 	debug(e);
-	e->scene->obj_focus = NULL;
-	e->scene->obj_trash = NULL;
+	MOVES = 0;
 	COMMAND = 0;
 	return (e);
 }

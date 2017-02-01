@@ -13,20 +13,6 @@
 #include "rt.h"
 
 /*
-** Free the objects allowed array
-*/
-
-static void	free_fct_tab(t_env *e)
-{
-	int	i;
-
-	i = -1;
-	while (e->obj_allowed[++i])
-		free(e->obj_allowed[i]);
-	free(e->obj_allowed);
-}
-
-/*
 ** Create the objects allowed array specified in the header file
 ** Create the functions array for every object
 ** There is 3 different arrays:
@@ -147,6 +133,6 @@ void		parse_rt(t_env *e, char *file_name)
 	make_fct_tab(e);
 	check_acc(e, file);
 	build_scene(e, file);
-	free_fct_tab(e);
+	//free_fct_tab(e);
 	free(file);
 }

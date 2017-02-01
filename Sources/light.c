@@ -6,11 +6,20 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 08:30:59 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/01 17:31:54 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/01 18:24:06 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+void		change_luminosite_mouse(t_env *e, int y)
+{
+	if (y < 25)
+		LUMI + 0.05 <= 1 ? LUMI += 0.05 : 0;
+	else
+		LUMI - 0.05 >= -0.5 ? LUMI -= 0.05 : 0;
+	create_img(e);
+}
 
 /*
 ** Initialize light ray parameters

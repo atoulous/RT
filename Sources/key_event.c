@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/30 20:18:14 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/01 18:22:28 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	select_next_obj(t_env *e)
 		e->scene->obj_focus = e->scene->obj;
 	else
 		e->scene->obj_focus = e->scene->obj_focus->next;
+	menu_object(e);
 	create_img(e);
 }
 
@@ -27,6 +28,7 @@ static void	ft_esc_key(t_env *e)
 		quit_rt(e);
 	else
 		e->scene->obj_focus = NULL;
+	menu_object(e);
 	create_img(e);
 }
 

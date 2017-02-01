@@ -6,13 +6,13 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/01/30 20:26:47 by atoulous         ###   ########.fr        #
+#    Updated: 2017/02/01 18:21:12 by atoulous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC=gcc
-CFLAGS= -ILibs/libft -ILibs/libmlx -ILibs/libv3d -ILibs/libmy_math -ILibs/libmy_mlx -IIncludes #-Wall -Wextra -Werror
-SRC=	rt.c			\
+CC = gcc
+CFLAGS = -ILibs/libft -ILibs/libmlx -ILibs/libv3d -ILibs/libmy_math -ILibs/libmy_mlx -IIncludes #-Wall -Wextra -Werror
+SRC =	rt.c			\
 		modif_color.c	\
 		modify_color_for_tex.c	\
 		wood.c			\
@@ -26,13 +26,15 @@ SRC=	rt.c			\
 		options.c		\
 		error.c			\
 		key_event.c		\
-		mouse_event.c	\
+		mouse_event.c		\
+		mouse_event2.c		\
+		render_options.c	\
 		env.c			\
 		debug.c			\
 		parse.c			\
-		parse_param.c	\
+		parse_param.c		\
 		parse_obj.c		\
-		parse_scene.c	\
+		parse_scene.c		\
 		raytracer.c		\
 		light.c			\
 		moves.c			\
@@ -44,7 +46,7 @@ SRC=	rt.c			\
 		cone2.c			\
 		caps.c			\
 		objects.c		\
-		add_objects.c	\
+		add_objects.c		\
 		init_opt.c		\
 		torus_error.c	\
 		torus_normal.c	\
@@ -55,6 +57,7 @@ SRC=	rt.c			\
 		light_events.c	\
 		others_events.c	\
 		others_events2.c	\
+		save.c			\
 
 OBJDIR = Objects
 VPATH = Sources
