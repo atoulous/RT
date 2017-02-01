@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 15:41:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/30 17:00:17 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/01/30 20:47:22 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	perform_raytracing(t_env *e, t_param *param)
 	while (lst_obj)
 	{
 		obj = (t_object *)lst_obj->content;
-		(*(e->obj_fct_obj[obj->type]))(obj, &VW_RAY, &SOL);
+		(*(e->obj_fct_obj[obj->type]))(e, obj, &VW_RAY, &SOL);
 		lst_obj = lst_obj->next;
 	}
 	VW_RAY.inter = add_v3d(VW_RAY.pos, smul_v3d(VW_RAY.dir, VW_RAY.dist));
