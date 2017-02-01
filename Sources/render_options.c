@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   others_events2.c                                   :+:      :+:    :+:   */
+/*   render_options.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/30 20:16:04 by atoulous          #+#    #+#             */
-/*   Updated: 2017/02/01 17:36:09 by atoulous         ###   ########.fr       */
+/*   Created: 2017/01/30 09:48:00 by mmoullec          #+#    #+#             */
+/*   Updated: 2017/02/01 18:36:54 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	back_plane(void	*arg)
+void	change_global_quality(void *arg)
 {
-	t_env	*e;
+	t_env *e;
 
 	e = (t_env *)arg;
-	BACK_PLANE ? BACK_PLANE = 0 : (BACK_PLANE = 1);
-	BACK_PLANE ? ft_putendl("Switch OFF back_plane") : 0;
-	!BACK_PLANE ? ft_putendl("Switch ON back_plane") : 0;
+	if (OPT_GQ)
+	{
+		OPT ^= (1 << 1);
+		OPT ^= (1 << 3);
+		OPT ^= (1 << 4);
+		OPT ^= (1 << 5);
+	}
+	else
+	{
+		OPT |= (1 << 1);
+		OPT |= (1 << 3);
+		OPT |= (1 << 4);
+		OPT |= (1 << 5);
+	}
+	change_btn_light(e);
 	create_img(e);
 }

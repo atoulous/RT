@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/30 16:52:09 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/01 17:30:51 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ void			get_obj_param(t_object *obj, char *str)
 	obj->p2 = get_v3d("p2", str);
 	obj->r1 = get_double("r1", str);
 	obj->r2 = get_double("r2", str);
-	obj->angle = get_double("angle", str);
+	if ((obj->angle = get_double("angle", str)))
+		obj->angle *= (M_PI / 180);
 	obj->pro = get_in_acc("tex", str);
 }
 
@@ -126,5 +127,4 @@ void			build_object(t_env *e, char *str)
 		ft_lstadd(&(e->scene->light), elem);
 	else
 		ft_lstadd(&(e->scene->obj), elem);
-	free(obj.name);
 }

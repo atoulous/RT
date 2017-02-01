@@ -12,6 +12,24 @@
 
 #include "rt.h"
 
+void	color_selector(t_env *e, int x, int y)
+{
+	int		h;
+	double	s;
+	double	v;
+	t_object	*obj;
+
+	if (e->scene->obj_focus)
+	{
+		h = 360 * x / 222;
+		s = (y < 86) ? 1 * y / 86.0 : 1;
+		v = (y > 86) ? (1 * (172 - y) / 86.0) : 1;
+		obj = (t_object *)e->scene->obj_focus->content;
+	   	obj->color = hsv_to_rgb(h, s, v);
+		create_img(e);
+	}
+}
+
 void	del_focus_object(t_env *e)
 {
 	t_list	*lst;
@@ -33,6 +51,7 @@ void	del_focus_object(t_env *e)
 		ft_lstadd(&(e->scene->obj_trash), new);
 		ft_lstdelone(&(e->scene->obj_focus), &free_obj);
 		e->scene->obj_focus = NULL;
+		menu_object(e);
 		create_img(e);
 	}
 }
@@ -51,6 +70,7 @@ void	undo_del_object(t_env *e)
 		ft_lstdelone(&(e->scene->obj_trash), &free_obj);
 		e->scene->obj_trash = tmp->next;
 		e->scene->obj_focus = NULL;
+		menu_object(e);
 		create_img(e);
 	}
 	tmp = e->scene->obj_trash;

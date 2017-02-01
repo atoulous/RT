@@ -6,18 +6,27 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 08:30:59 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/30 20:47:46 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/01 18:24:06 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+void		change_luminosite_mouse(t_env *e, int y)
+{
+	if (y < 25)
+		LUMI + 0.05 <= 1 ? LUMI += 0.05 : 0;
+	else
+		LUMI - 0.05 >= -0.5 ? LUMI -= 0.05 : 0;
+	create_img(e);
+}
 
 /*
 ** Initialize light ray parameters
 ** This function is called for every pixel of the calculated image
 */
 
-static void	init_light_ray(t_param *param, t_object *light)
+static int	init_light_ray(t_param *param, t_object *light)
 {
 	t_v3d	tmp;
 
@@ -26,6 +35,9 @@ static void	init_light_ray(t_param *param, t_object *light)
 	PHO_RAY.dist = length_v3d(tmp);
 	PHO_RAY.dir = unit_v3d(tmp);
 	PHO_RAY.obj = NULL;
+	if (light->angle && (dot_v3d(PHO_RAY.dir, light->dir) < cos(light->angle)))
+		return (0);
+	return (1);
 }
 
 /*
@@ -69,11 +81,11 @@ void		apply_light(t_env *e, t_param *param)
 	intensite = 0;
 	t_rgb rgb;
 
-	if (VW_RAY.obj->pro && modify_color_for_tex(VW_RAY.obj->pro, \
-					sub_v3d(VW_RAY.inter, VW_RAY.obj->pos), &rgb))
-		hsv = my_rgb_to_hsv(rgb);
-				//	hsv = my_rgb_to_hsv(color_damier(sub_v3d(VW_RAY.inter, VW_RAY.obj->pos)));
-	else
+	//if (VW_RAY.obj->pro && modify_color_for_tex(VW_RAY.obj->pro, \
+	//				sub_v3d(VW_RAY.inter, VW_RAY.obj->pos), &rgb))
+	//	hsv = my_rgb_to_hsv(rgb);
+		//hsv = my_rgb_to_hsv(color_damier(sub_v3d(VW_RAY.inter, VW_RAY.obj->pos)));
+	//else
 		rgb_to_hsv(VW_RAY.obj->color, &hsv.h, &hsv.s, &hsv.v);
 	vm = hsv.v;
 	if (!OPT_1)
@@ -81,16 +93,18 @@ void		apply_light(t_env *e, t_param *param)
 	lst_light = e->scene->light;
 	while (lst_light)
 	{
-		lst_obj = e->scene->obj;
-		init_light_ray(param, (t_object *)lst_light->content);
-		while (lst_obj)
+		if (init_light_ray(param, lst_light->content))
 		{
-			obj = (t_object *)lst_obj->content;
-			if (obj != VW_RAY.obj)
-				(*(e->obj_fct_obj[obj->type]))(e, obj, &PHO_RAY, &SOL);
-			lst_obj = lst_obj->next;
+			lst_obj = e->scene->obj;
+			while (lst_obj)
+			{
+				obj = (t_object *)lst_obj->content;
+				if (obj != VW_RAY.obj)
+					(*(e->obj_fct_obj[obj->type]))(e, obj, &PHO_RAY, &SOL);
+				lst_obj = lst_obj->next;
+			}
+			get_color(obj->type, e, param, (t_object *)lst_light->content, &hsv, &intensite);
 		}
-		get_color(obj->type, e, param, (t_object *)lst_light->content, &hsv, &intensite);
 		lst_light = lst_light->next;
 	}
 	if (!OPT_1)
