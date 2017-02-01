@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 09:11:28 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/30 20:42:00 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/30 15:06:41 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	find_dist(t_object *obj, t_ray *ray, t_sol *sol)
 	}
 }
 
-void		sphere(t_env *e, t_object *obj, t_ray *ray, t_sol *sol)
+void		sphere(t_object *obj, t_ray *ray, t_sol *sol)
 {
 	t_v3d	dp;
 

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/30 20:18:14 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/01/28 17:01:35 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int			ft_key_press(int keycode, t_env *e)
 	keycode == 43 ? SPEED -= 0.1 : 0;
 	keycode == 49 ? reset_cam(e) : 0;
 	keycode == 50 ? screenshot(e) : 0;
-	keycode == 35 ? back_plane(e) : 0;
 	move(keycode, e);
 	return (0);
 }
