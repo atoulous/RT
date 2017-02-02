@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 10:39:07 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/02 17:01:10 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/02 17:10:10 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		apply_color(t_env *e, t_param *param, t_object *light, t_light *datas)
 	}
 	if (OPT_3)
 	{
-		if (datas->omega > 0.000001)
+		if (datas->omega > 0.000001 && !PHO_RAY.obj)
 		{
 			RGB.r += RGB.r * VW_RAY.obj->mat.specular * pow(datas->omega, \
 					VW_RAY.obj->mat.shine);

@@ -31,7 +31,7 @@ scene {
 		color { 0x00FF00 }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.1 }
+			diffuse { 0.3 }
 			specular { 1 }
 			shine { 100 }
 		}
@@ -46,7 +46,7 @@ scene {
 		color { 0x0000AAFF }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.1 }
+			diffuse { 0.4 }
 			specular { 0.9 }
 			shine { 100 }
 		}

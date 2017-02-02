@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 10:29:13 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/02 17:01:06 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/02 17:07:37 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void		obj_sel(t_light *datas, t_param *param, t_object *light)
 			datas->ray = 0;
 	}
 	if (PHO_RAY.obj)
-//		datas->shadow -= param->AMBIANCE;
-		datas->shadow -= param->AMBIANCE * cos_v3d(PHO_RAY.dir, VW_RAY.norm) * -1;
+		datas->shadow -= param->AMBIANCE;
+//		datas->shadow -= param->AMBIANCE * cos_v3d(PHO_RAY.dir, VW_RAY.norm) * -1;
 }
 
 void		apply_light(t_env *e, t_param *param)
