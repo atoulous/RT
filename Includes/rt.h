@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/01 18:36:53 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/02 16:52:14 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,18 @@ typedef struct	s_ray
 	t_object	*obj;
 }				t_ray;
 
+typedef struct	s_light
+{
+	t_object		*obj;
+	t_rgb			rgb;
+	t_hsv			hsv;
+	unsigned int	color;
+	double			angle_light;
+	double			omega;
+	double			shadow;
+	double			ray;
+}				t_light;
+
 typedef struct	s_scene
 {
 	char	*name;
@@ -378,14 +390,18 @@ void			update_torus_pos(t_object *obj);
 
 //void			get_color(t_env *e, t_param *param, t_object *light, \
 //					t_hsv *hsv);
-void			get_color(int obj_type, t_env *e, t_param *param, \
+//void			get_color(int obj_type, t_env *e, t_param *param, \
 		t_object *light, t_hsv *h, double *intensite);
 void			do_shininess(t_param *param, t_object *light, t_hsv *hsv, \
 		t_v3d ref);
 void			change_phong_status(void *arg);
 void			change_intensite1(void *arg);
 void			change_intensite2(void *arg);
+void			apply_color(t_env *e, t_param *param, t_object *l, t_light *datas);
 
+/*
+**Bruit et modifs
+*/
 void			fill_matiere_in_case(t_mat *mat);
 void			modif_normale(double d, t_v3d *norm, t_v3d inter);
 

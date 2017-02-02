@@ -47,19 +47,19 @@ scene {
 #			density { 0.5 }
 #		}
 #	}
-#	object {
-#		name { plane de fond }
-#		type { plane }
-#		origin { 0 0 1 }
-#		dir { 0 0 -1 }
-#		color { 0x0FFFFFF }
-#		mat {
-#			ambient { 0.1 }
-#			diffuse { 0.2 }
-#			specular { 0.9 }
-#			shine { 1000 }
-#		}
-#	}
+	object {
+		name { plane de fond }
+		type { plane }
+		origin { 0 0 1 }
+		dir { 0 0 -1 }
+		color { 0x0FFFFFF }
+		mat {
+		ambient { 0.1 }
+		diffuse { 0.2 }
+			specular { 0.9 }
+			shine { 1000 }
+		}
+	}
 	object {
 		name { plane plafond }
 		type { plane }

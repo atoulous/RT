@@ -5,25 +5,40 @@
 scene {
 	name { demo_2 }
 	camera {
-		origin { 0 0 -100 }
+		origin { 0 0 -20 }
+		dir { 0 0 1 }
 	}
 	render { 1080 800 }
 	object {
-		name { cylinder1 }
-		type { cylinder }
-		size { 10.0 }
-		origin1 { 0 0 0 }
-		origin2 { 0 10 0 }
-		color {
-			rgb { 0x00FF00 }
+		name { sphere3 }
+		type { sphere }
+		origin { 0 0 0 }
+		r1 { 3 }
+		color { 0x6F04AF }
+		mat {
+			ambient { 0.1 }
+			diffuse { 0.3 }
+			specular { 0.9 }
+			shine { 10 }
 		}
 	}
-	spot {
-		name { spot1 }
-		size { 10.0 }
-		origin { 200 0 -200 }
-		color {
-			rgb { 0xFFFFFF }
+	object {
+		name { sphere3 }
+		type { sphere }
+		origin { 0 0 4 }
+		r1 { 2 }
+		color { 0x6F04AF }
+		mat {
+			ambient { 0.1 }
+			diffuse { 0.3 }
+			specular { 0.9 }
+			shine { 10 }
 		}
+	}
+	object {
+		name { spot3 }
+		type { light }
+		origin { 0 0 20 }
+		color { 0xFFFFFF }
 	}
 }
