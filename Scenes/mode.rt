@@ -18,14 +18,24 @@ scene {
 			shine { 100 }
 			density { 1 }
 		}
-		tex { wood }
+	}
+	object {
+		name { plane plafond }
+		type { plane }
+		origin { 1 0 0 }
+		dir { 0 0 1 }
+		color { 0xFF0F00 }
+		mat {
+			ambient { 0.1 }
+			diffuse { 0.3 }
+			specular { 0.2 }
+			shine { 100 }
+		}
 	}
 	object {
 		name { spot1 }
 		type { light }
 		origin { 0 0 -10 }
-		dir { 0 0 1 }
-		angle { 10 }
 		color { 0xFFFFFF }
 	}
 }

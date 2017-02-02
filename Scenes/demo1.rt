@@ -3,69 +3,30 @@
 #
 
 scene {
-	name { demo_1 }
+	name { demo.rt }
 	camera {
-		origin { 10 2 -10 }
-		dir { -10 -2 10 }
+		origin { 0 0 -20 }
+		dir { 0 0 1 }
 	}
-	render { 800 700 }
-	
+	render { 900 700 }
+	ambiance { 0.1 }
 	object {
-		name { sphere1 }
+		name { sphere3 }
 		type { sphere }
-		origin { 0 1.5 0 }
-		r1 { 3 }
+		origin { 0 0 0 }
+		r1 { 2 }
 		color { 0xFF0000 }
+		mat {
+			ambient { 0.1 }
+			diffuse { 0.1 }
+			specular { 100 }
+			shine { 100 }
+		}
 	}
-		
-	object {
-		name { cylindre }
-		type { cylinder }
-		p1 { 0 -1 0 }
-		p2 { 0 1 0 }
-		r1 { 2.0 }
-		color { 0xFF0000 }
-	}
-	
-	object {
-		name { cylindre }
-		type { cylinder }
-		p1 { 0 1 -1 }
-		p2 { 0 1 1 }
-		r1 { 2.0 }
-		color { 0xFF0000 }
-	}
-
-	object {
-		name { cone} 
-		type { cone }
-		p1 { 0 1 0 }
-		p2 { 0 2 0 }
-		r1 { 2.0 }
-		r2 { 0 }
-		color { 0xFF0000 }
-	}
-
-	object {
-		name { plan }
-		type { plane }
-		origin { 0 -1 0 }
-		dir { 0 1 0 }
-		color { 0xFF0000 }
-	}
-
-	object {
-		name { plan }
-		type { plane }
-		origin { 0 0 3 }
-		dir { 0 0 -1 }
-		color { 0xFF0000 }
-	}
-		
 	object {
 		name { spot1 }
 		type { light }
-		origin { 5 5 -5 }
+		origin { 5 0 -10 }
 		color { 0xFFFFFF }
 	}
 }
