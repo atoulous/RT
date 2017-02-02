@@ -97,14 +97,14 @@ void		menu_object(t_env *e)
 		mlx_string_put(MLX, WIN, WIN_WIDTH - 166, 335, F_CLR, s);
 		if (o->type == 1)
 			sprintf(s, "%.1f,%.1f,%.1f", o->dir.x, o->dir.y, o->dir.z);
-		else if (o->type == 3)
+		else if (o->type == 3 && o->type == 5)
 			sprintf(s, "%.1f,%.1f,%.1f", o->p2.x, o->p2.y, o->p2.z);
-		else if (o->type == 2 || o->type == 4 || o->type == 5)
+		else if (o->type == 2 || o->type == 4)
 			sprintf(s, "%.2f", o->r1);
 		mlx_string_put(MLX, WIN, WIN_WIDTH - 166, 359, F_CLR, s);
 		if (o->type > 2)
 		{	
-			if (o->type == 3)
+			if (o->type == 3 || o->type == 5)
 				sprintf(s, "%.2f", o->r1);
 			else
 				sprintf(s, "%.1f,%.1f,%.1f", o->p2.x, o->p2.y, o->p2.z);
@@ -112,7 +112,7 @@ void		menu_object(t_env *e)
 		}
 		if (o->type > 3)
 		{
-			sprintf(s, "%.2f", o->r1);
+			sprintf(s, "%.2f", o->r2);
 			mlx_string_put(MLX, WIN, WIN_WIDTH - 166, 406, F_CLR, s);
 		}
 		mlx_put_image_to_window(MLX, WIN, ME[7].img.img, ME[7].x, ME[7].y);

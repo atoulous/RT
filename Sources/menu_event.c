@@ -6,20 +6,21 @@ void	object_menu_event(t_env *e, int x, int y, t_object *obj)
 	int		type;
 	int		click;
 
-	step = (x > WIN_WIDTH - 20) ? 0.05 : -0.05;
+	step = (x > WIN_WIDTH - 20) ? 0.02 : -0.02;
 	type = obj->type;
 	click = 1;
 	if (y > 360 && y < 382 && (type == 2 || type == 4))
-		obj->r1 += step;
+		(obj->r1 + step > 0) ? obj->r1 += step : 0;
 	else if (y > 384 && y < 406 && (type == 3 || type == 5))
-		obj->r1 += step;
-	else if (y > 408 && y < 430 && (type == 4 || type == 4))
-		obj->r2 += step;
+		(obj->r1 + step > 0) ? obj->r1 += step : 0;
+	else if (y > 408 && y < 430 && (type == 4 || type == 5))
+		((obj->r2 + step > 0 && type == 5) || type == 4) ? obj->r2 += step : 0;
 	else
 		click = 0;
 	if (click)
 	{
 		(e->calc_obj_param[type]) ? e->calc_obj_param[type](obj) : 0;
+		menu_object(e);
 		create_img(e);
 	}
 
@@ -70,6 +71,6 @@ void	right_menu_event(t_env *e, int x, int y)
 			&& y < 307)
 		color_selector(e, x - WIN_WIDTH + 231, y - 136);
 	if (x > WIN_WIDTH - 42 && x < WIN_WIDTH - 4 && y > 362
-			&& e->scene->obj_focus)
+			&& y < 430 && e->scene->obj_focus)
 		object_menu_event(e, x, y, (t_object *)(e->scene->obj_focus->content));
 }
