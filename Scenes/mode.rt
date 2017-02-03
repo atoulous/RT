@@ -12,30 +12,19 @@ scene {
 		r1 { 2 }
 		color { 0x5B3C11 }
 		mat {
-			ambient { 1 }
-			diffuse { 0.1 }
-			specular { 10 }
-			shine { 100 }
-			density { 1 }
-		}
-	}
-	object {
-		name { plane plafond }
-		type { plane }
-		origin { 1 0 0 }
-		dir { 0 0 1 }
-		color { 0xFF0F00 }
-		mat {
 			ambient { 0.1 }
 			diffuse { 0.3 }
-			specular { 0.2 }
+			specular { 1 }
 			shine { 100 }
 		}
+		tex { wood }
 	}
 	object {
 		name { spot1 }
 		type { light }
-		origin { 0 0 -10 }
+		origin { 0 0 -20 }
 		color { 0xFFFFFF }
+		angle { 10 }
+		dir { 0 0 1 }
 	}
 }

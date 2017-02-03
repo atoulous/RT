@@ -6,13 +6,15 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/02/01 18:21:12 by atoulous         ###   ########.fr        #
+#    Updated: 2017/02/02 10:52:54 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 CFLAGS = -ILibs/libft -ILibs/libmlx -ILibs/libv3d -ILibs/libmy_math -ILibs/libmy_mlx -IIncludes #-Wall -Wextra -Werror
 SRC =	rt.c			\
+		apply_color.c	\
+		apply_light.c	\
 		modif_color.c	\
 		modify_color_for_tex.c	\
 		wood.c			\
@@ -36,7 +38,6 @@ SRC =	rt.c			\
 		parse_obj.c		\
 		parse_scene.c		\
 		raytracer.c		\
-		light.c			\
 		moves.c			\
 		sphere.c		\
 		plane.c			\
@@ -52,7 +53,6 @@ SRC =	rt.c			\
 		torus_normal.c	\
 		torus.c			\
 		torus2.c			\
-		get_color_phong.c	\
 		fill_matiere_in_case.c	\
 		light_events.c	\
 		others_events.c	\

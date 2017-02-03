@@ -6,7 +6,7 @@
 #    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/22 18:40:33 by mmoullec          #+#    #+#              #
-#    Updated: 2017/01/26 22:58:47 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/02/02 10:27:59 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ CC = clang -Wall -Werror -Wextra
 LMLX = -I../libmlx
 SRC = hsv_to_grb.c			\
 	put_color_to_pixel.c	\
+	unsigned_to_rgb.c		\
 	glob_init_mlx.c			\
 	rgb_to_hsv.c			\
 	rgb_mult.c				\
