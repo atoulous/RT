@@ -6,7 +6,7 @@
 #    By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/19 17:51:33 by jubarbie          #+#    #+#              #
-#    Updated: 2016/12/15 16:31:42 by jubarbie         ###   ########.fr        #
+#    Updated: 2017/02/03 14:54:12 by atoulous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,9 +47,11 @@ scene {
 		p2 { 2 10 0}
 		r1 { 0.7 }
 		color { 0x00139A43 }
-		mat {	
-			diffuse { 0.25 }
-			shine { 0.3}
+		mat {
+			ambient { 0.1 }
+			diffuse { 0.3 }
+			specular { 1 }
+			shine { 100 }
 		}
 	}
 
@@ -65,10 +67,12 @@ scene {
 		p2 {-3 16 0 }
 		r1 {2}
 		r2 {-4}
-		color { 0x00F0C808 }
-		mat {	
-			diffuse { 0.28 }
-			shine { 0.2}
+		color { 0xFFFF }
+		mat {
+			ambient { 0.1 }
+			diffuse { 0.3 }
+			specular { 1 }
+			shine { 100 }
 		}
 	}
 #
@@ -77,13 +81,15 @@ scene {
 
 	object {
 		name { sphere1 }
-		type { sphere }
+		type{ sphere }
 		origin { 2 0.5 0 }
 		r1 {  1}
 		color { 0x00FF0000 }
-		mat {	
-			diffuse { 0.28 }
-			shine { 0.3}
+		mat {
+			ambient { 0.1 }
+			diffuse { 0.3 }
+			specular { 1 }
+			shine { 100 }
 		}
 	}
 
@@ -97,9 +103,11 @@ scene {
 		origin { 0 0 0 }
 		dir { 0 1 0}
 		color {  0x00585B56 }
-		mat {	
-			diffuse { 0.18 }
-			shine { 0.0}
+		mat {
+			ambient { 0.1 }
+			diffuse { 0.3 }
+			specular { 1 }
+			shine { 100 }
 		}
 	}
 
@@ -109,9 +117,11 @@ scene {
 		origin { 0 0 3 }
 		dir { 0 0 -1}
 		color {  0x000000FF}
-		mat {	
-			diffuse { 0.18 }
-			shine { 0.0}
+		mat {
+			ambient { 0.1 }
+			diffuse { 0.3 }
+			specular { 1 }
+			shine { 100 }
 		}
 	}
 }

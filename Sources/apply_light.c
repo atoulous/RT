@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 10:29:13 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/02 19:31:37 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/03 14:54:10 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	init_light_ray(t_param *param, t_object *light)
 	PHO_RAY.dist = length_v3d(tmp);
 	PHO_RAY.dir = unit_v3d(tmp);
 	PHO_RAY.obj = NULL;
-	if (light->angle && (dot_v3d(PHO_RAY.dir, light->dir) > cos(light->angle)))
+	if (light->angle && (dot_v3d(PHO_RAY.dir, light->dir) < cos(light->angle)))
 		return (0);
 	return (1);
 }
@@ -65,16 +65,15 @@ void		apply_light(t_env *e, t_param *param)
 	t_list		*lst_light;
 	t_light		datas;
 
-	datas.rgb = transfo(VW_RAY.obj->color, &datas);
-	if (OPT_1)
-		rgb_s_mult(&datas.rgb, VW_RAY.obj->mat.ambient + LUMI);
 	lst_light = e->scene->light;
 	while (lst_light)
 	{
 		if (init_light_ray(param, lst_light->content))
-		{
 			if (cos_v3d(PHO_RAY.dir, VW_RAY.norm) < 0.00001)
 			{
+	datas.rgb = transfo(VW_RAY.obj->color, &datas);
+	if (OPT_1)
+		rgb_s_mult(&datas.rgb, VW_RAY.obj->mat.ambient + LUMI);
 				lst_obj = e->scene->obj;
 				while (lst_obj)
 				{
@@ -87,10 +86,8 @@ void		apply_light(t_env *e, t_param *param)
 				obj_sel(&datas, param, (t_object *)lst_light->content);
 				apply_color(e, param, (t_object *)lst_light->content, &datas);
 			}
-		}
 		lst_light = lst_light->next;
 	}
-	rgb_reg(&datas.rgb);
 	datas.hsv = my_rgb_to_hsv(datas.rgb);
 	COLOR = hsv_to_rgb(datas.hsv.h, datas.hsv.s, datas.hsv.v + datas.shadow);
 }
