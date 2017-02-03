@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 09:48:00 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/01 18:36:54 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/03 15:31:25 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,4 @@ void	change_global_quality(void *arg)
 		OPT |= (1 << 5);
 	}
 	change_btn_light(e);
-	create_img(e);
 }

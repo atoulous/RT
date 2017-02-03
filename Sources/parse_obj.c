@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/02 19:31:42 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/03 13:22:29 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void			get_obj_param(t_object *obj, char *str)
 	obj->p2 = get_v3d("p2", str);
 	obj->r1 = get_double("r1", str);
 	obj->r2 = get_double("r2", str);
+	if ((obj->angle = get_double("angle", str)))
 		obj->angle *= (M_PI / 180);
 	obj->pro = get_in_acc("tex", str);
 }

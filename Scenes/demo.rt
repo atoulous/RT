@@ -10,6 +10,7 @@ scene {
 	}
 	render { 900 700 }
 	ambiance { 0.1 }
+	reflection { 1 }
 	object {
 		name { sphere1 }
 		type { sphere }
@@ -18,7 +19,7 @@ scene {
 		color { 0x6F04AF }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.5 }
+			diffuse { 0.2 }
 			specular { 1 }
 			shine { 100 }
 		}
@@ -31,7 +32,7 @@ scene {
 		color { 0x00FF00 }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.3 }
+			diffuse { 0.2 }
 			specular { 1 }
 			shine { 100 }
 		}
@@ -43,10 +44,10 @@ scene {
 		p2 { 0 0 1 }
 		r1 { 1 }
 		r2 { 2 }
-		color { 0x00AAFF }
+		color { 0xFF358B }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.3 }
+			diffuse { 0.2 }
 			specular { 1 }
 			shine { 100 }
 		}
@@ -65,7 +66,7 @@ scene {
 		}
 	}
 	object {
-		name { plane sol }
+		name { plane plafond }
 		type { plane }
 		origin { 0 5 0 }
 		dir { 0 -1 0 }
@@ -78,7 +79,7 @@ scene {
 		}
 	}
 	object {
-		name { plane plafond }
+		name { plane sol }
 		type { plane }
 		origin { 0 -5 0 }
 		dir { 0 1 0 }
@@ -125,7 +126,7 @@ scene {
 		color { 0x00FFFF }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.3 }
+			diffuse { 0.2 }
 			specular { 1 }
 			shine { 100 }
 		}
@@ -139,7 +140,7 @@ scene {
 		color { 0x00FFFF }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.3 }
+			diffuse { 0.2 }
 			specular { 1 }
 			shine { 100 }
 		}
@@ -177,7 +178,6 @@ scene {
 		type { light }
 		origin { 10 0 -20 }
 		color { 0xFFFFFF }
-		dir { 0 0 1 }
 	}
 	object {
 		name { spot2 }

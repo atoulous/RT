@@ -6,7 +6,7 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 22:58:34 by atoulous          #+#    #+#             */
-/*   Updated: 2017/01/30 20:21:39 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/03 15:31:50 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void		change_ambiance(t_env *e, int keycode)
 	ft_putstr("Ambiance indice changed to ");
 	ft_putnbr(AMBIANCE);
 	printf("%f\n", AMBIANCE);
-	create_img(e);
 }
 
 void		change_luminosite(t_env *e, int keycode)
@@ -54,7 +53,6 @@ void		change_luminosite(t_env *e, int keycode)
 	ft_putstr("Luminosite indice changed to ");
 	ft_putnbr(LUMI);
 	printf("%f\n", LUMI);
-	create_img(e);
 }
 
 void		reset_cam(void	*arg)
@@ -65,5 +63,4 @@ void		reset_cam(void	*arg)
 	CAM_POS = e->parse_cam_pos;
 	CAM_DIR = e->parse_cam_dir;
 	ft_putendl("Camera reinitialized");
-	create_img(e);
 }

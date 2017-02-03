@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/13 15:46:55 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/01 18:25:30 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/03 15:52:53 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void		change_light_status(void *arg)
 	e = (t_env *)arg;
 	(OPT_L) ? (OPT ^= (1 << 1)) : (OPT |= (1 << 1));
 	create_img(e);
-	menu_object(e);
 }
 
 int			ft_mouse_click(int button, int x, int y, t_env *e)

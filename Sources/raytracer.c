@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 15:41:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/03 14:31:11 by dgameiro         ###   ########.fr       */
+/*   Updated: 2017/02/03 16:23:57 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@ static void	init_param(t_param *param, t_env *e)
 static void	init_vw_ray(t_env *e, t_param *param, int i_reflec)
 {
 	if (i_reflec)
-	{	
+	{
 		REF_COEFF *= VW_RAY.obj->mat.diffuse;
-	if (cos_v3d(VW_RAY.norm, VW_RAY.dir) > -0.3 && VW_RAY.obj->type != 2 && cos_v3d(VW_RAY.norm, VW_RAY.dir) < -0.000001) 
-		REF_COEFF = 0;
+		if (CARTOON && (cos_v3d(VW_RAY.norm, VW_RAY.dir) > -0.3 && \
+			VW_RAY.obj->type != 2 && cos_v3d(VW_RAY.norm, VW_RAY.dir) \
+			< -0.000001))
+			REF_COEFF = 0;
 		VW_RAY.pos = VW_RAY.inter;
 		VW_RAY.dir = unit_v3d(sub_v3d(VW_RAY.dir,
 		smul_v3d(VW_RAY.norm, 2.0 * cos_v3d(VW_RAY.dir, VW_RAY.norm))));
@@ -72,7 +74,6 @@ static void	perform_raytracing(t_env *e, t_param *param)
 
 	i_reflec = -1;
 	init_reflect(param);
-	NB_REF = 6;
 	while(++i_reflec <= NB_REF && REF_COEFF > 0.000001)
 	{
 		lst_obj = ENV->scene->obj;
@@ -89,19 +90,21 @@ static void	perform_raytracing(t_env *e, t_param *param)
 		{
 			obj_sel = (t_object *)param->e->scene->obj_focus->content;
 			if (VW_RAY.obj == obj_sel)
-			{
-				F_COLOR.r = 255;
-				F_COLOR.g = 255;
-				F_COLOR.b = 255;
-				break;
-			}
+				if (cos_v3d(VW_RAY.norm, VW_RAY.dir) > -0.3 && VW_RAY.obj->type
+						!= 2 && cos_v3d(VW_RAY.norm, VW_RAY.dir) < -0.000001)
+				{
+					F_COLOR.r = 0;
+					F_COLOR.g = 0;
+					F_COLOR.b = 0;
+					break;
+				}
 		}
 		(VW_RAY.obj && OPT_L) ? apply_light(ENV, param) : 0;
 		if (!VW_RAY.obj)
 			break;
 		add_reflected_color(param);
 	}
-		img_put_pixel(&e->img, X, Y, F_COLOR);
+	img_put_pixel(&e->img, X, Y, F_COLOR);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/03 14:03:58 by dgameiro         ###   ########.fr       */
+/*   Updated: 2017/02/03 16:19:38 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include <stdio.h>
-# include </System/Library/Frameworks/Tk.framework/Versions/8.5/Headers/X11/X.h>
+# include "X.h"
 # include <OpenCL/opencl.h>
 # include <pthread.h>
 # include <time.h>
@@ -47,6 +47,8 @@
 # define AMBIANCE e->ambiance
 # define SPEED e->speed
 # define ALPHA_ROT e->alpha_rot
+# define NB_REF e->nb_reflection
+# define CARTOON e->cartoon
 
 # define MOVES e->moves
 # define ROT e->rotations
@@ -87,7 +89,6 @@
 # define SOL param->sol
 # define COLOR param->color
 # define F_COLOR param->final_color
-# define NB_REF param->nb_reflection
 # define REF_COEFF param->reflec_coeff
 
 # define T sol->t
@@ -263,7 +264,6 @@ typedef struct	s_param
 	t_sol			sol;
 	int				color;
 	t_v3d			norm;
-	int				nb_reflection;
 	double			reflec_coeff;
 	t_rgb			final_color;
 }				t_param;
@@ -284,6 +284,8 @@ typedef struct	s_env
 	int			img_gap_y;
 	int			endian;
 	int			back_plane;
+	int			nb_reflection;
+	int			cartoon;
 	char		opt;
 	char		moves;
 	char		rotations;

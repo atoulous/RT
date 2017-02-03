@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 16:21:36 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/02 19:05:41 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/03 15:44:55 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ static void	get_resolution(t_env *e, char *str)
 	IMG_HEIGHT = (IMG_HEIGHT <= 0) ? 700 : IMG_HEIGHT;
 	if (!(AMBIANCE = get_double("ambiance", str)))
 		AMBIANCE = 0.1;
+	if (!(NB_REF = get_double("reflection", str)))
+		NB_REF = 1;
 }
 
 /*
