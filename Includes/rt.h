@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/02 16:52:14 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/03 14:03:58 by dgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,9 @@
 # define MOUS_RAY param->mouse_ray
 # define SOL param->sol
 # define COLOR param->color
+# define F_COLOR param->final_color
+# define NB_REF param->nb_reflection
+# define REF_COEFF param->reflec_coeff
 
 # define T sol->t
 # define A sol->a
@@ -260,6 +263,9 @@ typedef struct	s_param
 	t_sol			sol;
 	int				color;
 	t_v3d			norm;
+	int				nb_reflection;
+	double			reflec_coeff;
+	t_rgb			final_color;
 }				t_param;
 
 typedef struct	s_env
@@ -316,7 +322,7 @@ char			*go_to_next_acc(char *str, int n);
 char			*find_param(char *small, char *big);
 
 int				create_img(t_env *e);
-void			img_put_pixel(t_img *img, int x, int y, unsigned int color);
+void			img_put_pixel(t_img *img, int x, int y, t_rgb color);
 int				moves(t_env *e);
 void			change_light_status(void *arg);
 void			change_brillance_status(void *arg);
@@ -398,6 +404,7 @@ void			change_phong_status(void *arg);
 void			change_intensite1(void *arg);
 void			change_intensite2(void *arg);
 void			apply_color(t_env *e, t_param *param, t_object *l, t_light *datas);
+void			apply_cartoon_color(t_env *e, t_param *param, t_object *light, t_light *datas);
 
 /*
 **Bruit et modifs
@@ -436,5 +443,8 @@ double			grad(int a, double x, double y, double z);
 int			modify_color_for_tex(char *tex, t_v3d vec, t_rgb *r);
 t_rgb			wood(t_v3d inter);
 t_rgb			marbre(t_v3d inter);
+
+void			init_reflect(t_param *param);
+void			add_reflected_color(t_param *param);
 
 #endif

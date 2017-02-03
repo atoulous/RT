@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 09:11:28 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/02 18:53:45 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/03 13:31:22 by dgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	find_dist(t_object *obj, t_ray *ray, t_sol *sol)
 {
 	if (((T[1] < T[0]) && (T[1] > 0)) || ((T[1] > T[0]) && (T[0] < 0)))
 		T[0] = T[1];
-	if (T[0] > 0 && T[0] < ray->dist)
+	if (T[0] > 0.000001 && T[0] < ray->dist)
 	{
 		ray->obj = obj;
 		ray->dist = T[0];

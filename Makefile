@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/02/02 10:52:54 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/02/03 13:29:05 by dgameiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRC =	rt.c			\
 		others_events.c	\
 		others_events2.c	\
 		save.c			\
+		reflection.c			\
 
 OBJDIR = Objects
 VPATH = Sources

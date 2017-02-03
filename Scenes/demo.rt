@@ -59,7 +59,7 @@ scene {
 		color { 0x0FFF00 }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.3 }
+			diffuse { 0.2 }
 			specular { 1 }
 			shine { 10 }
 		}
@@ -72,7 +72,7 @@ scene {
 		color { 0xFF0F00 }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.3 }
+			diffuse { 0.2 }
 			specular { 1 }
 			shine { 100 }
 		}
@@ -85,7 +85,7 @@ scene {
 		color { 0xFF0F00 }
 		mat {
 			ambient { 0.1 }
-			diffuse { 0.3 }
+			diffuse { 0.2 }
 			specular { 1 }
 			shine { 100 }
 		}
@@ -98,7 +98,7 @@ scene {
 		color { 0xF0F000 }
 		mat {
 			ambient { 0.4 }
-			diffuse { 0.3 }
+			diffuse { 0.2 }
 			specular { 0.9 }
 			shine { 10 }
 		}
@@ -111,7 +111,7 @@ scene {
 		color { 0xF0F000 }
 		mat {
 			ambient { 0.4 }
-			diffuse { 0.3 }
+			diffuse { 0.2 }
 			specular { 0.9 }
 			shine { 10 }
 		}

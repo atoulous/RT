@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 16:58:17 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/30 20:42:58 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/03 13:32:13 by dgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	find_dist(t_object *obj, t_ray *ray, t_sol *sol)
 	i = -1;
 	max = ray->dist;
 	while (++i < 4)
-		if (T[i] > 0 && T[i] < max)
+		if (T[i] > 0.000001 && T[i] < max)
 		{
 			index = i;
 			max = T[i];

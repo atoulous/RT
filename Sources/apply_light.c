@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 10:29:13 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/02 19:31:37 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/03 14:07:36 by dgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ void		apply_light(t_env *e, t_param *param)
 					lst_obj = lst_obj->next;
 				}
 				obj_sel(&datas, param, (t_object *)lst_light->content);
-				apply_color(e, param, (t_object *)lst_light->content, &datas);
+				//apply_color(e, param, (t_object *)lst_light->content, &datas);
+				apply_cartoon_color(e, param, (t_object *)lst_light->content, &datas);
 			}
 		}
 		lst_light = lst_light->next;
