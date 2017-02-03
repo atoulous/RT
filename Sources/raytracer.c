@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 15:41:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/03 16:23:57 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/03 16:30:08 by dgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ static void	perform_raytracing(t_env *e, t_param *param)
 			break;
 		add_reflected_color(param);
 	}
-	img_put_pixel(&e->img, X, Y, F_COLOR);
+	img_put_pixel(&e->img, X, Y, param);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: dgameiro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 12:03:41 by dgameiro          #+#    #+#             */
-/*   Updated: 2017/02/03 13:30:38 by dgameiro         ###   ########.fr       */
+/*   Updated: 2017/02/03 17:10:40 by dgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ void	init_reflect(t_param *param)
 
 void		add_reflected_color(t_param *param)
 {
-	F_COLOR.r += (COLOR & 0x00FF) * REF_COEFF;
-	F_COLOR.g += ((COLOR & 0x00FF00) >> 8) * REF_COEFF; 
-	F_COLOR.b += ((COLOR & 0x00FF0000) >> 16) * REF_COEFF;
+	F_COLOR.r += (COLOR & 0xFF) * REF_COEFF;
+	F_COLOR.g += ((COLOR & 0xFF00) >> 8) * REF_COEFF; 
+	F_COLOR.b += ((COLOR & 0xFF0000) >> 16) * REF_COEFF;
 }
-
-

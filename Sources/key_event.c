@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/03 15:31:17 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/03 17:26:19 by dgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,25 @@ void		active_cartoon(t_env *e)
 	CARTOON ? CARTOON = 0 : (CARTOON = 1);
 }
 
+void		active_filter(t_env *e, int keycode)
+{
+	if (keycode == 41 && !e->sepia)
+	{
+		e->sepia = 1;
+		e->grey = 0;
+	}
+	else if (keycode == 39 && !e->grey)
+	{
+		e->grey = 1;
+		e->sepia = 0;
+	}
+	else
+	{
+		e->grey = 0;
+		e->sepia = 0;
+	}
+}
+
 int			ft_key_press(int keycode, t_env *e)
 {
 	OPT_D ? ft_putnbr(keycode) : 0;
@@ -96,6 +115,7 @@ int			ft_key_press(int keycode, t_env *e)
 	keycode == 35 ? back_plane(e) : 0;
 	keycode == 15 || keycode == 17 ? change_indice_reflection(e, keycode) : 0;
 	keycode == 8 ? active_cartoon(e) : 0;
+	keycode == 41 || keycode == 39 ? active_filter(e, keycode) : 0;
 	move(keycode, e);
 	create_img(e);
 	return (0);

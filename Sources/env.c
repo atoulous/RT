@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:39 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/03 15:13:39 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/03 17:13:01 by dgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,7 @@ t_env			*init_env(char *file_name, char opt)
 	debug(e);
 	MOVES = 0;
 	COMMAND = 0;
+	e->sepia = 0;
+	e->grey = 0;
 	return (e);
 }

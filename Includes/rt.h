@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/03 16:19:38 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/03 16:56:41 by dgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,6 +286,8 @@ typedef struct	s_env
 	int			back_plane;
 	int			nb_reflection;
 	int			cartoon;
+	int			sepia;
+	int			grey;
 	char		opt;
 	char		moves;
 	char		rotations;
@@ -324,7 +326,7 @@ char			*go_to_next_acc(char *str, int n);
 char			*find_param(char *small, char *big);
 
 int				create_img(t_env *e);
-void			img_put_pixel(t_img *img, int x, int y, t_rgb color);
+void			img_put_pixel(t_img *img, int x, int y, t_param *param);
 int				moves(t_env *e);
 void			change_light_status(void *arg);
 void			change_brillance_status(void *arg);
@@ -448,5 +450,7 @@ t_rgb			marbre(t_v3d inter);
 
 void			init_reflect(t_param *param);
 void			add_reflected_color(t_param *param);
+void			sepia_filter(t_param *param);
+void			grey_filter(t_param *param);
 
 #endif
