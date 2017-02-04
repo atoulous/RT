@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 19:33:51 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/04 22:34:03 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 # define GLOBQ (1 << 11)
 # define OPT_I1 (1 << 12)
 # define OPT_I2 (1 << 13)
+# define MOTION_BLUR (1 << 14)
 
 # define IS_OPT_D (OPT & OPT_D)
 # define IS_OPT_H (OPT & OPT_H)
@@ -66,6 +67,7 @@
 # define IS_GLOBQ (OPT & GLOBQ)
 # define IS_OPT_I1 (OPT & OPT_I1)
 # define IS_OPT_I2 (OPT & OPT_I2)
+# define IS_MOTION_BLUR (OPT & MOTION_BLUR)
 
 # define LUMI e->luminosite
 # define AMBIANCE e->ambiance
@@ -358,7 +360,8 @@ void			change_global_quality(void *arg);
 void			change_luminosite(t_env *e, int keycode);
 void			change_ambiance(t_env *e, int keycode);
 void			change_speed_rotation(t_env *e, int keycode);
-void        	change_luminosite_mouse(t_env *e, int y);
+void			change_luminosite_mouse(t_env *e, int y);
+void			change_indice_reflection(t_env *e, int keycode);
 void			del_focus_object(t_env *e);
 void			undo_del_object(t_env *e);
 void			color_selector(t_env *e, int x, int y);
@@ -370,6 +373,10 @@ void			add_torus(void *arg);
 void			screenshot(void *arg);
 void			reset_cam(void *arg);
 void			back_plane(void *arg);
+void			active_motion_blur(void *arg);
+void			active_sepia(void *arg);
+void			active_grey(void *arg);
+void			active_cartoon(void *arg);
 
 void			*raytracer(void *arg);
 void			apply_light(t_env *e, t_param *param);

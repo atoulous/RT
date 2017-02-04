@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 15:41:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 19:33:49 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/04 21:59:00 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void	perform_raytracing(t_env *e, t_param *param)
 			obj_sel = (t_object *)param->e->scene->obj_focus->content;
 			if (VW_RAY.obj == obj_sel)
 				if (cos_v3d(VW_RAY.norm, VW_RAY.dir) > -0.3 && VW_RAY.obj->type
-						!= 2 && cos_v3d(VW_RAY.norm, VW_RAY.dir) < -0.000001)
+						!= 1 && cos_v3d(VW_RAY.norm, VW_RAY.dir) < -0.000001)
 				{
 					F_COLOR.r = 255;
 					F_COLOR.g = 255;

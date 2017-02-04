@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/13 15:46:55 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 17:47:52 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/04 21:56:17 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static void	raytrace_mouse(t_env *e, int x, int y)
 	if (foc_obj == e->scene->obj_focus)
 		foc_obj = NULL;
 	e->scene->obj_focus = foc_obj;
-	menu_object(e);
 }
 
 int			ft_mouse_click(int button, int x, int y, t_env *e)
@@ -60,6 +59,7 @@ int			ft_mouse_click(int button, int x, int y, t_env *e)
 		{
 			raytrace_mouse(e, x - IMG_GAP_X, y - 49 - IMG_GAP_Y);
 			create_img(e);
+			menu_object(e);
 		}
 	}
 	return (0);

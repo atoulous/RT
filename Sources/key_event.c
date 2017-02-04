@@ -6,31 +6,33 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 19:10:24 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/04 22:31:58 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void	select_next_obj(t_env *e)
+static void	esc_n_select_obj(t_env *e, int keycode)
 {
-	if (!e->scene->obj_focus)
-		e->scene->obj_focus = e->scene->obj;
-	else
-		e->scene->obj_focus = e->scene->obj_focus->next;
+	if (keycode == 48)
+	{
+		if (!e->scene->obj_focus)
+			e->scene->obj_focus = e->scene->obj;
+		else
+			e->scene->obj_focus = e->scene->obj_focus->next;
+	}
+	else if (keycode == 53)
+	{
+		if (!e->scene->obj_focus)
+			quit_rt(e);
+		else
+			e->scene->obj_focus = NULL;
+	}
+	menu_object(e);
 	create_img(e);
 }
 
-static void	ft_esc_key(t_env *e)
-{
-	if (!e->scene->obj_focus)
-		quit_rt(e);
-	else
-		e->scene->obj_focus = NULL;
-	create_img(e);
-}
-
-static void	move(int keycode, t_env *e)
+static void	move(t_env *e, int keycode)
 {
 	keycode == 126 ? MOVES |= M_UP : 0;
 	keycode == 125 ? MOVES |= M_DOWN : 0;
@@ -42,6 +44,14 @@ static void	move(int keycode, t_env *e)
 	keycode == 88 ? ROT |= M_RIGHT : 0;
 	keycode == 84 ? ROT |= M_DOWN : 0;
 	keycode == 91 ? ROT |= M_UP : 0;
+}
+
+static void	after_effects(t_env *e, int keycode)
+{
+	keycode == 41 ? active_sepia(e) : 0;
+	keycode == 39 ? active_grey(e) : 0;
+	keycode == 8 ? active_cartoon(e) : 0;
+	keycode == 46 ? active_motion_blur(e) : 0;
 }
 
 int			ft_key_release(int keycode, t_env *e)
@@ -60,43 +70,10 @@ int			ft_key_release(int keycode, t_env *e)
 	return (0);
 }
 
-void		change_indice_reflection(t_env *e, int keycode)
-{
-	keycode == 15 && NB_REF > 0 ? NB_REF -= 1 : 0;
-	keycode == 17 ? NB_REF += 1 : 0;
-	ft_putstr("indice reflection changed to ");
-	ft_putnbr(NB_REF);
-	ft_putendl("");
-	create_img(e);
-}
-
-void		active_cartoon(t_env *e)
-{
-	(IS_CRTN) ? (OPT ^= CRTN) : (OPT |= CRTN);
-	create_img(e);
-}
-
-void		active_filter(t_env *e, int keycode)
-{
-	if (keycode == 41)
-	{
-		(IS_GREY && !IS_SEPIA) ? (OPT ^= GREY) : 0;
-		(IS_SEPIA) ? (OPT ^= SEPIA) : (OPT |= SEPIA);
-	}
-	else if (keycode == 39)
-	{
-		(IS_SEPIA && !IS_GREY) ? (OPT ^= SEPIA) : 0;
-		(IS_GREY) ? (OPT ^= GREY) : (OPT |= GREY);
-	}
-	menu_object(e);
-	create_img(e);
-}
-
 int			ft_key_press(int keycode, t_env *e)
 {
 	IS_OPT_D ? ft_putnbr(keycode) : 0;
-	keycode == 53 ? ft_esc_key(e) : 0;
-	keycode == 48 ? select_next_obj(e) : 0;
+	keycode == 53 || keycode == 48 ? esc_n_select_obj(e, keycode) : 0;
 	keycode == 51 ? del_focus_object(e) : 0;
 	keycode == 31 ? change_shadow_status(e) : 0;
 	keycode == 11 ? change_brillance_status(e) : 0;
@@ -115,8 +92,7 @@ int			ft_key_press(int keycode, t_env *e)
 	keycode == 50 ? screenshot(e) : 0;
 	keycode == 35 ? back_plane(e) : 0;
 	keycode == 15 || keycode == 17 ? change_indice_reflection(e, keycode) : 0;
-	keycode == 8 ? active_cartoon(e) : 0;
-	keycode == 41 || keycode == 39 ? active_filter(e, keycode) : 0;
-	move(keycode, e);
+	move(e, keycode);
+	after_effects(e, keycode);
 	return (0);
 }

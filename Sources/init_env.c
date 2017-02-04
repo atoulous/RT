@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:39 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 19:10:51 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/04 20:35:31 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,6 @@ t_env			*init_env(char *file_name, char opt)
 		error_perso(e, "malloc (t_env *)e failed");
 	if (ft_strcmp(file_name + ft_strlen(file_name) - 3, ".rt"))
 		error_perso(e, "Bad file extension (.rt)");
-	LUMI = 0.5;
-	SPEED = 0.2;
-	ALPHA_ROT = 20;
 	init_opt(e, opt);
 	init_scene(e, file_name);
 	i = -1;
@@ -93,8 +90,11 @@ t_env			*init_env(char *file_name, char opt)
 	e->scene->obj_trash = NULL;
 	init_menu(e);
 	debug(e);
-	LUMI = 0.3;
+	LUMI = 0.5;
+	SPEED = 0.2;
+	ALPHA_ROT = 20;
 	MOVES = 0;
+	ROT = 0;
 	COMMAND = 0;
 	return (e);
 }

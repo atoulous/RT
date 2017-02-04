@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/17 21:00:06 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 17:19:45 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/04 21:24:41 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,13 @@ double		get_double(char *name, char *str, t_env *e)
 	double	nb;
 
 	if (!(tmp = get_in_acc(name, str)))
-		error_perso(e, str);
+		return (0);
 	else
 	{
 		nb = ft_atof(tmp);
 		free(tmp);
 		return (nb);
 	}
-	return (0);
 }
 
 /*
@@ -96,7 +95,7 @@ t_v3d		get_v3d(char *name, char *str, t_env *e)
 	t_v3d	ret;
 
 	if (!(tmp = get_in_acc(name, str)))
-		error_perso(e, name);
+		return(v3d(0, 0, 1));
 	else
 	{
 		v = ft_strsplit(tmp, ' ');
@@ -110,5 +109,4 @@ t_v3d		get_v3d(char *name, char *str, t_env *e)
 		ft_free_tab(v);
 		return (ret);
 	}
-	return (v3d(0, 0, 0));
 }

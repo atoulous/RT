@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 10:39:07 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/04 18:11:17 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/04 22:33:57 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		apply_cartoon_color(t_env *e, t_param *param, t_object *light, t_light *da
 {
 	datas->angle_light = cos_v3d(VW_RAY.norm, PHO_RAY.dir);
 	do_phong_calcls(param, light, datas);
-	if (cos_v3d(VW_RAY.norm, VW_RAY.dir) > -0.3 && VW_RAY.obj->type != 2 &&
+	if (cos_v3d(VW_RAY.norm, VW_RAY.dir) > -0.3 && VW_RAY.obj->type != 1 &&
 		cos_v3d(VW_RAY.norm, VW_RAY.dir) < -0.000001) 
 	{
 		RGB.r = 0;
@@ -81,7 +81,7 @@ void		apply_cartoon_color(t_env *e, t_param *param, t_object *light, t_light *da
 				OMEGA = 0;
 			else if (OMEGA < 0.9)
 				OMEGA = 0.7;
-			else 
+			else
 				OMEGA = 1;
 			RGB.r += 255 * VW_RAY.obj->mat.specular * pow(datas->omega, \
 					VW_RAY.obj->mat.shine);
