@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 14:14:37 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/04 15:36:29 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,6 +265,8 @@ void			create_wait_image(t_env *e);
 void			init_menu(t_env *e);
 void			change_btn_light(t_env *e);
 void			menu_object(t_env *e);
+void			menu_image(t_env *e);
+void			back_menu(t_env *e);
 
 void			parse_rt(t_env *e, char *file_name);
 void			build_object(t_env *e, char *str);
@@ -310,8 +312,7 @@ void    		get_light_param(char *str, t_object *obj, void *e);
 void    		get_plane_param(char *str, t_object *obj, void *e);
 void    		get_sphere_param(char *str, t_object *obj, void *e);
 void    		get_cylinder_param(char *str, t_object *obj, void *e);
-void    		get_cone_param(char *str, t_object *obj, void *e);
-void    		get_torus_param(char *str, t_object *obj, void *e);
+void    		get_cone_torus_param(char *str, t_object *obj, void *e);
 double			caps_up(t_object *obj, t_ray *ray);
 double			caps_bottom(t_object *obj, t_ray *ray);
 double			caps(t_ray *ray, double r, t_v3d n, t_v3d p);

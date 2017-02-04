@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,16 +6,16 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/30 16:52:09 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/04 14:46:40 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
 /*
- * ** Parse the matiere of the object
- * ** If no matiere specified in file, set it to defined values
- * */
+** Parse the matiere of the object
+** If no matiere specified in file, set it to defined values
+*/
 
 static void		add_mat(t_object *obj, char *str, t_env *e)
 {
@@ -40,14 +39,14 @@ static void		add_mat(t_object *obj, char *str, t_env *e)
 }
 
 /*
- * ** Parse the object type
- * ** 0 -> light
- * ** 1 -> plane
- * ** 2 -> sphere
- * ** 3 -> cylinder
- * ** 4 -> cone
- * ** 5 -> torus
- * */
+** Parse the object type
+** 0 -> light
+** 1 -> plane
+** 2 -> sphere
+** 3 -> cylinder
+** 4 -> cone
+** 5 -> torus
+*/
 
 static int		get_obj_type(t_env *e, char *str)
 {
@@ -68,9 +67,9 @@ static int		get_obj_type(t_env *e, char *str)
 }
 
 /*
- * ** Parse the object color and return it as an int
- * ** Return -1 if no color found
- * */
+** Parse the object color and return it as an int
+** Return -1 if no color found
+*/
 
 static int		get_obj_color(char *str)
 {
@@ -88,9 +87,9 @@ static int		get_obj_color(char *str)
 }
 
 /*
- * ** Parse and build the object
- * ** Quit program with adequate message if error encountered
- * */
+** Parse and build the object
+** Quit program with adequate message if error encountered
+*/
 
 void			init_obj_param(t_env *e)
 {
@@ -101,8 +100,8 @@ void			init_obj_param(t_env *e)
 	e->get_obj_param[1] = &get_plane_param;
 	e->get_obj_param[2] = &get_sphere_param;
 	e->get_obj_param[3] = &get_cylinder_param;
-	e->get_obj_param[4] = &get_cone_param;
-	e->get_obj_param[5] = &get_torus_param;
+	e->get_obj_param[4] = &get_cone_torus_param;
+	e->get_obj_param[5] = &get_cone_torus_param;
 }
 
 void			build_object(t_env *e, char *str)

@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/02/04 13:47:01 by jubarbie         ###   ########.fr        #
+#    Updated: 2017/02/04 15:33:33 by jubarbie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ CC=gcc
 CFLAGS= -ILibs/libft -ILibs/libmlx -ILibs/libv3d -ILibs/libmy_math -IIncludes -Wall -Wextra -Werror
 SRC=	rt.c				\
 		menu.c			\
+		init_menu.c			\
+		menu_objects.c			\
 		color.c			\
 		hsv_rgb.c		\
 		options.c		\
@@ -22,7 +24,8 @@ SRC=	rt.c				\
 		mouse_event.c		\
 		menu_event.c		\
 		render_options.c	\
-		env.c			\
+		init_env.c			\
+		free_env.c			\
 		debug.c			\
 		parse.c			\
 		parse_param.c		\
@@ -46,6 +49,7 @@ SRC=	rt.c				\
 		fill_matiere_in_case.c		\
 		init_opt.c		\
 		save.c			\
+		scene_options.c \
 		moves.c
 
 OBJDIR = Objects

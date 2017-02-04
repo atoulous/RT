@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/21 15:47:35 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 13:32:47 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/04 14:40:41 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	color_selector(t_env *e, int x, int y)
 {
-	int		h;
-	double	s;
-	double	v;
+	int			h;
+	double		s;
+	double		v;
 	t_object	*obj;
 
 	if (e->scene->obj_focus)
@@ -25,7 +25,7 @@ void	color_selector(t_env *e, int x, int y)
 		s = (y < 86) ? 1 * y / 86.0 : 1;
 		v = (y > 86) ? (1 * (172 - y) / 86.0) : 1;
 		obj = (t_object *)e->scene->obj_focus->content;
-	   	obj->color = hsv_to_rgb(h, s, v);
+		obj->color = hsv_to_rgb(h, s, v);
 		create_img(e);
 	}
 }

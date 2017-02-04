@@ -6,21 +6,21 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 16:21:36 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 13:47:35 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/04 14:39:27 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
 /*
- ** Create the objects allowed array specified in the header file
- ** Create the functions array for every object
- ** There is 3 different arrays:
- ** 	- obj_fct_obj: functions to perform the raytracing
- **	- calc_obj_param: functions to compute the object parameters
- **	- update_obj_pos: function to update objects position, when objects are
- **	moving for exemple
- */
+** Create the objects allowed array specified in the header file
+** Create the functions array for every object
+** There is 3 different arrays:
+** 	- obj_fct_obj: functions to perform the raytracing
+**	- calc_obj_param: functions to compute the object parameters
+**	- update_obj_pos: function to update objects position, when objects are
+**	moving for exemple
+*/
 
 static void	make_fct_tab(t_env *e)
 {
@@ -46,9 +46,9 @@ static void	make_fct_tab(t_env *e)
 }
 
 /*
- ** Parse the image resolution
- ** If image resolution is negative or 0, set it to 800 x 700 px
- */
+** Parse the image resolution
+** If image resolution is negative or 0, set it to 800 x 700 px
+*/
 
 static void	get_resolution(t_env *e, char *str)
 {
@@ -68,8 +68,8 @@ static void	get_resolution(t_env *e, char *str)
 }
 
 /*
- ** Parse the string given to build the scene
- */
+** Parse the string given to build the scene
+*/
 
 static void	build_scene(t_env *e, char *str)
 {
@@ -101,9 +101,9 @@ static void	build_scene(t_env *e, char *str)
 }
 
 /*
- ** Open the file, read it and save every lines that doesn't start with '#' in a
- ** string that will be used for the parcing
- */
+** Open the file, read it and save every lines that doesn't start with '#' in a
+** string that will be used for the parcing
+*/
 
 void		parse_rt(t_env *e, char *file_name)
 {
@@ -129,6 +129,5 @@ void		parse_rt(t_env *e, char *file_name)
 	make_fct_tab(e);
 	check_acc(e, file);
 	build_scene(e, file);
-	//free_fct_tab(e);
 	free(file);
 }

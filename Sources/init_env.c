@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:39 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 14:14:34 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/04 15:09:01 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,42 +52,14 @@ static t_param	*init_param(t_env *e, int index)
 	return (param);
 }
 
-/*
-** Free the content of the list object
-** Function called to remove a node of the objects list
-*/
-
-void			free_obj(void *content, size_t size)
+static void		init_img(t_env *e)
 {
-	free(content);
-	content = NULL;
-	size = 0;
-}
-
-/*
-** Free the environment. Should be called once at program end
-*/
-
-void			free_env(t_env *e)
-{
-	int	i;
-
-	if (e)
-	{
-		i = -1;
-		while (++i < NB_TH)
-			e->param[i] ? free(e->param[i]) : 0;
-		e->scene->name ? free(e->scene->name) : 0;
-		ft_lstdel(&e->scene->obj, &free_obj);
-		ft_lstdel(&e->scene->light, &free_obj);
-		e->scene ? free(e->scene) : 0;
-		mlx_destroy_image(MLX, IMG);
-		MLX = NULL;
-		WIN = NULL;
-		IMG = NULL;
-		ft_free_tab(e->obj_allowed);
-		free(e);
-	}
+	WIN_WIDTH = (IMG_WIDTH < 600) ? 840 : IMG_WIDTH + 240;
+	WIN_HEIGHT = (IMG_HEIGHT < 510) ? 690 : IMG_HEIGHT + 180;
+	IMG_GAP_X = (WIN_WIDTH - 240 - IMG_WIDTH) / 2;
+	IMG_GAP_Y = (WIN_HEIGHT - 180 - IMG_HEIGHT) / 2;
+	IMG = mlx_new_image(MLX, IMG_WIDTH, IMG_HEIGHT);
+	IMG_ADDR = mlx_get_data_addr(IMG, &e->img.bpp, &e->img.sizeline, &ENDIAN);
 }
 
 /*
@@ -103,24 +75,19 @@ t_env			*init_env(char *file_name, char opt)
 		error_perso(e, "malloc (t_env *)e failed");
 	if (ft_strcmp(file_name + ft_strlen(file_name) - 3, ".rt"))
 		error_perso(e, "Bad file extension (.rt)");
-	LUMI = 0.3;
 	init_opt(e, opt);
 	init_scene(e, file_name);
 	i = -1;
 	while (++i < NB_TH)
 		e->param[i] = init_param(e, i);
 	MLX = mlx_init();
-	WIN_WIDTH = (IMG_WIDTH < 600) ? 840 : IMG_WIDTH + 240;
-	WIN_HEIGHT = (IMG_HEIGHT < 510) ? 690 : IMG_HEIGHT + 180;
-	IMG_GAP_X = (WIN_WIDTH - 240 - IMG_WIDTH) / 2;
-	IMG_GAP_Y = (WIN_HEIGHT - 180 - IMG_HEIGHT) / 2;
+	init_img(e);
 	WIN = mlx_new_window(MLX, WIN_WIDTH, WIN_HEIGHT, file_name);
 	e->scene->obj_focus = NULL;
 	e->scene->obj_trash = NULL;
 	init_menu(e);
-	IMG = mlx_new_image(MLX, IMG_WIDTH, IMG_HEIGHT);
-	IMG_ADDR = mlx_get_data_addr(IMG, &e->img.bpp, &e->img.sizeline, &ENDIAN);
 	debug(e);
+	LUMI = 0.3;
 	MOVES = 0;
 	COMMAND = 0;
 	return (e);
