@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/03 17:26:19 by dgameiro         ###   ########.fr       */
+/*   Updated: 2017/02/04 15:07:54 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	select_next_obj(t_env *e)
 		e->scene->obj_focus = e->scene->obj;
 	else
 		e->scene->obj_focus = e->scene->obj_focus->next;
+	create_img(e);
 }
 
 static void	ft_esc_key(t_env *e)
@@ -26,6 +27,7 @@ static void	ft_esc_key(t_env *e)
 		quit_rt(e);
 	else
 		e->scene->obj_focus = NULL;
+	create_img(e);
 }
 
 static void	move(int keycode, t_env *e)
@@ -65,11 +67,13 @@ void		change_indice_reflection(t_env *e, int keycode)
 	ft_putstr("indice reflection changed to ");
 	ft_putnbr(NB_REF);
 	ft_putendl("");
+	create_img(e);
 }
 
 void		active_cartoon(t_env *e)
 {
 	CARTOON ? CARTOON = 0 : (CARTOON = 1);
+	create_img(e);
 }
 
 void		active_filter(t_env *e, int keycode)
@@ -89,6 +93,8 @@ void		active_filter(t_env *e, int keycode)
 		e->grey = 0;
 		e->sepia = 0;
 	}
+	menu_object(e);
+	create_img(e);
 }
 
 int			ft_key_press(int keycode, t_env *e)
@@ -117,6 +123,5 @@ int			ft_key_press(int keycode, t_env *e)
 	keycode == 8 ? active_cartoon(e) : 0;
 	keycode == 41 || keycode == 39 ? active_filter(e, keycode) : 0;
 	move(keycode, e);
-	create_img(e);
 	return (0);
 }

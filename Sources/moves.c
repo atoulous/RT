@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 17:50:44 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/01 18:26:57 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/04 15:07:53 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,7 @@ int		moves(t_env *e)
 	rotations(e, dir);
 	list && e->update_obj_pos[obj->type] ?
 		e->update_obj_pos[obj->type](obj) : 0;
-	if (MOVES || ROT)
-	{
-		create_img(e);
-		menu_object(e);
-	}
+	MOVES || ROT ? menu_object(e) : 0;
+	MOVES || ROT ? create_img(e) : 0;
 	return (0);
 }
