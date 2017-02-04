@@ -15,15 +15,15 @@ static void	put_obj_param_to_file(t_object *obj, char **obj_a, FILE *fd)
 	fprintf(fd, "\t\tname{%s}\n\t\ttype{%s}\n", obj->name, obj_a[t]);
 	if (t == 0 || t == 1 || t == 2)
 		fprintf(fd, "\t\torigin{%f %f %f}\n", O_POS.x, O_POS.y, O_POS.z);
-	if (t == 2)
+	if (t == 1)
 		fprintf(fd, "\t\tdir{%f %f %f}\n", O_DIR.x, O_DIR.y, O_DIR.z);
-	if (t == 4 || t == 5 )
+	if (t == 3 || t == 4 || t == 5)
 	{	
 		fprintf(fd, "\t\tp1{%f %f %f}\n", O_P1.x, O_P1.y, O_P1.z);
 		fprintf(fd, "\t\tp2{%f %f %f}\n", O_P2.x, O_P2.y, O_P2.z);
 	}
-	(t == 1 || t == 4 || t == 5) ? fprintf(fd, "\t\tr1{%f}\n", O_R1) : 0;
-	(t == 4) ? fprintf(fd, "\t\tr2{%f}\n", O_R2) : 0;
+	(t == 2 || t == 3 || t == 4 || t == 5) ? fprintf(fd, "\t\tr1{%f}\n", O_R1) : 0;
+	(t == 4 || t == 5) ? fprintf(fd, "\t\tr2{%f}\n", O_R2) : 0;
 	fprintf(fd, "\t\tcolor{0x%08X}\n", obj->color);
 	put_mat_to_file(obj, fd);
 }

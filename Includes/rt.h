@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 14:28:44 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/04 13:46:47 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include <stdio.h>
-# include </System/Library/Frameworks/Tk.framework/Versions/8.5/Headers/X11/X.h>
+# include "X.h"
 # include <OpenCL/opencl.h>
 # include <pthread.h>
 # include <time.h>
