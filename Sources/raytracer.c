@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 15:41:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/03 16:30:08 by dgameiro         ###   ########.fr       */
+/*   Updated: 2017/02/04 15:15:23 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ static void	perform_raytracing(t_env *e, t_param *param)
 				if (cos_v3d(VW_RAY.norm, VW_RAY.dir) > -0.3 && VW_RAY.obj->type
 						!= 2 && cos_v3d(VW_RAY.norm, VW_RAY.dir) < -0.000001)
 				{
-					F_COLOR.r = 0;
-					F_COLOR.g = 0;
-					F_COLOR.b = 0;
+					F_COLOR.r = 255;
+					F_COLOR.g = 255;
+					F_COLOR.b = 255;
 					break;
 				}
 		}
