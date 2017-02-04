@@ -6,7 +6,7 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 20:16:04 by atoulous          #+#    #+#             */
-/*   Updated: 2017/02/04 14:51:00 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/04 19:18:22 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	back_plane(void	*arg)
 	t_env	*e;
 
 	e = (t_env *)arg;
-	BACK_PLANE ? BACK_PLANE = 0 : (BACK_PLANE = 1);
-	BACK_PLANE ? ft_putendl("Switch OFF back_plane") : 0;
-	!BACK_PLANE ? ft_putendl("Switch ON back_plane") : 0;
+	IS_BPLANE ? (OPT ^= BPLANE) : (OPT |= BPLANE);
+	(IS_BPLANE && IS_OPT_D) ? ft_putendl("Swith OFF back_plane") : 0;
+	(!IS_BPLANE && IS_OPT_D) ? ft_putendl("Switch ON back_plane") : 0;
 	menu_object(e);
 	create_img(e);
 }

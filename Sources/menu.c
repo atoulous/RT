@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/13 13:16:40 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 17:11:04 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/04 19:11:55 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		back_menu(t_env *e)
 
 void		change_btn_light(t_env *e)
 {
-	if (OPT_GQ)
+	if (IS_GLOBQ)
 		mlx_put_image_to_window(MLX, WIN, ME[1].img.img, ME[1].x, ME[1].y);
 	else
 		mlx_put_image_to_window(MLX, WIN, ME[2].img.img, ME[2].x, ME[2].y);

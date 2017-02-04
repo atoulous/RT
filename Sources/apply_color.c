@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 10:39:07 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/04 13:10:45 by dgameiro         ###   ########.fr       */
+/*   Updated: 2017/02/04 18:11:17 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void		apply_color(t_env *e, t_param *param, t_object *light, t_light *datas)
 {
 	datas->angle_light = cos_v3d(VW_RAY.norm, PHO_RAY.dir);
 	do_phong_calcls(param, light, datas);
-	if (OPT_2)
+	if (IS_OPT_I1)
 	{
 		RGB.r += (ALI * 255 * VW_RAY.obj->mat.diffuse * -1);
 		RGB.g += (ALI * 255 * VW_RAY.obj->mat.diffuse * -1);
 		RGB.b += (ALI * 255 * VW_RAY.obj->mat.diffuse * -1);
 	}
-	if (OPT_3)
+	if (IS_OPT_I2)
 	{
 		if (datas->omega > 0.000001 && !PHO_RAY.obj)
 		{
@@ -63,7 +63,7 @@ void		apply_cartoon_color(t_env *e, t_param *param, t_object *light, t_light *da
 		RGB.b = 0;
 		return;
 	}
-	if (OPT_2)
+	if (IS_OPT_I1)
 	{
 		if (ALI > -0.2)
 			ALI = 0;
@@ -73,7 +73,7 @@ void		apply_cartoon_color(t_env *e, t_param *param, t_object *light, t_light *da
 		RGB.g += (ALI *  255 * VW_RAY.obj->mat.diffuse * -1);
 		RGB.b += (ALI *  255 * VW_RAY.obj->mat.diffuse * -1);
 	}
-	if (OPT_3)
+	if (IS_OPT_I2)
 	{
 		if (datas->omega > 0.000001 && !PHO_RAY.obj)
 		{

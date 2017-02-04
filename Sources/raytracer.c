@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 15:41:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 15:15:23 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/04 19:33:49 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	init_vw_ray(t_env *e, t_param *param, int i_reflec)
 	if (i_reflec)
 	{
 		REF_COEFF *= VW_RAY.obj->mat.diffuse;
-		if (CARTOON && (cos_v3d(VW_RAY.norm, VW_RAY.dir) > -0.3 && \
+		if (IS_CRTN && (cos_v3d(VW_RAY.norm, VW_RAY.dir) > -0.3 && \
 			VW_RAY.obj->type != 2 && cos_v3d(VW_RAY.norm, VW_RAY.dir) \
 			< -0.000001))
 			REF_COEFF = 0;
@@ -74,7 +74,7 @@ static void	perform_raytracing(t_env *e, t_param *param)
 
 	i_reflec = -1;
 	init_reflect(param);
-	while(++i_reflec <= NB_REF && REF_COEFF > 0.000001)
+	while (++i_reflec <= NB_REF && REF_COEFF > 0.000001)
 	{
 		lst_obj = ENV->scene->obj;
 		init_vw_ray(ENV, param, i_reflec);
@@ -99,10 +99,13 @@ static void	perform_raytracing(t_env *e, t_param *param)
 					break;
 				}
 		}
-		(VW_RAY.obj && OPT_L) ? apply_light(ENV, param) : 0;
+		(VW_RAY.obj && IS_LIGHT) ? apply_light(ENV, param) : 0;
 		if (!VW_RAY.obj)
 			break;
-		add_reflected_color(param);
+		if (!IS_REFLX)
+			break;
+		else
+			add_reflected_color(param);
 	}
 	img_put_pixel(&e->img, X, Y, param);
 }

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:39 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/03 17:13:01 by dgameiro         ###   ########.fr       */
+/*   Updated: 2017/02/04 19:10:51 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		init_scene(t_env *e, char *file_name)
 	parse_rt(e, file_name);
 	e->parse_cam_pos = CAM_POS;
 	e->parse_cam_dir = CAM_DIR;
-	OPT_H ? print_help() : 0;
+	IS_OPT_H ? print_help() : 0;
 	VW_WIDTH = IMG_WIDTH / 1000.0;
 	VW_HEIGHT = IMG_HEIGHT / 1000.0;
 	VW_DIST = 1.0;
@@ -96,7 +96,5 @@ t_env			*init_env(char *file_name, char opt)
 	LUMI = 0.3;
 	MOVES = 0;
 	COMMAND = 0;
-	e->sepia = 0;
-	e->grey = 0;
 	return (e);
 }

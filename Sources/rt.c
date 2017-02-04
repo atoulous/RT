@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:01:24 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 14:57:15 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/04 19:13:11 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@ int			create_img(t_env *e)
 
 void		img_put_pixel(t_img *img, int x, int y, t_param *param)
 {
-	if (ENV->sepia)
+	t_env	*e;
+
+	e = ENV;
+	if (IS_SEPIA)
 		sepia_filter(param);
-	else if (ENV->grey)
+	else if (IS_GREY)
 		grey_filter(param);
 	img->addr[y * img->sizeline + x * (img->bpp / 8)] = fmin(F_COLOR.r, 255.0);
 	img->addr[y * img->sizeline + x * (img->bpp / 8) + 1] = fmin(F_COLOR.g, 255.0);

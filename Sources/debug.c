@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 18:49:11 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/30 16:09:42 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/04 17:53:21 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ static void	print_scene(t_env *e)
 
 void		debug(t_env *e)
 {
-	if (OPT_D)
+	if (IS_OPT_D)
 		print_scene(e);
 }

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 17:15:33 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/04 19:33:51 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,44 @@
 
 # define OPT_REF "dlh"
 # define OPT e->opt
-# define OPT2 e->opt2
-# define OPT_D (OPT & (1 << 0))
-# define OPT_L (OPT & (1 << 1))
-# define OPT_H (OPT & (1 << 2))
-# define OPT_1 (OPT & (1 << 5))
-# define OPT_2 (OPT & (1 << 6))
-# define OPT_3 (OPT & (1 << 7))
-# define OPT_B (OPT & (1 << 3))
-# define OPT_O (OPT & (1 << 4))
-# define OPT_GQ (OPT & (1 << 4))
+
+# define OPT_D (1 << 0)
+# define OPT_H (1 << 1)
+
+# define LIGHT (1 << 2)
+# define SHADOW (1 << 3)
+# define SHINE (1 << 4)
+# define REFLX (1 << 5)
+# define SEPIA (1 << 6)
+# define GREY (1 << 7)
+# define CRTN (1 << 8)
+# define PHONG (1 << 9)
+# define BPLANE (1 << 10)
+# define GLOBQ (1 << 11)
+# define OPT_I1 (1 << 12)
+# define OPT_I2 (1 << 13)
+
+# define IS_OPT_D (OPT & OPT_D)
+# define IS_OPT_H (OPT & OPT_H)
+
+# define IS_LIGHT (OPT & LIGHT)
+# define IS_SHADOW (OPT & SHADOW)
+# define IS_SHINE (OPT & SHINE)
+# define IS_REFLX (OPT & REFLX)
+# define IS_SEPIA (OPT & SEPIA)
+# define IS_GREY (OPT & GREY)
+# define IS_CRTN (OPT & CRTN)
+# define IS_PHONG (OPT & PHONG)
+# define IS_BPLANE (OPT & BPLANE)
+# define IS_GLOBQ (OPT & GLOBQ)
+# define IS_OPT_I1 (OPT & OPT_I1)
+# define IS_OPT_I2 (OPT & OPT_I2)
+
 # define LUMI e->luminosite
 # define AMBIANCE e->ambiance
 # define SPEED e->speed
 # define ALPHA_ROT e->alpha_rot
 # define NB_REF e->nb_reflection
-# define CARTOON e->cartoon
 
 # define MOVES e->moves
 # define ROT e->rotations
@@ -77,7 +99,6 @@
 # define NB_ME 13
 # define ME e->menu
 # define COMMAND e->command
-# define BACK_PLANE e->back_plane
 
 # define ENV param->e
 # define TH param->index
@@ -283,10 +304,7 @@ typedef struct	s_env
 	int			endian;
 	int			back_plane;
 	int			nb_reflection;
-	int			cartoon;
-	int			sepia;
-	int			grey;
-	char		opt;
+	int			opt;
 	char		moves;
 	char		rotations;
 	char		command;

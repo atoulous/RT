@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 10:29:13 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/04 11:36:40 by dgameiro         ###   ########.fr       */
+/*   Updated: 2017/02/04 19:20:36 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void		apply_light(t_env *e, t_param *param)
 	t_light		datas;
 
 	datas.rgb = transfo(VW_RAY.obj->color, &datas);
-	if (OPT_1)
+	if (IS_PHONG)
 		rgb_s_mult(&datas.rgb, VW_RAY.obj->mat.ambient + LUMI);
 	lst_light = e->scene->light;
 	while (lst_light)
@@ -85,8 +85,8 @@ void		apply_light(t_env *e, t_param *param)
 				}
 			}
 				obj_sel(&datas, param, (t_object *)lst_light->content);
-				!CARTOON ? apply_color(e, param, (t_object *)lst_light->content, &datas) : 0;
-				CARTOON ? apply_cartoon_color(e, param, (t_object *)lst_light->content, &datas) : 0;
+				!IS_CRTN ? apply_color(e, param, (t_object *)lst_light->content, &datas) : 0;
+				IS_CRTN ? apply_cartoon_color(e, param, (t_object *)lst_light->content, &datas) : 0;
 		lst_light = lst_light->next;
 	}
 	datas.hsv = my_rgb_to_hsv(datas.rgb);

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 14:55:45 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 17:14:43 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/04 19:19:33 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	change_light_status(void *arg)
 	t_env *e;
 
 	e = (t_env *)arg;
-	(OPT_L) ? (OPT ^= (1 << 1)) : (OPT |= (1 << 1));
+	(IS_LIGHT) ? (OPT ^= LIGHT) : (OPT |= LIGHT);
 	create_img(e);
 }
 
@@ -26,7 +26,7 @@ void	change_brillance_status(void *arg)
 	t_env *e;
 
 	e = (t_env *)arg;
-	(OPT_B) ? (OPT ^= (1 << 3)) : (OPT |= (1 << 3));
+	(IS_SHINE) ? (OPT ^= SHINE) : (OPT |= SHINE);
 	create_img(e);
 }
 
@@ -35,7 +35,7 @@ void	change_shadow_status(void *arg)
 	t_env *e;
 
 	e = (t_env *)arg;
-	(OPT_O) ? (OPT ^= (1 << 4)) : (OPT |= (1 << 4));
+	(IS_SHADOW) ? (OPT ^= SHADOW) : (OPT |= SHADOW);
 	create_img(e);
 }
 
@@ -44,19 +44,21 @@ void	change_global_quality(void *arg)
 	t_env *e;
 
 	e = (t_env *)arg;
-	if (OPT_GQ)
+	if (IS_GLOBQ)
 	{
-		OPT ^= (1 << 1);
-		OPT ^= (1 << 3);
-		OPT ^= (1 << 4);
-		OPT ^= (1 << 5);
+		OPT ^= LIGHT;
+		OPT ^= SHINE;
+		OPT ^= SHADOW;
+		OPT ^= REFLX;
+		OPT ^= GLOBQ;
 	}
 	else
 	{
-		OPT |= (1 << 1);
-		OPT |= (1 << 3);
-		OPT |= (1 << 4);
-		OPT |= (1 << 5);
+		OPT |= LIGHT;
+		OPT |= SHINE;
+		OPT |= SHADOW;
+		OPT |= REFLX;
+		OPT |= GLOBQ;
 	}
 	change_btn_light(e);
 	create_img(e);

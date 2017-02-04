@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 15:07:54 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/04 19:10:24 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,26 +72,21 @@ void		change_indice_reflection(t_env *e, int keycode)
 
 void		active_cartoon(t_env *e)
 {
-	CARTOON ? CARTOON = 0 : (CARTOON = 1);
+	(IS_CRTN) ? (OPT ^= CRTN) : (OPT |= CRTN);
 	create_img(e);
 }
 
 void		active_filter(t_env *e, int keycode)
 {
-	if (keycode == 41 && !e->sepia)
+	if (keycode == 41)
 	{
-		e->sepia = 1;
-		e->grey = 0;
+		(IS_GREY && !IS_SEPIA) ? (OPT ^= GREY) : 0;
+		(IS_SEPIA) ? (OPT ^= SEPIA) : (OPT |= SEPIA);
 	}
-	else if (keycode == 39 && !e->grey)
+	else if (keycode == 39)
 	{
-		e->grey = 1;
-		e->sepia = 0;
-	}
-	else
-	{
-		e->grey = 0;
-		e->sepia = 0;
+		(IS_SEPIA && !IS_GREY) ? (OPT ^= SEPIA) : 0;
+		(IS_GREY) ? (OPT ^= GREY) : (OPT |= GREY);
 	}
 	menu_object(e);
 	create_img(e);
@@ -99,7 +94,7 @@ void		active_filter(t_env *e, int keycode)
 
 int			ft_key_press(int keycode, t_env *e)
 {
-	OPT_D ? ft_putnbr(keycode) : 0;
+	IS_OPT_D ? ft_putnbr(keycode) : 0;
 	keycode == 53 ? ft_esc_key(e) : 0;
 	keycode == 48 ? select_next_obj(e) : 0;
 	keycode == 51 ? del_focus_object(e) : 0;
