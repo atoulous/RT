@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 15:36:29 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/04 15:42:01 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -287,7 +287,7 @@ void			change_brillance_status(void *arg);
 void			change_shadow_status(void *arg);
 void			change_global_quality(void *arg);
 void			change_luminosite(t_env *e, int keycode);
-void        	change_luminosite_mouse(t_env *e, int y);
+void			change_luminosite_mouse(t_env *e, int y);
 void			del_focus_object(t_env *e);
 void			undo_del_object(t_env *e);
 void			color_selector(t_env *e, int x, int y);
@@ -308,11 +308,11 @@ void			update_cylinder_pos(t_object *obj);
 void			cone(t_object *obj, t_ray *ray, t_sol *sol);
 void			calc_cone_param(t_object *obj);
 void			update_cone_pos(t_object *obj);
-void    		get_light_param(char *str, t_object *obj, void *e);
-void    		get_plane_param(char *str, t_object *obj, void *e);
-void    		get_sphere_param(char *str, t_object *obj, void *e);
-void    		get_cylinder_param(char *str, t_object *obj, void *e);
-void    		get_cone_torus_param(char *str, t_object *obj, void *e);
+void			get_light_param(char *str, t_object *obj, void *e);
+void			get_plane_param(char *str, t_object *obj, void *e);
+void			get_sphere_param(char *str, t_object *obj, void *e);
+void			get_cylinder_param(char *str, t_object *obj, void *e);
+void			get_cone_torus_param(char *str, t_object *obj, void *e);
 double			caps_up(t_object *obj, t_ray *ray);
 double			caps_bottom(t_object *obj, t_ray *ray);
 double			caps(t_ray *ray, double r, t_v3d n, t_v3d p);
@@ -343,8 +343,8 @@ void			init_cl(t_env *e);
 void			init_opt(t_env *e, char opt);
 
 /*
- * **ajoutees pour torus
- * */
+** ajoutees pour torus
+*/
 void			torus_error(t_object *obj, t_env *e);
 void			torus(t_object *obj, t_ray *ray, t_sol *sol);
 t_v3d			get_torus_normal(t_object *o, t_v3d cam, t_v3d ray, double ret);
