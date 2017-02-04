@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/17 21:00:06 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 13:44:39 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/04 17:19:45 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ double		get_double(char *name, char *str, t_env *e)
 	double	nb;
 
 	if (!(tmp = get_in_acc(name, str)))
-		error_perso(e, name);
+		error_perso(e, str);
 	else
 	{
 		nb = ft_atof(tmp);

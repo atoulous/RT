@@ -6,11 +6,15 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 12:25:53 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/03 16:58:48 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/01/23 14:10:13 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libv3d.h"
+
+/*
+** Produit vectoriel ou cross product
+*/
 
 t_v3d	cross_v3d(t_v3d v1, t_v3d v2)
 {

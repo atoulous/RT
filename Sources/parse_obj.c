@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 14:46:40 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/04 17:22:14 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void			build_object(t_env *e, char *str)
 		error_perso(e, "No type found in object");
 	e->get_obj_param[obj.type](str, &obj, (void *)e);
 	e->calc_obj_param[obj.type] ? e->calc_obj_param[obj.type](&obj) : 0;
+	obj.pro = get_in_acc("tex", str);
 	if ((obj.color = get_obj_color(str)) == -1)
 		error_perso(e, "No color found in object");
 	add_mat(&obj, str, e);

@@ -3,21 +3,25 @@
 #
 
 scene {
-	name { demo_1 }
+	name { demo.rt }
 	camera {
-		origin { 13 4 -15 }
-		dir { -0.5 -0.2 0.5 }
+		origin { 0 0 -20 }
+		dir { 0 0 1 }
 	}
 	render { 900 700 }
+	ambiance { 0.1 }
+	reflection { 1 }
 	object {
-		name { sphere3 }
+		name { sphere1 }
 		type { sphere }
 		origin { -2 -2 -2 }
 		r1 { 2 }
-		color { 0x0000FF }
+		color { 0x6F04AF }
 		mat {
+			ambient { 0.1 }
 			diffuse { 0.2 }
-			shine { 0.5 }
+			specular { 1 }
+			shine { 100 }
 		}
 	}
 	object {
@@ -27,19 +31,25 @@ scene {
 		r1 { 2 }
 		color { 0x00FF00 }
 		mat {
+			ambient { 0.1 }
 			diffuse { 0.2 }
-			shine { 0.5 }
+			specular { 1 }
+			shine { 100 }
 		}
 	}
 	object {
-		name { sphere1 }
-		type { sphere }
-		origin { 0 0 0 }
-		r1 { 2.0 }
-		color { 0xFF0000 }
+		name { torus }
+		type { torus }
+		p1 { 0 0 0 }
+		p2 { 0 0 1 }
+		r1 { 1 }
+		r2 { 2 }
+		color { 0xFF358B }
 		mat {
-			diffuse { 0.1 }
-			shine { 0.5 }
+			ambient { 0.1 }
+			diffuse { 0.2 }
+			specular { 1 }
+			shine { 100 }
 		}
 	}
 	object {
@@ -49,30 +59,36 @@ scene {
 		dir { 0 0 -1 }
 		color { 0x0FFF00 }
 		mat {
-			diffuse { 0.3 }
-			shine { 0.5 }
-		}
-	}
-	object {
-		name { plane sol }
-		type { plane }
-		origin { 0 5 0 }
-		dir { 0 -1 0 }
-		color { 0xFF0F00 }
-		mat {
-			diffuse { 0.3 }
-			shine { 0.5 }
+			ambient { 0.1 }
+			diffuse { 0.2 }
+			specular { 1 }
+			shine { 10 }
 		}
 	}
 	object {
 		name { plane plafond }
 		type { plane }
+		origin { 0 5 0 }
+		dir { 0 -1 0 }
+		color { 0xFF0F00 }
+		mat {
+			ambient { 0.1 }
+			diffuse { 0.2 }
+			specular { 1 }
+			shine { 100 }
+		}
+	}
+	object {
+		name { plane sol }
+		type { plane }
 		origin { 0 -5 0 }
 		dir { 0 1 0 }
 		color { 0xFF0F00 }
 		mat {
-			diffuse { 0.3 }
-			shine { 0.5 }
+			ambient { 0.1 }
+			diffuse { 0.2 }
+			specular { 1 }
+			shine { 100 }
 		}
 	}
 	object {
@@ -80,10 +96,12 @@ scene {
 		type { plane }
 		origin { -10 0 0 }
 		dir { 1 0 0 }
-		color { 0xFFF000 }
+		color { 0xF0F000 }
 		mat {
-			diffuse { 0.3 }
-			shine { 0.5 }
+			ambient { 0.4 }
+			diffuse { 0.2 }
+			specular { 0.9 }
+			shine { 10 }
 		}
 	}
 	object {
@@ -91,10 +109,12 @@ scene {
 		type { plane }
 		origin { 10 0 0 }
 		dir { -1 0 0 }
-		color { 0xFFF000 }
+		color { 0xF0F000 }
 		mat {
-			diffuse { 0.3 }
-			shine { 0.5 }
+			ambient { 0.4 }
+			diffuse { 0.2 }
+			specular { 0.9 }
+			shine { 10 }
 		}
 	}
 	object {
@@ -105,8 +125,10 @@ scene {
 		p2 { 6 -5 0 }
 		color { 0x00FFFF }
 		mat {
+			ambient { 0.1 }
 			diffuse { 0.2 }
-			shine { 0.5 }
+			specular { 1 }
+			shine { 100 }
 		}
 	}
 	object {
@@ -117,46 +139,60 @@ scene {
 		p2 { -6 5 0 }
 		color { 0x00FFFF }
 		mat {
+			ambient { 0.1 }
 			diffuse { 0.2 }
-			shine { 0.5 }
+			specular { 1 }
+			shine { 100 }
 		}
 	}
 	object {
 		name { cone centre haut }
 		type { cone }
 		r1 { 1 }
+		r2 { 0 }
 		p1 { 0 5 0 }
 		p2 { 0 0 0 }
-		color { 0x00FFFF }
+		color { 0x01FFFF }
 		mat {
-			diffuse { 0.2 }
-			shine { 0.5 }
+			ambient { 0.1 }
+			diffuse { 0.3 }
+			specular { 1 }
+			shine { 100 }
 		}
 	}
 	object {
 		name { cone centre bas }
 		type { cone }
 		r1 { 1 }
+		r2 { 0 }
 		p1 { 0 -5 0 }
 		p2 { 0 0 0 }
-		color { 0x00FFFF }
+		color { 0x01FFFF }
 		mat {
-			diffuse { 0.2 }
-			shine { 0.5 }
+			ambient { 0.1 }
+			diffuse { 0.3 }
+			specular { 1 }
+			shine { 100 }
 		}
 	}
 	object {
 		name { spot1 }
 		type { light }
-		origin { 5 0 -10 }
+		origin { 10 0 -20 }
 		color { 0xFFFFFF }
 	}
 	object {
 		name { spot2 }
 		type { light }
-		origin { -5 0 -10 }
+		origin { -10 0 -20 }
 		color { 0xFFFFFF }
 	}
+#	object {
+#		name { spot3 }
+#		type { light }
+#		origin { - 0 -10 }
+#		color { 0xFFFFFF }
+#	}
 }
 
 # end

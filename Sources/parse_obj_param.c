@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 15:12:48 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 15:12:54 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/04 17:22:25 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	get_light_param(char *str, t_object *obj, void *arg)
 
 	e = (t_env *)arg;
 	obj->pos = get_v3d("origin", str, e);
+	if ((obj->angle = get_double("angle", str, e)))
+		obj->angle *= (M_PI / 180);
 }
 
 void	get_plane_param(char *str, t_object *obj, void *arg)

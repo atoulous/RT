@@ -1,6 +1,6 @@
 /*
- *  *	$XConsortium: X.h,v 1.66 88/09/06 15:55:56 jim Exp $
- *   */
+ *	$XConsortium: X.h,v 1.66 88/09/06 15:55:56 jim Exp $
+ */
 
 /* Definitions for the X window system likely to be used by applications */
 
@@ -8,24 +8,28 @@
 #define X_H
 
 /***********************************************************
- * Copyright 1987 by Digital Equipment Corporation, Maynard, Massachusetts,
- * and the Massachusetts Institute of Technology, Cambridge, Massachusetts.
- *                         All Rights Reserved
- *                         Permission to use, copy, modify, and distribute this software and its 
- *                         documentation for any purpose and without fee is hereby granted, 
- *                         provided that the above copyright notice appear in all copies and that
- *                         both that copyright notice and this permission notice appear in 
- *                         supporting documentation, and that the names of Digital or MIT not be
- *                         used in advertising or publicity pertaining to distribution of the
- *                         software without specific, written prior permission.  
- *                         DIGITAL DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING
- *                         ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL
- *                         DIGITAL BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR
- *                         ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
- *                         WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
- *                         ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
- *                         SOFTWARE.
- *                         ******************************************************************/
+Copyright 1987 by Digital Equipment Corporation, Maynard, Massachusetts,
+and the Massachusetts Institute of Technology, Cambridge, Massachusetts.
+
+                        All Rights Reserved
+
+Permission to use, copy, modify, and distribute this software and its 
+documentation for any purpose and without fee is hereby granted, 
+provided that the above copyright notice appear in all copies and that
+both that copyright notice and this permission notice appear in 
+supporting documentation, and that the names of Digital or MIT not be
+used in advertising or publicity pertaining to distribution of the
+software without specific, written prior permission.  
+
+DIGITAL DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING
+ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL
+DIGITAL BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR
+ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
+ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
+SOFTWARE.
+
+******************************************************************/
 #define X_PROTOCOL	11		/* current protocol version */
 #define X_PROTOCOL_REVISION 0		/* current minor version */
 
@@ -60,24 +64,24 @@ typedef unsigned long VisualID;
 typedef unsigned long Time;
 
 typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
-								 * to pack 3 bytes into the keyCode field in
-								 * 				 * the XEvent.  In the real X.h, a KeyCode is
-								 * 				 				 * defined as a short, which wouldn't be big
-								 * 				 				 				 * enough. */
+				 * to pack 3 bytes into the keyCode field in
+				 * the XEvent.  In the real X.h, a KeyCode is
+				 * defined as a short, which wouldn't be big
+				 * enough. */
 
 /*****************************************************************
- *  * RESERVED RESOURCE AND CONSTANT DEFINITIONS
- *   *****************************************************************/
+ * RESERVED RESOURCE AND CONSTANT DEFINITIONS
+ *****************************************************************/
 
 #define None                 0L	/* universal null resource or null atom */
 
 #define ParentRelative       1L	/* background pixmap in CreateWindow
-								   and ChangeWindowAttributes */
+				    and ChangeWindowAttributes */
 
 #define CopyFromParent       0L	/* border pixmap in CreateWindow
-								   and ChangeWindowAttributes
-								   special VisualID and special window
-								   class passed to CreateWindow */
+				       and ChangeWindowAttributes
+				   special VisualID and special window
+				       class passed to CreateWindow */
 
 #define PointerWindow        0L	/* destination window in SendEvent */
 #define InputFocus           1L	/* destination window in SendEvent */
@@ -97,11 +101,11 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 #define NoSymbol	     0L	/* special KeySym */
 
 /***************************************************************** 
- *  * EVENT DEFINITIONS 
- *   *****************************************************************/
+ * EVENT DEFINITIONS 
+ *****************************************************************/
 
 /* Input Event Masks. Used as event-mask window attribute and as arguments
- *    to Grab requests.  Not to be confused with event names.  */
+   to Grab requests.  Not to be confused with event names.  */
 
 #define NoEventMask			0L
 #define KeyPressMask			(1L<<0)  
@@ -131,8 +135,8 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 #define OwnerGrabButtonMask		(1L<<24) 
 
 /* Event names.  Used in "type" field in XEvent structures.  Not to be
- * confused with event masks above.  They start from 2 because 0 and 1
- * are reserved in the protocol for errors and replies. */
+confused with event masks above.  They start from 2 because 0 and 1
+are reserved in the protocol for errors and replies. */
 
 #define KeyPress		2
 #define KeyRelease		3
@@ -171,7 +175,7 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 
 
 /* Key masks. Used as modifiers to GrabButton and GrabKey, results of QueryPointer,
- *    state in various key-, mouse-, and button-related events. */
+   state in various key-, mouse-, and button-related events. */
 
 #define ShiftMask		(1<<0)
 #define LockMask		(1<<1)
@@ -183,8 +187,8 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 #define Mod5Mask		(1<<7)
 
 /* modifier names.  Used to build a SetModifierMapping request or
- *    to read a GetModifierMapping request.  These correspond to the
- *       masks defined above. */
+   to read a GetModifierMapping request.  These correspond to the
+   masks defined above. */
 #define ShiftMapIndex		0
 #define LockMapIndex		1
 #define ControlMapIndex		2
@@ -196,7 +200,7 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 
 
 /* button masks.  Used in same manner as Key masks above. Not to be confused
- *    with button names below. */
+   with button names below. */
 
 #define Button1Mask		(1<<8)
 #define Button2Mask		(1<<9)
@@ -208,8 +212,8 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 
 
 /* button names. Used as arguments to GrabButton and as detail in ButtonPress
- *    and ButtonRelease events.  Not to be confused with button masks above.
- *       Note that 0 is already defined above as "AnyButton".  */
+   and ButtonRelease events.  Not to be confused with button masks above.
+   Note that 0 is already defined above as "AnyButton".  */
 
 #define Button1			1
 #define Button2			2
@@ -225,7 +229,7 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 #define NotifyWhileGrabbed	3
 
 #define NotifyHint		1	/* for MotionNotify events */
-
+		       
 /* Notify detail */
 
 #define NotifyAncestor		0
@@ -295,8 +299,8 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 #define RevertToParent		2
 
 /*****************************************************************
- *  * ERROR CODES 
- *   *****************************************************************/
+ * ERROR CODES 
+ *****************************************************************/
 
 #define Success		   0	/* everything's okay */
 #define BadRequest	   1	/* bad request code */
@@ -309,14 +313,14 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 #define BadMatch	   8	/* parameter mismatch */
 #define BadDrawable	   9	/* parameter not a Pixmap or Window */
 #define BadAccess	  10	/* depending on context:
-							   - key/button already grabbed
-							   - attempt to free an illegal 
-							   cmap entry 
-							   - attempt to store into a read-only 
-							   color map entry.
-							   - attempt to modify the access control
-							   list from other than the local host.
-							   */
+				 - key/button already grabbed
+				 - attempt to free an illegal 
+				   cmap entry 
+				- attempt to store into a read-only 
+				   color map entry.
+ 				- attempt to modify the access control
+				   list from other than the local host.
+				*/
 #define BadAlloc	  11	/* insufficient resources */
 #define BadColor	  12	/* no such colormap */
 #define BadGC		  13	/* parameter not a GC */
@@ -329,8 +333,8 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 #define LastExtensionError	255
 
 /*****************************************************************
- *  * WINDOW DEFINITIONS 
- *   *****************************************************************/
+ * WINDOW DEFINITIONS 
+ *****************************************************************/
 
 /* Window classes used by CreateWindow */
 /* Note that CopyFromParent is already defined as 0 above */
@@ -428,8 +432,8 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 #define PropModeAppend          2
 
 /*****************************************************************
- *  * GRAPHICS DEFINITIONS
- *   *****************************************************************/
+ * GRAPHICS DEFINITIONS
+ *****************************************************************/
 
 /* graphics functions, as in GC.alu */
 
@@ -510,7 +514,7 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 #define ArcPieSlice		1	/* join endpoints to center of arc */
 
 /* GC components: masks used in CreateGC, CopyGC, ChangeGC, OR'ed into
- *    GC.stateChanges */
+   GC.stateChanges */
 
 #define GCFunction              (1L<<0)
 #define GCPlaneMask             (1L<<1)
@@ -538,8 +542,8 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 
 #define GCLastBit		22
 /*****************************************************************
- *  * FONTS 
- *   *****************************************************************/
+ * FONTS 
+ *****************************************************************/
 
 /* used in QueryFont -- draw direction */
 
@@ -549,8 +553,8 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 #define FontChange		255
 
 /*****************************************************************
- *  *  IMAGING 
- *   *****************************************************************/
+ *  IMAGING 
+ *****************************************************************/
 
 /* ImageFormat -- PutImage, GetImage */
 
@@ -559,8 +563,8 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 #define ZPixmap			2	/* depth == drawable depth */
 
 /*****************************************************************
- *  *  COLOR MAP STUFF 
- *   *****************************************************************/
+ *  COLOR MAP STUFF 
+ *****************************************************************/
 
 /* For CreateColormap */
 
@@ -575,8 +579,8 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 #define DoBlue			(1<<2)
 
 /*****************************************************************
- *  * CURSOR STUFF
- *   *****************************************************************/
+ * CURSOR STUFF
+ *****************************************************************/
 
 /* QueryBestSize Class */
 
@@ -585,8 +589,8 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 #define StippleShape		2	/* size stippled fastest */
 
 /***************************************************************** 
- *  * KEYBOARD/POINTER STUFF
- *   *****************************************************************/
+ * KEYBOARD/POINTER STUFF
+ *****************************************************************/
 
 #define AutoRepeatModeOff	0
 #define AutoRepeatModeOn	1
@@ -615,8 +619,8 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 #define MappingPointer		2
 
 /*****************************************************************
- *  * SCREEN SAVER STUFF 
- *   *****************************************************************/
+ * SCREEN SAVER STUFF 
+ *****************************************************************/
 
 #define DontPreferBlanking	0
 #define PreferBlanking		1
@@ -635,8 +639,8 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 #define ScreenSaverActive 1
 
 /*****************************************************************
- *  * HOSTS AND CONNECTIONS
- *   *****************************************************************/
+ * HOSTS AND CONNECTIONS
+ *****************************************************************/
 
 /* for ChangeHosts */
 
@@ -649,8 +653,8 @@ typedef unsigned long KeyCode;	/* In order to use IME, the Macintosh needs
 #define DisableAccess		0
 
 /* Display classes  used in opening the connection 
- *  * Note that the statically allocated ones are even numbered and the
- *   * dynamically changeable ones are odd numbered */
+ * Note that the statically allocated ones are even numbered and the
+ * dynamically changeable ones are odd numbered */
 
 #define StaticGray		0
 #define GrayScale		1

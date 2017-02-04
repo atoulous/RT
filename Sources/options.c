@@ -6,11 +6,39 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 14:54:56 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/22 11:06:53 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/04 15:13:33 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+void			print_help(void)
+{
+	ft_putendl("\033[32mYOU NEED HELP\033[0m\n");
+	ft_putendl("\033[33mPress ESC to quit\033[0m");
+	ft_putendl("\033[33mPress SPACE to reset camera\033[0m");
+	ft_putendl("\033[33mPress TAB to select next object\033[0m");
+	ft_putendl("\033[33mPress DELETE to delete focus object\033[0m");
+	ft_putendl("\033[33mPress O to switch on/off shadows\033[0m");
+	ft_putendl("\033[33mPress B to switch on/off shininess\033[0m");
+	ft_putendl("\033[33mPress L to switch on/off light game\033[0m");
+	ft_putendl("\033[33mPress - or + to change rotation speed\033[0m");
+	ft_putendl("\033[33mPress CLEAR or = to change brightness indice\033[0m");
+	ft_putendl("\033[33mPress / or * to change atmosphere indice\033[0m");
+	ft_putendl("\033[33mPress CMD + Z to undo last del\033[0m");
+	ft_putendl("\033[33mPress < or > to change speed\033[0m");
+	ft_putendl("\033[33mPress W,A,S,D to move\033[0m");
+	ft_putendl("\033[33mPress ARROW UP to move up\033[0m");
+	ft_putendl("\033[33mPress ARROW DOWN to move down\033[0m");
+	ft_putendl("\033[33mPress 4 to rotate left\033[0m");
+	ft_putendl("\033[33mPress 6 to rotate right\033[0m");
+	ft_putendl("\033[33mPress 2 to rotate down\033[0m");
+	ft_putendl("\033[33mPress 8 to rotate up\033[0m");
+	ft_putendl("\033[33mPress ` to take screenshot\033[0m");
+	ft_putendl("\033[33mPress C to do cartoon effect\033[0m");
+	ft_putendl("\033[33mPress ; to do sepia effect\033[0m");
+	ft_putendl("\033[33mPress ' to do grey effect\033[0m\n");
+}
 
 static int		in_opt(char c)
 {

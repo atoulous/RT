@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 15:42:01 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/04 17:15:33 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,36 @@
 # include "mlx.h"
 # include "libft.h"
 # include "libv3d.h"
+
 # include "my_math.h"
+# include "my_mlx.h"
 
 # define PI 3.141592
 # define NB_TH 50
 # define DIST_MAX 1000.0
-# define SPEED 0.1
 # define F_CLR 0x374355
 
-# define OPT_REF "dl"
+# define OPT_REF "dlh"
 # define OPT e->opt
+# define OPT2 e->opt2
 # define OPT_D (OPT & (1 << 0))
 # define OPT_L (OPT & (1 << 1))
-# define OPT_S (OPT & (1 << 2))
+# define OPT_H (OPT & (1 << 2))
+# define OPT_1 (OPT & (1 << 5))
+# define OPT_2 (OPT & (1 << 6))
+# define OPT_3 (OPT & (1 << 7))
 # define OPT_B (OPT & (1 << 3))
 # define OPT_O (OPT & (1 << 4))
 # define OPT_GQ (OPT & (1 << 4))
 # define LUMI e->luminosite
+# define AMBIANCE e->ambiance
+# define SPEED e->speed
+# define ALPHA_ROT e->alpha_rot
+# define NB_REF e->nb_reflection
+# define CARTOON e->cartoon
 
 # define MOVES e->moves
+# define ROT e->rotations
 # define M_FORWARD (1 << 0)
 # define M_BACKWARD (1 << 1)
 # define M_LEFT (1 << 2)
@@ -66,6 +77,7 @@
 # define NB_ME 13
 # define ME e->menu
 # define COMMAND e->command
+# define BACK_PLANE e->back_plane
 
 # define ENV param->e
 # define TH param->index
@@ -76,6 +88,8 @@
 # define MOUS_RAY param->mouse_ray
 # define SOL param->sol
 # define COLOR param->color
+# define F_COLOR param->final_color
+# define REF_COEFF param->reflec_coeff
 
 # define T sol->t
 # define A sol->a
@@ -102,12 +116,19 @@
 # define GAP_X e->scene->gap_x
 # define GAP_Y e->scene->gap_y
 
-typedef	struct	s_hsv
-{
-	int		h;
-	double	s;
-	double	v;
-}				t_hsv;
+# define XX noise->x
+# define YY noise->y
+# define ZZ noise->z
+# define U noise->u
+# define V noise->v
+# define W noise->w
+# define A1 noise->a
+# define B1 noise->b
+# define AA1 noise->aa
+# define AB1 noise->ab
+# define BA1 noise->ba
+# define BB1 noise->bb
+# define PER noise->per
 
 typedef	struct	s_pix
 {
@@ -185,6 +206,8 @@ typedef struct	s_object
 	char		*pro;
 }				t_object;
 
+# include "answers.h"
+
 typedef struct	s_ray
 {
 	t_v3d		pos;
@@ -195,6 +218,18 @@ typedef struct	s_ray
 	double		det;
 	t_object	*obj;
 }				t_ray;
+
+typedef struct	s_light
+{
+	t_object		*obj;
+	t_rgb			rgb;
+	t_hsv			hsv;
+	unsigned int	color;
+	double			angle_light;
+	double			omega;
+	double			shadow;
+	double			ray;
+}				t_light;
 
 typedef struct	s_scene
 {
@@ -227,28 +262,41 @@ typedef struct	s_param
 	t_sol			sol;
 	int				color;
 	t_v3d			norm;
+	double			reflec_coeff;
+	t_rgb			final_color;
 }				t_param;
 
 typedef struct	s_env
 {
-	char		opt;
 	void		*mlx;
 	void		*win;
 	double		luminosite;
+	double		ambiance;
+	double		speed;
+	double		alpha_rot;
 	int			img_width;
 	int			img_height;
 	int			win_width;
 	int			win_height;
 	int			img_gap_x;
 	int			img_gap_y;
-	t_img		img;
 	int			endian;
-	t_menu		menu[NB_ME];
+	int			back_plane;
+	int			nb_reflection;
+	int			cartoon;
+	int			sepia;
+	int			grey;
+	char		opt;
 	char		moves;
+	char		rotations;
 	char		command;
+	t_img		img;
+	t_menu		menu[NB_ME];
 	t_scene		*scene;
+	t_v3d		parse_cam_pos;
+	t_v3d		parse_cam_dir;
 	char		**obj_allowed;
-	void		(*obj_fct_obj[NB_OBJ_FCT])(t_object *, t_ray *, t_sol *);
+	void		(*obj_fct_obj[NB_OBJ_FCT])(struct s_env *, t_object *, t_ray *, t_sol *sol);
 	void		(*calc_obj_param[NB_OBJ_FCT])(t_object *);
 	void		(*update_obj_pos[NB_OBJ_FCT])(t_object *);
 	void		(*get_obj_param[NB_OBJ_FCT])(char *, t_object *, void *);
@@ -267,6 +315,9 @@ void			change_btn_light(t_env *e);
 void			menu_object(t_env *e);
 void			menu_image(t_env *e);
 void			back_menu(t_env *e);
+void			top_menu_event(t_env *e, int x, int y);
+void			right_menu_event(t_env *e, int x, int y);
+void			bottom_menu_event(t_env *e, int x, int y);
 
 void			parse_rt(t_env *e, char *file_name);
 void			build_object(t_env *e, char *str);
@@ -280,14 +331,16 @@ char			*find_param(char *small, char *big);
 void			init_obj_param(t_env *e);
 
 int				create_img(t_env *e);
-void			img_put_pixel(t_img *img, int x, int y, unsigned int color);
+void			img_put_pixel(t_img *img, int x, int y, t_param *param);
 int				moves(t_env *e);
 void			change_light_status(void *arg);
 void			change_brillance_status(void *arg);
 void			change_shadow_status(void *arg);
 void			change_global_quality(void *arg);
 void			change_luminosite(t_env *e, int keycode);
-void			change_luminosite_mouse(t_env *e, int y);
+void			change_ambiance(t_env *e, int keycode);
+void			change_speed_rotation(t_env *e, int keycode);
+void        	change_luminosite_mouse(t_env *e, int y);
 void			del_focus_object(t_env *e);
 void			undo_del_object(t_env *e);
 void			color_selector(t_env *e, int x, int y);
@@ -296,16 +349,19 @@ void			add_cylinder(void *arg);
 void			add_cone(void *arg);
 void			add_plane(void *arg);
 void			add_torus(void *arg);
+void			screenshot(void *arg);
+void			reset_cam(void *arg);
+void			back_plane(void *arg);
 
 void			*raytracer(void *arg);
 void			apply_light(t_env *e, t_param *param);
-void			sphere(t_object *obj, t_ray *ray, t_sol *sol);
-void			plane(t_object *obj, t_ray *ray, t_sol *sol);
-void			cylinder(t_object *obj, t_ray *ray, t_sol *sol);
-void			torus(t_object *obj, t_ray *ray, t_sol *sol);
+void			sphere(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
+void			plane(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
+void			cylinder(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
+void			torus(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
 void			calc_cylinder_param(t_object *obj);
 void			update_cylinder_pos(t_object *obj);
-void			cone(t_object *obj, t_ray *ray, t_sol *sol);
+void			cone(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
 void			calc_cone_param(t_object *obj);
 void			update_cone_pos(t_object *obj);
 void			get_light_param(char *str, t_object *obj, void *e);
@@ -323,6 +379,7 @@ void			error_opt(char opt);
 void			error_perso(t_env *e, char *str);
 int				quit_rt(t_env *e);
 void			debug(t_env *e);
+void			print_help();
 
 unsigned int	hsv_to_rgb(unsigned int h, double s, double v);
 void			rgb_to_hsv(unsigned int rgb, int *h, double *s, double *v);
@@ -343,13 +400,68 @@ void			init_cl(t_env *e);
 void			init_opt(t_env *e, char opt);
 
 /*
-** ajoutees pour torus
+**ajoutees pour torus
 */
-void			torus_error(t_object *obj, t_env *e);
-void			torus(t_object *obj, t_ray *ray, t_sol *sol);
 t_v3d			get_torus_normal(t_object *o, t_v3d cam, t_v3d ray, double ret);
 void			update_torus_pos(t_object *obj);
 
+/*
+** light
+*/
+
+//void			get_color(t_env *e, t_param *param, t_object *light, \
+//					t_hsv *hsv);
+//void			get_color(int obj_type, t_env *e, t_param *param, \
+		t_object *light, t_hsv *h, double *intensite);
+void			do_shininess(t_param *param, t_object *light, t_hsv *hsv, \
+		t_v3d ref);
+void			change_phong_status(void *arg);
+void			change_intensite1(void *arg);
+void			change_intensite2(void *arg);
+void			apply_color(t_env *e, t_param *param, t_object *l, t_light *datas);
+void			apply_cartoon_color(t_env *e, t_param *param, t_object *light, t_light *datas);
+
+/*
+**Bruit et modifs
+*/
 void			fill_matiere_in_case(t_mat *mat);
+void			modif_normale(double d, t_v3d *norm, t_v3d inter);
+
+/*
+** Perlin
+*/
+typedef struct	s_noise
+{
+	int			per[512];
+	int			x;
+	int			y;
+	int			z;
+	double		u;
+	double		v;
+	double		w;
+	int			a;
+	int			b;
+	int			aa;
+	int			bb;
+	int			ab;
+	int			ba;
+}				t_noise;
+
+double			noise(double x, double y, double z);
+void			fill_xyz(t_noise *noise, double x, double y, double z);
+void			fill_uvw(t_noise *noise, double x, double y, double z);
+void			fill_baba(t_noise *a);
+double			noise_to_ret(t_noise *a, double b, double c, double d);
+double			fade(double a);
+double			lerp(double x, double y, double z);
+double			grad(int a, double x, double y, double z);
+int			modify_color_for_tex(char *tex, t_v3d vec, t_rgb *r);
+t_rgb			wood(t_v3d inter);
+t_rgb			marbre(t_v3d inter);
+
+void			init_reflect(t_param *param);
+void			add_reflected_color(t_param *param);
+void			sepia_filter(t_param *param);
+void			grey_filter(t_param *param);
 
 #endif

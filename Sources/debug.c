@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 18:49:11 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/22 11:06:45 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/01/30 16:09:42 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,12 @@ static void	print_obj(t_env *e)
 		printf("		angle: %lf\n", O_ANG);
 		printf("		color: 0x%08.8X\n", obj->color);
 		printf("		Material:\n");
-		printf("			Color diffuse: %lf\n", obj->mat.diffuse);
-		printf("			Shiness: %lf\n", obj->mat.shine);
+		printf("		Color ambient: %lf\n", obj->mat.ambient);
+		printf("		Color diffuse: %lf\n", obj->mat.diffuse);
+		printf("		Color specular: %lf\n", obj->mat.specular);
+		printf("		Shiness: %lf\n", obj->mat.shine);
+		printf("		Density: %lf\n", obj->mat.density);
+		printf("		tex: %s\n", obj->pro);
 		printf("		----------\n");
 		elem = elem->next;
 	}

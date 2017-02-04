@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   save.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/04 14:31:52 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 14:57:48 by jubarbie         ###   ########.fr       */
+/*   Created: 2017/01/30 10:01:48 by mmoullec          #+#    #+#             */
+/*   Updated: 2017/01/30 10:08:36 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void	put_mat_to_file(t_object *obj, FILE *fd)
+static void		put_mat_to_file(t_object *obj, FILE *fd)
 {
 	fprintf(fd, "\t\tmat{\n\t\t\tdiffuse{%f}", obj->mat.diffuse);
 	fprintf(fd, "\n\t\t\tshine{%f}\n\t\t}\n", obj->mat.shine);
 }
 
-static void	put_obj_param_to_file(t_object *obj, char **obj_a, FILE *fd)
+static void		put_obj_param_to_file(t_object *obj, char **obj_a, FILE *fd)
 {
 	int	t;
 
@@ -39,7 +39,7 @@ static void	put_obj_param_to_file(t_object *obj, char **obj_a, FILE *fd)
 	put_mat_to_file(obj, fd);
 }
 
-static void	put_objects_to_file(t_env *e, t_list *first, FILE *fd)
+static void		put_objects_to_file(t_env *e, t_list *first, FILE *fd)
 {
 	t_list		*list;
 	t_object	*obj;

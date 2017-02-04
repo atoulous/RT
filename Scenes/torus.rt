@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    torus.rt                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/01/09 14:37:17 by mmoullec          #+#    #+#              #
-#    Updated: 2017/01/09 14:39:00 by mmoullec         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 #
 # Scene avec Torus
 #
@@ -17,23 +5,29 @@
 scene {
 	name { test1 }
 	camera { 
-		origin { 0 -15 0 }
-		dir	{ 0 1 0}
+		origin { 0 0 -10 }
+		dir	{ 0 0 1}
 	}
 	render {900 720}
 	object {
 		name { light 1 }
 		type { light }
-		origin { 10 10 10 }
-		color { 0x003F0000  }
+		origin { 10 10 0 }
+		color { 0x003FFFFF  }
 	}
 	object {
 		name { torus }
-		type {torus}
-		p1 { 0 0 0 }
-		p2 {1 0 0}
-		r1 {0.5}
-		r2 {2}
+		type { torus }
+		p1 { 1 1 0 }
+		p2 {1 0 1}
+		r1 {3}
+		r2 {17}
+		mat {
+			ambient { 0.3 }
+			diffuse { 0.4 }
+			specular { 0.9 }  
+			shine { 1000 }
+		}
 		color { 0x0000AAFF }
 	}
 }

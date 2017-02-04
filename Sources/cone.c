@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 16:58:17 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 14:25:54 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/03 13:32:13 by dgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	find_dist(t_object *obj, t_ray *ray, t_sol *sol)
 	i = -1;
 	max = ray->dist;
 	while (++i < 4)
-		if (T[i] > 0 && T[i] < max)
+		if (T[i] > 0.000001 && T[i] < max)
 		{
 			index = i;
 			max = T[i];
@@ -76,13 +76,14 @@ static int	find_solutions(t_object *obj, t_ray *ray, t_sol *sol)
 	return (0);
 }
 
-void		cone(t_object *obj, t_ray *ray, t_sol *sol)
+void		cone(t_env *e, t_object *obj, t_ray *ray, t_sol *sol)
 {
 	t_v3d	dp;
 	t_v3d	v_tmp;
 	double	sina2;
 	double	cosa2;
 
+	e = NULL;
 	dp = sub_v3d(ray->pos, O_POS);
 	sina2 = pow(sin(O_ANG), 2.0);
 	cosa2 = pow(cos(O_ANG), 2.0);

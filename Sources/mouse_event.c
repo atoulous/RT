@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/13 15:46:55 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 14:28:00 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/04 17:10:53 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	init_mouse_ray(t_env *e, t_param *param)
 {
 	MOUS_RAY.obj = NULL;
 	MOUS_RAY.dist = DIST_MAX;
-	MOUS_RAY.dir = unit_v3d(sub_v3d(add_v3d(VW_UP_LEFT, sub_v3d(smul_v3d(
-		CAM_RIGHT, GAP_X * X), smul_v3d(CAM_UP, GAP_Y * Y))), CAM_POS));
+	MOUS_RAY.dir = unit_v3d(sub_v3d(add_v3d(VW_UP_LEFT, sub_v3d(smul_v3d( \
+ 			CAM_RIGHT, GAP_X * X), smul_v3d(CAM_UP, GAP_Y * Y))), CAM_POS));
 }
 
 static void	raytrace_mouse(t_env *e, int x, int y)
@@ -37,7 +37,7 @@ static void	raytrace_mouse(t_env *e, int x, int y)
 	while (lst_obj)
 	{
 		obj = (t_object *)lst_obj->content;
-		(*(e->obj_fct_obj[obj->type]))(obj, &MOUS_RAY, &SOL);
+		(*(e->obj_fct_obj[obj->type]))(e, obj, &MOUS_RAY, &SOL);
 		if (MOUS_RAY.obj == obj)
 			foc_obj = lst_obj;
 		lst_obj = lst_obj->next;

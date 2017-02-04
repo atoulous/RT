@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:01:24 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 13:45:46 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/04 14:57:15 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,15 @@ int			create_img(t_env *e)
 ** Save the color in the pixel (x, y) of the image given
 */
 
-void		img_put_pixel(t_img *img, int x, int y, unsigned int color)
+void		img_put_pixel(t_img *img, int x, int y, t_param *param)
 {
-	unsigned char r;
-	unsigned char g;
-	unsigned char b;
-	unsigned char t;
-
-	t = ((color & 0xFF000000) >> 24);
-	b = ((color & 0x00FF0000) >> 16);
-	g = ((color & 0x00FF00) >> 8);
-	r = (color & 0x00FF);
-	img->addr[y * img->sizeline + x * (img->bpp / 8)] = r;
-	img->addr[y * img->sizeline + x * (img->bpp / 8) + 1] = g;
-	img->addr[y * img->sizeline + x * (img->bpp / 8) + 2] = b;
-	img->addr[y * img->sizeline + x * (img->bpp / 8) + 3] = t;
+	if (ENV->sepia)
+		sepia_filter(param);
+	else if (ENV->grey)
+		grey_filter(param);
+	img->addr[y * img->sizeline + x * (img->bpp / 8)] = fmin(F_COLOR.r, 255.0);
+	img->addr[y * img->sizeline + x * (img->bpp / 8) + 1] = fmin(F_COLOR.g, 255.0);
+	img->addr[y * img->sizeline + x * (img->bpp / 8) + 2] = fmin(F_COLOR.b, 255.0);
 }
 
 int			main(int ac, char **av)

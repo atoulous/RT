@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 16:58:17 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/09 13:55:33 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/03 13:33:34 by dgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void		find_dist(t_object *obj, t_ray *ray, t_sol *sol)
 	i = -1;
 	max = ray->dist;
 	while (++i < 4)
-		if (T[i] > 0 && T[i] < max)
+		if (T[i] > 0.000001 && T[i] < max)
 		{
 			index = i;
 			max = T[i];
@@ -71,7 +71,7 @@ static void		find_solutions(t_object *obj, t_ray *ray, t_sol *sol)
 	}
 }
 
-void			cylinder(t_object *obj, t_ray *ray, t_sol *sol)
+void			cylinder(t_env *e, t_object *obj, t_ray *ray, t_sol *sol)
 {
 	t_v3d	dp;
 	t_v3d	tmp;
