@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 14:54:56 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/01/28 17:07:15 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/04 15:13:33 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ void			print_help(void)
 	ft_putendl("\033[33mPress / or * to change atmosphere indice\033[0m");
 	ft_putendl("\033[33mPress CMD + Z to undo last del\033[0m");
 	ft_putendl("\033[33mPress < or > to change speed\033[0m");
-	ft_putendl("\033[33mPress W to move forward\033[0m");
-	ft_putendl("\033[33mPress S to move backward\033[0m");
-	ft_putendl("\033[33mPress A to move left\033[0m");
-	ft_putendl("\033[33mPress D to move right\033[0m");
+	ft_putendl("\033[33mPress W,A,S,D to move\033[0m");
 	ft_putendl("\033[33mPress ARROW UP to move up\033[0m");
 	ft_putendl("\033[33mPress ARROW DOWN to move down\033[0m");
 	ft_putendl("\033[33mPress 4 to rotate left\033[0m");
@@ -38,7 +35,9 @@ void			print_help(void)
 	ft_putendl("\033[33mPress 2 to rotate down\033[0m");
 	ft_putendl("\033[33mPress 8 to rotate up\033[0m");
 	ft_putendl("\033[33mPress ` to take screenshot\033[0m");
-	ft_putendl("");
+	ft_putendl("\033[33mPress C to do cartoon effect\033[0m");
+	ft_putendl("\033[33mPress ; to do sepia effect\033[0m");
+	ft_putendl("\033[33mPress ' to do grey effect\033[0m\n");
 }
 
 static int		in_opt(char c)
