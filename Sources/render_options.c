@@ -6,36 +6,40 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 14:55:45 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 19:19:33 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/05 12:32:45 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	change_light_status(void *arg)
+void	change_luminosite_mouse(t_env *e, int y)
 {
-	t_env *e;
-
-	e = (t_env *)arg;
-	(IS_LIGHT) ? (OPT ^= LIGHT) : (OPT |= LIGHT);
+	if (y < 25)
+		LUMI + 0.05 <= 1 ? LUMI += 0.05 : 0;
+	else
+		LUMI - 0.05 >= -0.5 ? LUMI -= 0.05 : 0;
 	create_img(e);
 }
 
-void	change_brillance_status(void *arg)
+void	active_filter(t_env *e, int keycode)
 {
-	t_env *e;
-
-	e = (t_env *)arg;
-	(IS_SHINE) ? (OPT ^= SHINE) : (OPT |= SHINE);
+	if (keycode == 41)
+	{
+		(IS_GREY && !IS_SEPIA) ? (OPT ^= GREY) : 0;
+		(IS_SEPIA) ? (OPT ^= SEPIA) : (OPT |= SEPIA);
+	}
+	else if (keycode == 39)
+	{
+		(IS_SEPIA && !IS_GREY) ? (OPT ^= SEPIA) : 0;
+		(IS_GREY) ? (OPT ^= GREY) : (OPT |= GREY);
+	}
+	menu_object(e);
 	create_img(e);
 }
 
-void	change_shadow_status(void *arg)
+void	change_option(t_env *e, int opt)
 {
-	t_env *e;
-
-	e = (t_env *)arg;
-	(IS_SHADOW) ? (OPT ^= SHADOW) : (OPT |= SHADOW);
+	(OPT & opt) ? (OPT ^= opt) : (OPT |= opt);
 	create_img(e);
 }
 
@@ -50,6 +54,8 @@ void	change_global_quality(void *arg)
 		OPT ^= SHINE;
 		OPT ^= SHADOW;
 		OPT ^= REFLX;
+		OPT ^= OPT_I1;
+		OPT ^= OPT_I2;
 		OPT ^= GLOBQ;
 	}
 	else
@@ -58,6 +64,8 @@ void	change_global_quality(void *arg)
 		OPT |= SHINE;
 		OPT |= SHADOW;
 		OPT |= REFLX;
+		OPT |= OPT_I1;
+		OPT |= OPT_I2;
 		OPT |= GLOBQ;
 	}
 	change_btn_light(e);

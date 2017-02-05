@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 15:41:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 19:33:49 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/05 12:27:07 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ static void	init_vw_ray(t_env *e, t_param *param, int i_reflec)
 	{
 		REF_COEFF *= VW_RAY.obj->mat.diffuse;
 		if (IS_CRTN && (cos_v3d(VW_RAY.norm, VW_RAY.dir) > -0.3 && \
-			VW_RAY.obj->type != 2 && cos_v3d(VW_RAY.norm, VW_RAY.dir) \
-			< -0.000001))
+					VW_RAY.obj->type != 2 && cos_v3d(VW_RAY.norm, VW_RAY.dir)
+					< -0.000001))
 			REF_COEFF = 0;
 		VW_RAY.pos = VW_RAY.inter;
 		VW_RAY.dir = unit_v3d(sub_v3d(VW_RAY.dir,
-		smul_v3d(VW_RAY.norm, 2.0 * cos_v3d(VW_RAY.dir, VW_RAY.norm))));
+				smul_v3d(VW_RAY.norm, 2.0 * cos_v3d(VW_RAY.dir, VW_RAY.norm))));
 	}
 	else
 	{
@@ -55,6 +55,24 @@ static void	init_vw_ray(t_env *e, t_param *param, int i_reflec)
 	}
 	VW_RAY.obj = NULL;
 	VW_RAY.dist = DIST_MAX;
+}
+
+static void	focus_object(t_env *e, t_param *param)
+{
+	t_object	*obj_sel;
+
+	if (e->scene->obj_focus)
+	{
+		obj_sel = (t_object *)e->scene->obj_focus->content;
+		if (VW_RAY.obj == obj_sel)
+			if (cos_v3d(VW_RAY.norm, VW_RAY.dir) > -0.3 && VW_RAY.obj->type
+					!= 2 && cos_v3d(VW_RAY.norm, VW_RAY.dir) < -0.000001)
+			{
+				F_COLOR.r = 255;
+				F_COLOR.g = 255;
+				F_COLOR.b = 255;
+			}
+	}
 }
 
 /*
@@ -69,7 +87,6 @@ static void	perform_raytracing(t_env *e, t_param *param)
 {
 	t_list		*lst_obj;
 	t_object	*obj;
-	t_object	*obj_sel;
 	int			i_reflec;
 
 	i_reflec = -1;
@@ -86,26 +103,11 @@ static void	perform_raytracing(t_env *e, t_param *param)
 		}
 		VW_RAY.inter = add_v3d(VW_RAY.pos, smul_v3d(VW_RAY.dir, VW_RAY.dist));
 		COLOR = VW_RAY.obj ? VW_RAY.obj->color : 0;
-		if (param->e->scene->obj_focus)
-		{
-			obj_sel = (t_object *)param->e->scene->obj_focus->content;
-			if (VW_RAY.obj == obj_sel)
-				if (cos_v3d(VW_RAY.norm, VW_RAY.dir) > -0.3 && VW_RAY.obj->type
-						!= 2 && cos_v3d(VW_RAY.norm, VW_RAY.dir) < -0.000001)
-				{
-					F_COLOR.r = 255;
-					F_COLOR.g = 255;
-					F_COLOR.b = 255;
-					break;
-				}
-		}
+		focus_object(e, param);
 		(VW_RAY.obj && IS_LIGHT) ? apply_light(ENV, param) : 0;
-		if (!VW_RAY.obj)
-			break;
-		if (!IS_REFLX)
-			break;
-		else
-			add_reflected_color(param);
+		add_reflected_color(param);
+		if (!VW_RAY.obj || !IS_REFLX)
+			break ;
 	}
 	img_put_pixel(&e->img, X, Y, param);
 }

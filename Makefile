@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/02/04 17:12:53 by jubarbie         ###   ########.fr        #
+#    Updated: 2017/02/05 12:18:11 by jubarbie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,6 @@ SRC =	rt.c			\
 		error.c			\
 		key_event.c		\
 		mouse_event.c		\
-		mouse_event2.c		\
 		render_options.c	\
 		init_env.c			\
 		free_env.c			\
@@ -61,9 +60,7 @@ SRC =	rt.c			\
 		torus_normal.c	\
 		torus.c			\
 		torus2.c			\
-		light_events.c	\
 		others_events.c	\
-		others_events2.c	\
 		save.c			\
 		reflection.c			\
 		color_filter.c			\

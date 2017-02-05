@@ -6,11 +6,20 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 10:30:51 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/12/20 14:42:59 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/05 11:48:31 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+t_rgb	transfo(unsigned int col, t_light *datas)
+{
+	t_hsv h;
+
+	rgb_to_hsv(col, &h.h, &h.s, &h.v);
+	datas->shadow = 0.0;
+	return (my_hsv_to_rgb(h));
+}
 
 int		add_color(int c1, int c2, double i)
 {

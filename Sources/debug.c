@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 18:49:11 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 17:53:21 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/05 12:10:15 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,18 @@ static void	print_vector(t_v3d v, char *name)
 	printf("		");
 	print_v3d(v, name);
 	printf("\n");
+}
+
+static void	print_mat(t_env *e, t_object *obj)
+{
+	printf("		Material:\n");
+	printf("		Color ambient: %lf\n", obj->mat.ambient);
+	printf("		Color diffuse: %lf\n", obj->mat.diffuse);
+	printf("		Color specular: %lf\n", obj->mat.specular);
+	printf("		Shiness: %lf\n", obj->mat.shine);
+	printf("		Density: %lf\n", obj->mat.density);
+	printf("		tex: %s\n", obj->pro);
+	printf("		----------\n");
 }
 
 static void	print_obj(t_env *e)
@@ -30,7 +42,7 @@ static void	print_obj(t_env *e)
 	{
 		obj = (t_object *)(elem->content);
 		printf("		name: \"%s\"\n", obj->name);
-		printf("		type: \"%d\"\n", obj->type);
+		printf("		type: %d\n", obj->type);
 		print_vector(obj->pos, "origin");
 		print_vector(obj->dir, "dir");
 		print_vector(obj->p1, "p1");
@@ -38,14 +50,7 @@ static void	print_obj(t_env *e)
 		printf("		r1: %lf\n		r2: %lf\n", O_R1, O_R2);
 		printf("		angle: %lf\n", O_ANG);
 		printf("		color: 0x%08.8X\n", obj->color);
-		printf("		Material:\n");
-		printf("		Color ambient: %lf\n", obj->mat.ambient);
-		printf("		Color diffuse: %lf\n", obj->mat.diffuse);
-		printf("		Color specular: %lf\n", obj->mat.specular);
-		printf("		Shiness: %lf\n", obj->mat.shine);
-		printf("		Density: %lf\n", obj->mat.density);
-		printf("		tex: %s\n", obj->pro);
-		printf("		----------\n");
+		print_mat(e, obj);
 		elem = elem->next;
 	}
 }
@@ -71,20 +76,17 @@ static void	print_light(t_env *e)
 	}
 }
 
-static void	print_scene(t_env *e)
-{
-	printf("\n----   DEBUG    ----\n\n");
-	printf("	Image resolution: %d x %d px\n\n", IMG_WIDTH, IMG_HEIGHT);
-	printf("	Scene name: \"%s\"\n", e->scene->name);
-	printf("	Camera:\n");
-	print_vector(CAM_POS, "origin");
-	print_vector(CAM_DIR, "dir");
-	print_obj(e);
-	print_light(e);
-}
-
 void		debug(t_env *e)
 {
 	if (IS_OPT_D)
-		print_scene(e);
+	{
+		printf("\n----   DEBUG    ----\n\n");
+		printf("	Image resolution: %d x %d px\n\n", IMG_WIDTH, IMG_HEIGHT);
+		printf("	Scene name: \"%s\"\n", e->scene->name);
+		printf("	Camera:\n");
+		print_vector(CAM_POS, "origin");
+		print_vector(CAM_DIR, "dir");
+		print_obj(e);
+		print_light(e);
+	}
 }

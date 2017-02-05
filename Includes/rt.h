@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 19:33:51 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/05 11:39:43 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@
 # define NB_TH 50
 # define DIST_MAX 1000.0
 # define F_CLR 0x374355
+
+# define RGB datas->rgb
+# define ALI datas->angle_light
+# define OMEGA datas->omega
 
 # define OPT_REF "dlh"
 # define OPT e->opt
@@ -211,6 +215,23 @@ typedef struct	s_mat
 	double		density;
 }				t_mat;
 
+typedef struct	s_noise
+{
+	int			per[512];
+	int			x;
+	int			y;
+	int			z;
+	double		u;
+	double		v;
+	double		w;
+	int			a;
+	int			b;
+	int			aa;
+	int			bb;
+	int			ab;
+	int			ba;
+}				t_noise;
+
 typedef struct	s_object
 {
 	int			type;
@@ -314,29 +335,37 @@ typedef struct	s_env
 	t_v3d		parse_cam_pos;
 	t_v3d		parse_cam_dir;
 	char		**obj_allowed;
-	void		(*obj_fct_obj[NB_OBJ_FCT])(struct s_env *, t_object *, t_ray *, t_sol *sol);
+	void		(*obj_fct_obj[NB_OBJ_FCT])(struct s_env *, t_object *, t_ray *,
+																	t_sol *sol);
 	void		(*calc_obj_param[NB_OBJ_FCT])(t_object *);
 	void		(*update_obj_pos[NB_OBJ_FCT])(t_object *);
 	void		(*get_obj_param[NB_OBJ_FCT])(char *, t_object *, void *);
 	t_param		*param[NB_TH];
 }				t_env;
 
+/*
+** ENV
+*/
 int				get_options(int ac, char **av, char *opt);
-
 t_env			*init_env(char *file_name, char opt);
 void			free_env(t_env *e);
 void			free_obj(void *content, size_t size);
 
-void			create_wait_image(t_env *e);
+/*
+** MENU
+*/
 void			init_menu(t_env *e);
-void			change_btn_light(t_env *e);
 void			menu_object(t_env *e);
 void			menu_image(t_env *e);
 void			back_menu(t_env *e);
 void			top_menu_event(t_env *e, int x, int y);
 void			right_menu_event(t_env *e, int x, int y);
 void			bottom_menu_event(t_env *e, int x, int y);
+void			change_btn_light(t_env *e);
 
+/*
+** PARSING
+*/
 void			parse_rt(t_env *e, char *file_name);
 void			build_object(t_env *e, char *str);
 char			*get_in_acc(char *str, char *acc);
@@ -346,125 +375,42 @@ int				size_to_end_acc(char *str);
 void			check_acc(t_env *e, char *str);
 char			*go_to_next_acc(char *str, int n);
 char			*find_param(char *small, char *big);
+void			fill_matiere_in_case(t_mat *mat);
 void			init_obj_param(t_env *e);
-
-int				create_img(t_env *e);
-void			img_put_pixel(t_img *img, int x, int y, t_param *param);
-int				moves(t_env *e);
-void			change_light_status(void *arg);
-void			change_brillance_status(void *arg);
-void			change_shadow_status(void *arg);
-void			change_global_quality(void *arg);
-void			change_luminosite(t_env *e, int keycode);
-void			change_ambiance(t_env *e, int keycode);
-void			change_speed_rotation(t_env *e, int keycode);
-void        	change_luminosite_mouse(t_env *e, int y);
-void			del_focus_object(t_env *e);
-void			undo_del_object(t_env *e);
-void			color_selector(t_env *e, int x, int y);
-void			add_sphere(void *arg);
-void			add_cylinder(void *arg);
-void			add_cone(void *arg);
-void			add_plane(void *arg);
-void			add_torus(void *arg);
-void			screenshot(void *arg);
-void			reset_cam(void *arg);
-void			back_plane(void *arg);
-
-void			*raytracer(void *arg);
-void			apply_light(t_env *e, t_param *param);
-void			sphere(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
-void			plane(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
-void			cylinder(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
-void			torus(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
-void			calc_cylinder_param(t_object *obj);
-void			update_cylinder_pos(t_object *obj);
-void			cone(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
-void			calc_cone_param(t_object *obj);
-void			update_cone_pos(t_object *obj);
 void			get_light_param(char *str, t_object *obj, void *e);
 void			get_plane_param(char *str, t_object *obj, void *e);
 void			get_sphere_param(char *str, t_object *obj, void *e);
 void			get_cylinder_param(char *str, t_object *obj, void *e);
 void			get_cone_torus_param(char *str, t_object *obj, void *e);
+
+/*
+** RAYTRACING FUNCTIONS
+*/
+void			*raytracer(void *arg);
+void			apply_light(t_env *e, t_param *param);
+void			do_shininess(t_param *param, t_object *light, t_hsv *hsv, 
+					t_v3d ref);
+void			apply_color(t_env *e, t_param *param, t_object *l,
+															t_light *datas);
+void			modif_normale(double d, t_v3d *norm, t_v3d inter);
+void			plane(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
+void			sphere(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
+void			cylinder(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
+void			cone(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
+void			torus(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
+void			calc_cylinder_param(t_object *obj);
+void			update_cylinder_pos(t_object *obj);
+void			calc_cone_param(t_object *obj);
+void			update_cone_pos(t_object *obj);
 double			caps_up(t_object *obj, t_ray *ray);
 double			caps_bottom(t_object *obj, t_ray *ray);
 double			caps(t_ray *ray, double r, t_v3d n, t_v3d p);
-
-void			error_usage(void);
-void			error_file(t_env *e);
-void			error_opt(char opt);
-void			error_perso(t_env *e, char *str);
-int				quit_rt(t_env *e);
-void			debug(t_env *e);
-void			print_help();
-
-unsigned int	hsv_to_rgb(unsigned int h, double s, double v);
-void			rgb_to_hsv(unsigned int rgb, int *h, double *s, double *v);
-int				add_color(int c1, int c2, double i);
-
-int				ft_key_press(int keycode, t_env *e);
-int				ft_key_release(int keycode, t_env *e);
-int				ft_key_command(int keycode, t_env *e);
-int				ft_mouse_click(int button, int x, int y, t_env *e);
-void			top_menu_event(t_env *e, int x, int y);
-void			bottom_menu_event(t_env *e, int x, int y);
-void			right_menu_event(t_env *e, int x, int y);
-
-void			save_scene(t_env *e);
-
-void			init_cl(t_env *e);
-
-void			init_opt(t_env *e, char opt);
-
-/*
-**ajoutees pour torus
-*/
 t_v3d			get_torus_normal(t_object *o, t_v3d cam, t_v3d ray, double ret);
 void			update_torus_pos(t_object *obj);
 
 /*
-** light
+** RENDING
 */
-
-//void			get_color(t_env *e, t_param *param, t_object *light, \
-//					t_hsv *hsv);
-//void			get_color(int obj_type, t_env *e, t_param *param, \
-		t_object *light, t_hsv *h, double *intensite);
-void			do_shininess(t_param *param, t_object *light, t_hsv *hsv, \
-		t_v3d ref);
-void			change_phong_status(void *arg);
-void			change_intensite1(void *arg);
-void			change_intensite2(void *arg);
-void			apply_color(t_env *e, t_param *param, t_object *l, t_light *datas);
-void			apply_cartoon_color(t_env *e, t_param *param, t_object *light, t_light *datas);
-
-/*
-**Bruit et modifs
-*/
-void			fill_matiere_in_case(t_mat *mat);
-void			modif_normale(double d, t_v3d *norm, t_v3d inter);
-
-/*
-** Perlin
-*/
-typedef struct	s_noise
-{
-	int			per[512];
-	int			x;
-	int			y;
-	int			z;
-	double		u;
-	double		v;
-	double		w;
-	int			a;
-	int			b;
-	int			aa;
-	int			bb;
-	int			ab;
-	int			ba;
-}				t_noise;
-
 double			noise(double x, double y, double z);
 void			fill_xyz(t_noise *noise, double x, double y, double z);
 void			fill_uvw(t_noise *noise, double x, double y, double z);
@@ -476,10 +422,73 @@ double			grad(int a, double x, double y, double z);
 int			modify_color_for_tex(char *tex, t_v3d vec, t_rgb *r);
 t_rgb			wood(t_v3d inter);
 t_rgb			marbre(t_v3d inter);
-
 void			init_reflect(t_param *param);
 void			add_reflected_color(t_param *param);
 void			sepia_filter(t_param *param);
 void			grey_filter(t_param *param);
+void			apply_cartoon_color(t_env *e, t_param *param, t_object *light,
+																t_light *datas);
+/*
+** EVENTS
+*/
+int				ft_key_press(int keycode, t_env *e);
+int				ft_key_release(int keycode, t_env *e);
+int				ft_key_command(int keycode, t_env *e);
+int				ft_mouse_click(int button, int x, int y, t_env *e);
+void			top_menu_event(t_env *e, int x, int y);
+void			bottom_menu_event(t_env *e, int x, int y);
+void			right_menu_event(t_env *e, int x, int y);
+
+/*
+** OPTIONS
+*/
+void			init_opt(t_env *e, char opt);
+int				moves(t_env *e);
+void			change_option(t_env *e, int opt);
+void			change_global_quality(void *arg);
+void			change_luminosite(t_env *e, int keycode);
+void			change_ambiance(t_env *e, int keycode);
+void			change_speed_rotation(t_env *e, int keycode);
+void        	change_luminosite_mouse(t_env *e, int y);
+void			active_filter(t_env *e, int key);
+void			back_plane(void *arg);
+
+/*
+** INTERACTIONS
+*/
+void			del_focus_object(t_env *e);
+void			undo_del_object(t_env *e);
+void			color_selector(t_env *e, int x, int y);
+void			add_sphere(void *arg);
+void			add_cylinder(void *arg);
+void			add_cone(void *arg);
+void			add_plane(void *arg);
+void			add_torus(void *arg);
+void			reset_cam(void *arg);
+void			select_next_obj(t_env *e);
+
+/*
+** ERROR AND DEBUG
+*/
+void			error_usage(void);
+void			error_file(t_env *e);
+void			error_opt(char opt);
+void			error_perso(t_env *e, char *str);
+int				quit_rt(t_env *e);
+void			debug(t_env *e);
+void			print_help();
+
+/*
+** DISPLAY
+*/
+int				create_img(t_env *e);
+void			img_put_pixel(t_img *img, int x, int y, t_param *param);
+unsigned int	hsv_to_rgb(unsigned int h, double s, double v);
+void			rgb_to_hsv(unsigned int rgb, int *h, double *s, double *v);
+int				add_color(int c1, int c2, double i);
+t_rgb			transfo(unsigned int col, t_light *datas);
+
+void			save_scene(t_env *e);
+void			screenshot(void *arg);
 
 #endif

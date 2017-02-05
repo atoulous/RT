@@ -6,7 +6,7 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 22:58:34 by atoulous          #+#    #+#             */
-/*   Updated: 2017/02/04 19:16:01 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/05 12:27:53 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void		change_luminosite(t_env *e, int keycode)
 	create_img(e);
 }
 
-void		reset_cam(void	*arg)
+void		reset_cam(void *arg)
 {
 	t_env	*e;
 

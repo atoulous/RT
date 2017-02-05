@@ -6,11 +6,20 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/21 15:47:35 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 14:40:41 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/05 11:15:09 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+void	select_next_obj(t_env *e)
+{
+	if (!e->scene->obj_focus)
+		e->scene->obj_focus = e->scene->obj;
+	else
+		e->scene->obj_focus = e->scene->obj_focus->next;
+	create_img(e);
+}
 
 void	color_selector(t_env *e, int x, int y)
 {
