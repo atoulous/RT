@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:39 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/05 12:11:46 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/05 13:01:34 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,5 @@ t_env			*init_env(char *file_name, char opt)
 	e->scene->obj_trash = NULL;
 	init_menu(e);
 	debug(e);
-	LUMI = 0.3;
-	MOVES = 0;
-	SPEED = 0.2;
-	ALPHA_ROT = 20;
-	COMMAND = 0;
 	return (e);
 }

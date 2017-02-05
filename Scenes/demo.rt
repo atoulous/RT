@@ -62,7 +62,7 @@ scene {
 			ambient { 0.1 }
 			diffuse { 0.2 }
 			specular { 1 }
-			shine { 10 }
+			shine { 100 }
 		}
 	}
 	object {
@@ -101,7 +101,7 @@ scene {
 			ambient { 0.4 }
 			diffuse { 0.2 }
 			specular { 0.9 }
-			shine { 10 }
+			shine { 100 }
 		}
 	}
 	object {
@@ -114,7 +114,7 @@ scene {
 			ambient { 0.4 }
 			diffuse { 0.2 }
 			specular { 0.9 }
-			shine { 10 }
+			shine { 100 }
 		}
 	}
 	object {

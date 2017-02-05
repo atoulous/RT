@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/05 12:17:51 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/05 12:56:03 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,6 @@ int			ft_key_release(int keycode, t_env *e)
 	keycode == 91 ? ROT ^= M_UP : 0;
 	COMMAND = 0;
 	return (0);
-}
-
-void		change_indice_reflection(t_env *e, int keycode)
-{
-	keycode == 15 && NB_REF > 0 ? NB_REF -= 1 : 0;
-	keycode == 17 ? NB_REF += 1 : 0;
-	ft_putstr("indice reflection changed to ");
-	ft_putnbr(NB_REF);
-	ft_putendl("");
-	create_img(e);
 }
 
 int			ft_key_press(int keycode, t_env *e)

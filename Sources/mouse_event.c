@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/13 15:46:55 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/05 12:16:04 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/05 12:58:38 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,32 +46,6 @@ static void	raytrace_mouse(t_env *e, int x, int y)
 		foc_obj = NULL;
 	e->scene->obj_focus = foc_obj;
 	menu_object(e);
-}
-
-void		ft_mouse_click2(int x, int y, t_env *e)
-{
-	if (x < 66)
-		change_luminosite_mouse(e, y);
-	else if (x > 79 && x < 119)
-		del_focus_object(e);
-	else if (x > 79 && x < 149)
-		undo_del_object(e);
-	else if (x > WIN_WIDTH / 2 - 64 && x < WIN_WIDTH / 2 + 64)
-		change_global_quality(e);
-	else if (x > WIN_WIDTH - 50)
-		save_scene(e);
-}
-
-void		ft_mouse_click3(int x, t_env *e)
-{
-	if (x < WIN_WIDTH / 2 - 160)
-		add_sphere(e);
-	else if (x < WIN_WIDTH / 2 - 50)
-		add_plane(e);
-	else if (x < WIN_WIDTH / 2 + 50)
-		add_cylinder(e);
-	else if (x < WIN_WIDTH / 2 + 160)
-		add_cone(e);
 }
 
 int			ft_mouse_click(int button, int x, int y, t_env *e)

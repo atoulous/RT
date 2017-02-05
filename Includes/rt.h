@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/05 11:39:43 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/05 12:50:59 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@
 # define GLOBQ (1 << 11)
 # define OPT_I1 (1 << 12)
 # define OPT_I2 (1 << 13)
+# define MOTION_BLUR (1 << 14)
 
 # define IS_OPT_D (OPT & OPT_D)
 # define IS_OPT_H (OPT & OPT_H)
@@ -70,6 +71,7 @@
 # define IS_GLOBQ (OPT & GLOBQ)
 # define IS_OPT_I1 (OPT & OPT_I1)
 # define IS_OPT_I2 (OPT & OPT_I2)
+# define IS_MOTION_BLUR (OPT & MOTION_BLUR)
 
 # define LUMI e->luminosite
 # define AMBIANCE e->ambiance
@@ -419,11 +421,12 @@ double			noise_to_ret(t_noise *a, double b, double c, double d);
 double			fade(double a);
 double			lerp(double x, double y, double z);
 double			grad(int a, double x, double y, double z);
-int			modify_color_for_tex(char *tex, t_v3d vec, t_rgb *r);
+int				modify_color_for_tex(char *tex, t_v3d vec, t_rgb *r);
 t_rgb			wood(t_v3d inter);
 t_rgb			marbre(t_v3d inter);
 void			init_reflect(t_param *param);
 void			add_reflected_color(t_param *param);
+void			change_indice_reflection(t_env *e, int keycode);
 void			sepia_filter(t_param *param);
 void			grey_filter(t_param *param);
 void			apply_cartoon_color(t_env *e, t_param *param, t_object *light,

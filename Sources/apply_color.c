@@ -6,32 +6,14 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 10:39:07 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/05 11:27:42 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/05 13:06:28 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void	apply_intensite2(t_env *e, t_param *param, t_light *datas)
-{
-	if (datas->omega > 0.000001 && !PHO_RAY.obj)
-	{
-		if (OMEGA < 0.7)
-			OMEGA = 0;
-		else if (OMEGA < 0.9)
-			OMEGA = 0.7;
-		else
-			OMEGA = 1;
-		RGB.r += 255 * VW_RAY.obj->mat.specular * pow(datas->omega,
-				VW_RAY.obj->mat.shine);
-		RGB.g += 255 * VW_RAY.obj->mat.specular * pow(datas->omega,
-				VW_RAY.obj->mat.shine);
-		RGB.b += 255 * VW_RAY.obj->mat.specular * pow(datas->omega,
-				VW_RAY.obj->mat.shine);
-	}
-}
-
-void		do_phong_calcls(t_param *param, t_object *light, t_light *datas)
+void		do_phong_calcls(t_param *param, t_object *light,
+		t_light *datas)
 {
 	t_v3d	test;
 	t_v3d	r;
@@ -41,8 +23,30 @@ void		do_phong_calcls(t_param *param, t_object *light, t_light *datas)
 	datas->omega = cos_v3d(VW_RAY.dir, r);
 }
 
+static void	apply_intensity2(t_env *e, t_param *param, t_light *datas)
+{
+	if (IS_OPT_I2)
+	{
+		if (datas->omega > 0.000001 && !PHO_RAY.obj)
+		{
+			if (OMEGA < 0.7)
+				OMEGA = 0;
+			else if (OMEGA < 0.9)
+				OMEGA = 0.7;
+			else
+				OMEGA = 1;
+			RGB.r += 255 * VW_RAY.obj->mat.specular * pow(datas->omega,
+					VW_RAY.obj->mat.shine);
+			RGB.g += 255 * VW_RAY.obj->mat.specular * pow(datas->omega,
+					VW_RAY.obj->mat.shine);
+			RGB.b += 255 * VW_RAY.obj->mat.specular * pow(datas->omega,
+					VW_RAY.obj->mat.shine);
+		}
+	}
+}
+
 void		apply_color(t_env *e, t_param *param, t_object *light,
-																t_light *datas)
+		t_light *datas)
 {
 	datas->angle_light = cos_v3d(VW_RAY.norm, PHO_RAY.dir);
 	do_phong_calcls(param, light, datas);
@@ -67,11 +71,11 @@ void		apply_color(t_env *e, t_param *param, t_object *light,
 }
 
 void		apply_cartoon_color(t_env *e, t_param *param, t_object *light,
-																t_light *datas)
+		t_light *datas)
 {
 	datas->angle_light = cos_v3d(VW_RAY.norm, PHO_RAY.dir);
 	do_phong_calcls(param, light, datas);
-	if (cos_v3d(VW_RAY.norm, VW_RAY.dir) > -0.3 && VW_RAY.obj->type != 2 &&
+	if (cos_v3d(VW_RAY.norm, VW_RAY.dir) > -0.3 && VW_RAY.obj->type != 1 &&
 			cos_v3d(VW_RAY.norm, VW_RAY.dir) < -0.000001)
 	{
 		RGB.r = 0;
@@ -88,6 +92,5 @@ void		apply_cartoon_color(t_env *e, t_param *param, t_object *light,
 		RGB.g += (ALI * 255 * VW_RAY.obj->mat.diffuse * -1);
 		RGB.b += (ALI * 255 * VW_RAY.obj->mat.diffuse * -1);
 	}
-	if (IS_OPT_I2)
-		apply_intensite2(e, param, datas);
+	apply_intensity2(e, param, datas);
 }

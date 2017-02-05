@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 17:50:44 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 15:07:53 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/04 22:43:17 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	moves2(t_v3d **pos, t_v3d **dir, t_list *list, t_object **obj)
 {
 	(*obj) = (t_object *)(list->content);
 	(*pos) = &(*obj)->pos;
-	if ((*obj)->type == 6)
+	if ((*obj)->type == 5)
 		(*dir) = &(*obj)->p2;
 	else
 		(*dir) = &(*obj)->dir;
