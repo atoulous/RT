@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 15:41:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 21:59:00 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/05 13:37:46 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	init_vw_ray(t_env *e, t_param *param, int i_reflec)
 	VW_RAY.dist = DIST_MAX;
 }
 
-static void	focus_object(t_env *e, t_param *param)
+static int	focus_object(t_env *e, t_param *param)
 {
 	t_object	*obj_sel;
 
@@ -71,8 +71,10 @@ static void	focus_object(t_env *e, t_param *param)
 				F_COLOR.r = 255;
 				F_COLOR.g = 255;
 				F_COLOR.b = 255;
+				return (0);
 			}
 	}
+	return (1);
 }
 
 /*
@@ -103,7 +105,8 @@ static void	perform_raytracing(t_env *e, t_param *param)
 		}
 		VW_RAY.inter = add_v3d(VW_RAY.pos, smul_v3d(VW_RAY.dir, VW_RAY.dist));
 		COLOR = VW_RAY.obj ? VW_RAY.obj->color : 0;
-		focus_object(e, param);
+		if (!focus_object(e, param))
+			break ;
 		(VW_RAY.obj && IS_LIGHT) ? apply_light(ENV, param) : 0;
 		add_reflected_color(param);
 		if (!VW_RAY.obj || !IS_REFLX)

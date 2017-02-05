@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 10:39:07 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/05 13:06:28 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/05 13:24:09 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void		apply_cartoon_color(t_env *e, t_param *param, t_object *light,
 		RGB.r = 0;
 		RGB.g = 0;
 		RGB.b = 0;
+		return ;
 	}
 	if (IS_OPT_I1)
 	{
