@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 14:54:56 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 15:13:33 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/05 15:42:26 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int		in_opt(char c)
 	return (-1);
 }
 
-int				get_options(int ac, char **av, char *opt)
+int				get_options(int ac, char **av, int *opt)
 {
 	int	i;
 	int	j;

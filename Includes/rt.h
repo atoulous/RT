@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 22:34:03 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/05 18:36:53 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define DIST_MAX 1000.0
 # define F_CLR 0x374355
 
-# define OPT_REF "dlh"
+# define OPT_REF "dh"
 # define OPT e->opt
 
 # define OPT_D (1 << 0)
@@ -323,13 +323,19 @@ typedef struct	s_env
 	t_param		*param[NB_TH];
 }				t_env;
 
-int				get_options(int ac, char **av, char *opt);
+int				get_options(int ac, char **av, int *opt);
+void			init_opt(t_env *e, int opt);
 
+/*
+** ENV
+*/
 t_env			*init_env(char *file_name, char opt);
 void			free_env(t_env *e);
 void			free_obj(void *content, size_t size);
 
-void			create_wait_image(t_env *e);
+/*
+** MENU
+*/
 void			init_menu(t_env *e);
 void			change_btn_light(t_env *e);
 void			menu_object(t_env *e);
@@ -339,6 +345,9 @@ void			top_menu_event(t_env *e, int x, int y);
 void			right_menu_event(t_env *e, int x, int y);
 void			bottom_menu_event(t_env *e, int x, int y);
 
+/*
+** PARSING
+*/
 void			parse_rt(t_env *e, char *file_name);
 void			build_object(t_env *e, char *str);
 char			*get_in_acc(char *str, char *acc);
@@ -349,19 +358,30 @@ void			check_acc(t_env *e, char *str);
 char			*go_to_next_acc(char *str, int n);
 char			*find_param(char *small, char *big);
 void			init_obj_param(t_env *e);
+void			get_light_param(char *str, t_object *obj, void *e);
+void			get_plane_param(char *str, t_object *obj, void *e);
+void			get_sphere_param(char *str, t_object *obj, void *e);
+void			get_cylinder_param(char *str, t_object *obj, void *e);
+void			get_cone_torus_param(char *str, t_object *obj, void *e);
 
+/*
+** DISPLAY
+*/
 int				create_img(t_env *e);
 void			img_put_pixel(t_img *img, int x, int y, t_param *param);
+unsigned int	hsv_to_rgb(unsigned int h, double s, double v);
+void			rgb_to_hsv(unsigned int rgb, int *h, double *s, double *v);
+int				add_color(int c1, int c2, double i);
+
+
 int				moves(t_env *e);
-void			change_light_status(void *arg);
-void			change_brillance_status(void *arg);
-void			change_shadow_status(void *arg);
 void			change_global_quality(void *arg);
 void			change_luminosite(t_env *e, int keycode);
 void			change_ambiance(t_env *e, int keycode);
 void			change_speed_rotation(t_env *e, int keycode);
 void			change_luminosite_mouse(t_env *e, int y);
 void			change_indice_reflection(t_env *e, int keycode);
+void			change_option(t_env *e, int opt);
 void			del_focus_object(t_env *e);
 void			undo_del_object(t_env *e);
 void			color_selector(t_env *e, int x, int y);
@@ -370,34 +390,41 @@ void			add_cylinder(void *arg);
 void			add_cone(void *arg);
 void			add_plane(void *arg);
 void			add_torus(void *arg);
-void			screenshot(void *arg);
 void			reset_cam(void *arg);
 void			back_plane(void *arg);
 void			active_motion_blur(void *arg);
 void			active_sepia(void *arg);
 void			active_grey(void *arg);
-void			active_cartoon(void *arg);
 
+/*
+** RAYTRACING
+*/
 void			*raytracer(void *arg);
 void			apply_light(t_env *e, t_param *param);
-void			sphere(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
+void			do_shininess(t_param *param, t_object *light, t_hsv *hsv,
+																	t_v3d ref);
+void			apply_color(t_env *e, t_param *param, t_object *l,
+																t_light *datas);
+void			apply_cartoon_color(t_env *e, t_param *param, t_object *light,
+																t_light *datas);
 void			plane(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
+void			sphere(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
 void			cylinder(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
+void			cone(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
 void			torus(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
 void			calc_cylinder_param(t_object *obj);
 void			update_cylinder_pos(t_object *obj);
-void			cone(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
 void			calc_cone_param(t_object *obj);
 void			update_cone_pos(t_object *obj);
-void			get_light_param(char *str, t_object *obj, void *e);
-void			get_plane_param(char *str, t_object *obj, void *e);
-void			get_sphere_param(char *str, t_object *obj, void *e);
-void			get_cylinder_param(char *str, t_object *obj, void *e);
-void			get_cone_torus_param(char *str, t_object *obj, void *e);
+t_v3d			get_torus_normal(t_object *o, t_v3d cam, t_v3d ray, double ret);
+void			update_torus_pos(t_object *obj);
 double			caps_up(t_object *obj, t_ray *ray);
 double			caps_bottom(t_object *obj, t_ray *ray);
 double			caps(t_ray *ray, double r, t_v3d n, t_v3d p);
 
+/*
+** ERROR AND DEBUG
+*/
 void			error_usage(void);
 void			error_file(t_env *e);
 void			error_opt(char opt);
@@ -406,10 +433,9 @@ int				quit_rt(t_env *e);
 void			debug(t_env *e);
 void			print_help();
 
-unsigned int	hsv_to_rgb(unsigned int h, double s, double v);
-void			rgb_to_hsv(unsigned int rgb, int *h, double *s, double *v);
-int				add_color(int c1, int c2, double i);
-
+/*
+** EVENT
+*/
 int				ft_key_press(int keycode, t_env *e);
 int				ft_key_release(int keycode, t_env *e);
 int				ft_key_command(int keycode, t_env *e);
@@ -419,16 +445,13 @@ void			bottom_menu_event(t_env *e, int x, int y);
 void			right_menu_event(t_env *e, int x, int y);
 
 void			save_scene(t_env *e);
+void			screenshot(void *arg);
 
-void			init_cl(t_env *e);
 
-void			init_opt(t_env *e, char opt);
 
 /*
 **ajoutees pour torus
 */
-t_v3d			get_torus_normal(t_object *o, t_v3d cam, t_v3d ray, double ret);
-void			update_torus_pos(t_object *obj);
 
 /*
 ** light
@@ -438,13 +461,7 @@ void			update_torus_pos(t_object *obj);
 //					t_hsv *hsv);
 //void			get_color(int obj_type, t_env *e, t_param *param, \
 		t_object *light, t_hsv *h, double *intensite);
-void			do_shininess(t_param *param, t_object *light, t_hsv *hsv, \
-		t_v3d ref);
-void			change_phong_status(void *arg);
-void			change_intensite1(void *arg);
-void			change_intensite2(void *arg);
-void			apply_color(t_env *e, t_param *param, t_object *l, t_light *datas);
-void			apply_cartoon_color(t_env *e, t_param *param, t_object *light, t_light *datas);
+
 
 /*
 **Bruit et modifs
