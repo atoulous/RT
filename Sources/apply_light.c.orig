@@ -6,7 +6,11 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 10:29:13 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/05 16:51:19 by mmoullec         ###   ########.fr       */
+<<<<<<< HEAD
+/*   Updated: 2017/02/03 17:33:53 by mmoullec         ###   ########.fr       */
+=======
+/*   Updated: 2017/02/04 20:58:39 by atoulous         ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +39,11 @@ static int	init_light_ray(t_param *param, t_object *light)
 	return (1);
 }
 
-t_rgb		transfo(unsigned int col, t_light *datas)
+t_rgb		transfo(unsigned int col, t_light *datas, double *shadow)
 {
 	t_hsv h;
+	*shadow = 0.0;
 	rgb_to_hsv(col, &h.h, &h.s, &h.v);
-	datas->shadow = 0.0;
 	return (my_hsv_to_rgb(h));
 }
 
@@ -55,8 +59,11 @@ void		obj_sel(t_light *datas, t_param *param, t_object *light)
 			datas->ray = 0;
 	}
 	if (PHO_RAY.obj)
+	{
 		datas->shadow -= param->AMBIANCE;
-//		datas->shadow -= param->AMBIANCE * cos_v3d(PHO_RAY.dir, VW_RAY.norm) * -1;
+		//			datas->shadow -= param->AMBIANCE * cos_v3d(PHO_RAY.dir, VW_RAY.norm) * -1;
+		datas->shadow /= 2;
+	}
 }
 
 void		apply_light(t_env *e, t_param *param)
@@ -65,10 +72,15 @@ void		apply_light(t_env *e, t_param *param)
 	t_list		*lst_light;
 	t_light		datas;
 
-	datas.rgb = transfo(VW_RAY.obj->color, &datas);
+<<<<<<< HEAD
+	datas.rgb = transfo(VW_RAY.obj->color, &datas, &datas.shadow);
 	if (VW_RAY.obj->pro)
-		modify_color_for_tex(VW_RAY.obj->pro, sub_v3d(VW_RAY.inter, VW_RAY.obj->pos), &datas);
+		modify_color_for_tex(VW_RAY.obj->pro, VW_RAY.inter, VW_RAY.obj, &datas);
+	if (OPT_1)
+=======
+	datas.rgb = transfo(VW_RAY.obj->color, &datas);
 	if (IS_PHONG)
+>>>>>>> master
 		rgb_s_mult(&datas.rgb, VW_RAY.obj->mat.ambient + LUMI);
 	lst_light = e->scene->light;
 	while (lst_light)

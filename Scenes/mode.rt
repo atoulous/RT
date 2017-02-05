@@ -17,7 +17,7 @@ scene {
 			specular { 1 }
 			shine { 100 }
 		}
-		#tex { wood }
+		tex { random }
 	}
 	object {
 		name { spot1 }
@@ -33,19 +33,6 @@ scene {
 		origin { 0 0 20 }
 		dir { 0 0 -1 }
 		color { 0x0000FF }
-		mat {
-			ambient { 0.1 }
-			diffuse { 0.3 }
-			specular { 1 }
-			shine { 100 }
-		}
-	}
-	object {
-		name { plane2 }
-		type { pl3ne }
-		origin { 0 -5 0 }
-		dir { 0 -1 0 }
-		color { 0x00FFFF }
 		mat {
 			ambient { 0.1 }
 			diffuse { 0.3 }

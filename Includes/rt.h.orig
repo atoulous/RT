@@ -6,7 +6,11 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/05 17:25:59 by mmoullec         ###   ########.fr       */
+<<<<<<< HEAD
+/*   Updated: 2017/02/03 17:35:23 by mmoullec         ###   ########.fr       */
+=======
+/*   Updated: 2017/02/04 22:34:03 by atoulous         ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +20,10 @@
 # include <stdlib.h>
 # include <math.h>
 # include <stdio.h>
+<<<<<<< HEAD
+//# include </System/Library/Frameworks/Tk.framework/Versions/8.5/Headers/X11/X.h>
+=======
+>>>>>>> master
 # include "X.h"
 # include <OpenCL/opencl.h>
 # include <pthread.h>
@@ -480,10 +488,10 @@ double			noise_to_ret(t_noise *a, double b, double c, double d);
 double			fade(double a);
 double			lerp(double x, double y, double z);
 double			grad(int a, double x, double y, double z);
-int			modify_color_for_tex(char *tex, t_v3d vec, t_light *datas);
+int			modify_color_for_tex(char *tex, t_v3d inter, t_object *obj, t_light *datas);
 t_rgb			wood(t_v3d inter);
 t_rgb			marbre(t_v3d inter);
-t_rgb			random_noise(t_v3d vec, t_rgb rgb);
+t_rgb			random_color(t_v3d vec, t_rgb col, double coef);
 
 void			init_reflect(t_param *param);
 void			add_reflected_color(t_param *param);

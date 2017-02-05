@@ -6,7 +6,11 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/05 17:37:52 by mmoullec         ###   ########.fr       */
+<<<<<<< HEAD
+/*   Updated: 2017/02/03 15:59:35 by mmoullec         ###   ########.fr       */
+=======
+/*   Updated: 2017/02/04 21:41:40 by atoulous         ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +97,18 @@ static int		get_obj_color(char *str)
 
 void			init_obj_param(t_env *e)
 {
+<<<<<<< HEAD
+	obj->pos = get_v3d("origin", str);
+	obj->dir = get_v3d("dir", str);
+	obj->p1 = get_v3d("p1", str);
+	obj->p2 = get_v3d("p2", str);
+	obj->r1 = get_double("r1", str);
+	obj->r2 = get_double("r2", str);
+	if ((obj->angle = get_double("angle", str)))
+		obj->angle *= (M_PI / 180);
+	obj->pro = NULL;
+	obj->pro = get_in_acc("tex", str);
+=======
 	int	i;
 
 	i = -1;
@@ -102,6 +118,7 @@ void			init_obj_param(t_env *e)
 	e->get_obj_param[3] = &get_cylinder_param;
 	e->get_obj_param[4] = &get_cone_torus_param;
 	e->get_obj_param[5] = &get_cone_torus_param;
+>>>>>>> master
 }
 
 void			build_object(t_env *e, char *str)
@@ -115,7 +132,6 @@ void			build_object(t_env *e, char *str)
 		error_perso(e, "No type found in object");
 	e->get_obj_param[obj.type](str, &obj, (void *)e);
 	e->calc_obj_param[obj.type] ? e->calc_obj_param[obj.type](&obj) : 0;
-	obj.pro = NULL;
 	obj.pro = get_in_acc("tex", str);
 	if ((obj.color = get_obj_color(str)) == -1)
 		error_perso(e, "No color found in object");

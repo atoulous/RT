@@ -6,32 +6,50 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 16:12:58 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/05 17:22:06 by mmoullec         ###   ########.fr       */
+<<<<<<< HEAD
+/*   Updated: 2017/02/03 17:42:41 by mmoullec         ###   ########.fr       */
+=======
+/*   Updated: 2017/02/02 13:10:17 by atoulous         ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int		modify_color_for_tex(char *tex, t_v3d vec, t_light *datas)
+int		modify_color_for_tex(char *tex, t_v3d inter, t_object *obj, t_light *datas)
 {
-	datas->shadow = 0.0;
+<<<<<<< HEAD
+	t_v3d vec;
+
+	vec = sub_v3d(inter, obj->pos);
+	if (!ft_strcmp(tex, "wood"))
+	{
+		datas->rgb = wood(vec);
+		return (1);
+	}
+	if (!ft_strcmp(tex, "marbre"))
+	{
+		datas->rgb = marbre(vec);
+		return (1);
+	}
+	if (!ft_strcmp(tex, "random"))
+	{
+		datas->rgb = random_color(vec, datas->rgb, 0.4);
+		return (1);
+=======
 	if (tex)
 	{
 		if (!ft_strcmp(tex, "wood"))
 		{
-			datas->rgb = wood(vec);
+			*rgb = wood(vec);
 			return (1);
 		}
 		if (!ft_strcmp(tex, "marbre"))
 		{
-			datas->rgb = marbre(vec);
+			*rgb = marbre(vec);
 			return (1);
 		}
-		if (!ft_strcmp(tex, "random"))
-		{
-			datas->rgb = random_noise(vec, datas->rgb);
-			return (1);
-		}
+>>>>>>> master
 	}
 	return (0);
 }
