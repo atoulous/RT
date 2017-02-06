@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 15:29:15 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 10:29:55 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 10:45:52 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,22 @@ static void	back_obj_menu(t_env *e)
 
 static void	print_mat(t_env *e, t_object *o)
 {
+	char	s[255];
+
 	mlx_put_image_to_window(MLX, WIN, ME[19].img.img, ME[19].x, ME[19].y);
 	mlx_put_image_to_window(MLX, WIN, ME[21].img.img, ME[21].x, ME[21].y);
 	if (o->pro && !ft_strcmp(o->pro, "marbre"))
 		mlx_put_image_to_window(MLX, WIN, ME[20].img.img, ME[20].x, ME[20].y);
 	else if (o->pro && !ft_strcmp(o->pro, "wood"))
 		mlx_put_image_to_window(MLX, WIN, ME[22].img.img, ME[22].x, ME[22].y);
+	sprintf(s, "%.2f", o->mat.diffuse);
+	mlx_string_put(MLX, WIN, WIN_WIDTH - 145, 483, F_CLR, s);
+	sprintf(s, "%.2f", o->mat.ambient);
+	mlx_string_put(MLX, WIN, WIN_WIDTH - 145, 507, F_CLR, s);
+	sprintf(s, "%.2f", o->mat.shine);
+	mlx_string_put(MLX, WIN, WIN_WIDTH - 145, 530, F_CLR, s);
+	sprintf(s, "%.2f", o->mat.specular);
+	mlx_string_put(MLX, WIN, WIN_WIDTH - 145, 553, F_CLR, s);
 }
 
 static void	print_obj_param2(t_env *e, t_object *o)
