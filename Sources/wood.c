@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 16:16:09 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/06 20:36:06 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 20:39:57 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_rgb			wood(t_v3d inter, double coef)
 	int		z;
 	double	v;
 
+	coef /= 10;
 	coefnoise = fabs(noise(inter.x * coef, inter.y * coef, inter.z * coef));
 	v = 20 * coefnoise;
 	z = (int)v;
