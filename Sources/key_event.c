@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 22:31:58 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/06 10:50:24 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	after_effects(t_env *e, int keycode)
 {
 	keycode == 41 ? active_sepia(e) : 0;
 	keycode == 39 ? active_grey(e) : 0;
-	keycode == 8 ? active_cartoon(e) : 0;
+	keycode == 8 ? change_option(e, CRTN) : 0;
 	keycode == 46 ? active_motion_blur(e) : 0;
 }
 
@@ -75,22 +75,23 @@ int			ft_key_press(int keycode, t_env *e)
 	IS_OPT_D ? ft_putnbr(keycode) : 0;
 	keycode == 53 || keycode == 48 ? esc_n_select_obj(e, keycode) : 0;
 	keycode == 51 ? del_focus_object(e) : 0;
-	keycode == 31 ? change_shadow_status(e) : 0;
-	keycode == 11 ? change_brillance_status(e) : 0;
-	keycode == 37 ? change_light_status(e) : 0;
-	keycode == 18 ? change_phong_status(e) : 0;
-	keycode == 19 ? change_intensite1(e) : 0;
-	keycode == 20 ? change_intensite2(e) : 0;
+	keycode == 31 ? change_option(e, SHADOW) : 0;
+	keycode == 11 ? change_option(e, SHINE) : 0;
+	keycode == 37 ? change_option(e, LIGHT) : 0;
+	keycode == 18 ? change_option(e, PHONG) : 0;
+	keycode == 19 ? change_option(e, OPT_I1) : 0;
+	keycode == 20 ? change_option(e, SHINE) : 0;
 	keycode == 27 || keycode == 24 ? change_speed_rotation(e, keycode) : 0;
 	keycode == 67 || keycode == 75 ? change_luminosite(e, keycode) : 0;
 	keycode == 71 || keycode == 81 ? change_ambiance(e, keycode) : 0;
 	keycode == 259 ? COMMAND = 1 : 0;
+	keycode == 7 ? antialiasing(e): 0;
 	keycode == 6 && COMMAND == 1 ? undo_del_object(e) : 0;
 	keycode == 47 ? SPEED += 0.1 : 0;
 	keycode == 43 ? SPEED -= 0.1 : 0;
 	keycode == 49 ? reset_cam(e) : 0;
 	keycode == 50 ? screenshot(e) : 0;
-	keycode == 35 ? back_plane(e) : 0;
+	keycode == 35 ? change_option(e, BPLANE) : 0;
 	keycode == 15 || keycode == 17 ? change_indice_reflection(e, keycode) : 0;
 	move(e, keycode);
 	after_effects(e, keycode);

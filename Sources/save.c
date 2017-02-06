@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 10:01:48 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/30 10:08:36 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/05 16:57:32 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static void		put_objects_to_file(t_env *e, t_list *first, FILE *fd)
 		fprintf(fd, "\t}\n");
 		list = list->next;
 	}
-	fprintf(fd, "}");
 }
 
 /*
@@ -79,6 +78,7 @@ void		save_scene(t_env *e)
 		fprintf(fd, "\n\trender{ %d %d }\n", IMG_WIDTH, IMG_HEIGHT);
 		put_objects_to_file(e, e->scene->light, fd);
 		put_objects_to_file(e, e->scene->obj, fd);
+		fprintf(fd, "}");
 		ft_putstr("\033[32mScene saved into ");
 		ft_putstr(path);
 		ft_putstr("\033[0m\n");

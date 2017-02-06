@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 15:16:44 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 15:36:15 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 10:45:59 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@ static void	get_images(t_env *e)
 	ME[10].path = ft_strdup("Images/info-cylinder.xpm");
 	ME[11].path = ft_strdup("Images/info-cone.xpm");
 	ME[12].path = ft_strdup("Images/info-torus.xpm");
+	ME[13].path = ft_strdup("Images/grey.xpm");
+	ME[14].path = ft_strdup("Images/grey-inv.xpm");
+	ME[15].path = ft_strdup("Images/sepia.xpm");
+	ME[16].path = ft_strdup("Images/sepia-inv.xpm");
+	ME[17].path = ft_strdup("Images/cartoon.xpm");
+	ME[18].path = ft_strdup("Images/cartoon-inv.xpm");
+	ME[19].path = ft_strdup("Images/marbre.xpm");
+	ME[20].path = ft_strdup("Images/marbre-inv.xpm");
+	ME[21].path = ft_strdup("Images/bois.xpm");
+	ME[22].path = ft_strdup("Images/bois-inv.xpm");
 }
 
 static void	create_interface(t_env *e)
@@ -39,9 +49,9 @@ static void	create_interface(t_env *e)
 	ME[4].y = WIN_HEIGHT - 122;
 	ME[5].y = 60;
 	ME[6].y = 130;
-	ME[7].y = 445;
+	ME[7].y = 475;
 	i = 7;
-	while (++i < NB_ME)
+	while (++i < 13)
 		ME[i].y = 306;
 	ME[0].x = 15;
 	ME[1].x = (WIN_WIDTH / 2) - 65;
@@ -51,6 +61,21 @@ static void	create_interface(t_env *e)
 	i = 4;
 	while (++i < NB_ME)
 		ME[i].x = WIN_WIDTH - 234;
+	i = 12;
+	while (++i < 19)
+		ME[i].x = WIN_WIDTH - 176;
+	ME[13].y = 180;
+	ME[14].y = 180;
+	ME[15].y = 210;
+	ME[16].y = 210;
+	ME[17].y = 240;
+	ME[18].y = 240;
+	ME[19].y = 440;
+	ME[20].y = 440;
+	ME[21].y = 440;
+	ME[21].x = WIN_WIDTH - 120;
+	ME[22].y = 440;
+	ME[22].x = WIN_WIDTH - 120;
 	get_images(e);
 }
 

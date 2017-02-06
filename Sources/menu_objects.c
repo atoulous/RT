@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 15:29:15 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 15:39:42 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 10:45:52 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,32 @@ static void	back_obj_menu(t_env *e)
 	int	j;
 
 	j = 132;
-	while (j++ < 558)
+	while (j++ < 630)
 	{
 		i = WIN_WIDTH - 237;
 		while (i++ < WIN_WIDTH)
 			mlx_pixel_put(MLX, WIN, i, j, 0x16212F);
 	}
+}
+
+static void	print_mat(t_env *e, t_object *o)
+{
+	char	s[255];
+
+	mlx_put_image_to_window(MLX, WIN, ME[19].img.img, ME[19].x, ME[19].y);
+	mlx_put_image_to_window(MLX, WIN, ME[21].img.img, ME[21].x, ME[21].y);
+	if (o->pro && !ft_strcmp(o->pro, "marbre"))
+		mlx_put_image_to_window(MLX, WIN, ME[20].img.img, ME[20].x, ME[20].y);
+	else if (o->pro && !ft_strcmp(o->pro, "wood"))
+		mlx_put_image_to_window(MLX, WIN, ME[22].img.img, ME[22].x, ME[22].y);
+	sprintf(s, "%.2f", o->mat.diffuse);
+	mlx_string_put(MLX, WIN, WIN_WIDTH - 145, 483, F_CLR, s);
+	sprintf(s, "%.2f", o->mat.ambient);
+	mlx_string_put(MLX, WIN, WIN_WIDTH - 145, 507, F_CLR, s);
+	sprintf(s, "%.2f", o->mat.shine);
+	mlx_string_put(MLX, WIN, WIN_WIDTH - 145, 530, F_CLR, s);
+	sprintf(s, "%.2f", o->mat.specular);
+	mlx_string_put(MLX, WIN, WIN_WIDTH - 145, 553, F_CLR, s);
 }
 
 static void	print_obj_param2(t_env *e, t_object *o)
@@ -44,6 +64,7 @@ static void	print_obj_param2(t_env *e, t_object *o)
 		mlx_string_put(MLX, WIN, WIN_WIDTH - 166, 406, F_CLR, s);
 	}
 	mlx_put_image_to_window(MLX, WIN, ME[7].img.img, ME[7].x, ME[7].y);
+	print_mat(e, o);
 }
 
 static void	print_obj_param(t_env *e, t_object *o)
@@ -81,5 +102,8 @@ void		menu_object(t_env *e)
 		print_obj_param(e, o);
 	}
 	else
+	{
 		back_obj_menu(e);
+		menu_image_filter(e);
+	}
 }

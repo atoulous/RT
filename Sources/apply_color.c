@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 10:39:07 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/04 22:33:57 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/05 15:44:51 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void		apply_color(t_env *e, t_param *param, t_object *light, t_light *datas)
 		RGB.g += (ALI * 255 * VW_RAY.obj->mat.diffuse * -1);
 		RGB.b += (ALI * 255 * VW_RAY.obj->mat.diffuse * -1);
 	}
-	if (IS_OPT_I2)
+	if (IS_SHINE)
 	{
 		if (datas->omega > 0.000001 && !PHO_RAY.obj)
 		{
@@ -73,7 +73,7 @@ void		apply_cartoon_color(t_env *e, t_param *param, t_object *light, t_light *da
 		RGB.g += (ALI *  255 * VW_RAY.obj->mat.diffuse * -1);
 		RGB.b += (ALI *  255 * VW_RAY.obj->mat.diffuse * -1);
 	}
-	if (IS_OPT_I2)
+	if (IS_SHINE)
 	{
 		if (datas->omega > 0.000001 && !PHO_RAY.obj)
 		{

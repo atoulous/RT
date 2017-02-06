@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 14:57:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 22:58:56 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/06 12:53:45 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	add_sphere(void *arg)
 	obj.mat.diffuse = 0.2;
 	obj.mat.specular = 1;
 	obj.mat.ambient = 0.1;
+	obj.pro = NULL;
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
 	e->scene->obj_focus = elem;
@@ -54,6 +55,7 @@ void	add_cylinder(void *arg)
 	obj.mat.diffuse = 0.2;
 	obj.mat.specular = 1;
 	obj.mat.ambient = 0.1;
+	obj.pro = NULL;
 	e->calc_obj_param[obj.type](&obj);
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
@@ -78,6 +80,7 @@ void	add_plane(void *arg)
 	obj.mat.diffuse = 0.2;
 	obj.mat.specular = 1;
 	obj.mat.ambient = 0.1;
+	obj.pro = NULL;
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
 	e->scene->obj_focus = elem;
@@ -103,6 +106,7 @@ void	add_cone(void *arg)
 	obj.mat.diffuse = 0.2;
 	obj.mat.specular = 1;
 	obj.mat.ambient = 0.1;
+	obj.pro = NULL;
 	e->calc_obj_param[obj.type](&obj);
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
@@ -120,8 +124,8 @@ void	add_torus(void *arg)
 	e = (t_env *)arg;
 	obj.name = ft_strdup("new torus");
 	obj.type = 5;
-	obj.p1 = add_v3d(CAM_POS, smul_v3d(CAM_DIR, 20.0));
-	obj.p2 = add_v3d(obj.p1, smul_v3d(CAM_UP, 1.0));
+	obj.p1 = v3d(0, 0, 0);
+	obj.p2 = v3d(0, 0, 1);
 	obj.r1 = 1;
 	obj.r2 = 2;
 	obj.color = 0x0000FF00;
@@ -129,6 +133,7 @@ void	add_torus(void *arg)
 	obj.mat.diffuse = 0.2;
 	obj.mat.specular = 1;
 	obj.mat.ambient = 0.1;
+	obj.pro = NULL;
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
 	e->scene->obj_focus = elem;

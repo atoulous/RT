@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 15:41:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 21:59:00 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/05 15:40:27 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,9 @@ static void	perform_raytracing(t_env *e, t_param *param)
 		(VW_RAY.obj && IS_LIGHT) ? apply_light(ENV, param) : 0;
 		if (!VW_RAY.obj)
 			break;
+		add_reflected_color(param);
 		if (!IS_REFLX)
 			break;
-		else
-			add_reflected_color(param);
 	}
 	img_put_pixel(&e->img, X, Y, param);
 }

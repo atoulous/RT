@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 14:55:45 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 19:19:33 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 08:54:19 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@ void	change_light_status(void *arg)
 
 	e = (t_env *)arg;
 	(IS_LIGHT) ? (OPT ^= LIGHT) : (OPT |= LIGHT);
+	create_img(e);
+}
+
+void	change_option(t_env *e, int opt)
+{
+	(OPT & opt) ? (OPT ^= opt) : (OPT |= opt);
+	menu_image_filter(e);
 	create_img(e);
 }
 
@@ -50,6 +57,8 @@ void	change_global_quality(void *arg)
 		OPT ^= SHINE;
 		OPT ^= SHADOW;
 		OPT ^= REFLX;
+		OPT ^= OPT_I1;
+		OPT ^= PHONG;
 		OPT ^= GLOBQ;
 	}
 	else
@@ -58,6 +67,8 @@ void	change_global_quality(void *arg)
 		OPT |= SHINE;
 		OPT |= SHADOW;
 		OPT |= REFLX;
+		OPT |= OPT_I1;
+		OPT |= PHONG;
 		OPT |= GLOBQ;
 	}
 	change_btn_light(e);
