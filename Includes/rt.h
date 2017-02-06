@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/05 18:36:53 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 08:48:35 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@
 # define IMG e->img.img
 # define IMG_ADDR e->img.addr
 # define ENDIAN e->endian
-# define NB_ME 13
+# define NB_ME 23
 # define ME e->menu
 # define COMMAND e->command
 
@@ -340,6 +340,7 @@ void			init_menu(t_env *e);
 void			change_btn_light(t_env *e);
 void			menu_object(t_env *e);
 void			menu_image(t_env *e);
+void			menu_image_filter(t_env *e);
 void			back_menu(t_env *e);
 void			top_menu_event(t_env *e, int x, int y);
 void			right_menu_event(t_env *e, int x, int y);

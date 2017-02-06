@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 14:55:45 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/05 17:16:49 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 08:54:19 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	change_light_status(void *arg)
 void	change_option(t_env *e, int opt)
 {
 	(OPT & opt) ? (OPT ^= opt) : (OPT |= opt);
+	menu_image_filter(e);
 	create_img(e);
 }
 

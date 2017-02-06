@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:01:24 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/05 19:56:10 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 08:39:33 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,6 @@ int			create_img_anti(t_env *e)
 			r /= 4.0;
 			b /= 4.0;
 			g /= 4.0;
-			//color = IMG_ADDR[j * 2 * e->img.sizeline + i * 2 * (e->img.bpp / 8)];
-			//color += (IMG_ADDR[j * 2 * e->img.sizeline + i * 2 * (e->img.bpp / 8) + 1] << 8);
-			//color += (IMG_ADDR[j * 2 * e->img.sizeline + i * 2 * (e->img.bpp / 8) + 2] << 16);
 			img_put_pixel2(&tmp_img, i, j, ((int)r + ((int)g << 8) + ((int)b << 16)));
 		}
 	}
@@ -94,6 +91,7 @@ int			create_img_anti(t_env *e)
 	VW_DIST = 1.0;
 	GAP_X = VW_WIDTH / (double)IMG_WIDTH;
 	GAP_Y = VW_HEIGHT / (double)IMG_HEIGHT;
+	mlx_destroy_image(MLX, IMG);
 	e->img = tmp_img;
 	mlx_put_image_to_window(MLX, WIN, IMG, IMG_GAP_X, IMG_GAP_Y + 49);
 	return (0);
@@ -155,7 +153,7 @@ int			main(int ac, char **av)
 	if (ac - (i = get_options(ac, av, &opt)) <= 1)
 		error_usage();
 	e = init_env(av[i + 1], opt);
-	create_img_anti(e);
+	create_img(e);
 	mlx_loop_hook(MLX, moves, e);
 	mlx_hook(WIN, 17, Button1MotionMask, quit_rt, e);
 	mlx_hook(WIN, KeyPress, KeyPressMask, ft_key_press, e);
