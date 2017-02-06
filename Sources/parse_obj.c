@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 17:29:03 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/06 18:43:31 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,10 @@ void			build_object(t_env *e, char *str)
 	obj.t2 = 0;
 	if (!(obj.coef = get_double("coef", str, e)) || obj.coef < 0.0)
 		obj.coef = 10;
+	obj.asp = NULL;
+	obj.asp = get_in_acc("asperite", str);
+	if (!(obj.density = get_double("density", str, e)) || obj.density < 0.0)
+		obj.density = 10;
 	if ((obj.color = get_obj_color(str)) == -1)
 		error_perso(e, "No color found in object");
 	add_mat(&obj, str, e);

@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 19:23:03 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/06 17:19:35 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/06 18:47:10 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,8 @@ static void		torus_sol(t_ray *ray, t_object *obj, t_sol *sol, double ret)
 		ray->dist = ret;
 		ray->inter = add_v3d(ray->pos, smul_v3d(ray->dir, ret));
 		ray->norm = get_torus_normal(obj, ray->pos, ray->dir, ret);
-		if (obj->pro && (!ft_strcmp(obj->pro, "asperite")))
-			modif_normale(obj->coef, 4, &ray->norm, sub_v3d(ray->inter, obj->pos));
-
+		if (obj->asp && (!ft_strcmp(obj->asp, "bump")))
+			modif_normale(obj->density, 4, &ray->norm, sub_v3d(ray->inter, obj->pos));
 	}
 }
 
