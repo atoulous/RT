@@ -17,7 +17,8 @@ scene {
 			specular { 1 }
 			shine { 100 }
 		}
-		tex { marbre }
+		tex { water }
+		coef { 2 }
 	}
 	object {
 		name { spot1 }

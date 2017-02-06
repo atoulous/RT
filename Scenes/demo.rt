@@ -36,6 +36,8 @@ scene {
 			specular { 1 }
 			shine { 100 }
 		}
+		tex { wood }
+		coef { 3 }
 	}
 	object {
 		name { torus }
@@ -130,6 +132,8 @@ scene {
 			specular { 1 }
 			shine { 100 }
 		}
+		tex { asperite }
+		coef {20 }
 	}
 	object {
 		name { cylinder gauche }

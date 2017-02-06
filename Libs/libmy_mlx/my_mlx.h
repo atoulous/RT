@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 18:29:41 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/02 10:27:44 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/05 17:18:42 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ t_rgb				rgb_0(void);
 void				rgb_s_mult(t_rgb *r, double a);
 void				rgb_s_div(t_rgb *r, double a);
 void				rgb_reg(t_rgb *r);
+void				rgb_reg_min(t_rgb *r);
 
 void				rgb_to_percent(t_rgb *r);
 void				percent_to_rgb(t_rgb *r);

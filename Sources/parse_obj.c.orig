@@ -6,7 +6,11 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2017/02/06 14:19:43 by atoulous         ###   ########.fr       */
+=======
 /*   Updated: 2017/02/06 17:29:03 by mmoullec         ###   ########.fr       */
+>>>>>>> mathieu_moullec
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +121,13 @@ void			build_object(t_env *e, char *str)
 	e->calc_obj_param[obj.type] ? e->calc_obj_param[obj.type](&obj) : 0;
 	obj.pro = NULL;
 	obj.pro = get_in_acc("tex", str);
+<<<<<<< HEAD
 	obj.t1 = 0;
 	obj.t2 = 0;
+=======
 	if (!(obj.coef = get_double("coef", str, e)) || obj.coef < 0.0)
 		obj.coef = 10;
+>>>>>>> mathieu_moullec
 	if ((obj.color = get_obj_color(str)) == -1)
 		error_perso(e, "No color found in object");
 	add_mat(&obj, str, e);
