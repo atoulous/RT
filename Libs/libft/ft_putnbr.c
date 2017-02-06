@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/20 20:36:14 by jubarbie          #+#    #+#             */
-/*   Updated: 2016/02/25 11:02:35 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 18:01:47 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,17 @@
 
 void	ft_putnbr(int n)
 {
-	ft_putstr(ft_itoa(n));
+	if (n == -2147483648)
+	{
+		ft_putstr("-2");
+		n = 147483648;
+	}
+	if (n < 0)
+	{
+		ft_putchar('-');
+		n = -n;
+	}
+	if (n > 9)
+		ft_putnbr(n / 10);
+	ft_putchar(('0' + (n % 10)));
 }
