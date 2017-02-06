@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 22:14:04 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 23:04:03 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 23:45:22 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ int			create_stereo_img(t_env *e, int j)
 int			stereo(t_env *e)
 {
 	t_img	tmp;
+	t_v3d	pos;
 
 	tmp = e->img;
+	pos = CAM_POS;
 	IMG_WIDTH /= 2;
 	IMG_HEIGHT /= 2;
 	VW_WIDTH = IMG_WIDTH / 1000.0;
@@ -48,14 +50,30 @@ int			stereo(t_env *e)
 	VW_DIST /= 2.0;
 	init_stereo(e);
 	create_stereo_img(e, 0);
-	CAM_POS = add_v3d(CAM_POS, smul_v3d(CAM_RIGHT, -2));
+	CAM_POS = add_v3d(CAM_POS, smul_v3d(CAM_RIGHT, -1));
 	init_stereo(e);
 	create_stereo_img(e, 1);
+	CAM_POS = pos;
 	IMG_WIDTH *= 2;
 	IMG_HEIGHT *= 2;
 	VW_WIDTH = IMG_WIDTH / 1000.0;
 	VW_HEIGHT = IMG_HEIGHT / 1000.0;
-	VW_DIST *= 2.0;
+	VW_DIST = 1.0;
 	e->img = tmp;
 	return (0);
+}
+
+void		change_stereo(t_env *e)
+{
+	int		i;
+	int		j;
+
+	j = 48 + IMG_GAP_Y;
+	while (++j < IMG_HEIGHT + 49)
+	{
+		i = IMG_GAP_X - 1;
+		while (++i < IMG_WIDTH)
+			mlx_pixel_put(MLX, WIN, i, j, 0x16212F);
+	}
+	change_option(e, STEREO);
 }
