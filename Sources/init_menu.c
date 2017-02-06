@@ -6,27 +6,14 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 15:16:44 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 20:20:33 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 21:14:20 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void	get_images(t_env *e)
+static void	get_images2(t_env *e)
 {
-	ME[0].path = ft_strdup("Images/top-left.xpm");
-	ME[1].path = ft_strdup("Images/top-middle-inv.xpm");
-	ME[2].path = ft_strdup("Images/top-middle.xpm");
-	ME[3].path = ft_strdup("Images/top-right.xpm");
-	ME[4].path = ft_strdup("Images/bottom-middle.xpm");
-	ME[5].path = ft_strdup("Images/info-top.xpm");
-	ME[6].path = ft_strdup("Images/color-selector.xpm");
-	ME[7].path = ft_strdup("Images/info-mat.xpm");
-	ME[8].path = ft_strdup("Images/info-plane.xpm");
-	ME[9].path = ft_strdup("Images/info-sphere.xpm");
-	ME[10].path = ft_strdup("Images/info-cylinder.xpm");
-	ME[11].path = ft_strdup("Images/info-cone.xpm");
-	ME[12].path = ft_strdup("Images/info-torus.xpm");
 	ME[13].path = ft_strdup("Images/grey.xpm");
 	ME[14].path = ft_strdup("Images/grey-inv.xpm");
 	ME[15].path = ft_strdup("Images/sepia.xpm");
@@ -45,6 +32,52 @@ static void	get_images(t_env *e)
 	ME[28].path = ft_strdup("Images/asperite-inv.xpm");
 	ME[29].path = ft_strdup("Images/eau.xpm");
 	ME[30].path = ft_strdup("Images/eau-inv.xpm");
+}
+
+static void	get_images(t_env *e)
+{
+	ME[0].path = ft_strdup("Images/top-left.xpm");
+	ME[1].path = ft_strdup("Images/top-middle-inv.xpm");
+	ME[2].path = ft_strdup("Images/top-middle.xpm");
+	ME[3].path = ft_strdup("Images/top-right.xpm");
+	ME[4].path = ft_strdup("Images/bottom-middle.xpm");
+	ME[5].path = ft_strdup("Images/info-top.xpm");
+	ME[6].path = ft_strdup("Images/color-selector.xpm");
+	ME[7].path = ft_strdup("Images/info-mat.xpm");
+	ME[8].path = ft_strdup("Images/info-plane.xpm");
+	ME[9].path = ft_strdup("Images/info-sphere.xpm");
+	ME[10].path = ft_strdup("Images/info-cylinder.xpm");
+	ME[11].path = ft_strdup("Images/info-cone.xpm");
+	ME[12].path = ft_strdup("Images/info-torus.xpm");
+	get_images2(e);
+}
+
+static void	create_interface2(t_env *e)
+{
+	int i;
+
+	ME[13].y = 180;
+	ME[14].y = 180;
+	ME[15].y = 210;
+	ME[16].y = 210;
+	ME[17].y = 240;
+	ME[18].y = 240;
+	i = 18;
+	while (++i < 23)
+		ME[i].y = 600;
+	ME[21].x = WIN_WIDTH - 120;
+	ME[22].x = WIN_WIDTH - 120;
+	ME[25].x = WIN_WIDTH - 120;
+	ME[26].x = WIN_WIDTH - 120;
+	ME[29].x = WIN_WIDTH - 120;
+	ME[30].x = WIN_WIDTH - 120;
+	i = 22;
+	while (++i < 27)
+		ME[i].y = 632;
+	i = 26;
+	while (++i < 31)
+		ME[i].y = 664;
+	get_images(e);
 }
 
 static void	create_interface(t_env *e)
@@ -72,28 +105,7 @@ static void	create_interface(t_env *e)
 	i = 12;
 	while (++i < 19)
 		ME[i].x = WIN_WIDTH - 176;
-	ME[13].y = 180;
-	ME[14].y = 180;
-	ME[15].y = 210;
-	ME[16].y = 210;
-	ME[17].y = 240;
-	ME[18].y = 240;
-	i = 18;
-	while (++i < 23)
-		ME[i].y = 570;
-	ME[21].x = WIN_WIDTH - 120;
-	ME[22].x = WIN_WIDTH - 120;
-	ME[25].x = WIN_WIDTH - 120;
-	ME[26].x = WIN_WIDTH - 120;
-	ME[29].x = WIN_WIDTH - 120;
-	ME[30].x = WIN_WIDTH - 120;
-	i = 22;
-	while (++i < 27)
-		ME[i].y = 602;
-	i = 26;
-	while (++i < 31)
-		ME[i].y = 634;
-	get_images(e);
+	create_interface2(e);
 }
 
 void		init_menu(t_env *e)
