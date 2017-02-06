@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 16:21:36 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 17:19:16 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/05 20:07:27 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ char		*get_in_acc(char *param, char *str)
 	if ((len = size_to_end_acc(tmp)) == -1)
 		return (NULL);
 	tmp1 = strndup(tmp, size_to_end_acc(tmp));
-	tmp2 = ft_strtrim(tmp1);
+	if (!(tmp2 = ft_strtrim(tmp1)))
+		tmp2 = NULL;
 	free(tmp1);
 	return (tmp2);
 }

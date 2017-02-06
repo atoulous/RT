@@ -17,15 +17,15 @@ scene {
 			specular { 1 }
 			shine { 100 }
 		}
-		#tex { wood }
+		tex { marbre }
 	}
 	object {
 		name { spot1 }
 		type { light }
-		origin { 0 30 0 }
+		origin { 0 0 -20 }
 		color { 0xFFFFFF }
 		angle { 5 }
-		dir { 0 -1 0 }
+		dir { 0 0 1 }
 	}
 	object {
 		name { plane }
@@ -42,7 +42,7 @@ scene {
 	}
 	object {
 		name { plane2 }
-		type { pl3ne }
+		type { plane }
 		origin { 0 -5 0 }
 		dir { 0 -1 0 }
 		color { 0x00FFFF }

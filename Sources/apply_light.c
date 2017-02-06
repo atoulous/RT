@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 10:29:13 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/04 20:58:39 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/05 19:13:15 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,12 @@ void		apply_light(t_env *e, t_param *param)
 	if (IS_PHONG)
 		rgb_s_mult(&datas.rgb, VW_RAY.obj->mat.ambient + LUMI);
 	lst_light = e->scene->light;
+	if (VW_RAY.obj->pro)
+		modify_color_for_tex(VW_RAY.obj->pro, VW_RAY.inter, &datas.rgb);
 	while (lst_light)
 	{
 		if (init_light_ray(param, lst_light->content))
+		{
 			if (cos_v3d(PHO_RAY.dir, VW_RAY.norm) < 0.00001)
 			{
 				lst_obj = e->scene->obj;
@@ -84,11 +87,17 @@ void		apply_light(t_env *e, t_param *param)
 					lst_obj = lst_obj->next;
 				}
 			}
-				obj_sel(&datas, param, (t_object *)lst_light->content);
-				!IS_CRTN ? apply_color(e, param, (t_object *)lst_light->content, &datas) : 0;
-				IS_CRTN ? apply_cartoon_color(e, param, (t_object *)lst_light->content, &datas) : 0;
+			obj_sel(&datas, param, (t_object *)lst_light->content);
+			!IS_CRTN ? apply_color(e, param, (t_object *)lst_light->content, &datas) : 0;
+			IS_CRTN ? apply_cartoon_color(e, param, (t_object *)lst_light->content, &datas) : 0;
+			datas.hsv = my_rgb_to_hsv(datas.rgb);
+			COLOR = hsv_to_rgb(datas.hsv.h, datas.hsv.s, datas.hsv.v + datas.shadow);
+		}
+		else
+		{
+			datas.hsv = my_rgb_to_hsv(datas.rgb);
+			COLOR = hsv_to_rgb(datas.hsv.h, datas.hsv.s, AMBIANCE * LUMI);
+		}
 		lst_light = lst_light->next;
 	}
-	datas.hsv = my_rgb_to_hsv(datas.rgb);
-	COLOR = hsv_to_rgb(datas.hsv.h, datas.hsv.s, datas.hsv.v + datas.shadow);
 }

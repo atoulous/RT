@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 16:58:17 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/03 13:32:13 by dgameiro         ###   ########.fr       */
+/*   Updated: 2017/02/05 20:54:18 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ static int	find_solutions(t_object *obj, t_ray *ray, t_sol *sol)
 							dot_v3d(O_DIR, sub_v3d(tmp, O_P2)) < 0))
 					T[(int)T[2]] = -1;
 			}
-		T[2] = caps(ray, O_R2, O_DIR, O_P2);
-		T[3] = caps(ray, O_R1, smul_v3d(O_DIR, -1), O_P1);
+		T[2] = !obj->t1 ? caps(ray, O_R2, O_DIR, O_P2) : -1;
+		T[3] = !obj->t2 ? caps(ray, O_R1, smul_v3d(O_DIR, -1), O_P1) : -1;
 		if (find_dist(obj, ray, sol))
 			return (1);
 	}

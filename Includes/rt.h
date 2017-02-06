@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 22:34:03 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/05 20:54:20 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define DIST_MAX 1000.0
 # define F_CLR 0x374355
 
-# define OPT_REF "dlh"
+# define OPT_REF "dh"
 # define OPT e->opt
 
 # define OPT_D (1 << 0)
@@ -223,6 +223,8 @@ typedef struct	s_object
 	t_v3d		p2;
 	double		r1;
 	double		r2;
+	double		t1;
+	double		t2;
 	double		angle;
 	int			color;
 	t_mat		mat;
@@ -370,6 +372,7 @@ void			add_cylinder(void *arg);
 void			add_cone(void *arg);
 void			add_plane(void *arg);
 void			add_torus(void *arg);
+void			add_lampe(void *arg);
 void			screenshot(void *arg);
 void			reset_cam(void *arg);
 void			back_plane(void *arg);
