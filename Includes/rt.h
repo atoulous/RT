@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 21:22:01 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 23:28:31 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -434,6 +434,7 @@ void				change_luminosite_mouse(t_env *e, int y);
 void				change_indice_reflection(t_env *e, int keycode);
 void				change_option(t_env *e, int opt);
 void				antialiasing(t_env *e);
+void				init_params_for_al(t_env *e, t_img *tmp);
 void				del_focus_object(t_env *e);
 void				undo_del_object(t_env *e);
 void				color_selector(t_env *e, int x, int y);
