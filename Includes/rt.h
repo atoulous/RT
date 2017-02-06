@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 21:22:01 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 23:38:55 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@
 # define OPT_I1 (1 << 12)
 # define OPT_I2 (1 << 13)
 # define MOTION_BLUR (1 << 14)
+# define STEREO (1 << 15)
+# define ANTI (1 << 16)
 
 # define IS_OPT_D (OPT & OPT_D)
 # define IS_OPT_H (OPT & OPT_H)
@@ -68,6 +70,8 @@
 # define IS_OPT_I1 (OPT & OPT_I1)
 # define IS_OPT_I2 (OPT & OPT_I2)
 # define IS_MOTION_BLUR (OPT & MOTION_BLUR)
+# define IS_STEREO (OPT & STEREO)
+# define IS_ANTI (OPT & ANTI)
 
 # define LUMI e->luminosite
 # define AMBIANCE e->ambiance
@@ -434,6 +438,7 @@ void				change_luminosite_mouse(t_env *e, int y);
 void				change_indice_reflection(t_env *e, int keycode);
 void				change_option(t_env *e, int opt);
 void				antialiasing(t_env *e);
+void				init_params_for_al(t_env *e, t_img *tmp);
 void				del_focus_object(t_env *e);
 void				undo_del_object(t_env *e);
 void				color_selector(t_env *e, int x, int y);
@@ -536,5 +541,8 @@ void				init_reflect(t_param *param);
 void				add_reflected_color(t_param *param);
 void				sepia_filter(t_param *param);
 void				grey_filter(t_param *param);
+
+int					stereo(t_env *e);
+void				change_stereo(t_env *e);
 
 #endif
