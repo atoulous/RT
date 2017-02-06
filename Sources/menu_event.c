@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 14:29:49 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 21:32:18 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 21:40:31 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,8 @@ void		top_menu_event(t_env *e, int x, int y)
 		if (x < 70)
 			change_luminosite_mouse(e, y);
 		else if (x > 82 && x < 116)
-			x = x + 0;
-		else if (x > 116 && x < 151)
-			y = y + 0;
-		else if (x > 163 && x < 197)
 			del_focus_object(e);
-		else if (x > 197 && x < 232)
+		else if (x > 116 && x < 151)
 			undo_del_object(e);
 		else if (x > WIN_WIDTH / 2 - 64 && x < WIN_WIDTH / 2 + 64)
 			change_global_quality(e);
