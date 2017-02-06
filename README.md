@@ -37,23 +37,23 @@
           
    Perturbations :
     
-    [ ] - de la normale : genre avec un sinus, ca donne l'impression d'avoir des vaguelettes
+    [X] - de la normale : genre avec un sinus, ca donne l'impression d'avoir des vaguelettes
     
-    [ ] - de la couleur : un damier (qui n'a pas une double case sur l'axe des x ou des y)
+    [X] - de la couleur : un damier (qui n'a pas une double case sur l'axe des x ou des y)
     
-    [ ] - de la couleur : un algo un peu plus complique que pour changer la couleur de l'objet
+    [X] - de la couleur : un algo un peu plus complique que pour changer la couleur de l'objet
     
-    [ ] - de la couleur : un algo super complexe, genre bruit de Perlin : comptez 2 points
+    [X] - de la couleur : un algo super complexe, genre bruit de Perlin : comptez 2 points
     
 [ ] Lumiere directe, on est éblouie par les spots en face de nous
 
-[ ] Lumiere parallele : éclaire la scene, selon une direction precise
+[X] Lumiere parallele : éclaire la scene, selon une direction precise
 
    Reflexion et transparence :
     
-    [ ] - la reflexion marche, on a bien un effet mirroir
+    [X] - la reflexion marche, on a bien un effet mirroir
     
-    [ ] - on peut changer le % de reflexion
+    [X] - on peut changer le % de reflexion
     
     [ ] - la transparence fonctionne, on voit au travers
     
@@ -75,19 +75,19 @@
    
     [ ] - utilisaiton d'une lib autre que la minilibx et ses xpm pour charger les textures (jpeg, png, ..)
     
-[/] - Objets composés : on peut definir un objet composé (un cube = 6 plans limités, un verre = cone,cylindre,sphere)
+[X] - Objets composés : on peut definir un objet composé (un cube = 6 plans limités, un verre = cone,cylindre,sphere)
 
 [X] - Objets natifs simples
 
  Effets visuels classiques :
     
-    [ ] - antialiasing
+    [X] - antialiasing
     
-    [ ] - effet cartoon
+    [X] - effet cartoon
     
-    [ ] - motion blur
+    [X] - motion blur
     
-    [ ] - sepia ou autre filtre de couleur
+    [X] - sepia ou autre filtre de couleur
    
     [ ] - stereoscopie simple (genre lunettes rouges/vertes)
     
@@ -95,23 +95,23 @@
     
     [ ] - calcul clister sur plusieurs machines
     
-    [ ] - calcul multi thread
+    [X] - calcul multi thread
     
     [ ] - c'est particulierement rapide comme rendu
     
-    [ ] - sauvegarde de l'image integree au RT
+    [X] - sauvegarde de l'image integree au RT
    
  Environnement :
     
     [ ] - interface sommaire : message d'attente graphique, barre de progression..
     
-    [ ] - interface chiadee (gtk, QT, elements configurables, changer de fichier, controle du rendu
+    [X] - interface chiadee (gtk, QT, elements configurables, changer de fichier, controle du rendu
     
-    [ ] - on peut effectuer des modifications de la scene en live (pos, obj, couleurs ou textures
+    [X] - on peut effectuer des modifications de la scene en live (pos, obj, couleurs ou textures
     
     [ ] - parametrer plusieurs rendus automatiquement avec des changements d'un rendu a l'autre
    
-    [ ] - generer automatiquement des objs pour une scene: torre realisé avec des spheres, helice avec sphere et cylindres
+    [X] - generer automatiquement des objs pour une scene: torre realisé avec des spheres, helice avec sphere et cylindres
     
  Objets Exotiques :
     
@@ -119,7 +119,7 @@
   
     [ ] - nappe
     
-    [ ] - torre
+    [X] - torre
     
     [ ] - resolution d equation fournie dans le fichier de conf
    
@@ -135,13 +135,13 @@
     
     [ ] - spot non ponctuel: tel un filament d'ampoule, la source lumineuse n'est pas ponctuelle, ombres pas nettes.
    
-    [ ] - d'autres trucs delirants
+    [X] - d'autres trucs delirants
     
 [ ] - Ruban de Moebius
 
 [ ] - Caustics et/ou Global illumination
 
-[ ] - C'est beau??????????????? MAGUEULE
+[X] - C'est beau??????????????? MAGUEULE
 
 C LA F1
     
