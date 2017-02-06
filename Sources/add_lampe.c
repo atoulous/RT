@@ -6,7 +6,7 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/05 19:49:17 by atoulous          #+#    #+#             */
-/*   Updated: 2017/02/06 15:03:54 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/06 19:18:14 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void	addcone(void *arg)
 	menu_object(e);
 }
 
-void	add_lampe(void *arg)
+void		add_lampe(void *arg)
 {
 	t_env		*e;
 	t_object	obj;

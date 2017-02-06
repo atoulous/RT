@@ -6,11 +6,20 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 09:49:59 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/06 17:03:42 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/06 19:27:06 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+void		change_luminosite_mouse(t_env *e, int y)
+{
+	if (y < 25)
+		LUMI + 0.05 <= 1 ? LUMI += 0.05 : 0;
+	else
+		LUMI - 0.05 >= -0.5 ? LUMI -= 0.05 : 0;
+	create_img(e);
+}
 
 void		ft_mouse_click2(int x, int y, t_env *e)
 {
