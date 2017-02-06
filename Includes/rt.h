@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 21:22:01 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 22:32:40 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -536,5 +536,7 @@ void				init_reflect(t_param *param);
 void				add_reflected_color(t_param *param);
 void				sepia_filter(t_param *param);
 void				grey_filter(t_param *param);
+
+int					stereo(t_env *e);
 
 #endif

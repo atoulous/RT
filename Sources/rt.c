@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:01:24 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 14:17:18 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/06 22:32:55 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int			main(int ac, char **av)
 	if (ac - (i = get_options(ac, av, &opt)) <= 1)
 		error_usage();
 	e = init_env(av[i + 1], opt);
-	create_img(e);
+	stereo(e);
 	mlx_loop_hook(MLX, moves, e);
 	mlx_hook(WIN, 17, Button1MotionMask, quit_rt, e);
 	mlx_hook(WIN, KeyPress, KeyPressMask, ft_key_press, e);
