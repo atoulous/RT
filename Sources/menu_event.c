@@ -6,66 +6,33 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 14:29:49 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 20:30:14 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 21:40:31 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	deform_menu_event(t_env *e, int x, int y, t_object *obj)
+static void	light_menu_event2(t_env *e, int x, int y, t_object *obj)
 {
-	char 	*tex;
+	double	step;
 
-	if (x < WIN_WIDTH - 120)
-		tex =  ft_strdup("bump");
-	else 
-		tex = ft_strdup("water");
-	if (obj->asp && ft_strcmp(obj->asp, tex))
-	{
-		free(obj->asp);
-		obj->asp = NULL;
-		obj->asp = ft_strdup(tex);
-	}
-	else if (obj->asp && !ft_strcmp(obj->asp, tex))
-	{
-		free(obj->asp);
-		obj->asp = NULL;
-	}
-	else
-		obj->asp = ft_strdup(tex);
-	free(tex);
-	menu_object(e);
-	create_img(e);
+	step = (x > WIN_WIDTH - 20) ? 0.02 : -0.02;
+	if (y > 450 && y < 467)
+		(obj->mat.diffuse + step > 0 && obj->mat.diffuse + step < 1)
+			? obj->mat.diffuse += step : 0;
+	else if (y > 475 && y < 492)
+		(obj->mat.ambient + step > 0 && obj->mat.ambient + step < 1)
+			? obj->mat.ambient += step : 0;
+	else if (y > 499 && y < 517)
+		(obj->mat.specular + step > 0)
+			? obj->mat.specular += step : 0;
+	else if (y > 544 && y < 562)
+		obj->coef += step;
+	else if (y > 570 && y < 587)
+		obj->density += (step * 100);
 }
 
-void	text_menu_event(t_env *e, int x, int y, t_object *obj)
-{
-	char 	*tex;
-
-	if (x < WIN_WIDTH - 120)
-		tex = (y < 598) ? ft_strdup("marbre") : ft_strdup("damier");
-	else 
-		tex = (y < 598) ? ft_strdup("wood") : ft_strdup("random");
-	if (obj->pro && ft_strcmp(obj->pro, tex))
-	{
-		free(obj->pro);
-		obj->pro = NULL;
-		obj->pro = ft_strdup(tex);
-	}
-	else if (obj->pro && !ft_strcmp(obj->pro, tex))
-	{
-		free(obj->pro);
-		obj->pro = NULL;
-	}
-	else
-		obj->pro = ft_strdup(tex);
-	free(tex);
-	menu_object(e);
-	create_img(e);
-}
-
-
-void	object_menu_event(t_env *e, int x, int y, t_object *obj)
+static void	object_menu_event(t_env *e, int x, int y, t_object *obj)
 {
 	double	step;
 	int		type;
@@ -80,20 +47,8 @@ void	object_menu_event(t_env *e, int x, int y, t_object *obj)
 		(obj->r1 + step > 0) ? obj->r1 += step : 0;
 	else if (y > 408 && y < 430 && (type == 4 || type == 5))
 		((obj->r2 + step > 0 && type == 5) || type == 4) ? obj->r2 += step : 0;
-	else if (y > 484 && y < 501)
-		(obj->mat.diffuse + step > 0 && obj->mat.diffuse + step < 1) 
-			? obj->mat.diffuse += step : 0;
-	else if (y > 509 && y < 526)
-		(obj->mat.ambient + step > 0 && obj->mat.ambient + step < 1)
-			? obj->mat.ambient += step : 0;
-	else if (y > 533 && y < 551)
-		(obj->mat.shine + step > 0)
-			? obj->mat.shine += step : 0;
-	else if (y > 559 && y < 575)
-		(obj->mat.specular + step > 0 && obj->mat.specular + step < 1)
-			? obj->mat.specular += step : 0;
-	else if (y > 544 && y < 562)
-		obj->coef += (step * 100);
+	else if (y > 450 && y < 587)
+		light_menu_event2(e, x, y, obj);
 	else
 		click = 0;
 	if (click)
@@ -104,19 +59,15 @@ void	object_menu_event(t_env *e, int x, int y, t_object *obj)
 	}
 }
 
-void	top_menu_event(t_env *e, int x, int y)
+void		top_menu_event(t_env *e, int x, int y)
 {
 	if (x >= 53 && x < WIN_WIDTH - 14 && y >= 10 && y <= 50)
 	{
 		if (x < 70)
 			change_luminosite_mouse(e, y);
 		else if (x > 82 && x < 116)
-			x = x + 0;
-		else if (x > 116 && x < 151)
-			y = y + 0;
-		else if (x > 163 && x < 197)
 			del_focus_object(e);
-		else if (x > 197 && x < 232)
+		else if (x > 116 && x < 151)
 			undo_del_object(e);
 		else if (x > WIN_WIDTH / 2 - 64 && x < WIN_WIDTH / 2 + 64)
 			change_global_quality(e);
@@ -127,7 +78,7 @@ void	top_menu_event(t_env *e, int x, int y)
 	}
 }
 
-void	bottom_menu_event(t_env *e, int x, int y)
+void		bottom_menu_event(t_env *e, int x, int y)
 {
 	if (y > WIN_HEIGHT - 122 && y < WIN_HEIGHT - 10
 			&& x > WIN_WIDTH / 2 - 268 && x < WIN_WIDTH / 2 + 268)
@@ -145,21 +96,21 @@ void	bottom_menu_event(t_env *e, int x, int y)
 	}
 }
 
-void	right_menu_event(t_env *e, int x, int y)
+void		right_menu_event(t_env *e, int x, int y)
 {
+	t_object *obj;
+
 	if (e->scene->obj_focus)
 	{
-		if (x > WIN_WIDTH - 231 && x < WIN_WIDTH - 9 && y > 136
-			&& y < 307)
+		obj = (t_object *)(e->scene->obj_focus->content);
+		if (x > WIN_WIDTH - 231 && x < WIN_WIDTH - 9 && y > 136 && y < 307)
 			color_selector(e, x - WIN_WIDTH + 231, y - 136);
-		if (x > WIN_WIDTH - 42 && x < WIN_WIDTH - 4 && y > 362
-			&& y < 630)
-			object_menu_event(e, x, y, (t_object *)(e->scene->obj_focus->content));
-		if (x > WIN_WIDTH - 231 && x < WIN_WIDTH - 9 && y > 572 && y < 629)
-			text_menu_event(e, x, y, (t_object *)(e->scene->obj_focus->content));
-		if (x > WIN_WIDTH - 231 && x < WIN_WIDTH - 9 && y > 636 && y < 662)
-			deform_menu_event(e, x, y, (t_object *)(e->scene->obj_focus->content));
-
+		if (x > WIN_WIDTH - 42 && x < WIN_WIDTH - 4 && y > 362 && y < 630)
+			object_menu_event(e, x, y, obj);
+		if (x > WIN_WIDTH - 231 && x < WIN_WIDTH - 9 && y > 600 && y < 659)
+			text_menu_event(e, x, y, obj);
+		if (x > WIN_WIDTH - 231 && x < WIN_WIDTH - 9 && y > 665 && y < 691)
+			deform_menu_event(e, x, y, obj);
 	}
 	else if (x > WIN_WIDTH - 176 && x < WIN_WIDTH - 68)
 	{

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 23:20:40 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/06 21:22:01 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -385,12 +385,15 @@ int					get_options(int ac, char **av, int *opt);
 void				init_menu(t_env *e);
 void				change_btn_light(t_env *e);
 void				menu_object(t_env *e);
+void				print_mat(t_env *e, t_object *o);
 void				menu_image(t_env *e);
 void				menu_image_filter(t_env *e);
 void				back_menu(t_env *e);
 void				top_menu_event(t_env *e, int x, int y);
 void				right_menu_event(t_env *e, int x, int y);
 void				bottom_menu_event(t_env *e, int x, int y);
+void				deform_menu_event(t_env *e, int x, int y, t_object *obj);
+void				text_menu_event(t_env *e, int x, int y, t_object *obj);
 
 /*
 ** PARSING

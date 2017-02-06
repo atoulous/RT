@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/02/06 17:43:24 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/02/06 21:22:36 by jubarbie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC =	rt.c			\
 		mouse_event.c		\
 		mouse_event2.c		\
 		render_options.c	\
+		menu_text_event.c	\
 		init_env.c			\
 		free_env.c			\
 		debug.c			\
@@ -70,6 +71,7 @@ SRC =	rt.c			\
 		reflection.c	\
 		color_filter.c	\
 		add_lampe.c		\
+		menu_matiere.c	\
 		antialiasing.c
 
 OBJDIR = Objects
