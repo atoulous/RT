@@ -1,0 +1,131 @@
+scene {
+	name{demo.rt}
+	camera{
+		origin{ 0.600000 0.000000 -20.000000 }
+		dir{ 0.000000 0.000000 1.000000 }	
+	}
+	render{ 900 700 }
+	object{
+		name{spot2}
+		type{light}
+		origin{-10.000000 0.000000 -20.000000}
+		color{0x00FFFFFF}
+		mat{
+			diffuse{0.482116}
+			shine{2719.000000}
+		}
+	}
+	object{
+		name{spot1}
+		type{light}
+		origin{10.000000 0.000000 -20.000000}
+		color{0x00FFFFFF}
+		mat{
+			diffuse{0.482116}
+			shine{2719.000000}
+		}
+	}
+	object{
+		name{cylinder gauche}
+		type{cylinder}
+		p1{-6.000000 -5.000000 0.000000}
+		p2{-6.000000 5.000000 0.000000}
+		r1{1.000000}
+		color{0x0000FFFF}
+		mat{
+			diffuse{0.200000}
+			shine{100.000000}
+		}
+	}
+	object{
+		name{cylinder droit}
+		type{cylinder}
+		p1{6.000000 5.000000 0.000000}
+		p2{6.000000 -5.000000 0.000000}
+		r1{1.000000}
+		color{0x0000FFFF}
+		mat{
+			diffuse{0.200000}
+			shine{100.000000}
+		}
+	}
+	object{
+		name{plane droit}
+		type{plane}
+		origin{10.000000 0.000000 0.000000}
+		dir{-1.000000 0.000000 0.000000}
+		color{0x0008FF7F}
+		mat{
+			diffuse{0.200000}
+			shine{100.000000}
+		}
+	}
+	object{
+		name{plane gauche}
+		type{plane}
+		origin{-10.000000 0.000000 0.000000}
+		dir{1.000000 0.000000 0.000000}
+		color{0x00F0F000}
+		mat{
+			diffuse{0.200000}
+			shine{100.000000}
+		}
+	}
+	object{
+		name{plane sol}
+		type{plane}
+		origin{0.000000 -5.000000 0.000000}
+		dir{0.000000 1.000000 0.000000}
+		color{0x00001CF3}
+		mat{
+			diffuse{0.200000}
+			shine{100.000000}
+		}
+	}
+	object{
+		name{plane plafond}
+		type{plane}
+		origin{16.800000 5.000000 13.000000}
+		dir{0.000000 -1.000000 0.000000}
+		color{0x00F3FF17}
+		mat{
+			diffuse{0.200000}
+			shine{100.000000}
+		}
+	}
+	object{
+		name{torus}
+		type{torus}
+		p1{0.000000 0.000000 0.000000}
+		p2{-0.435327 0.051854 -0.898778}
+		r1{1.000000}
+		r2{2.000000}
+		color{0x00FF358B}
+		mat{
+			diffuse{0.200000}
+			shine{100.000000}
+		}
+	}
+	object{
+		name{sphere2}
+		type{sphere}
+		origin{2.000000 2.000000 2.000000}
+		r1{2.000000}
+		color{0x002FFFA5}
+		mat{
+			diffuse{0.200000}
+			shine{100.000000}
+		}
+	}
+	object{
+		name{sphere1}
+		type{sphere}
+		origin{-2.000000 -2.000000 -2.000000}
+		r1{2.000000}
+		color{0x004111FF}
+		mat{
+			diffuse{0.200000}
+			shine{100.000000}
+		}
+	}
+}
