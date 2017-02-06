@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 14:29:49 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 21:40:31 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 23:55:50 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void	light_menu_event2(t_env *e, int x, int y, t_object *obj)
 		(obj->mat.specular + step > 0)
 			? obj->mat.specular += step : 0;
 	else if (y > 544 && y < 562)
-		obj->coef += step;
+		obj->coef + step * 50 > 0 ? obj->coef += step * 50 : 0;
 	else if (y > 570 && y < 587)
-		obj->density += (step * 100);
+		obj->density + step * 100 > 0 ? obj->density += (step * 100) : 0;
 }
 
 static void	object_menu_event(t_env *e, int x, int y, t_object *obj)

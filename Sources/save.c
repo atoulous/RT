@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 10:01:48 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/06 16:54:16 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/07 00:03:39 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 static void		put_mat_to_file(t_object *obj, FILE *fd)
 {
 	fprintf(fd, "\t\tmat{\n\t\t\tdiffuse{%f}", obj->mat.diffuse);
-	fprintf(fd, "\n\t\t\tshine{%f}\n\t\t}\n", obj->mat.shine);
+	fprintf(fd, "\n\t\t\tshine{%f}\n", obj->mat.shine);
+	fprintf(fd, "\n\t\t\tspecular{%f}\n", obj->mat.specular);
+	fprintf(fd, "\n\t\t\tambient{%f}\n\t\t}\n", obj->mat.ambient);
+	fprintf(fd, "\t\ttex{%s}\n", obj->pro);
+	fprintf(fd, "\t\tcoef{%f}\n\t\t}\n", obj->coef);
 }
 
 static void		put_obj_param_to_file(t_object *obj, char **obj_a, FILE *fd)
