@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 17:29:14 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/06 18:43:33 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,6 +230,8 @@ typedef struct	s_object
 	t_mat		mat;
 	char		*pro;
 	double		coef;
+	char		*asp;
+	double		density;
 }				t_object;
 
 # include "answers.h"

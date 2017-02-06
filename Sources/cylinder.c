@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 16:58:17 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 17:29:04 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/06 18:46:47 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ static void		set_cylinder_norm(t_object *obj, t_ray *ray)
 	l = sqrt(pow(l, 2.0) - pow(O_R1, 2.0));
 	ray->norm = unit_v3d(sub_v3d(ray->inter, add_v3d(O_POS,
 					smul_v3d(O_DIR, l))));
-	if (obj->pro && (!ft_strcmp(obj->pro, "asperite")))
-		modif_normale(obj->coef, 4, &ray->norm, sub_v3d(ray->inter, obj->pos));
-
+		if (obj->asp && (!ft_strcmp(obj->asp, "bump")))
+			modif_normale(obj->density, 4, &ray->norm, sub_v3d(ray->inter, obj->pos));
 }
 
 static void		find_dist(t_object *obj, t_ray *ray, t_sol *sol)
