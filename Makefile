@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/02/06 23:28:59 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/02/06 22:30:14 by jubarbie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,8 +72,9 @@ SRC =	rt.c			\
 		color_filter.c	\
 		add_lampe.c		\
 		menu_matiere.c	\
-		antialiasing.c	\
-		init_params_for_al.c
+		init_params_for_al.c	\
+		stereo.c		\
+		antialiasing.c
 
 OBJDIR = Objects
 VPATH = Sources

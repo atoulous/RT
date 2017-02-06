@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 17:06:24 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/06 23:38:28 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static void	after_effects(t_env *e, int keycode)
 	keycode == 39 ? active_grey(e) : 0;
 	keycode == 8 ? change_option(e, CRTN) : 0;
 	keycode == 46 ? active_motion_blur(e) : 0;
+	keycode == 45 ? change_stereo(e) : 0;
 }
 
 int			ft_key_release(int keycode, t_env *e)

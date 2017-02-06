@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 19:01:29 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/06 22:00:03 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ static void		add_mat(t_object *obj, char *str, t_env *e)
 	obj->asp = NULL;
 	obj->pro = get_in_acc("tex", str);
 	obj->asp = get_in_acc("asperite", str);
-	obj->t1 = 0;
-	obj->t2 = 0;
 }
 
 /*
@@ -115,6 +113,8 @@ void			build_object(t_env *e, char *str)
 	t_object	obj;
 	t_list		*elem;
 
+	obj.t1 = 0;
+	obj.t2 = 0;
 	if (!(obj.name = get_in_acc("name", str)))
 		error_perso(e, "No name found in object");
 	if ((obj.type = get_obj_type(e, str)) == -1)

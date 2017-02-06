@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:01:24 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 14:17:18 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/06 23:44:39 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,20 @@ int			create_img(t_env *e)
 	int			i;
 	pthread_t	th[NB_TH];
 
-	i = -1;
-	while (++i < NB_TH)
-		if (pthread_create(&th[i], NULL, &raytracer, (void *)(e->param[i])) < 0)
-			error_perso(e, "create thread failed");
-	i = -1;
-	while (++i < NB_TH)
-		(void)pthread_join(th[i], NULL);
-	mlx_put_image_to_window(MLX, WIN, IMG, IMG_GAP_X, IMG_GAP_Y + 49);
+	if (IS_STEREO)
+		stereo(e);
+	else
+	{
+		i = -1;
+		while (++i < NB_TH)
+			if (pthread_create(&th[i], NULL, &raytracer,
+													(void *)(e->param[i])) < 0)
+				error_perso(e, "create thread failed");
+		i = -1;
+		while (++i < NB_TH)
+			(void)pthread_join(th[i], NULL);
+		mlx_put_image_to_window(MLX, WIN, IMG, IMG_GAP_X, IMG_GAP_Y + 49);
+	}
 	return (0);
 }
 

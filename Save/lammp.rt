@@ -1,0 +1,72 @@
+scene {
+	name{lampe.rt}
+	camera{
+		origin{ 0.000000 0.000000 -23.500000 }
+		dir{ 0.000000 0.000000 1.000000 }	
+	}
+	render{ 900 700 }
+	object{
+		name{spot3}
+		type{light}
+		origin{0.000000 0.000000 -20.000000}
+		color{0x00FFFFFF}
+		mat{
+			diffuse{0.472978}
+			shine{2229.000000}
+		}
+	}
+	object{
+		name{spot2}
+		type{light}
+		origin{0.000000 5.000000 0.000000}
+		color{0x00FFFFFF}
+		mat{
+			diffuse{0.472978}
+			shine{2229.000000}
+		}
+	}
+	object{
+		name{spot1}
+		type{light}
+		origin{0.000000 4.000000 0.000000}
+		color{0x00FFFFFF}
+		mat{
+			diffuse{0.472978}
+			shine{2229.000000}
+		}
+	}
+	object{
+		name{sol}
+		type{plane}
+		origin{0.000000 -5.000000 0.000000}
+		dir{0.000000 1.000000 0.000000}
+		color{0x000015FC}
+		mat{
+			diffuse{0.200000}
+			shine{100.000000}
+		}
+	}
+	object{
+		name{cylinder}
+		type{cylinder}
+		p1{0.000000 -9.200000 0.000000}
+		p2{0.000000 0.800000 0.000000}
+		r1{0.300000}
+		color{0x00FFFFBA}
+		mat{
+			diffuse{0.200000}
+			shine{100.000000}
+		}
+	}
+	object{
+		name{sphere}
+		type{sphere}
+		origin{0.000000 -4.000000 0.000000}
+		r1{2.000000}
+		color{0x00FF0000}
+		mat{
+			diffuse{0.200000}
+			shine{100.000000}
+		}
+	}
+}
