@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 15:41:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 16:15:23 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/06 17:00:24 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,19 +83,16 @@ static int	active_obj_touch(t_env *e, t_param *param, t_object *obj_sel)
 	return (0);
 }
 
-static void	perform_raytracing(t_env *e, t_param *param)
+static void	perform_raytracing(t_env *e, t_param *param, t_object *obj, \
+		t_object *obj_sel)
 {
 	t_list		*lst_obj;
-	t_object	*obj;
-	t_object	*obj_sel;
-	int			i_reflec;
 
-	i_reflec = -1;
 	init_reflect(param);
-	while (++i_reflec <= NB_REF && REF_COEFF > 0.000001)
+	while (++param->i_reflec <= NB_REF && REF_COEFF > 0.000001)
 	{
 		lst_obj = ENV->scene->obj;
-		init_vw_ray(ENV, param, i_reflec);
+		init_vw_ray(ENV, param, param->i_reflec);
 		while (lst_obj)
 		{
 			obj = (t_object *)lst_obj->content;
@@ -124,16 +121,20 @@ void		*raytracer(void *arg)
 {
 	t_param		*param;
 	t_env		*e;
+	t_object	*obj;
+	t_object	*obj_sel;
 
 	param = (t_param *)arg;
 	init_param(param, ENV);
 	e = ENV;
+	obj = NULL;
+	obj_sel = NULL;
 	Y = TH * (IMG_HEIGHT / NB_TH) - 1;
 	while (++Y < (TH + 1) * IMG_HEIGHT / NB_TH)
 	{
 		X = -1;
 		while (++X < IMG_WIDTH)
-			perform_raytracing(e, param);
+			perform_raytracing(e, param, obj, obj_sel);
 	}
 	pthread_exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 10:01:48 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/05 16:57:32 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 16:54:16 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void		put_objects_to_file(t_env *e, t_list *first, FILE *fd)
 ** It's pretty much like invert parsing of the scene
 */
 
-void		save_scene(t_env *e)
+void			save_scene(t_env *e)
 {
 	FILE	*fd;
 	char	*file_name;
@@ -79,9 +79,7 @@ void		save_scene(t_env *e)
 		put_objects_to_file(e, e->scene->light, fd);
 		put_objects_to_file(e, e->scene->obj, fd);
 		fprintf(fd, "}");
-		ft_putstr("\033[32mScene saved into ");
-		ft_putstr(path);
-		ft_putstr("\033[0m\n");
+		printf("\033[32mScene saved into %s\n", path);
 		fclose(fd);
 	}
 	else

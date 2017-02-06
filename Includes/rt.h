@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 14:17:12 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/06 17:03:43 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,6 +281,7 @@ typedef struct	s_param
 	int				index;
 	int				x;
 	int				y;
+	int				i_reflec;
 	t_ray			vw_ray;
 	t_ray			light_ray;
 	t_ray			mouse_ray;

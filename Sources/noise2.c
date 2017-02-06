@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 14:21:59 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/30 17:09:38 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/06 17:04:06 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	fill_baba(t_noise *noise)
 	BB1 = PER[B1 + 1] + ZZ;
 }
 
-double		noise_to_ret(t_noise *noise, double x, double y, double z)
+double	noise_to_ret(t_noise *noise, double x, double y, double z)
 {
 	return (lerp(W, lerp(V, lerp(U, grad(PER[AA1], x, y, z),
 						grad(PER[BA1], x - 1, y, z)),

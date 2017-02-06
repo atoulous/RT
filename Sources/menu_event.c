@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 14:29:49 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 10:45:57 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 17:02:01 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	mat_menu_event(t_env *e, int x, int y, t_object *obj)
 {
-	char 	*tex;
+	char	*tex;
 
 	if (x < WIN_WIDTH - 120)
 		tex = ft_strdup("marbre");
@@ -113,10 +113,10 @@ void	right_menu_event(t_env *e, int x, int y)
 			color_selector(e, x - WIN_WIDTH + 231, y - 136);
 		if (x > WIN_WIDTH - 42 && x < WIN_WIDTH - 4 && y > 362
 			&& y < 430)
-			object_menu_event(e, x, y, (t_object *)(e->scene->obj_focus->content));
+			object_menu_event(e, x, y, \
+					(t_object *)(e->scene->obj_focus->content));
 		if (x > WIN_WIDTH - 231 && x < WIN_WIDTH - 9 && y > 444 && y < 470)
 			mat_menu_event(e, x, y, (t_object *)(e->scene->obj_focus->content));
-
 	}
 	else if (x > WIN_WIDTH - 176 && x < WIN_WIDTH - 68)
 	{
