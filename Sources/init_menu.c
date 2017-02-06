@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 15:16:44 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 10:45:59 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 18:54:02 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ static void	get_images(t_env *e)
 	ME[20].path = ft_strdup("Images/marbre-inv.xpm");
 	ME[21].path = ft_strdup("Images/bois.xpm");
 	ME[22].path = ft_strdup("Images/bois-inv.xpm");
+	ME[23].path = ft_strdup("Images/damier.xpm");
+	ME[24].path = ft_strdup("Images/damier-inv.xpm");
+	ME[25].path = ft_strdup("Images/asperite.xpm");
+	ME[26].path = ft_strdup("Images/asperite-inv.xpm");
+	ME[27].path = ft_strdup("Images/eau.xpm");
+	ME[28].path = ft_strdup("Images/eau-inv.xpm");
 }
 
 static void	create_interface(t_env *e)
@@ -49,7 +55,7 @@ static void	create_interface(t_env *e)
 	ME[4].y = WIN_HEIGHT - 122;
 	ME[5].y = 60;
 	ME[6].y = 130;
-	ME[7].y = 475;
+	ME[7].y = 450;
 	i = 7;
 	while (++i < 13)
 		ME[i].y = 306;
@@ -70,12 +76,18 @@ static void	create_interface(t_env *e)
 	ME[16].y = 210;
 	ME[17].y = 240;
 	ME[18].y = 240;
-	ME[19].y = 440;
-	ME[20].y = 440;
-	ME[21].y = 440;
+	i = 18;
+	while (++i < 23)
+		ME[i].y = 570;
 	ME[21].x = WIN_WIDTH - 120;
-	ME[22].y = 440;
 	ME[22].x = WIN_WIDTH - 120;
+	ME[25].x = WIN_WIDTH - 120;
+	ME[26].x = WIN_WIDTH - 120;
+	i = 22;
+	while (++i < 27)
+		ME[i].y = 602;
+	ME[27].y = 634;
+	ME[28].y = 634;
 	get_images(e);
 }
 
