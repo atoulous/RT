@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 14:57:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/05 16:29:48 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 12:53:45 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	add_sphere(void *arg)
 	obj.mat.diffuse = 0.2;
 	obj.mat.specular = 1;
 	obj.mat.ambient = 0.1;
+	obj.pro = NULL;
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
 	e->scene->obj_focus = elem;
@@ -54,6 +55,7 @@ void	add_cylinder(void *arg)
 	obj.mat.diffuse = 0.2;
 	obj.mat.specular = 1;
 	obj.mat.ambient = 0.1;
+	obj.pro = NULL;
 	e->calc_obj_param[obj.type](&obj);
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
@@ -78,6 +80,7 @@ void	add_plane(void *arg)
 	obj.mat.diffuse = 0.2;
 	obj.mat.specular = 1;
 	obj.mat.ambient = 0.1;
+	obj.pro = NULL;
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
 	e->scene->obj_focus = elem;
@@ -103,6 +106,7 @@ void	add_cone(void *arg)
 	obj.mat.diffuse = 0.2;
 	obj.mat.specular = 1;
 	obj.mat.ambient = 0.1;
+	obj.pro = NULL;
 	e->calc_obj_param[obj.type](&obj);
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
@@ -129,6 +133,7 @@ void	add_torus(void *arg)
 	obj.mat.diffuse = 0.2;
 	obj.mat.specular = 1;
 	obj.mat.ambient = 0.1;
+	obj.pro = NULL;
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
 	e->scene->obj_focus = elem;
