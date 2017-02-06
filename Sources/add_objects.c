@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 14:57:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 14:42:57 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/06 20:24:31 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	add_sphere(void *arg)
 	obj.mat.specular = 1;
 	obj.mat.ambient = 0.1;
 	obj.pro = NULL;
+	obj.asp = NULL;
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
 	e->scene->obj_focus = elem;
@@ -56,6 +57,7 @@ void	add_cylinder(void *arg)
 	obj.mat.specular = 1;
 	obj.mat.ambient = 0.1;
 	obj.pro = NULL;
+	obj.asp = NULL;
 	e->calc_obj_param[obj.type](&obj);
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
@@ -81,6 +83,7 @@ void	add_plane(void *arg)
 	obj.mat.specular = 1;
 	obj.mat.ambient = 0.1;
 	obj.pro = NULL;
+	obj.asp = NULL;
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
 	e->scene->obj_focus = elem;
@@ -107,6 +110,7 @@ void	add_cone(void *arg)
 	obj.mat.specular = 1;
 	obj.mat.ambient = 0.1;
 	obj.pro = NULL;
+	obj.asp = NULL;
 	e->calc_obj_param[obj.type](&obj);
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
@@ -134,6 +138,7 @@ void	add_torus(void *arg)
 	obj.mat.specular = 1;
 	obj.mat.ambient = 0.1;
 	obj.pro = NULL;
+	obj.asp = NULL;
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
 	e->scene->obj_focus = elem;

@@ -6,20 +6,18 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 16:23:00 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/30 17:05:41 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/05 19:46:21 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-t_rgb		marbre(t_v3d inter)
+t_rgb		marbre(t_v3d inter, double mult)
 {
 	int			level;
-	int			mult;
 	double		noisecoef;
 
 	level = 0;
-	mult = 100;
 	noisecoef = 0;
 	while (++level < 10)
 	{

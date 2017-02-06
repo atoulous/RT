@@ -6,13 +6,13 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 20:16:04 by atoulous          #+#    #+#             */
-/*   Updated: 2017/02/04 22:19:23 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/06 16:01:41 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	back_plane(void	*arg)
+void		back_plane(void *arg)
 {
 	t_env	*e;
 

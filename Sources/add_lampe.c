@@ -6,7 +6,7 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/05 19:49:17 by atoulous          #+#    #+#             */
-/*   Updated: 2017/02/06 14:42:55 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/06 15:03:54 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	addsphere(void *arg)
 	obj.mat.diffuse = 0.2;
 	obj.mat.specular = 1;
 	obj.mat.ambient = 0.1;
+	obj.pro = NULL;
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
 	e->scene->obj_focus = elem;
@@ -52,6 +53,7 @@ static void	addcylinder(void *arg)
 	obj.mat.diffuse = 0.2;
 	obj.mat.specular = 1;
 	obj.mat.ambient = 0.1;
+	obj.pro = NULL;
 	e->calc_obj_param[obj.type](&obj);
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);
@@ -80,6 +82,7 @@ static void	addcone(void *arg)
 	obj.mat.diffuse = 0.2;
 	obj.mat.specular = 1;
 	obj.mat.ambient = 0.1;
+	obj.pro = NULL;
 	e->calc_obj_param[obj.type](&obj);
 	elem = ft_lstnew(&obj, sizeof(obj));
 	ft_lstadd(&(e->scene->obj), elem);

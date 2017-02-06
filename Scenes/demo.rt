@@ -36,6 +36,10 @@ scene {
 			specular { 1 }
 			shine { 100 }
 		}
+		tex { marbre }
+		coef { 3 }
+		asperite { water }
+		density { 4 }
 	}
 	object {
 		name { torus }
@@ -130,6 +134,8 @@ scene {
 			specular { 1 }
 			shine { 100 }
 		}
+		tex { asperite }
+		coef {20 }
 	}
 	object {
 		name { cylinder gauche }

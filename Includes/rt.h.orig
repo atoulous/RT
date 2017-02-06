@@ -6,7 +6,11 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 19:42:48 by jubarbie         ###   ########.fr       */
+<<<<<<< HEAD
+/*   Updated: 2017/02/06 18:34:50 by jubarbie         ###   ########.fr       */
+=======
+/*   Updated: 2017/02/06 18:43:33 by mmoullec         ###   ########.fr       */
+>>>>>>> 4911601892c7c3c9690648f01f8948dc1531435a
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +102,7 @@
 # define IMG e->img.img
 # define IMG_ADDR e->img.addr
 # define ENDIAN e->endian
-# define NB_ME 31
+# define NB_ME 29
 # define ME e->menu
 # define COMMAND e->command
 

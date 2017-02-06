@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/17 21:00:06 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 21:24:41 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/06 19:33:29 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ t_v3d		get_v3d(char *name, char *str, t_env *e)
 	t_v3d	ret;
 
 	if (!(tmp = get_in_acc(name, str)))
-		return(v3d(0, 0, 1));
+		return (v3d(0, 0, 1));
 	else
 	{
 		v = ft_strsplit(tmp, ' ');

@@ -6,20 +6,46 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 14:29:49 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 19:06:20 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 20:30:14 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	mat_menu_event(t_env *e, int x, int y, t_object *obj)
+void	deform_menu_event(t_env *e, int x, int y, t_object *obj)
 {
 	char 	*tex;
 
 	if (x < WIN_WIDTH - 120)
-		tex = ft_strdup("marbre");
+		tex =  ft_strdup("bump");
+	else 
+		tex = ft_strdup("water");
+	if (obj->asp && ft_strcmp(obj->asp, tex))
+	{
+		free(obj->asp);
+		obj->asp = NULL;
+		obj->asp = ft_strdup(tex);
+	}
+	else if (obj->asp && !ft_strcmp(obj->asp, tex))
+	{
+		free(obj->asp);
+		obj->asp = NULL;
+	}
 	else
-		tex = ft_strdup("wood");
+		obj->asp = ft_strdup(tex);
+	free(tex);
+	menu_object(e);
+	create_img(e);
+}
+
+void	text_menu_event(t_env *e, int x, int y, t_object *obj)
+{
+	char 	*tex;
+
+	if (x < WIN_WIDTH - 120)
+		tex = (y < 598) ? ft_strdup("marbre") : ft_strdup("damier");
+	else 
+		tex = (y < 598) ? ft_strdup("wood") : ft_strdup("random");
 	if (obj->pro && ft_strcmp(obj->pro, tex))
 	{
 		free(obj->pro);
@@ -37,6 +63,7 @@ void	mat_menu_event(t_env *e, int x, int y, t_object *obj)
 	menu_object(e);
 	create_img(e);
 }
+
 
 void	object_menu_event(t_env *e, int x, int y, t_object *obj)
 {
@@ -65,6 +92,8 @@ void	object_menu_event(t_env *e, int x, int y, t_object *obj)
 	else if (y > 559 && y < 575)
 		(obj->mat.specular + step > 0 && obj->mat.specular + step < 1)
 			? obj->mat.specular += step : 0;
+	else if (y > 544 && y < 562)
+		obj->coef += (step * 100);
 	else
 		click = 0;
 	if (click)
@@ -126,8 +155,10 @@ void	right_menu_event(t_env *e, int x, int y)
 		if (x > WIN_WIDTH - 42 && x < WIN_WIDTH - 4 && y > 362
 			&& y < 630)
 			object_menu_event(e, x, y, (t_object *)(e->scene->obj_focus->content));
-		if (x > WIN_WIDTH - 231 && x < WIN_WIDTH - 9 && y > 444 && y < 470)
-			mat_menu_event(e, x, y, (t_object *)(e->scene->obj_focus->content));
+		if (x > WIN_WIDTH - 231 && x < WIN_WIDTH - 9 && y > 572 && y < 629)
+			text_menu_event(e, x, y, (t_object *)(e->scene->obj_focus->content));
+		if (x > WIN_WIDTH - 231 && x < WIN_WIDTH - 9 && y > 636 && y < 662)
+			deform_menu_event(e, x, y, (t_object *)(e->scene->obj_focus->content));
 
 	}
 	else if (x > WIN_WIDTH - 176 && x < WIN_WIDTH - 68)

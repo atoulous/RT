@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 09:49:59 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/30 09:59:39 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/06 17:03:42 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void		ft_mouse_click2(int x, int y, t_env *e)
 		undo_del_object(e);
 	else if (x > WIN_WIDTH / 2 - 64 && x < WIN_WIDTH / 2 + 64)
 		change_global_quality(e);
-	else if ( x > WIN_WIDTH - 50)
+	else if (x > WIN_WIDTH - 50)
 		save_scene(e);
 }
 
-void			ft_mouse_click3(int x, t_env *e)
+void		ft_mouse_click3(int x, t_env *e)
 {
 	if (x < WIN_WIDTH / 2 - 160)
 		add_sphere(e);

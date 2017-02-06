@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 15:16:44 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 18:54:02 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 20:20:33 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ static void	get_images(t_env *e)
 	ME[22].path = ft_strdup("Images/bois-inv.xpm");
 	ME[23].path = ft_strdup("Images/damier.xpm");
 	ME[24].path = ft_strdup("Images/damier-inv.xpm");
-	ME[25].path = ft_strdup("Images/asperite.xpm");
-	ME[26].path = ft_strdup("Images/asperite-inv.xpm");
-	ME[27].path = ft_strdup("Images/eau.xpm");
-	ME[28].path = ft_strdup("Images/eau-inv.xpm");
+	ME[25].path = ft_strdup("Images/random.xpm");
+	ME[26].path = ft_strdup("Images/random-inv.xpm");
+	ME[27].path = ft_strdup("Images/asperite.xpm");
+	ME[28].path = ft_strdup("Images/asperite-inv.xpm");
+	ME[29].path = ft_strdup("Images/eau.xpm");
+	ME[30].path = ft_strdup("Images/eau-inv.xpm");
 }
 
 static void	create_interface(t_env *e)
@@ -83,11 +85,14 @@ static void	create_interface(t_env *e)
 	ME[22].x = WIN_WIDTH - 120;
 	ME[25].x = WIN_WIDTH - 120;
 	ME[26].x = WIN_WIDTH - 120;
+	ME[29].x = WIN_WIDTH - 120;
+	ME[30].x = WIN_WIDTH - 120;
 	i = 22;
 	while (++i < 27)
 		ME[i].y = 602;
-	ME[27].y = 634;
-	ME[28].y = 634;
+	i = 26;
+	while (++i < 31)
+		ME[i].y = 634;
 	get_images(e);
 }
 
@@ -107,7 +112,7 @@ void		init_menu(t_env *e)
 				&(ME[i].img.bpp), &(ME[i].img.sizeline), &ENDIAN);
 	}
 	i = -1;
-	while (++i < NB_ME)
+	while (++i < 6)
 	{
 		mlx_put_image_to_window(MLX, WIN, ME[i].img.img, ME[i].x, ME[i].y);
 		free(ME[i].path);
