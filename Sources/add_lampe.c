@@ -6,7 +6,7 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/05 19:49:17 by atoulous          #+#    #+#             */
-/*   Updated: 2017/02/05 20:54:19 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/06 14:42:55 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ static void	addcone(void *arg)
 	e = (t_env *)arg;
 	obj.name = ft_strdup("new cone");
 	obj.type = 4;
-	obj.p1 = v3d(0, 2, 0);
-	obj.p2 = v3d(0, 0, 0);
-	obj.r1 = 1;
-	obj.r2 = 3;
+	obj.p1 = v3d(0, 0, 0);
+	obj.p2 = v3d(0, 4, 0);
+	obj.r1 = 3;
+	obj.r2 = 1;
 	obj.t1 = 1;
 	obj.t2 = 1;
 	obj.color = 0x0000FF;
