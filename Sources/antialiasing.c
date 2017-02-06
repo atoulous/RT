@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 10:47:27 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 23:52:00 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/07 00:03:16 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Save the color in the pixel (x, y) of the image given
 */
 
-#define A_L 8
+#define A_L 2
 
 void		img_put_pixel2(t_img *img, int x, int y, t_rgb rgb)
 {

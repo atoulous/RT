@@ -6,13 +6,13 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 23:26:18 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/06 23:51:59 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/07 00:03:17 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-#define A_L 8
+#define A_L 2
 
 void		init_params_for_al(t_env *e, t_img *tmp_img)
 {
