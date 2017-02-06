@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 09:11:28 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/03 13:31:22 by dgameiro         ###   ########.fr       */
+/*   Updated: 2017/02/06 17:28:59 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	find_dist(t_object *obj, t_ray *ray, t_sol *sol)
 		ray->dist = T[0];
 		ray->inter = add_v3d(ray->pos, smul_v3d(ray->dir, ray->dist));
 		ray->norm = unit_v3d(sub_v3d(ray->inter, O_POS));
+		if (obj->pro && (!ft_strcmp(obj->pro, "asperite")))
+			modif_normale(obj->coef, 4, &ray->norm, sub_v3d(ray->inter, obj->pos));
 	}
 }
 

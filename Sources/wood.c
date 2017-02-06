@@ -6,16 +6,15 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 16:16:09 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/30 16:40:51 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/05 20:05:29 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-t_rgb			wood(t_v3d inter)
+t_rgb			wood(t_v3d inter, double coef)
 {
 	double	coefnoise;
-	double	coef;
 	int		z;
 	double	v;
 
@@ -25,11 +24,11 @@ t_rgb			wood(t_v3d inter)
 	z = (int)v;
 	v -= z;
 	if (v < 0.2)
-		return (rgb_create(83, 55, 7));
+		return (rgb_create(254, 136, 77));
 	else if (v < 0.4)
 		return (rgb_create(129, 99, 29));
 	else if (v < 0.6)
-		return (rgb_create(143, 107, 28));
+		return (rgb_create(110, 107, 28));
 	else if (v < 0.8)
 		return (rgb_create(118, 84, 23));
 	else

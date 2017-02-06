@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 10:29:13 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/05 16:51:19 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/05 20:05:29 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void		apply_light(t_env *e, t_param *param)
 
 	datas.rgb = transfo(VW_RAY.obj->color, &datas);
 	if (VW_RAY.obj->pro)
-		modify_color_for_tex(VW_RAY.obj->pro, sub_v3d(VW_RAY.inter, VW_RAY.obj->pos), &datas);
+		modify_color_for_tex(VW_RAY.obj->pro, sub_v3d(VW_RAY.inter, VW_RAY.obj->pos), &datas, VW_RAY.obj->coef);
 	if (IS_PHONG)
 		rgb_s_mult(&datas.rgb, VW_RAY.obj->mat.ambient + LUMI);
 	lst_light = e->scene->light;

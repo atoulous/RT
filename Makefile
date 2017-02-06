@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/02/05 17:26:42 by mmoullec         ###   ########.fr        #
+#    Updated: 2017/02/06 16:00:17 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,10 @@ CFLAGS = -ILibs/libft -I$(MLX) -ILibs/libv3d -ILibs/libmy_math -ILibs/libmy_mlx 
 SRC =	rt.c			\
 		apply_color.c	\
 		apply_light.c	\
-		modif_color.c	\
 		modify_color_for_tex.c	\
 		wood.c			\
+		normal_water.c	\
+		damier.c		\
 		marbre.c		\
 		random_noise.c	\
 		noise.c			\

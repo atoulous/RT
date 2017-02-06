@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 18:49:11 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 17:53:21 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/05 19:44:21 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void	print_obj(t_env *e)
 		printf("		Shiness: %lf\n", obj->mat.shine);
 		printf("		Density: %lf\n", obj->mat.density);
 		printf("		tex: %s\n", obj->pro);
+		printf("		coef: %f\n", obj->coef);
 		printf("		----------\n");
 		elem = elem->next;
 	}

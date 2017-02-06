@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/05 17:25:59 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/06 17:29:14 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,6 +227,7 @@ typedef struct	s_object
 	int			color;
 	t_mat		mat;
 	char		*pro;
+	double		coef;
 }				t_object;
 
 # include "answers.h"
@@ -450,7 +451,7 @@ void			apply_cartoon_color(t_env *e, t_param *param, t_object *light, t_light *d
 **Bruit et modifs
 */
 void			fill_matiere_in_case(t_mat *mat);
-void			modif_normale(double d, t_v3d *norm, t_v3d inter);
+void			modif_normale(double d, double alpha, t_v3d *norm, t_v3d inter);
 
 /*
 ** Perlin
@@ -480,10 +481,22 @@ double			noise_to_ret(t_noise *a, double b, double c, double d);
 double			fade(double a);
 double			lerp(double x, double y, double z);
 double			grad(int a, double x, double y, double z);
-int			modify_color_for_tex(char *tex, t_v3d vec, t_light *datas);
-t_rgb			wood(t_v3d inter);
-t_rgb			marbre(t_v3d inter);
-t_rgb			random_noise(t_v3d vec, t_rgb rgb);
+int				modify_color_for_tex(char *tex, t_v3d vec, t_light *datas, \
+		double c);
+t_rgb			wood(t_v3d inter, double coef);
+t_rgb			marbre(t_v3d inter, double mult);
+t_rgb			damier(double l, t_v3d i, t_rgb col);
+void			normal_water(double d, t_v3d *n, t_v3d inter, t_v3d dir);
+
+typedef struct	s_4d
+{
+	double	a;
+	double	b;
+	double	c;
+	double	d;
+}				t_4d;
+
+t_rgb			random_noise(double coef, t_v3d vec, t_rgb rgb);
 
 void			init_reflect(t_param *param);
 void			add_reflected_color(t_param *param);
