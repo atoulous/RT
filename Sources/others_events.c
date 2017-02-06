@@ -6,7 +6,7 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 22:58:34 by atoulous          #+#    #+#             */
-/*   Updated: 2017/02/04 19:16:01 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 15:53:15 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ void		screenshot(void *arg)
 	tm_now = *localtime(&now);
 	strftime(s_now, sizeof(s_now), "%d-%m-%Y_%H:%M:%S", &tm_now);
 	cmd = ft_strdup("screencapture -iW ./screen_");
-	cmd = ft_strjoin(cmd, s_now);
-	system(cmd);
-	ft_putendl("Did you screen me?");
+	cmd = ft_strjoinfree(cmd, s_now);
+	if (!system(cmd))
+		ft_putendl("\033[32mYou screened me\033[0m\n");
+	free(cmd);
 }
 
 void		change_speed_rotation(t_env *e, int keycode)
@@ -59,7 +60,7 @@ void		change_luminosite(t_env *e, int keycode)
 	create_img(e);
 }
 
-void		reset_cam(void	*arg)
+void		reset_cam(void *arg)
 {
 	t_env	*e;
 

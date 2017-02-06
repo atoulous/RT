@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 14:54:56 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/05 15:42:26 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 16:03:09 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void			print_help(void)
 	ft_putendl("\033[33mPress 8 to rotate up\033[0m");
 	ft_putendl("\033[33mPress ` to take screenshot\033[0m");
 	ft_putendl("\033[33mPress C to do cartoon effect\033[0m");
-	ft_putendl("\033[33mPress ; to do sepia effect\033[0m");
-	ft_putendl("\033[33mPress ' to do grey effect\033[0m\n");
+	ft_putendl("\033[33mPress ; and ' to do sepia and grey effect\033[0m");
+	ft_putendl("\033[33mPress M to active motion blur\033[0m\n");
 }
 
 static int		in_opt(char c)

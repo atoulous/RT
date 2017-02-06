@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 15:41:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/05 15:40:27 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 16:15:23 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,24 @@ static void	init_vw_ray(t_env *e, t_param *param, int i_reflec)
 ** Save the pixel color on the image
 */
 
+static int	active_obj_touch(t_env *e, t_param *param, t_object *obj_sel)
+{
+	if (param->e->scene->obj_focus)
+	{
+		obj_sel = (t_object *)param->e->scene->obj_focus->content;
+		if (VW_RAY.obj == obj_sel)
+			if (cos_v3d(VW_RAY.norm, VW_RAY.dir) > -0.3 && VW_RAY.obj->type
+					!= 1 && cos_v3d(VW_RAY.norm, VW_RAY.dir) < -0.000001)
+			{
+				F_COLOR.r = 255;
+				F_COLOR.g = 255;
+				F_COLOR.b = 255;
+				return (1);
+			}
+	}
+	return (0);
+}
+
 static void	perform_raytracing(t_env *e, t_param *param)
 {
 	t_list		*lst_obj;
@@ -85,26 +103,15 @@ static void	perform_raytracing(t_env *e, t_param *param)
 			lst_obj = lst_obj->next;
 		}
 		VW_RAY.inter = add_v3d(VW_RAY.pos, smul_v3d(VW_RAY.dir, VW_RAY.dist));
+		if (active_obj_touch(e, param, obj_sel))
+			break ;
 		COLOR = VW_RAY.obj ? VW_RAY.obj->color : 0;
-		if (param->e->scene->obj_focus)
-		{
-			obj_sel = (t_object *)param->e->scene->obj_focus->content;
-			if (VW_RAY.obj == obj_sel)
-				if (cos_v3d(VW_RAY.norm, VW_RAY.dir) > -0.3 && VW_RAY.obj->type
-						!= 1 && cos_v3d(VW_RAY.norm, VW_RAY.dir) < -0.000001)
-				{
-					F_COLOR.r = 255;
-					F_COLOR.g = 255;
-					F_COLOR.b = 255;
-					break;
-				}
-		}
 		(VW_RAY.obj && IS_LIGHT) ? apply_light(ENV, param) : 0;
 		if (!VW_RAY.obj)
-			break;
+			break ;
 		add_reflected_color(param);
 		if (!IS_REFLX)
-			break;
+			break ;
 	}
 	img_put_pixel(&e->img, X, Y, param);
 }

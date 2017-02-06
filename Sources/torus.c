@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 19:23:03 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/01/30 20:41:44 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/06 16:04:11 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,12 @@ static void		torus_2(t_5pow *zz, t_sol_3 q)
 	zz->q0 = BD * BD - 4 * CARRE_O_RAD * BC;
 }
 
-void		torus_for_the_norm(t_v3d *axis, t_v3d *cent_cam, t_ray *ray,\
+void			torus_for_the_norm(t_v3d *axis, t_v3d *cent_cam, t_ray *ray,\
 		t_object *obj)
 {
 	*axis = unit_v3d(obj->p2);
 	*cent_cam = sub_v3d(ray->pos, obj->p1);
 }
-
 
 void			torus(t_env *e, t_object *obj, t_ray *ray, t_sol *sol)
 {
