@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/02/06 10:51:43 by jubarbie         ###   ########.fr        #
+#    Updated: 2017/02/05 20:05:10 by atoulous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,8 +65,9 @@ SRC =	rt.c			\
 		others_events.c	\
 		others_events2.c	\
 		save.c			\
-		reflection.c			\
-		color_filter.c			\
+		reflection.c	\
+		color_filter.c	\
+		add_lampe.c		\
 		antialiasing.c
 
 OBJDIR = Objects

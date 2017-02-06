@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 15:12:48 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/04 21:43:28 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/05 17:47:25 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	get_cylinder_param(char *str, t_object *obj, void *arg)
 	obj->p1 = get_v3d("p1", str, e);
 	obj->p2 = get_v3d("p2", str, e);
 	obj->r1 = get_double("r1", str, e);
+	obj->t1 = get_double("t1", str, e);
+	obj->t2 = get_double("t2", str, e);
 }
 
 void	get_cone_torus_param(char *str, t_object *obj, void *arg)
@@ -60,6 +62,8 @@ void	get_cone_torus_param(char *str, t_object *obj, void *arg)
 	obj->p2 = get_v3d("p2", str, e);
 	obj->r1 = get_double("r1", str, e);
 	obj->r2 = get_double("r2", str, e);
+	obj->t1 = get_double("t1", str, e);
+	obj->t2 = get_double("t2", str, e);
 	if (obj->r1 > obj->r2 && obj->type == 5)
 		error_perso(e, "Torus: r1 must be lower than r2");
 }

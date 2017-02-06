@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 10:51:24 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 14:17:12 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,8 @@ typedef struct	s_object
 	t_v3d		p2;
 	double		r1;
 	double		r2;
+	double		t1;
+	double		t2;
 	double		angle;
 	int			color;
 	t_mat		mat;
@@ -392,11 +394,14 @@ void			add_cylinder(void *arg);
 void			add_cone(void *arg);
 void			add_plane(void *arg);
 void			add_torus(void *arg);
+void			add_lampe(void *arg);
+void			screenshot(void *arg);
 void			reset_cam(void *arg);
 void			back_plane(void *arg);
 void			active_motion_blur(void *arg);
 void			active_sepia(void *arg);
 void			active_grey(void *arg);
+void			active_cartoon(void *arg);
 
 /*
 ** RAYTRACING
