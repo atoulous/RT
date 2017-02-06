@@ -56,7 +56,8 @@ static void		torus_sol(t_ray *ray, t_object *obj, t_sol *sol, double ret)
 		ray->inter = add_v3d(ray->pos, smul_v3d(ray->dir, ret));
 		ray->norm = get_torus_normal(obj, ray->pos, ray->dir, ret);
 		if (obj->asp && (!ft_strcmp(obj->asp, "bump")))
-			modif_normale(obj->density, 4, &ray->norm, sub_v3d(ray->inter, obj->pos));
+			modif_normale(obj->density, 4, &ray->norm, \
+				sub_v3d(ray->inter, obj->pos));
 	}
 }
 

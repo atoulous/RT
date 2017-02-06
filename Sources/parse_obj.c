@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 20:24:00 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/06 19:01:29 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ static void		add_mat(t_object *obj, char *str, t_env *e)
 			obj->mat.density = get_double("density", tmp, e);
 		free(tmp);
 	}
+	obj->pro = NULL;
+	obj->asp = NULL;
+	obj->pro = get_in_acc("tex", str);
+	obj->asp = get_in_acc("asperite", str);
+	obj->t1 = 0;
+	obj->t2 = 0;
 }
 
 /*
@@ -115,14 +121,8 @@ void			build_object(t_env *e, char *str)
 		error_perso(e, "No type found in object");
 	e->get_obj_param[obj.type](str, &obj, (void *)e);
 	e->calc_obj_param[obj.type] ? e->calc_obj_param[obj.type](&obj) : 0;
-	obj.pro = NULL;
-	obj.pro = get_in_acc("tex", str);
-	obj.t1 = 0;
-	obj.t2 = 0;
 	if (!(obj.coef = get_double("coef", str, e)) || obj.coef < 0.0)
 		obj.coef = 10;
-	obj.asp = NULL;
-	obj.asp = get_in_acc("asperite", str);
 	if (!(obj.density = get_double("density", str, e)) || obj.density < 0.0)
 		obj.density = 10;
 	if ((obj.color = get_obj_color(str)) == -1)

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 16:58:17 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 18:46:47 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/06 19:54:52 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ static void		set_cylinder_norm(t_object *obj, t_ray *ray)
 	l = sqrt(pow(l, 2.0) - pow(O_R1, 2.0));
 	ray->norm = unit_v3d(sub_v3d(ray->inter, add_v3d(O_POS,
 					smul_v3d(O_DIR, l))));
-		if (obj->asp && (!ft_strcmp(obj->asp, "bump")))
-			modif_normale(obj->density, 4, &ray->norm, sub_v3d(ray->inter, obj->pos));
+	if (obj->asp && (!ft_strcmp(obj->asp, "bump")))
+		modif_normale(obj->density, 4, &ray->norm, \
+				sub_v3d(ray->inter, obj->pos));
 }
 
 static void		find_dist(t_object *obj, t_ray *ray, t_sol *sol)
@@ -82,7 +83,8 @@ void			cylinder(t_env *e, t_object *obj, t_ray *ray, t_sol *sol)
 	tmp = sub_v3d(ray->dir, smul_v3d(O_DIR, dot_v3d(ray->dir, O_DIR)));
 	A = dot_v3d(tmp, tmp);
 	B = 2 * dot_v3d((sub_v3d(ray->dir, smul_v3d(O_DIR,
-						dot_v3d(ray->dir, O_DIR)))), sub_v3d(dp, smul_v3d(O_DIR, dot_v3d(dp, O_DIR))));
+		dot_v3d(ray->dir, O_DIR)))), sub_v3d(dp, \
+			smul_v3d(O_DIR, dot_v3d(dp, O_DIR))));
 	tmp = sub_v3d(dp, smul_v3d(O_DIR, dot_v3d(dp, O_DIR)));
 	C = dot_v3d(tmp, tmp) - pow(O_R1, 2.0);
 	find_solutions(obj, ray, sol);

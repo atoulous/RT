@@ -23,7 +23,8 @@ static void	find_dist(t_object *obj, t_ray *ray, t_sol *sol)
 		ray->inter = add_v3d(ray->pos, smul_v3d(ray->dir, ray->dist));
 		ray->norm = unit_v3d(sub_v3d(ray->inter, O_POS));
 		if (obj->asp && (!ft_strcmp(obj->asp, "bump")))
-			modif_normale(obj->density, 4, &ray->norm, sub_v3d(ray->inter, obj->pos));
+			modif_normale(obj->density, 4, &ray->norm, \
+				sub_v3d(ray->inter, obj->pos));
 	}
 }
 
