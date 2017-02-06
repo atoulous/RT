@@ -38,7 +38,7 @@ scene {
 		}
 		tex { marbre }
 		coef { 3 }
-		asperite { water }
+		asperite { bump }
 		density { 4 }
 	}
 	object {
@@ -94,6 +94,7 @@ scene {
 			specular { 1 }
 			shine { 100 }
 		}
+		asperite { water }
 	}
 	object {
 		name { plane gauche }

@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 19:55:56 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 18:47:50 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/06 19:01:47 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	plane(t_env *e, t_object *obj, t_ray *ray, t_sol *sol)
 			if (obj->asp && (!ft_strcmp(obj->asp, "bump")))
 				modif_normale(obj->density, 4, &ray->norm, \
 					sub_v3d(ray->inter, obj->pos));
-
 		}
 	}
 }
