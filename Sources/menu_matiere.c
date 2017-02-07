@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 21:15:40 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 21:33:11 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 18:12:31 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ static void	print_mat_param(t_env *e, t_object *o)
 
 void		print_mat(t_env *e, t_object *o)
 {
-	char	s[255];
-
 	mlx_put_image_to_window(MLX, WIN, ME[19].img.img, ME[19].x, ME[19].y);
 	mlx_put_image_to_window(MLX, WIN, ME[21].img.img, ME[21].x, ME[21].y);
 	mlx_put_image_to_window(MLX, WIN, ME[23].img.img, ME[23].x, ME[23].y);

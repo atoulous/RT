@@ -6,14 +6,13 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 10:39:07 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/06 22:31:39 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/07 17:49:53 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void		do_phong_calcls(t_param *param, t_object *light, \
-		t_light *datas)
+void		do_phong_calcls(t_param *param, t_light *datas)
 {
 	t_v3d	test;
 	t_v3d	r;
@@ -27,11 +26,10 @@ void		do_phong_calcls(t_param *param, t_object *light, \
 #define ALI datas->angle_light
 #define OMEGA datas->omega
 
-void		apply_color(t_env *e, t_param *param, t_object *light, \
-		t_light *datas)
+void		apply_color(t_env *e, t_param *param, t_light *datas)
 {
 	datas->angle_light = cos_v3d(VW_RAY.norm, PHO_RAY.dir);
-	do_phong_calcls(param, light, datas);
+	do_phong_calcls(param, datas);
 	if (IS_OPT_I1)
 	{
 		RGB.r += (ALI * 255 * VW_RAY.obj->mat.diffuse * -1);
@@ -50,7 +48,7 @@ void		apply_color(t_env *e, t_param *param, t_object *light, \
 		}
 }
 
-static void	apply_shine(t_env *e, t_param *param, t_light *datas)
+static void	apply_shine(t_param *param, t_light *datas)
 {
 	if (datas->omega > 0.000001 && !PHO_RAY.obj)
 	{
@@ -69,11 +67,10 @@ static void	apply_shine(t_env *e, t_param *param, t_light *datas)
 	}
 }
 
-void		apply_cartoon_color(t_env *e, t_param *param, t_object *light, \
-		t_light *datas)
+void		apply_cartoon_color(t_env *e, t_param *param, t_light *datas)
 {
 	datas->angle_light = cos_v3d(VW_RAY.norm, PHO_RAY.dir);
-	do_phong_calcls(param, light, datas);
+	do_phong_calcls(param, datas);
 	if (cos_v3d(VW_RAY.norm, VW_RAY.dir) > -0.3 && VW_RAY.obj->type != 1 && \
 			cos_v3d(VW_RAY.norm, VW_RAY.dir) < -0.000001)
 	{
@@ -93,5 +90,5 @@ void		apply_cartoon_color(t_env *e, t_param *param, t_object *light, \
 		RGB.b += (ALI * 255 * VW_RAY.obj->mat.diffuse * -1);
 	}
 	if (IS_SHINE)
-		apply_shine(e, param, datas);
+		apply_shine(param, datas);
 }

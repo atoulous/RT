@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 16:58:17 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 19:54:52 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/07 18:08:59 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,9 @@ void			cylinder(t_env *e, t_object *obj, t_ray *ray, t_sol *sol)
 {
 	t_v3d	dp;
 	t_v3d	tmp;
+	int		i;
 
+	i = e->opt;
 	dp = sub_v3d(ray->pos, O_POS);
 	tmp = sub_v3d(ray->dir, smul_v3d(O_DIR, dot_v3d(ray->dir, O_DIR)));
 	A = dot_v3d(tmp, tmp);

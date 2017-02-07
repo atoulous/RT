@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 11:04:38 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/07 16:31:10 by dgameiro         ###   ########.fr       */
+/*   Updated: 2017/02/07 18:04:14 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** If no matiere specified in file, set it to defined values
 */
 
-static void		add_mat(t_object *obj, char *str, t_env *e)
+static void		add_mat(t_object *obj, char *str)
 {
 	char	*tmp;
 
@@ -25,15 +25,15 @@ static void		add_mat(t_object *obj, char *str, t_env *e)
 	if ((tmp = get_in_acc("mat", str)))
 	{
 		if (find_param("ambient", tmp))
-			obj->mat.ambient = get_double("ambient", tmp, e);
+			obj->mat.ambient = get_double("ambient", tmp);
 		if (find_param("specular", tmp))
-			obj->mat.specular = get_double("specular", tmp, e);
+			obj->mat.specular = get_double("specular", tmp);
 		if (find_param("diffuse", tmp))
-			obj->mat.diffuse = get_double("diffuse", tmp, e);
+			obj->mat.diffuse = get_double("diffuse", tmp);
 		if (find_param("shine", tmp))
-			obj->mat.shine = get_double("shine", tmp, e);
+			obj->mat.shine = get_double("shine", tmp);
 		if (find_param("density", tmp))
-			obj->mat.density = get_double("density", tmp, e);
+			obj->mat.density = get_double("density", tmp);
 		free(tmp);
 	}
 	obj->pro = NULL;
@@ -121,13 +121,13 @@ void			build_object(t_env *e, char *str)
 		error_perso(e, "No type found in object");
 	e->get_obj_param[obj.type](str, &obj, (void *)e);
 	e->calc_obj_param[obj.type] ? e->calc_obj_param[obj.type](&obj) : 0;
-	if (!(obj.coef = get_double("coef", str, e)) || obj.coef < 0.0)
+	if (!(obj.coef = get_double("coef", str)) || obj.coef < 0.0)
 		obj.coef = 10;
-	if (!(obj.density = get_double("density", str, e)) || obj.density < 0.0)
+	if (!(obj.density = get_double("density", str)) || obj.density < 0.0)
 		obj.density = 10;
 	if ((obj.color = get_obj_color(str)) == -1)
 		error_perso(e, "No color found in object");
-	add_mat(&obj, str, e);
+	add_mat(&obj, str);
 	elem = ft_lstnew(&obj, sizeof(obj));
 	if (obj.type == 0)
 		ft_lstadd(&(e->scene->light), elem);

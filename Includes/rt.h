@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/07 10:59:09 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 18:11:15 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -396,7 +396,7 @@ void				back_menu(t_env *e);
 void				top_menu_event(t_env *e, int x, int y);
 void				right_menu_event(t_env *e, int x, int y);
 void				bottom_menu_event(t_env *e, int x, int y);
-void				deform_menu_event(t_env *e, int x, int y, t_object *obj);
+void				deform_menu_event(t_env *e, int x, t_object *obj);
 void				text_menu_event(t_env *e, int x, int y, t_object *obj);
 
 /*
@@ -409,8 +409,8 @@ void				check_acc(t_env *e, char *str);
 char				*get_in_acc(char *str, char *acc);
 char				*go_to_next_acc(char *str, int n);
 char				*find_param(char *small, char *big);
-t_v3d				get_v3d(char *str, char *name, t_env *e);
-double				get_double(char *str, char *name, t_env *e);
+t_v3d				get_v3d(char *str, char *name);
+double				get_double(char *str, char *name);
 int					size_to_end_acc(char *str);
 void				init_obj_param(t_env *e);
 void				get_light_param(char *str, t_object *obj, void *e);
@@ -448,7 +448,7 @@ void				add_cone(void *arg);
 void				add_plane(void *arg);
 void				add_torus(void *arg);
 void				add_lampe(void *arg);
-void				screenshot(void *arg);
+void				screenshot(void);
 void				reset_cam(void *arg);
 int					stereo(t_env *e);
 void				save_scene(t_env *e);
@@ -461,10 +461,9 @@ void				*raytracer(void *arg);
 void				apply_light(t_env *e, t_param *param);
 void				do_shininess(t_param *param, t_object *light, t_hsv *hsv, \
 		t_v3d ref);
-void				apply_color(t_env *e, t_param *param, t_object *l, \
+void				apply_color(t_env *e, t_param *param, t_light *datas);
+void				apply_cartoon_color(t_env *e, t_param *param, \
 		t_light *datas);
-void				apply_cartoon_color(t_env *e, t_param *param, t_object \
-		*light, t_light *datas);
 void				plane(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
 void				sphere(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);
 void				cylinder(t_env *e, t_object *obj, t_ray *ray, t_sol *sol);

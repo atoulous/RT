@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/20 15:41:19 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 20:11:23 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/07 18:06:31 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	init_vw_ray(t_env *e, t_param *param, int i_reflec)
 ** Save the pixel color on the image
 */
 
-static int	active_obj_touch(t_env *e, t_param *param, t_object *obj_sel)
+static int	active_obj_touch(t_param *param, t_object *obj_sel)
 {
 	if (param->e->scene->obj_focus)
 	{
@@ -103,7 +103,7 @@ static void	perform_raytracing(t_env *e, t_param *param, t_object *obj, \
 		if (!VW_RAY.obj)
 			break ;
 		VW_RAY.inter = add_v3d(VW_RAY.pos, smul_v3d(VW_RAY.dir, VW_RAY.dist));
-		if (active_obj_touch(e, param, obj_sel))
+		if (active_obj_touch(param, obj_sel))
 			break ;
 		(VW_RAY.obj && IS_LIGHT) ? apply_light(ENV, param) : 0;
 		add_reflected_color(param);

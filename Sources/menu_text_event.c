@@ -6,13 +6,13 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 21:20:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 21:32:20 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 17:56:46 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	deform_menu_event(t_env *e, int x, int y, t_object *obj)
+void	deform_menu_event(t_env *e, int x, t_object *obj)
 {
 	char	*tex;
 

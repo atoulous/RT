@@ -6,13 +6,13 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 22:58:34 by atoulous          #+#    #+#             */
-/*   Updated: 2017/02/07 15:56:37 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/07 18:10:57 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void		screenshot(void *arg)
+void		screenshot(void)
 {
 	char		*cmd;
 	time_t		now;

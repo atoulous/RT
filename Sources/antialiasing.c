@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 10:47:27 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/07 16:14:25 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/07 18:14:21 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ int			col(t_env *e, char *addr, t_l l, int alpha)
 	return (ret.x / (A_L * 2));
 }
 
-void		run_al(t_env *e, t_l l, t_img *img)
+void		run_al(t_env *e, t_img *img)
 {
-	t_rgb rgb;
+	t_rgb	rgb;
+	t_l		l;
 
 	IMG_WIDTH /= A_L;
 	IMG_HEIGHT /= A_L;
@@ -89,7 +90,6 @@ void		restart_params(t_env *e)
 void		antialiasing(t_env *e)
 {
 	int			i;
-	t_l			l;
 	pthread_t	th[NB_TH];
 	t_img		tmp_img;
 
@@ -101,7 +101,7 @@ void		antialiasing(t_env *e)
 	i = -1;
 	while (++i < NB_TH)
 		(void)pthread_join(th[i], NULL);
-	run_al(e, l, &tmp_img);
+	run_al(e, &tmp_img);
 	mlx_destroy_image(MLX, IMG);
 	restart_params(e);
 	e->img = tmp_img;

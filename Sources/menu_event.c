@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 14:29:49 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/07 14:25:04 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 18:11:50 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void		top_menu_event(t_env *e, int x, int y)
 		else if (x > WIN_WIDTH / 2 - 64 && x < WIN_WIDTH / 2 + 64)
 			change_global_quality(e);
 		else if (x > WIN_WIDTH - 98 && x < WIN_WIDTH - 65)
-			screenshot(e);
+			screenshot();
 		else if (x > WIN_WIDTH - 50)
 			save_scene(e);
 	}
@@ -116,7 +116,7 @@ void		right_menu_event(t_env *e, int x, int y)
 		if (x > WIN_WIDTH - 231 && x < WIN_WIDTH - 9 && y > 600 && y < 659)
 			text_menu_event(e, x, y, obj);
 		if (x > WIN_WIDTH - 231 && x < WIN_WIDTH - 9 && y > 665 && y < 691)
-			deform_menu_event(e, x, y, obj);
+			deform_menu_event(e, x, obj);
 	}
 	else if (x > WIN_WIDTH - 176 && x < WIN_WIDTH - 68)
 	{

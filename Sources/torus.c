@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 19:23:03 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/06 18:47:10 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/07 18:10:24 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void			torus(t_env *e, t_object *obj, t_ray *ray, t_sol *sol)
 	t_5pow		zz;
 	int			i;
 
+	i = e->opt;
 	i = -1;
 	torus_for_the_norm(&axis, &cent_cam, ray, obj);
 	CENT_CAM_DOT = dot_v3d(ray->dir, cent_cam);
@@ -95,8 +96,7 @@ void			torus(t_env *e, t_object *obj, t_ray *ray, t_sol *sol)
 	CENT_CAM_AXIS_DOT = dot_v3d(axis, cent_cam);
 	RAY_AXIS_DOT = dot_v3d(axis, ray->dir);
 	BA = 1 - carre(RAY_AXIS_DOT);
-	BB = 2 * ((dot_v3d(cent_cam, ray->dir) -
-				CENT_CAM_AXIS_DOT * RAY_AXIS_DOT));
+	BB = 2 * ((dot_v3d(cent_cam, ray->dir) - CENT_CAM_AXIS_DOT * RAY_AXIS_DOT));
 	BC = CENT_CAM_DOT_SQUARED - carre(CENT_CAM_AXIS_DOT);
 	BD = CENT_CAM_DOT_SQUARED + CARRE_O_RAD - CARRE_I_RAD;
 	torus_2(&zz, q);

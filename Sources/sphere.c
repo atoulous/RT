@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/10 09:11:28 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 18:47:11 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/07 18:08:41 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ static void	find_dist(t_object *obj, t_ray *ray, t_sol *sol)
 void		sphere(t_env *e, t_object *obj, t_ray *ray, t_sol *sol)
 {
 	t_v3d	dp;
+	int		i;
 
+	i = e->opt;
 	dp = sub_v3d(ray->pos, O_POS);
 	A = dot_v3d(ray->dir, ray->dir);
 	B = 2.0 * dot_v3d(ray->dir, dp);

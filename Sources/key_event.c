@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/07 14:26:12 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 18:20:03 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ int			ft_key_press(int keycode, t_env *e)
 	keycode == 71 || keycode == 81 ? change_ambiance(e, keycode) : 0;
 	keycode == 259 ? COMMAND = 1 : 0;
 	keycode == 6 && COMMAND == 1 ? undo_del_object(e) : 0;
-	keycode == 47 ? SPEED += 0.1 : 0;
-	keycode == 43 ? SPEED -= 0.1 : 0;
+	keycode == 47 && SPEED + 0.1 < 1000 ? SPEED += 0.1 : 0;
+	keycode == 43 && SPEED - 0.1 > 0 ? SPEED -= 0.1 : 0;
 	keycode == 49 ? reset_cam(e) : 0;
-	keycode == 50 ? screenshot(e) : 0;
+	keycode == 50 ? screenshot() : 0;
 	keycode == 35 ? change_option(e, BPLANE) : 0;
 	keycode == 15 || keycode == 17 ? change_indice_reflection(e, keycode) : 0;
 	keycode == 40 ? add_lampe(e) : 0;

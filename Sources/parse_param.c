@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/17 21:00:06 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 19:33:29 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 18:01:44 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char		*find_param(char *small, char *big)
 ** For exemple r1 { 2.403 }
 */
 
-double		get_double(char *name, char *str, t_env *e)
+double		get_double(char *name, char *str)
 {
 	char	*tmp;
 	double	nb;
@@ -87,7 +87,7 @@ double		get_double(char *name, char *str, t_env *e)
 ** For exemple cam_pos { 2.4 200 10.5 }
 */
 
-t_v3d		get_v3d(char *name, char *str, t_env *e)
+t_v3d		get_v3d(char *name, char *str)
 {
 	char	*tmp;
 	char	**v;

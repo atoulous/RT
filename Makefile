@@ -6,12 +6,12 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/02/07 14:27:29 by jubarbie         ###   ########.fr        #
+#    Updated: 2017/02/07 17:46:26 by atoulous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -ILibs/libft -I$(MLX) -ILibs/libv3d -ILibs/libmy_math -ILibs/libmy_mlx -IIncludes #-Wall -Wextra -Werror
+CFLAGS = -ILibs/libft -I$(MLX) -ILibs/libv3d -ILibs/libmy_math -ILibs/libmy_mlx -IIncludes -Wall -Wextra -Werror
 SRC =	rt.c			\
 		apply_color.c	\
 		apply_light.c	\

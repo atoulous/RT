@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 16:21:36 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/07 11:33:24 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 18:06:01 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ static void	get_resolution(t_env *e, char *str)
 	}
 	IMG_WIDTH = (IMG_WIDTH <= 0) ? 800 : IMG_WIDTH;
 	IMG_HEIGHT = (IMG_HEIGHT <= 0) ? 700 : IMG_HEIGHT;
-	if (!(AMBIANCE = get_double("ambiance", str, e)))
+	if (!(AMBIANCE = get_double("ambiance", str)))
 		AMBIANCE = 0.1;
-	if (!(NB_REF = get_double("reflection", str, e)))
+	if (!(NB_REF = get_double("reflection", str)))
 		NB_REF = 1;
 }
 
@@ -92,8 +92,8 @@ static void	build_scene(t_env *e, char *str)
 		error_perso(e, "No camera specified in scene");
 	else
 	{
-		CAM_POS = get_v3d("origin", tmp, e);
-		CAM_DIR = get_v3d("dir", tmp, e);
+		CAM_POS = get_v3d("origin", tmp);
+		CAM_DIR = get_v3d("dir", tmp);
 		free(tmp);
 	}
 	while ((tmp = get_in_acc("object", str)))

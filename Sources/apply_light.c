@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 10:29:13 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/06 19:57:20 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/07 17:56:19 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static t_rgb	transfo(unsigned int col, t_light *datas)
 	return (my_hsv_to_rgb(h));
 }
 
-static void		obj_sel(t_light *datas, t_param *param, t_object *light)
+static void		obj_sel(t_light *datas, t_param *param)
 {
 	t_object *obj_sel;
 
@@ -50,8 +50,7 @@ static void		obj_sel(t_light *datas, t_param *param, t_object *light)
 		datas->shadow -= param->AMBIANCE;
 }
 
-static void		apply_light2(t_param *param, t_list *lst_obj, t_list *lst_light,
-		t_light *datas)
+static void		apply_light2(t_param *param, t_list *lst_obj, t_light *datas)
 {
 	if (cos_v3d(PHO_RAY.dir, VW_RAY.norm) < 0.00001)
 	{
@@ -65,11 +64,9 @@ static void		apply_light2(t_param *param, t_list *lst_obj, t_list *lst_light,
 			lst_obj = lst_obj->next;
 		}
 	}
-	obj_sel(datas, param, (t_object *)lst_light->content);
-	!(param->OPT & CRTN) ? apply_color(param->e, param, \
-			(t_object *)lst_light->content, datas) : 0;
-	(param->OPT & CRTN) ? apply_cartoon_color(param->e, param, \
-			(t_object *)lst_light->content, datas) : 0;
+	obj_sel(datas, param);
+	!(param->OPT & CRTN) ? apply_color(param->e, param, datas) : 0;
+	(param->OPT & CRTN) ? apply_cartoon_color(param->e, param, datas) : 0;
 	datas->hsv = my_rgb_to_hsv(datas->rgb);
 	COLOR = hsv_to_rgb(datas->hsv.h, datas->hsv.s, datas->hsv.v + \
 			datas->shadow);
@@ -77,7 +74,6 @@ static void		apply_light2(t_param *param, t_list *lst_obj, t_list *lst_light,
 
 void			apply_light(t_env *e, t_param *param)
 {
-	t_list		*lst_obj;
 	t_list		*lst_light;
 	t_light		datas;
 
@@ -89,7 +85,7 @@ void			apply_light(t_env *e, t_param *param)
 	while (lst_light)
 	{
 		if (init_light_ray(param, lst_light->content))
-			apply_light2(param, lst_obj, lst_light, &datas);
+			apply_light2(param, lst_light->content, &datas);
 		else
 		{
 			datas.hsv = my_rgb_to_hsv(datas.rgb);
