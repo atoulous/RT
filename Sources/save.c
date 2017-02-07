@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 10:01:48 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/07 14:44:37 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 14:51:59 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,15 @@ static void		put_objects_to_file(t_env *e, t_list *first, FILE *fd)
 	}
 }
 
+static void		put_scene_param(t_env *e, FILE *fd)
+{
+	fprintf(fd, "\n\tcamera{\n\t\torigin{ %f %f %f }\n\t\tdir{ %f %f %f }\
+	\n\t}", CAM_POS.x, CAM_POS.y, CAM_POS.z, CAM_DIR.x, CAM_DIR.y, CAM_DIR.z);
+	fprintf(fd, "\n\trender{ %d %d }\n", IMG_WIDTH, IMG_HEIGHT);
+	fprintf(fd, "\n\tambience{ %f }\n", AMBIANCE);
+	fprintf(fd, "\n\treflection{ %d }\n", NB_REF);
+}
+
 /*
 ** Take a scene struct and save it in a file
 ** It's pretty much like invert parsing of the scene
@@ -79,11 +88,7 @@ void			save_scene(t_env *e)
 	if ((fd = fopen(path, "w+")) > 0)
 	{
 		fprintf(fd, "scene {\n\tname{%s}", e->scene->name);
-		fprintf(fd, "\n\tcamera{\n\t\torigin{ %f %f %f }\n\t\tdir{ %f %f %f }\
-	\n\t}", CAM_POS.x, CAM_POS.y, CAM_POS.z, CAM_DIR.x, CAM_DIR.y, CAM_DIR.z);
-		fprintf(fd, "\n\trender{ %d %d }\n", IMG_WIDTH, IMG_HEIGHT);
-		fprintf(fd, "\n\tambience{ %f }\n", AMBIANCE);
-		fprintf(fd, "\n\treflection{ %d }\n", NB_REF);
+		put_scene_param(e, fd);
 		put_objects_to_file(e, e->scene->light, fd);
 		put_objects_to_file(e, e->scene->obj, fd);
 		fprintf(fd, "}");
