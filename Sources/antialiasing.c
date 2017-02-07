@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 10:47:27 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/07 00:03:16 by mmoullec         ###   ########.fr       */
+/*   Updated: 2017/02/07 14:11:18 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,9 @@ void		antialiasing(t_env *e)
 	while (++i < NB_TH)
 		(void)pthread_join(th[i], NULL);
 	run_al(e, l, &tmp_img);
-	restart_params(e);
 	mlx_destroy_image(MLX, IMG);
+	restart_params(e);
 	e->img = tmp_img;
+	e->img.img = tmp_img.img;
 	mlx_put_image_to_window(MLX, WIN, IMG, IMG_GAP_X, IMG_GAP_Y + 49);
 }

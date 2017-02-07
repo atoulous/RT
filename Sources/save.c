@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 10:01:48 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/07 00:03:39 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/07 11:32:54 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ static void		put_mat_to_file(t_object *obj, FILE *fd)
 	fprintf(fd, "\n\t\t\tshine{%f}\n", obj->mat.shine);
 	fprintf(fd, "\n\t\t\tspecular{%f}\n", obj->mat.specular);
 	fprintf(fd, "\n\t\t\tambient{%f}\n\t\t}\n", obj->mat.ambient);
-	fprintf(fd, "\t\ttex{%s}\n", obj->pro);
-	fprintf(fd, "\t\tcoef{%f}\n\t\t}\n", obj->coef);
+	(obj->pro) ? fprintf(fd, "\t\ttex{%s}\n", obj->pro) : 0;
+	(obj->pro) ? fprintf(fd, "\t\tcoef{%f}\n", obj->coef) : 0;
+	(obj->asp) ? fprintf(fd, "\t\tasperite{%s}\n", obj->asp) : 0;
+	(obj->asp) ? fprintf(fd, "\t\tdensity{%f}\n", obj->density) : 0;
 }
 
 static void		put_obj_param_to_file(t_object *obj, char **obj_a, FILE *fd)
@@ -80,6 +82,8 @@ void			save_scene(t_env *e)
 		fprintf(fd, "\n\tcamera{\n\t\torigin{ %f %f %f }\n\t\tdir{ %f %f %f }\
 	\n\t}", CAM_POS.x, CAM_POS.y, CAM_POS.z, CAM_DIR.x, CAM_DIR.y, CAM_DIR.z);
 		fprintf(fd, "\n\trender{ %d %d }\n", IMG_WIDTH, IMG_HEIGHT);
+		fprintf(fd, "\n\tambience{ %f }\n", AMBIANCE);
+		fprintf(fd, "\n\treflection{ %d }\n", NB_REF);
 		put_objects_to_file(e, e->scene->light, fd);
 		put_objects_to_file(e, e->scene->obj, fd);
 		fprintf(fd, "}");

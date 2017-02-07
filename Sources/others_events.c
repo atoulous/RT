@@ -6,7 +6,7 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 22:58:34 by atoulous          #+#    #+#             */
-/*   Updated: 2017/02/06 15:53:15 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/07 12:36:25 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void		screenshot(void *arg)
 	char		*cmd;
 	time_t		now;
 	struct tm	tm_now;
-	char		s_now[sizeof("JJ-MM-AAAA_HH:MM:SS")];
+	char		s_now[sizeof("JJ-MM-AAAA_HH:MM:SS.png")];
 
 	now = time(NULL);
 	tm_now = *localtime(&now);
-	strftime(s_now, sizeof(s_now), "%d-%m-%Y_%H:%M:%S", &tm_now);
-	cmd = ft_strdup("screencapture -iW ./screen_");
+	strftime(s_now, sizeof(s_now), "%d-%m-%Y_%H:%M:%S.png", &tm_now);
+	cmd = ft_strdup("screencapture -iWPtpng ./screen_");
 	cmd = ft_strjoinfree(cmd, s_now);
 	if (!system(cmd))
 		ft_putendl("\033[32mYou screened me\033[0m\n");

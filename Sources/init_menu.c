@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 15:16:44 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 21:14:20 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 09:58:37 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,6 @@
 
 static void	get_images2(t_env *e)
 {
-	ME[13].path = ft_strdup("Images/grey.xpm");
-	ME[14].path = ft_strdup("Images/grey-inv.xpm");
-	ME[15].path = ft_strdup("Images/sepia.xpm");
-	ME[16].path = ft_strdup("Images/sepia-inv.xpm");
-	ME[17].path = ft_strdup("Images/cartoon.xpm");
-	ME[18].path = ft_strdup("Images/cartoon-inv.xpm");
-	ME[19].path = ft_strdup("Images/marbre.xpm");
-	ME[20].path = ft_strdup("Images/marbre-inv.xpm");
-	ME[21].path = ft_strdup("Images/bois.xpm");
-	ME[22].path = ft_strdup("Images/bois-inv.xpm");
-	ME[23].path = ft_strdup("Images/damier.xpm");
 	ME[24].path = ft_strdup("Images/damier-inv.xpm");
 	ME[25].path = ft_strdup("Images/random.xpm");
 	ME[26].path = ft_strdup("Images/random-inv.xpm");
@@ -32,6 +21,24 @@ static void	get_images2(t_env *e)
 	ME[28].path = ft_strdup("Images/asperite-inv.xpm");
 	ME[29].path = ft_strdup("Images/eau.xpm");
 	ME[30].path = ft_strdup("Images/eau-inv.xpm");
+	ME[31].path = ft_strdup("Images/antialiasing.xpm");
+	ME[32].path = ft_strdup("Images/antialiasing-inv.xpm");
+	ME[33].path = ft_strdup("Images/stereo.xpm");
+	ME[34].path = ft_strdup("Images/stereo-inv.xpm");
+	ME[35].path = ft_strdup("Images/motion.xpm");
+	ME[36].path = ft_strdup("Images/motion-inv.xpm");
+	ME[13].y = 180;
+	ME[14].y = 180;
+	ME[15].y = 210;
+	ME[16].y = 210;
+	ME[17].y = 240;
+	ME[18].y = 240;
+	ME[31].y = 300;
+	ME[32].y = 300;
+	ME[33].y = 330;
+	ME[34].y = 330;
+	ME[35].y = 360;
+	ME[36].y = 360;
 }
 
 static void	get_images(t_env *e)
@@ -49,6 +56,17 @@ static void	get_images(t_env *e)
 	ME[10].path = ft_strdup("Images/info-cylinder.xpm");
 	ME[11].path = ft_strdup("Images/info-cone.xpm");
 	ME[12].path = ft_strdup("Images/info-torus.xpm");
+	ME[13].path = ft_strdup("Images/grey.xpm");
+	ME[14].path = ft_strdup("Images/grey-inv.xpm");
+	ME[15].path = ft_strdup("Images/sepia.xpm");
+	ME[16].path = ft_strdup("Images/sepia-inv.xpm");
+	ME[17].path = ft_strdup("Images/cartoon.xpm");
+	ME[18].path = ft_strdup("Images/cartoon-inv.xpm");
+	ME[19].path = ft_strdup("Images/marbre.xpm");
+	ME[20].path = ft_strdup("Images/marbre-inv.xpm");
+	ME[21].path = ft_strdup("Images/bois.xpm");
+	ME[22].path = ft_strdup("Images/bois-inv.xpm");
+	ME[23].path = ft_strdup("Images/damier.xpm");
 	get_images2(e);
 }
 
@@ -56,12 +74,6 @@ static void	create_interface2(t_env *e)
 {
 	int i;
 
-	ME[13].y = 180;
-	ME[14].y = 180;
-	ME[15].y = 210;
-	ME[16].y = 210;
-	ME[17].y = 240;
-	ME[18].y = 240;
 	i = 18;
 	while (++i < 23)
 		ME[i].y = 600;
@@ -77,6 +89,9 @@ static void	create_interface2(t_env *e)
 	i = 26;
 	while (++i < 31)
 		ME[i].y = 664;
+	i = 30;
+	while (++i < 37)
+		ME[i].x = WIN_WIDTH - 176;
 	get_images(e);
 }
 

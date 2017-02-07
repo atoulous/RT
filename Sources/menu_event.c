@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 14:29:49 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 23:55:50 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/07 12:15:16 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,13 @@ void		top_menu_event(t_env *e, int x, int y)
 	if (x >= 53 && x < WIN_WIDTH - 14 && y >= 10 && y <= 50)
 	{
 		if (x < 70)
-			change_luminosite_mouse(e, y);
+		{
+			if (y < 25)
+				LUMI + 0.05 <= 1 ? LUMI += 0.05 : 0;
+			else
+				LUMI - 0.05 >= -0.5 ? LUMI -= 0.05 : 0;
+			create_img(e);
+		}
 		else if (x > 82 && x < 116)
 			del_focus_object(e);
 		else if (x > 116 && x < 151)
@@ -114,8 +120,19 @@ void		right_menu_event(t_env *e, int x, int y)
 	}
 	else if (x > WIN_WIDTH - 176 && x < WIN_WIDTH - 68)
 	{
-		(y > 183 && y < 208) ? active_grey(e) : 0;
-		(y > 213 && y < 238) ? active_sepia(e) : 0;
+		if (y > 183 && y < 208)
+		{
+			(IS_SEPIA) ? change_option(e, SEPIA) : 0;
+			change_option(e, GREY);
+		}
+		if (y > 213 && y < 238)
+		{
+			(IS_GREY) ? change_option(e, GREY) : 0;
+			change_option(e, SEPIA);
+		}
 		(y > 242 && y < 267) ? change_option(e, CRTN) : 0;
+		(y > 309 && y < 3277) ? antialiasing(e) : 0;
+		(y > 329 && y < 357) ? change_stereo(e) : 0;
+		(y > 359 && y < 387) ? change_motion_blur(e) : 0;
 	}
 }

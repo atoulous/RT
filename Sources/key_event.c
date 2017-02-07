@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 23:38:28 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 12:24:55 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,19 @@ static void	move(t_env *e, int keycode)
 
 static void	after_effects(t_env *e, int keycode)
 {
-	keycode == 41 ? active_sepia(e) : 0;
-	keycode == 39 ? active_grey(e) : 0;
+	if (keycode == 41)
+	{
+		(IS_GREY) ? change_option(e, GREY) : 0;
+		change_option(e, SEPIA);
+	}
+	if	(keycode == 39)
+	{	
+		(IS_SEPIA) ? change_option(e, SEPIA) : 0; 
+		change_option(e, GREY);
+	}
 	keycode == 8 ? change_option(e, CRTN) : 0;
-	keycode == 46 ? active_motion_blur(e) : 0;
+	keycode == 46 ? change_motion_blur(e) : 0;
+	keycode == 7 ? antialiasing(e) : 0;
 	keycode == 45 ? change_stereo(e) : 0;
 }
 
@@ -86,7 +95,6 @@ int			ft_key_press(int keycode, t_env *e)
 	keycode == 67 || keycode == 75 ? change_luminosite(e, keycode) : 0;
 	keycode == 71 || keycode == 81 ? change_ambiance(e, keycode) : 0;
 	keycode == 259 ? COMMAND = 1 : 0;
-	keycode == 7 ? antialiasing(e) : 0;
 	keycode == 6 && COMMAND == 1 ? undo_del_object(e) : 0;
 	keycode == 47 ? SPEED += 0.1 : 0;
 	keycode == 43 ? SPEED -= 0.1 : 0;

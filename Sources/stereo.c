@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 22:14:04 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 23:45:22 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 12:11:20 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,9 @@ void		change_stereo(t_env *e)
 	int		i;
 	int		j;
 
+	(IS_MOTION_BLUR && !IS_STEREO) ? change_option(e, MOTION_BLUR) : 0;
 	j = 48 + IMG_GAP_Y;
-	while (++j < IMG_HEIGHT + 49)
+	while (++j < IMG_HEIGHT + 49 && !IS_STEREO)
 	{
 		i = IMG_GAP_X - 1;
 		while (++i < IMG_WIDTH)

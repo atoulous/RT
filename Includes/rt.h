@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 13:04:37 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 23:38:55 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 10:59:09 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@
 # define IMG e->img.img
 # define IMG_ADDR e->img.addr
 # define ENDIAN e->endian
-# define NB_ME 31
+# define NB_ME 37
 # define ME e->menu
 # define COMMAND e->command
 
@@ -428,15 +428,15 @@ void				img_put_pixel(t_img *img, int x, int y, t_param *param);
 void				rgb_to_hsv(unsigned int rgb, int *h, double *s, double *v);
 int					add_color(int c1, int c2, double i);
 int					create_img(t_env *e);
-
 int					moves(t_env *e);
 void				change_global_quality(void *arg);
 void				change_luminosite(t_env *e, int keycode);
 void				change_ambiance(t_env *e, int keycode);
 void				change_speed_rotation(t_env *e, int keycode);
-void				change_luminosite_mouse(t_env *e, int y);
 void				change_indice_reflection(t_env *e, int keycode);
 void				change_option(t_env *e, int opt);
+void				change_motion_blur(t_env *e);
+void				change_stereo(t_env *e);
 void				antialiasing(t_env *e);
 void				init_params_for_al(t_env *e, t_img *tmp);
 void				del_focus_object(t_env *e);
@@ -450,11 +450,8 @@ void				add_torus(void *arg);
 void				add_lampe(void *arg);
 void				screenshot(void *arg);
 void				reset_cam(void *arg);
-void				back_plane(void *arg);
-void				active_motion_blur(void *arg);
-void				active_sepia(void *arg);
-void				active_grey(void *arg);
-void				active_cartoon(void *arg);
+int					stereo(t_env *e);
+void				save_scene(t_env *e);
 
 /*
 ** RAYTRACING
@@ -507,8 +504,6 @@ int					ft_mouse_click(int button, int x, int y, t_env *e);
 void				top_menu_event(t_env *e, int x, int y);
 void				bottom_menu_event(t_env *e, int x, int y);
 void				right_menu_event(t_env *e, int x, int y);
-void				save_scene(t_env *e);
-void				screenshot(void *arg);
 
 /*
 ** Perlin
@@ -541,8 +536,5 @@ void				init_reflect(t_param *param);
 void				add_reflected_color(t_param *param);
 void				sepia_filter(t_param *param);
 void				grey_filter(t_param *param);
-
-int					stereo(t_env *e);
-void				change_stereo(t_env *e);
 
 #endif
