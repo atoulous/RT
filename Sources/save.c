@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 10:01:48 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/07 16:35:08 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/07 16:31:38 by dgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void		put_scene_param(t_env *e, FILE *fd)
 	fprintf(fd, "\n\tcamera{\n\t\torigin{ %f %f %f }\n\t\tdir{ %f %f %f }\
 	\n\t}", CAM_POS.x, CAM_POS.y, CAM_POS.z, CAM_DIR.x, CAM_DIR.y, CAM_DIR.z);
 	fprintf(fd, "\n\trender{ %d %d }\n", IMG_WIDTH, IMG_HEIGHT);
-	fprintf(fd, "\n\tambience{ %f }\n", AMBIANCE);
+	fprintf(fd, "\n\tambiance{ %f }\n", AMBIANCE);
 	fprintf(fd, "\n\treflection{ %d }\n", NB_REF);
 }
 
