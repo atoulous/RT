@@ -6,7 +6,7 @@
 /*   By: atoulous <atoulous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 22:58:34 by atoulous          #+#    #+#             */
-/*   Updated: 2017/02/07 12:36:25 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 15:56:37 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ void		reset_cam(void *arg)
 
 	e = (t_env *)arg;
 	CAM_POS = e->parse_cam_pos;
-	CAM_DIR = e->parse_cam_dir;
+	CAM_DIR = unit_v3d(e->parse_cam_dir);
 	ft_putendl("Camera reinitialized");
-	menu_object(e);
 	create_img(e);
 }

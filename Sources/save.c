@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 10:01:48 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/07 14:51:59 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 16:35:08 by atoulous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static void		put_mat_to_file(t_object *obj, FILE *fd)
 {
-	fprintf(fd, "\t\tmat{\n\t\t\tdiffuse{%f}", obj->mat.diffuse);
-	fprintf(fd, "\n\t\t\tshine{%f}\n", obj->mat.shine);
-	fprintf(fd, "\n\t\t\tspecular{%f}\n", obj->mat.specular);
-	fprintf(fd, "\n\t\t\tambient{%f}\n\t\t}\n", obj->mat.ambient);
 	(obj->pro) ? fprintf(fd, "\t\ttex{%s}\n", obj->pro) : 0;
-	(obj->pro) ? fprintf(fd, "\t\tcoef{%f}\n", obj->coef) : 0;
+	(obj->coef) ? fprintf(fd, "\t\tcoef{%f}\n", obj->coef) : 0;
 	(obj->asp) ? fprintf(fd, "\t\tasperite{%s}\n", obj->asp) : 0;
-	(obj->asp) ? fprintf(fd, "\t\tdensity{%f}\n", obj->density) : 0;
+	(obj->density) ? fprintf(fd, "\t\tdensity{%f}\n", obj->density) : 0;
+	fprintf(fd, "\t\tmat{\n\t\t\tdiffuse{%f}", obj->mat.diffuse);
+	fprintf(fd, "\t\t\tshine{%f}\n", obj->mat.shine);
+	fprintf(fd, "\t\t\tspecular{%f}\n", obj->mat.specular);
+	fprintf(fd, "\t\t\tambient{%f}\n\t\t}\n", obj->mat.ambient);
 }
 
 static void		put_obj_param_to_file(t_object *obj, char **obj_a, FILE *fd)
