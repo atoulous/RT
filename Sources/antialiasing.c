@@ -30,35 +30,12 @@ void		img_put_pixel2(t_img *img, int x, int y, t_rgb rgb)
 
 int			col(t_env *e, char *addr, t_l l, int alpha)
 {
-	int z;
-	int cpt;
+	int z[4];
 	int ret;
 	int k;
-	t_l p;
 
-	cpt = 1;
 	ret = 0;
 	k = -1;
-	p.x = -1;
-	p.y = -1;
-	while (++p.x <= (A_L / 2))
-	{
-		p.y = -1;
-		while (++p.y <= (A_L / 2))
-		{
-			z = (int)addr[((l.y * A_L) + p.x) * e->img.sizeline + ((l.x * A_L) + p.y) * \
-			(e->img.bpp / 8) + alpha];
-			if (z >= 0)
-				ret += z;
-			else
-				ret += 255 + z;
-		cpt++;
-		}
-	}
-	/*
-			(int)addr[(l.y * A_L) * e->img.sizeline + (l.x * A_L) * \
-			(e->img.bpp / 8) + alpha];
-
 	z[0] = (int)addr[(l.y * A_L) * e->img.sizeline + (l.x * A_L) * \
 			(e->img.bpp / 8) + alpha];
 	z[1] = (int)addr[((l.y * A_L) + 1) * e->img.sizeline + (l.x * A_L) * \
@@ -74,8 +51,7 @@ int			col(t_env *e, char *addr, t_l l, int alpha)
 		else
 			ret += 255 + z[k];
 	}
-	*/
-	return (ret / cpt);
+	return (ret / 4);
 }
 
 void		run_al(t_env *e, t_l l, t_img *img)
