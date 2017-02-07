@@ -6,7 +6,7 @@
 #    By: jubarbie <jubarbie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/30 16:51:35 by jubarbie          #+#    #+#              #
-#    Updated: 2017/02/07 10:58:24 by jubarbie         ###   ########.fr        #
+#    Updated: 2017/02/07 14:27:29 by jubarbie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,6 @@ SRC =	rt.c			\
 		torus2.c			\
 		light_events.c	\
 		others_events.c	\
-		motion_blur.c	\
 		save.c			\
 		reflection.c	\
 		color_filter.c	\

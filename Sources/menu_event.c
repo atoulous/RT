@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 14:29:49 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/07 12:15:16 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 14:25:04 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,18 +120,10 @@ void		right_menu_event(t_env *e, int x, int y)
 	}
 	else if (x > WIN_WIDTH - 176 && x < WIN_WIDTH - 68)
 	{
-		if (y > 183 && y < 208)
-		{
-			(IS_SEPIA) ? change_option(e, SEPIA) : 0;
-			change_option(e, GREY);
-		}
-		if (y > 213 && y < 238)
-		{
-			(IS_GREY) ? change_option(e, GREY) : 0;
-			change_option(e, SEPIA);
-		}
+		(y > 183 && y < 208) ? change_option(e, GREY) : 0;
+		(y > 213 && y < 238) ? change_option(e, SEPIA) : 0;
 		(y > 242 && y < 267) ? change_option(e, CRTN) : 0;
-		(y > 309 && y < 3277) ? antialiasing(e) : 0;
+		(y > 309 && y < 327) ? antialiasing(e) : 0;
 		(y > 329 && y < 357) ? change_stereo(e) : 0;
 		(y > 359 && y < 387) ? change_motion_blur(e) : 0;
 	}

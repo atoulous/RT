@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:00 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/07 12:24:55 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 14:26:12 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,8 @@ static void	move(t_env *e, int keycode)
 
 static void	after_effects(t_env *e, int keycode)
 {
-	if (keycode == 41)
-	{
-		(IS_GREY) ? change_option(e, GREY) : 0;
-		change_option(e, SEPIA);
-	}
-	if	(keycode == 39)
-	{	
-		(IS_SEPIA) ? change_option(e, SEPIA) : 0; 
-		change_option(e, GREY);
-	}
+	keycode == 41 ? change_option(e, SEPIA) : 0;
+	keycode == 39 ? change_option(e, GREY) : 0;
 	keycode == 8 ? change_option(e, CRTN) : 0;
 	keycode == 46 ? change_motion_blur(e) : 0;
 	keycode == 7 ? antialiasing(e) : 0;

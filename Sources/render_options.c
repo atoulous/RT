@@ -6,43 +6,40 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 14:55:45 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 08:54:19 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 14:28:05 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	change_light_status(void *arg)
+void	change_motion_blur(t_env *e)
 {
-	t_env *e;
-
-	e = (t_env *)arg;
-	(IS_LIGHT) ? (OPT ^= LIGHT) : (OPT |= LIGHT);
+	if (IS_MOTION_BLUR)
+	{
+		OPT ^= MOTION_BLUR;
+		ft_putendl("Motion blur is OFF");
+	}
+	else
+	{
+		(IS_STEREO) ? change_option(e, STEREO) : 0;
+		OPT |= MOTION_BLUR;
+		CAM_POS.x += 0.1;
+		create_img(e);
+		CAM_POS.x -= 0.1;
+		ft_putendl("Motion blur is ON");
+	}
+	menu_object(e);
 	create_img(e);
 }
 
 void	change_option(t_env *e, int opt)
 {
+	if (opt == GREY && IS_SEPIA)
+		OPT ^= SEPIA;
+	else if (opt == SEPIA && IS_GREY)
+		OPT ^= GREY;
 	(OPT & opt) ? (OPT ^= opt) : (OPT |= opt);
 	menu_image_filter(e);
-	create_img(e);
-}
-
-void	change_brillance_status(void *arg)
-{
-	t_env *e;
-
-	e = (t_env *)arg;
-	(IS_SHINE) ? (OPT ^= SHINE) : (OPT |= SHINE);
-	create_img(e);
-}
-
-void	change_shadow_status(void *arg)
-{
-	t_env *e;
-
-	e = (t_env *)arg;
-	(IS_SHADOW) ? (OPT ^= SHADOW) : (OPT |= SHADOW);
 	create_img(e);
 }
 
