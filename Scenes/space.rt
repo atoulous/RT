@@ -1,0 +1,111 @@
+scene {
+	name{demo.rt}
+	camera{
+		origin{ 0.000000 2.600000 -20.000000 }
+		dir{ 0.000000 0.000000 1.000000 }	
+	}
+	render{ 900 700 }
+
+	ambiance{ 0.100000 }
+
+	reflection{ 0 }
+	object{
+		name{spot1}
+		type{light}
+		origin{10.000000 20.000000 -2.000000}
+		color{0x00FFFFFF}
+		mat {
+			diffuse{0.240398}
+			shine{4238.000000}
+
+			specular{0.360598}
+
+			ambient{0.200332}
+		}
+	}
+	object{
+		name{new sphere}
+		type{sphere}
+		origin{-4.600000 4.600000 16.800000}
+		r1{0.300000}
+		color{0x0000373B}
+		mat {
+			diffuse{0.200000}
+			shine{100.000000}
+
+			specular{0.020000}
+
+			ambient{0.100000}
+		}
+	}
+	object{
+		name{new torus}
+		type{torus}
+		p1{6.800000 3.800000 27.000000}
+		p2{-0.111619 0.984808 -0.133022}
+		r1{0.120000}
+		r2{1.600000}
+		color{0x003E3E00}
+		mat {
+			diffuse{0.040000}
+			shine{100.000000}
+
+			specular{0.020000}
+
+			ambient{0.020000}
+		}
+		tex{random}
+		coef{8.000000}
+	}
+	object{
+		name{new sphere}
+		type{sphere}
+		origin{-2.400000 1.000000 -10.000000}
+		r1{1.540000}
+		color{0x003A0067}
+		mat {
+			diffuse{0.180000}
+			shine{100.000000}
+
+			specular{0.020000}
+
+			ambient{0.020000}
+		}
+		tex{wood}
+		coef{2.000000}
+	}
+	object{
+		name{new sphere}
+		type{sphere}
+		origin{7.000000 3.800000 28.200000}
+		r1{0.920000}
+		color{0x00323800}
+		mat {
+			diffuse{0.160000}
+			shine{100.000000}
+
+			specular{0.020000}
+
+			ambient{0.100000}
+		}
+		tex{random}
+		coef{42.000000}
+	}
+	object{
+		name{new sphere}
+		type{sphere}
+		origin{-2.400000 1.200000 5.000000}
+		r1{1.240000}
+		color{0x00686A00}
+		mat {
+			diffuse{0.100000}
+			shine{100.000000}
+
+			specular{0.080000}
+
+			ambient{0.120000}
+		}
+		asperite{bump}
+		density{2.000000}
+	}
+}

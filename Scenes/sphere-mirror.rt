@@ -1,0 +1,102 @@
+scene {
+	name{test1}
+	camera{
+		origin{ 2.000000 1.750000 -11.000000 }
+		dir{ 0.000000 0.000000 1.000000 }	
+	}
+	render{ 700 550 }
+
+	ambience{ 0.100000 }
+
+	reflection{ 4 }
+	object{
+		name{light2}
+		type{light}
+		origin{1.000000 3.400000 -5.000000}
+		color{0x00FFFFFF}
+		mat{
+			diffuse{0.161335}
+			shine{1935.000000}
+
+			specular{0.242002}
+
+			ambient{0.134446}
+		}
+	}
+	object{
+		name{light1}
+		type{light}
+		origin{5.000000 3.400000 -5.000000}
+		color{0x00FFFFFF}
+		mat{
+			diffuse{0.161335}
+			shine{1935.000000}
+
+			specular{0.242002}
+
+			ambient{0.134446}
+		}
+	}
+	object{
+		name{new plane}
+		type{plane}
+		origin{2.000000 1.350000 4.200000}
+		dir{-0.000000 0.500000 0.866025}
+		color{0x00FCFFFE}
+		mat{
+			diffuse{0.200000}
+			shine{100.000000}
+
+			specular{1.000000}
+
+			ambient{0.100000}
+		}
+	}
+	object{
+		name{new plane}
+		type{plane}
+		origin{2.000000 -0.250000 -11.000000}
+		dir{0.000000 1.000000 -0.000000}
+		color{0x0000FF00}
+		mat{
+			diffuse{0.200000}
+			shine{100.000000}
+
+			specular{1.000000}
+
+			ambient{0.100000}
+		}
+	}
+	object{
+		name{plane}
+		type{plane}
+		origin{-4.800000 -0.200000 8.600000}
+		dir{0.000000 1.000000 0.000000}
+		color{0x00080500}
+		mat{
+			diffuse{0.300000}
+			shine{100.000000}
+
+			specular{1.000000}
+
+			ambient{0.100000}
+		}
+		tex{damier}
+		coef{1.000000}
+	}
+	object{
+		name{sphere1}
+		type{sphere}
+		origin{2.000000 0.900000 0.000000}
+		r1{1.000000}
+		color{0x00FF0000}
+		mat{
+			diffuse{0.300000}
+			shine{100.000000}
+
+			specular{1.000000}
+
+			ambient{0.100000}
+		}
+	}
+}

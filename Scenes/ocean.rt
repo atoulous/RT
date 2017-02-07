@@ -1,0 +1,90 @@
+scene {
+	name{demo.rt}
+	camera{
+		origin{ 0.000000 2.600000 -20.000000 }
+		dir{ 0.000000 0.000000 1.000000 }	
+	}
+	render{ 900 700 }
+
+	ambience{ 0.100000 }
+
+	reflection{ 1 }
+	object{
+		name{spot1}
+		type{light}
+		origin{10.000000 20.000000 -2.000000}
+		color{0x00FFFFFF}
+		mat{
+			diffuse{0.240398}
+			shine{4238.000000}
+
+			specular{0.360598}
+
+			ambient{0.200332}
+		}
+	}
+	object{
+		name{new plane}
+		type{plane}
+		origin{0.000000 -1.800000 -20.000000}
+		dir{0.000000 1.000000 -0.000000}
+		color{0x0009004A}
+		mat{
+			diffuse{0.200000}
+			shine{100.000000}
+
+			specular{1.000000}
+
+			ambient{0.100000}
+		}
+		asperite{water}
+		density{10.000000}
+	}
+	object{
+		name{new torus}
+		type{torus}
+		p1{-1.800000 -0.800000 5.600000}
+		p2{0.109223 0.981115 -0.159639}
+		r1{1.260000}
+		r2{4.080000}
+		color{0x0000502E}
+		mat{
+			diffuse{0.220000}
+			shine{100.000000}
+
+			specular{0.180000}
+
+			ambient{0.180000}
+		}
+	}
+	object{
+		name{new sphere}
+		type{sphere}
+		origin{3.600000 -1.600000 -3.800000}
+		r1{0.460000}
+		color{0x00FF0000}
+		mat{
+			diffuse{0.200000}
+			shine{100.000000}
+
+			specular{1.000000}
+
+			ambient{0.100000}
+		}
+	}
+	object{
+		name{new sphere}
+		type{sphere}
+		origin{5.800000 -1.600000 1.600000}
+		r1{0.460000}
+		color{0x00F4FF26}
+		mat{
+			diffuse{0.200000}
+			shine{100.000000}
+
+			specular{1.000000}
+
+			ambient{0.100000}
+		}
+	}
+}
