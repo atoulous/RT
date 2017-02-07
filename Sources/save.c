@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 10:01:48 by mmoullec          #+#    #+#             */
-/*   Updated: 2017/02/07 15:26:08 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 16:31:38 by dgameiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void		put_mat_to_file(t_object *obj, FILE *fd)
 {
-	fprintf(fd, "\t\tmat{\n\t\t\tdiffuse{%f}", obj->mat.diffuse);
+	fprintf(fd, "\t\tmat {\n\t\t\tdiffuse{%f}", obj->mat.diffuse);
 	fprintf(fd, "\n\t\t\tshine{%f}\n", obj->mat.shine);
 	fprintf(fd, "\n\t\t\tspecular{%f}\n", obj->mat.specular);
 	fprintf(fd, "\n\t\t\tambient{%f}\n\t\t}\n", obj->mat.ambient);
@@ -66,7 +66,7 @@ static void		put_scene_param(t_env *e, FILE *fd)
 	fprintf(fd, "\n\tcamera{\n\t\torigin{ %f %f %f }\n\t\tdir{ %f %f %f }\
 	\n\t}", CAM_POS.x, CAM_POS.y, CAM_POS.z, CAM_DIR.x, CAM_DIR.y, CAM_DIR.z);
 	fprintf(fd, "\n\trender{ %d %d }\n", IMG_WIDTH, IMG_HEIGHT);
-	fprintf(fd, "\n\tambience{ %f }\n", AMBIANCE);
+	fprintf(fd, "\n\tambiance{ %f }\n", AMBIANCE);
 	fprintf(fd, "\n\treflection{ %d }\n", NB_REF);
 }
 
