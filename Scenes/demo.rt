@@ -94,7 +94,6 @@ scene {
 			specular { 1 }
 			shine { 100 }
 		}
-		asperite { water }
 	}
 	object {
 		name { plane gauche }
@@ -194,12 +193,6 @@ scene {
 		origin { -10 0 -20 }
 		color { 0xFFFFFF }
 	}
-#	object {
-#		name { spot3 }
-#		type { light }
-#		origin { - 0 -10 }
-#		color { 0xFFFFFF }
-#	}
 }
 
 # end
