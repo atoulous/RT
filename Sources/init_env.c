@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/19 15:06:39 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/06 17:05:51 by atoulous         ###   ########.fr       */
+/*   Updated: 2017/02/07 15:48:45 by jubarbie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static t_param	*init_param(t_env *e, int index)
 static void		init_img(t_env *e)
 {
 	WIN_WIDTH = (IMG_WIDTH < 600) ? 840 : IMG_WIDTH + 240;
-	WIN_HEIGHT = (IMG_HEIGHT < 510) ? 690 : IMG_HEIGHT + 180;
+	WIN_HEIGHT = (IMG_HEIGHT < 666) ? 846 : IMG_HEIGHT + 180;
 	IMG_GAP_X = (WIN_WIDTH - 240 - IMG_WIDTH) / 2;
 	IMG_GAP_Y = (WIN_HEIGHT - 180 - IMG_HEIGHT) / 2;
 	IMG = mlx_new_image(MLX, IMG_WIDTH, IMG_HEIGHT);
