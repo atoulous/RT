@@ -6,7 +6,7 @@
 /*   By: jubarbie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 10:47:27 by jubarbie          #+#    #+#             */
-/*   Updated: 2017/02/07 14:20:23 by jubarbie         ###   ########.fr       */
+/*   Updated: 2017/02/07 16:14:25 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,35 +23,37 @@ void		img_put_pixel2(t_img *img, int x, int y, t_rgb rgb)
 	char	*addr;
 
 	addr = img->addr;
-	addr[y * img->sizeline + x * (img->bpp / 8)] = rgb.r;
-	addr[y * img->sizeline + x * (img->bpp / 8) + 1] = rgb.g;
-	addr[y * img->sizeline + x * (img->bpp / 8) + 2] = rgb.b;
+	addr[y * img->sizeline + x * (4)] = rgb.r;
+	addr[y * img->sizeline + x * (4) + 1] = rgb.g;
+	addr[y * img->sizeline + x * (4) + 2] = rgb.b;
 }
 
 int			col(t_env *e, char *addr, t_l l, int alpha)
 {
-	int z[4];
-	int ret;
-	int k;
+	int z[A_L * 2];
+	t_l ret;
+	t_l p;
 
-	ret = 0;
-	k = -1;
-	z[0] = (int)addr[(l.y * A_L) * e->img.sizeline + (l.x * A_L) * \
-			(e->img.bpp / 8) + alpha];
-	z[1] = (int)addr[((l.y * A_L) + 1) * e->img.sizeline + (l.x * A_L) * \
-			(e->img.bpp / 8) + alpha];
-	z[2] = (int)addr[(l.y * A_L) * e->img.sizeline + ((l.x * A_L) + 1) * \
-			(e->img.bpp / 8) + alpha];
-	z[3] = (int)addr[((l.y * A_L) + 1) * e->img.sizeline + ((l.x * A_L) + 1) * \
-			(e->img.bpp / 8) + alpha];
-	while (++k < 4)
+	ret.x = 0;
+	ret.y = -1;
+	p.x = -1;
+	p.y = -1;
+	while (++p.y < A_L)
 	{
-		if (z[k] >= 0)
-			ret += abs(z[k]);
-		else
-			ret += 255 + z[k];
+		p.x = -1;
+		while (++p.x < A_L)
+			z[++ret.y] = (int)addr[((l.y * A_L) + p.y) * e->img.sizeline + \
+						((l.x * A_L) + p.x) * (e->img.bpp / 8) + alpha];
 	}
-	return (ret / 4);
+	ret.y = -1;
+	while (++ret.y < (A_L * 2))
+	{
+		if (z[ret.y] >= 0)
+			ret.x += z[ret.y];
+		else
+			ret.x += 255 + z[ret.y];
+	}
+	return (ret.x / (A_L * 2));
 }
 
 void		run_al(t_env *e, t_l l, t_img *img)
@@ -105,4 +107,5 @@ void		antialiasing(t_env *e)
 	e->img = tmp_img;
 	e->img.img = tmp_img.img;
 	mlx_put_image_to_window(MLX, WIN, IMG, IMG_GAP_X, IMG_GAP_Y + 49);
+	ft_putstr("\033[32mAnti-aliasing x2 ON\033[0m\n");
 }
